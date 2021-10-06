@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="RsaCtfTool RSA tool for ctf - uncipher data from weak public key and try to recover private keyAutomatic selection of best attack for the given public key Attacks :  Prime N detection Weak public key">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://jszmwq.github.io/%E9%99%84%E4%BB%B6/RSA/rsa%E5%B7%A5%E5%85%B7/RsaCtfTool/README.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="RsaCtfTool RSA tool for ctf - uncipher data from weak public key and try to recover private keyAutomatic selection of best attack for the given public key Attacks :  Prime N detection Weak public key">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.shields.io/github/issues/Ganapati/RsaCtfTool.svg">
+<meta property="og:image" content="https://img.shields.io/github/forks/Ganapati/RsaCtfTool.svg">
+<meta property="og:image" content="https://img.shields.io/github/stars/Ganapati/RsaCtfTool.svg">
+<meta property="og:image" content="https://inventory.rawsec.ml/img/badges/Rawsec-inventoried-FF5050_flat.svg">
+<meta property="og:image" content="https://img.shields.io/github/license/Ganapati/RsaCtfTool.svg">
+<meta property="article:published_time" content="2021-10-06T05:46:40.061Z">
+<meta property="article:modified_time" content="2019-04-21T06:30:02.000Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.shields.io/github/issues/Ganapati/RsaCtfTool.svg">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/g.jpg">
+  
+  
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: false,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/image.jpg" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/"></a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">玩转开发工具</a></li>
+                        
+                            <li><a  href="/categories/digital">玩转数码</a></li>
+                        
+                            <li><a  href="/categories/algorithm">算法学习</a></li>
+                        
+                            <li><a  href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="/xxxxx" title="github">github</a>
+                            
+                                <a class="fl weibo"  target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                            
+                                <a class="fl rss"  target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/crypto/" style="font-size: 15px;">crypto</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%85%A5%E9%97%A8/" style="font-size: 10px;">博客入门</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://blog.csdn.net/baidu_21483933">csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://segmentfault.com/blog/maocg_web">segmentfault</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/eb37ef89c746/latest_articles">简书</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱动漫,爱游戏,爱编程,爱运动,爱的太多了!</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/image.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">玩转开发工具</a></li>
+                
+                    <li><a href="/categories/digital">玩转数码</a></li>
+                
+                    <li><a href="/categories/algorithm">算法学习</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="/xxxxx" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="/xxxxxxxx" title="weibo">weibo</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/%E9%99%84%E4%BB%B6/RSA/rsa%E5%B7%A5%E5%85%B7/RsaCtfTool/README.html" class="article-date">
+      <time datetime="2021-10-06T05:46:40.061Z" itemprop="datePublished">2021-10-06</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <style>
+    .article-meta {
+        display: none;
+    }
+    #container .article .article-title {
+        padding-right: 0;
+    }
+    .article-header {
+        padding: 0;
+        padding-top: 26px;
+        border-left: none;
+        text-align: center;
+    }
+    .article-header:hover {
+        border-left: none;
+    }
+    .article-title {
+        font-size: 1.6em
+    }
+    .article-meta {
+        display: none;
+    }
+    .article-entry hr {
+        margin: 0;
+    }
+    #container .article-info-post.article-info {
+      display: none;
+      }
+    #container .article .article-title {
+    padding: 0;
+    }
+</style>
+
+
+          
+        <h1 id="RsaCtfTool"><a href="#RsaCtfTool" class="headerlink" title="RsaCtfTool"></a>RsaCtfTool</h1><p><a target="_blank" rel="noopener" href="https://github.com/Ganapati/RsaCtfTool/issues"><img src="https://img.shields.io/github/issues/Ganapati/RsaCtfTool.svg" alt="GitHub issues"></a><br><a target="_blank" rel="noopener" href="https://github.com/Ganapati/RsaCtfTool/network"><img src="https://img.shields.io/github/forks/Ganapati/RsaCtfTool.svg" alt="GitHub forks"></a><br><a target="_blank" rel="noopener" href="https://github.com/Ganapati/RsaCtfTool/stargazers"><img src="https://img.shields.io/github/stars/Ganapati/RsaCtfTool.svg" alt="GitHub stars"></a><br><a target="_blank" rel="noopener" href="https://inventory.rawsec.ml/tools.html#RsaCtfTool"><img src="https://inventory.rawsec.ml/img/badges/Rawsec-inventoried-FF5050_flat.svg" alt="Rawsec&#39;s CyberSecurity Inventory"></a><br><a target="_blank" rel="noopener" href="https://github.com/Ganapati/RsaCtfTool"><img src="https://img.shields.io/github/license/Ganapati/RsaCtfTool.svg" alt="GitHub license"></a></p>
+<p>RSA tool for ctf - uncipher data from weak public key and try to recover private key<br>Automatic selection of best attack for the given public key</p>
+<p>Attacks :</p>
+<ul>
+<li>Prime N detection</li>
+<li>Weak public key factorization</li>
+<li>Wiener’s attack</li>
+<li>Hastad’s attack (Small public exponent attack)</li>
+<li>Small q (q &lt; 100,000)</li>
+<li>Common factor between ciphertext and modulus attack</li>
+<li>Fermat’s factorisation for close p and q</li>
+<li>Gimmicky Primes method</li>
+<li>Past CTF Primes method</li>
+<li>Self-Initializing Quadratic Sieve (SIQS) using Yafu</li>
+<li>Common factor attacks across multiple keys</li>
+<li>Small fractions method when p/q is close to a small fraction</li>
+<li>Boneh Durfee Method when the private exponent d is too small compared to the modulus (i.e d &lt; n^0.292)</li>
+<li>Elliptic Curve Method</li>
+<li>Pollards p-1 for relatively smooth numbers</li>
+<li>Mersenne primes factorization</li>
+<li>Londahl’s factorisation for close p and q</li>
+<li>Qi Cheng’s unsafe primes factorization</li>
+</ul>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage:"></a>Usage:</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">usage: RsaCtfTool.py [-h] [--publickey PUBLICKEY] [--createpub] [--dumpkey] [--ext]</span><br><span class="line">                     [--uncipherfile UNCIPHERFILE] [--uncipher UNCIPHER]</span><br><span class="line">                     [--verbose] [--private] [--ecmdigits ECMDIGITS] [-n N]</span><br><span class="line">                     [-p P] [-q Q] [-e E] [--key KEY]</span><br><span class="line">                     [--attack &#123;hastads,factordb,pastctfprimes,mersenne_primes,noveltyprimes,smallq,wiener,comfact_cn,primefac,fermat,siqs,Pollard_p_1,londahl,prime_n,all&#125;]</span><br></pre></td></tr></table></figure>
+
+<p>Mode 1 - Attack RSA (specify –publickey)</p>
+<ul>
+<li>publickey : public rsa key to crack. You can import multiple public keys with wildcards.</li>
+<li>uncipher : cipher message to decrypt</li>
+<li>private : display private rsa key if recovered</li>
+</ul>
+<p>Mode 2 - Create a Public Key File Given n and e (specify –createpub)</p>
+<ul>
+<li>n - modulus</li>
+<li>e - public exponent</li>
+</ul>
+<p>Mode 3 - Dump the public and/or private numbers (optionally including CRT parameters in extended mode) from a PEM/DER format public or private key (specify –dumpkey)</p>
+<ul>
+<li>key - the public or private key in PEM or DER format</li>
+</ul>
+<h3 id="Uncipher-file"><a href="#Uncipher-file" class="headerlink" title="Uncipher file :"></a>Uncipher file :</h3><p><code>./RsaCtfTool.py --publickey ./key.pub --uncipherfile ./ciphered\_file</code></p>
+<h3 id="Print-private-key"><a href="#Print-private-key" class="headerlink" title="Print private key :"></a>Print private key :</h3><p><code>./RsaCtfTool.py --publickey ./key.pub --private</code></p>
+<h3 id="Attempt-to-break-multiple-public-keys-with-common-factor-attacks-or-individually-use-quotes-around-wildcards-to-stop-bash-expansion"><a href="#Attempt-to-break-multiple-public-keys-with-common-factor-attacks-or-individually-use-quotes-around-wildcards-to-stop-bash-expansion" class="headerlink" title="Attempt to break multiple public keys with common factor attacks or individually - use quotes around wildcards to stop bash expansion"></a>Attempt to break multiple public keys with common factor attacks or individually - use quotes around wildcards to stop bash expansion</h3><p><code>./RsaCtfTool.py --publickey &quot;*.pub&quot; --private</code></p>
+<h3 id="Generate-a-public-key"><a href="#Generate-a-public-key" class="headerlink" title="Generate a public key :"></a>Generate a public key :</h3><p><code>./RsaCtfTool.py --createpub -n 7828374823761928712873129873981723...12837182 -e 65537</code></p>
+<h3 id="Dump-the-parameters-from-a-key"><a href="#Dump-the-parameters-from-a-key" class="headerlink" title="Dump the parameters from a key:"></a>Dump the parameters from a key:</h3><p><code>./RsaCtfTool.py --dumpkey --key ./key.pub</code></p>
+<h3 id="Factor-with-ECM-when-you-know-the-approximate-length-in-digits-of-a-prime"><a href="#Factor-with-ECM-when-you-know-the-approximate-length-in-digits-of-a-prime" class="headerlink" title="Factor with ECM when you know the approximate length in digits of a prime:"></a>Factor with ECM when you know the approximate length in digits of a prime:</h3><p><code>./RsaCtfTool.py --publickey key.pub --ecmdigits 25 --verbose --private</code></p>
+<h4 id="Examples"><a href="#Examples" class="headerlink" title="Examples :"></a>Examples :</h4><ul>
+<li>weak_public.pub, weak_public.cipher : weak public key</li>
+<li>wiener.pub, wiener.cipher : key vulnerable to Wiener’s attack</li>
+<li>small_exponent.pub, small_exponent.cipher : key with e=3, vulnerable to Hastad’s attack</li>
+<li>small_q.pub, small_q.cipher : public key with a small prime</li>
+<li>close_primes.pub, close_primes.cipher : public key with primes suceptible to fermat factorization</li>
+<li>elite_primes.pub : public key with a gimmick prime</li>
+<li>fermat.pub : public key with another vulnerability to fermat factorization</li>
+<li>pastctfprimes.pub : public key with a prime from a past CTF</li>
+<li>siqs.pub: 256bit public key that is factored in 30 seconds with SIQS</li>
+<li>factordb_parsing.pub: a public key with a prime that is described as an expression on factordb.com</li>
+<li>smallfraction.pub: a public key where p/q is close to a small fraction</li>
+<li>boneh_durfee.pub: a public key factorable using boneh_durfee method</li>
+<li>multikey-0.pub and multikey-1.pub: Public keys that share a common factor</li>
+<li>ecm_method.pub: Public key with a 25 digit prime factorable with ECM method in around 2 minutes (use –ecmdigits 25 to test)</li>
+</ul>
+<h4 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements:"></a>Requirements:</h4><ul>
+<li>GMPY2</li>
+<li>SymPy</li>
+<li>PyCrypto</li>
+<li>Requests</li>
+<li>SageMath - optional but advisable<h3 id="Ubuntu-18-04-and-Kali-specific-Instructions"><a href="#Ubuntu-18-04-and-Kali-specific-Instructions" class="headerlink" title="Ubuntu 18.04 and Kali specific Instructions"></a>Ubuntu 18.04 and Kali specific Instructions</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/Ganapati/RsaCtfTool.git</span><br><span class="line">cd RsaCtfTool</span><br><span class="line">sudo apt-get install virtualenv libgmp3-dev libmpc-dev</span><br><span class="line">virtualenv --python=/usr/bin/python2.7 .</span><br><span class="line">source bin/activate</span><br><span class="line">pip install -r &quot;requirements.txt&quot;</span><br><span class="line">python2.7 RsaCtfTool.py</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="MacOS-specific-Instructions"><a href="#MacOS-specific-Instructions" class="headerlink" title="MacOS-specific Instructions"></a>MacOS-specific Instructions</h3><p>If <code>pip install -r &quot;requirements.txt&quot;</code> fails to install requirements accessible within environment, the following command may work.</p>
+<p><code>easy_install `cat requirements.txt`</code></p>
+<h4 id="Todo"><a href="#Todo" class="headerlink" title="Todo"></a>Todo</h4><ul>
+<li>Implement multiple ciphertext handling for more attacks (Common modulus attack)</li>
+<li>Implement support for MultiPrime RSA (see 0ctf 2016)</li>
+<li>Possibly implement Msieve support…</li>
+<li>Some kind of polynomial search…</li>
+<li>Brainstorm moar attack types!</li>
+<li>Saw a CTF where the supplied N was a 2048 bit prime. Detect this and solve using phi = (n - 1) * (n - 1) which seemed to work for that CTF</li>
+<li>Replicate all functionality of rsatool.py</li>
+<li>Support more types of expression based primes from factordb.com?</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+
+
+
+  
+</article>
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <section class="changyan" id="comments">
+  <!--<div id="uyan_frame"></div>-->
+  <div id="SOHUCS"></div>
+  <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>
+  <script type="text/javascript">
+    window.changyan.api.config({
+      appid: 'xxxx',
+      conf: 'xxxxxxxxx'
+    });
+  </script>
+</section>
+    
+
+
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2021 John Doe
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
