@@ -14,5 +14,5 @@ mm = ceil(beta**2 / (dd * epsilon))
 tt = floor(dd * mm * ((1/beta) - 1))
 XX = ceil(N**((beta**2/dd) - epsilon))
 roots = coppersmith_howgrave_univariate(f, N, beta, mm, tt, XX)
-print "缺失的m部分是:"+hex(roots[0])
-print "完整的m是:自己手动把上面m中的0000000换为缺失的m部分值即可(16进制的)."
+print("缺失的m部分是:"+hex(roots[0]))
+print("完整的m是:自己手动把上面m中的0000000换为缺失的m部分值即可(16进制的).")

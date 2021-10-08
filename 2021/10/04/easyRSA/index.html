@@ -16,11 +16,17 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="信息加密与验证How can you ensure that the person receiving your message knows that you wrote it? You’ve been asked out on a date, and you want to send a message telling them that you’d love to go, however a">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jszmwq.github.io/2021/10/04/easyRSA/image-20211008225355445.png">
+<meta property="og:image" content="https://jszmwq.github.io/2021/10/04/easyRSA/image-20211008225643406.png">
+<meta property="og:image" content="https://jszmwq.github.io/2021/10/04/easyRSA/image-20211008225759836.png">
+<meta property="og:image" content="https://jszmwq.github.io/2021/10/04/easyRSA/image-20211008230006142.png">
+<meta property="og:image" content="https://jszmwq.github.io/2021/10/04/easyRSA/image-20211008230033466.png">
 <meta property="article:published_time" content="2021-10-04T03:03:26.000Z">
-<meta property="article:modified_time" content="2021-10-06T06:01:24.239Z">
+<meta property="article:modified_time" content="2021-10-08T15:54:48.269Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="crypto">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jszmwq.github.io/2021/10/04/easyRSA/image-20211008225355445.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -317,7 +323,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="信息加密与验证"><a href="#信息加密与验证" class="headerlink" title="信息加密与验证"></a>信息加密与验证</h3><p>How can you ensure that the person receiving your message knows that you wrote it?</p>
+        <h2 id="信息加密与验证"><a href="#信息加密与验证" class="headerlink" title="信息加密与验证"></a>信息加密与验证</h2><p>How can you ensure that the person receiving your message knows that you wrote it?</p>
 <p>You’ve been asked out on a date, and you want to send a message telling them that you’d love to go, however a jealous lover isn’t so happy about this.</p>
 <p>When you send your message saying yes, your jealous lover intercepts the message and corrupts it so it now says no!</p>
 <p>We can protect against these attacks by signing the message.</p>
@@ -334,14 +340,23 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ooo = bytes_to_long(hashlib.sha256(flag).digest())</span><br><span class="line">answer = long_to_bytes(pow(ooo, d, N)).hex()</span><br></pre></td></tr></table></figure>
 
 <p>由于HASH加密后的值无法进行计算，所以我们需要先用.digest()将其转换成bytes形式，再将bytes转化成可以计算的Long整型值。</p>
-<h3 id="查看n的素因子"><a href="#查看n的素因子" class="headerlink" title="查看n的素因子"></a>查看n的素因子</h3><p>遇到了一个N， 可以先去<a target="_blank" rel="noopener" href="http://factordb.com/index.php">factordb.com</a>查看一下N的素因子是否曾被记录，若可被完全分解，知道了p和q，那么问题就迎刃而解了</p>
-<h3 id="低指数攻击："><a href="#低指数攻击：" class="headerlink" title="低指数攻击："></a>低指数攻击：</h3><h4 id="e-1"><a href="#e-1" class="headerlink" title="e=1"></a>e=1</h4><p>由于gmpy2.invert(1, k)对于任意的 K， 得到的结果都为 1</p>
+<h2 id="查看n的素因子"><a href="#查看n的素因子" class="headerlink" title="查看n的素因子"></a>查看n的素因子</h2><p>遇到了一个N， 可以先去<a target="_blank" rel="noopener" href="http://factordb.com/index.php">factordb.com</a>查看一下N的素因子是否曾被记录，若可被完全分解，知道了p和q，那么问题就迎刃而解了</p>
+<h2 id="小公钥指数攻击："><a href="#小公钥指数攻击：" class="headerlink" title="小公钥指数攻击："></a>小公钥指数攻击：</h2><h3 id="e-1"><a href="#e-1" class="headerlink" title="e=1"></a>e=1</h3><p>由于gmpy2.invert(1, k)对于任意的 K， 得到的结果都为 1</p>
 <p>则我们可以直接print(long_to_bytes(pow(c, 1, n)))得到结果</p>
-<h4 id="e很小，且c-远远小于-n"><a href="#e很小，且c-远远小于-n" class="headerlink" title="e很小，且c 远远小于 n"></a>e很小，且c 远远小于 n</h4><p> 即说明 flag ** e = c, 可推出结果</p>
-<h3 id="低解密指数攻击："><a href="#低解密指数攻击：" class="headerlink" title="低解密指数攻击："></a>低解密指数攻击：</h3><p><strong>在RSA中d也称为解密指数，当d比较小的时候，e也就显得特别大了。</strong></p>
+<h3 id="e很小，且c-远远小于-n"><a href="#e很小，且c-远远小于-n" class="headerlink" title="e很小，且c 远远小于 n"></a>e很小，且c 远远小于 n</h3><p> 即说明 flag ** e = c, 可推出结果</p>
+<h2 id="低解密指数攻击："><a href="#低解密指数攻击：" class="headerlink" title="低解密指数攻击："></a>低解密指数攻击：</h2><h3 id="Wiener’s-Attack"><a href="#Wiener’s-Attack" class="headerlink" title="Wiener’s Attack"></a>Wiener’s Attack</h3><p><strong>在RSA中d也称为解密指数，当d比较小的时候，e也就显得特别大了。</strong></p>
 <p><strong>适用情况：e过大或过小（一般e过大时使用）</strong></p>
 <p>可以使用附件RSA工具里的rsa-wiener-attack-master</p>
 <p>在 d 比较小（d &lt; 1/3 * N ** 1 / 4）时，攻击者可以使用 <strong>Wiener’s Attack</strong> 来获得私钥。</p>
+<h3 id="Boneh-attack"><a href="#Boneh-attack" class="headerlink" title="Boneh attack"></a>Boneh attack</h3><p><img src="/2021/10/04/easyRSA/image-20211008225355445.png" alt="image-20211008225355445"></p>
+<p><img src="/2021/10/04/easyRSA/image-20211008225643406.png" alt="image-20211008225643406"></p>
+<p>由于公钥e的选取和 φ(N)的大小差不多，所以k的大小和d的大小差不多，于是有</p>
+<p><img src="/2021/10/04/easyRSA/image-20211008225759836.png" alt="image-20211008225759836"></p>
+<p><img src="/2021/10/04/easyRSA/image-20211008230006142.png" alt="image-20211008230006142"></p>
+<p>Then the vector <img src="/2021/10/04/easyRSA/image-20211008230033466.png" alt="image-20211008230033466">is a short vector of the lattice, under the assumption that <em>d</em> is very low. Applying a lattice reduction (see the CryptoHack challenge <a target="_blank" rel="noopener" href="https://cryptohack.org/challenges/maths/">Gaussian Reduction</a> to implement it yourself, or use LLL), this vector can be found, and <em>d</em> can be extracted from its second coordinate.</p>
+<p>下面是使用 SageMath version 9.1的题解</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">N = 0x665166804cd78e8197073f65f58bca14e019982245fcc7cad74535e948a4e0258b2e919bf3720968a00e5240c5e1d6b8831d8fec300d969fccec6cce11dde826d3fbe0837194f2dc64194c78379440671563c6c75267f0286d779e6d91d3e9037c642a860a894d8c45b7ed564d341501cedf260d3019234f2964ccc6c56b6de8a4f66667e9672a03f6c29d95100cdf5cb363d66f2131823a953621680300ab3a2eb51c12999b6d4249dde499055584925399f3a8c7a4a5a21f095878e80bbc772f785d2cbf70a87c6b854eb566e1e1beb7d4ac6eb46023b3dc7fdf34529a40f5fc5797f9c15c54ed4cb018c072168e9c30ca3602e00ea4047d2e5686c6eb37b9</span><br><span class="line">e = 0x2c998e57bc651fe4807443dbb3e794711ca22b473d7792a64b7a326538dc528a17c79c72e425bf29937e47b2d6f6330ee5c13bfd8564b50e49132d47befd0ee2e85f4bfe2c9452d62ef838d487c099b3d7c80f14e362b3d97ca4774f1e4e851d38a4a834b077ded3d40cd20ddc45d57581beaa7b4d299da9dec8a1f361c808637238fa368e07c7d08f5654c7b2f8a90d47857e9b9c0a81a46769f6307d5a4442707afb017959d9a681fa1dc8d97565e55f02df34b04a3d0a0bf98b7798d7084db4b3f6696fa139f83ada3dc70d0b4c57bf49f530dec938096071f9c4498fdef9641dfbfe516c985b27d1748cc6ce1a4beb1381fb165a3d14f61032e0f76f095d</span><br><span class="line">c = 0x503d5dd3bf3d76918b868c0789c81b4a384184ddadef81142eabdcb78656632e54c9cb22ac2c41178607aa41adebdf89cd24ec1876365994f54f2b8fc492636b59382eb5094c46b5818cf8d9b42aed7e8051d7ca1537202d20ef945876e94f502e048ad71c7ad89200341f8071dc73c2cc1c7688494cad0110fca4854ee6a1ba999005a650062a5d55063693e8b018b08c4591946a3fc961dae2ba0c046f0848fbe5206d56767aae8812d55ee9decc1587cf5905887846cd3ecc6fc069e40d36b29ee48229c0c79eceab9a95b11d15421b8585a2576a63b9f09c56a4ca1729680410da237ac5b05850604e2af1f4ede9cf3928cbb3193a159e64482928b585ac</span><br><span class="line">s = floor(sqrt(N))</span><br><span class="line">M = Matrix([[e, s], [N, 0]])</span><br><span class="line">Mred = M.LLL()</span><br><span class="line">D = [abs(Mred[i, 1]) // s for i in [0,1]]</span><br><span class="line">for d in D:</span><br><span class="line">    t = randint(2, N - 2)</span><br><span class="line">    tt = pow(t, e, N)</span><br><span class="line">    if tt^d != t:</span><br><span class="line">        continue</span><br><span class="line">    flag = int(pow(c, d, N))</span><br><span class="line">    flag = flag.to_bytes((flag.bit_length() + 7)//8, &#x27;big&#x27;)</span><br><span class="line">    print(f&#x27;FLAG: &#123;flag.decode()&#125;&#x27;)</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -353,7 +368,7 @@
         <p><span>本文标题:</span><a  href="/2021/10/04/easyRSA/">easyRSA</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问  的个人博客"></a></p>
         <p><span>发布时间:</span>2021年10月04日 - 11时03分</p>
-        <p><span>最后更新:</span>2021年10月06日 - 14时01分</p>
+        <p><span>最后更新:</span>2021年10月08日 - 23时54分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2021/10/04/easyRSA/" title="easyRSA">https://jszmwq.github.io/2021/10/04/easyRSA/</a>
             <span class="copy-path" data-clipboard-text="原文: https://jszmwq.github.io/2021/10/04/easyRSA/　　作者: " title=""></span>
@@ -381,7 +396,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E5%8A%A0%E5%AF%86%E4%B8%8E%E9%AA%8C%E8%AF%81"><span class="toc-number">1.</span> <span class="toc-text">信息加密与验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bn%E7%9A%84%E7%B4%A0%E5%9B%A0%E5%AD%90"><span class="toc-number">2.</span> <span class="toc-text">查看n的素因子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8E%E6%8C%87%E6%95%B0%E6%94%BB%E5%87%BB%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">低指数攻击：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#e-1"><span class="toc-number">3.1.</span> <span class="toc-text">e&#x3D;1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#e%E5%BE%88%E5%B0%8F%EF%BC%8C%E4%B8%94c-%E8%BF%9C%E8%BF%9C%E5%B0%8F%E4%BA%8E-n"><span class="toc-number">3.2.</span> <span class="toc-text">e很小，且c 远远小于 n</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8E%E8%A7%A3%E5%AF%86%E6%8C%87%E6%95%B0%E6%94%BB%E5%87%BB%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">低解密指数攻击：</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E5%8A%A0%E5%AF%86%E4%B8%8E%E9%AA%8C%E8%AF%81"><span class="toc-number">1.</span> <span class="toc-text">信息加密与验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bn%E7%9A%84%E7%B4%A0%E5%9B%A0%E5%AD%90"><span class="toc-number">2.</span> <span class="toc-text">查看n的素因子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E5%85%AC%E9%92%A5%E6%8C%87%E6%95%B0%E6%94%BB%E5%87%BB%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">小公钥指数攻击：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#e-1"><span class="toc-number">3.1.</span> <span class="toc-text">e&#x3D;1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e%E5%BE%88%E5%B0%8F%EF%BC%8C%E4%B8%94c-%E8%BF%9C%E8%BF%9C%E5%B0%8F%E4%BA%8E-n"><span class="toc-number">3.2.</span> <span class="toc-text">e很小，且c 远远小于 n</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8E%E8%A7%A3%E5%AF%86%E6%8C%87%E6%95%B0%E6%94%BB%E5%87%BB%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">低解密指数攻击：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Wiener%E2%80%99s-Attack"><span class="toc-number">4.1.</span> <span class="toc-text">Wiener’s Attack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Boneh-attack"><span class="toc-number">4.2.</span> <span class="toc-text">Boneh attack</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
