@@ -198,7 +198,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/crypto/" style="font-size: 15px;">crypto</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%85%A5%E9%97%A8/" style="font-size: 10px;">博客入门</a>
+                        <a href="/tags/crypto/" style="font-size: 15px;">crypto</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%85%A5%E9%97%A8/" style="font-size: 10px;">博客入门</a> <a href="/tags/%E6%95%B0%E5%AD%97%E5%8F%96%E8%AF%81/" style="font-size: 10px;">数字取证</a> <a href="/tags/%E6%95%B0%E7%BB%84%E5%8F%96%E8%AF%81/" style="font-size: 10px;">数组取证</a>
                     </div>
                 </section>
                 
@@ -276,6 +276,149 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-RAID重组" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2021/10/13/RAID%E9%87%8D%E7%BB%84/" class="article-date">
+      <time datetime="2021-10-12T16:21:20.000Z" itemprop="datePublished">2021-10-13</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2021/10/13/RAID%E9%87%8D%E7%BB%84/">RAID重组</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="修改root密码"><a href="#修改root密码" class="headerlink" title="修改root密码"></a>修改root密码</h3><h4 id="方案一："><a href="#方案一：" class="headerlink" title="方案一："></a>方案一：</h4><p>添加grub启动参数 rw init=/bin/sh 或者 sysroot/bin/sh</p>
+<p>chroot &amp; passwd</p>
+<h5 id="虚拟机方面"><a href="#虚拟机方面" class="headerlink" title="虚拟机方面"></a>虚拟机方面</h5><p>使用取证大师挂载到本地，然后在添加设备中添加RAID硬盘组本地磁盘进行重组</p>
+<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013002605156.png" alt="image-20211013002605156"></p>
+<p>导入虚拟机时注意使用转化好的虚拟磁盘（需要全部导入，并且一般选取其中最大的可能包含操作系统的放在首位导入）</p>
+<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013002917659.png" alt="image-20211013002917659"></p>
+<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013003021252.png" alt="image-20211013003021252"></p>
+<p>对其中 r\o进行改写为 r\w init=sysroot\bin\sh, 即可绕过密码进入系统</p>
+<p>后输入chroot sasroot/ 更换根目录</p>
+<p>之后就可以用passwd来设置新密码</p>
+<p>输入exit后reboot来重启</p>
+<h4 id="方案二："><a href="#方案二：" class="headerlink" title="方案二："></a>方案二：</h4><p>挂在可启动的系统上</p>
+<p>Chroot &amp; passwd</p>
+<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013004758124.png" alt="image-20211013004758124"></p>
+<h3 id="一些命令"><a href="#一些命令" class="headerlink" title="一些命令"></a>一些命令</h3><p>ls -lh</p>
+<p>cat ect/hostname</p>
+<p>fdisk -l 可以查看挂载那些硬盘</p>
+<p>fdisk -l 1 less 可以查看有哪些设备</p>
+<p>mdadm –help 获取帮助</p>
+<p>mdadm –detail /dev/md5</p>
+<p>lvm 下 lvdisplay</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E7%BB%84%E5%8F%96%E8%AF%81/" rel="tag">数组取证</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-数字取证" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2021/10/12/%E6%95%B0%E5%AD%97%E5%8F%96%E8%AF%81/" class="article-date">
+      <time datetime="2021-10-12T15:42:13.000Z" itemprop="datePublished">2021-10-12</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2021/10/12/%E6%95%B0%E5%AD%97%E5%8F%96%E8%AF%81/">数字取证</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="数字取证"><a href="#数字取证" class="headerlink" title="数字取证"></a>数字取证</h1><h2 id="取证方法："><a href="#取证方法：" class="headerlink" title="取证方法："></a>取证方法：</h2><h3 id="活取证："><a href="#活取证：" class="headerlink" title="活取证："></a>活取证：</h3><h4 id="抓取文件metadata-访问记录-、创建时间线、命令历史、日志文件、哈希摘要、内存等等"><a href="#抓取文件metadata-访问记录-、创建时间线、命令历史、日志文件、哈希摘要、内存等等" class="headerlink" title="抓取文件metadata(访问记录)、创建时间线、命令历史、日志文件、哈希摘要、内存等等"></a>抓取文件metadata(访问记录)、创建时间线、命令历史、日志文件、哈希摘要、内存等等</h4><h4 id="采用未受感染的程序进行取证"><a href="#采用未受感染的程序进行取证" class="headerlink" title="采用未受感染的程序进行取证"></a>采用未受感染的程序进行取证</h4><h4 id="U盘、网络-收集证据"><a href="#U盘、网络-收集证据" class="headerlink" title="U盘、网络 收集证据"></a>U盘、网络 收集证据</h4><h3 id="死取证："><a href="#死取证：" class="headerlink" title="死取证："></a>死取证：</h3><h4 id="关机后对硬盘进行镜像操作"><a href="#关机后对硬盘进行镜像操作" class="headerlink" title="关机后对硬盘进行镜像操作"></a>关机后对硬盘进行镜像操作</h4><h2 id="电子取证比赛考察范围"><a href="#电子取证比赛考察范围" class="headerlink" title="电子取证比赛考察范围"></a>电子取证比赛考察范围</h2><h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><h4 id="macOS"><a href="#macOS" class="headerlink" title="macOS"></a>macOS</h4><h4 id="UNIX-Linux"><a href="#UNIX-Linux" class="headerlink" title="UNIX/Linux"></a>UNIX/Linux</h4><h4 id="移动终端"><a href="#移动终端" class="headerlink" title="移动终端"></a>移动终端</h4><h4 id="网络数据取证-等等"><a href="#网络数据取证-等等" class="headerlink" title="网络数据取证 等等"></a>网络数据取证 等等</h4>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%97%E5%8F%96%E8%AF%81/" rel="tag">数字取证</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-easyRSA" class="article article-type-post" itemscope itemprop="blogPost">
   
