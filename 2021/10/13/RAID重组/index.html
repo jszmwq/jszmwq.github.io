@@ -9,19 +9,19 @@
   
   <title>RAID重组 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="修改root密码方案一：添加grub启动参数 rw init&#x3D;&#x2F;bin&#x2F;sh 或者 sysroot&#x2F;bin&#x2F;sh chroot &amp; passwd 虚拟机方面使用取证大师挂载到本地，然后在添加设备中添加RAID硬盘组本地磁盘进行重组  导入虚拟机时注意使用转化好的虚拟磁盘（需要全部导入，并且一般选取其中最大的可能包含操作系统的放在首位导入）   对其中 r\o进行改写为 r\w init&#x3D;s">
+  <meta name="description" content="修改root密码方案一：添加grub启动参数 rw init&#x3D;&#x2F;bin&#x2F;sh 或者 sysroot&#x2F;bin&#x2F;sh chroot &amp; passwd 虚拟机方面使用取证大师挂载到本地，然后在添加设备中添加RAID硬盘组本地磁盘进行重组  导入虚拟机时注意使用转化好的虚拟磁盘（需要全部导入，并且一般选取其中最大的可能包含操作系统的放在首位导入）   对其中 ro进行改写为 rw init&#x3D;sys">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RAID重组">
 <meta property="og:url" content="https://jszmwq.github.io/2021/10/13/RAID%E9%87%8D%E7%BB%84/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="修改root密码方案一：添加grub启动参数 rw init&#x3D;&#x2F;bin&#x2F;sh 或者 sysroot&#x2F;bin&#x2F;sh chroot &amp; passwd 虚拟机方面使用取证大师挂载到本地，然后在添加设备中添加RAID硬盘组本地磁盘进行重组  导入虚拟机时注意使用转化好的虚拟磁盘（需要全部导入，并且一般选取其中最大的可能包含操作系统的放在首位导入）   对其中 r\o进行改写为 r\w init&#x3D;s">
+<meta property="og:description" content="修改root密码方案一：添加grub启动参数 rw init&#x3D;&#x2F;bin&#x2F;sh 或者 sysroot&#x2F;bin&#x2F;sh chroot &amp; passwd 虚拟机方面使用取证大师挂载到本地，然后在添加设备中添加RAID硬盘组本地磁盘进行重组  导入虚拟机时注意使用转化好的虚拟磁盘（需要全部导入，并且一般选取其中最大的可能包含操作系统的放在首位导入）   对其中 ro进行改写为 rw init&#x3D;sys">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jszmwq.github.io/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013002605156.png">
 <meta property="og:image" content="https://jszmwq.github.io/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013002917659.png">
 <meta property="og:image" content="https://jszmwq.github.io/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013003021252.png">
 <meta property="og:image" content="https://jszmwq.github.io/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013004758124.png">
 <meta property="article:published_time" content="2021-10-12T16:21:20.000Z">
-<meta property="article:modified_time" content="2021-10-13T13:07:24.595Z">
+<meta property="article:modified_time" content="2021-10-15T03:24:36.586Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="电子数据取证">
 <meta name="twitter:card" content="summary">
@@ -329,7 +329,7 @@
 <p>导入虚拟机时注意使用转化好的虚拟磁盘（需要全部导入，并且一般选取其中最大的可能包含操作系统的放在首位导入）</p>
 <p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013002917659.png" alt="image-20211013002917659"></p>
 <p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013003021252.png" alt="image-20211013003021252"></p>
-<p>对其中 r\o进行改写为 r\w init=sysroot\bin\sh, 即可绕过密码进入系统</p>
+<p>对其中 ro进行改写为 rw init=sysroot\bin\sh, 即可绕过密码进入系统</p>
 <p>后输入chroot sasroot/ 更换根目录</p>
 <p>之后就可以用passwd来设置新密码</p>
 <p>输入exit后reboot来重启</p>
@@ -354,7 +354,7 @@
         <p><span>本文标题:</span><a  href="/2021/10/13/RAID%E9%87%8D%E7%BB%84/">RAID重组</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问  的个人博客"></a></p>
         <p><span>发布时间:</span>2021年10月13日 - 00时21分</p>
-        <p><span>最后更新:</span>2021年10月13日 - 21时07分</p>
+        <p><span>最后更新:</span>2021年10月15日 - 11时24分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2021/10/13/RAID%E9%87%8D%E7%BB%84/" title="RAID重组">https://jszmwq.github.io/2021/10/13/RAID%E9%87%8D%E7%BB%84/</a>
             <span class="copy-path" data-clipboard-text="原文: https://jszmwq.github.io/2021/10/13/RAID%E9%87%8D%E7%BB%84/　　作者: " title=""></span>

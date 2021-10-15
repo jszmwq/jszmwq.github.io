@@ -310,28 +310,167 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-FileHash 文件路径 -Algorithm 校验的Hash值类型| Format-List</span><br></pre></td></tr></table></figure>
 
 <p>如果不带-Algorithm参数，也就是不指明验证的Hash值类型，那么默认验证的就是SHA256值。</p>
+<h4 id="正确方法："><a href="#正确方法：" class="headerlink" title="正确方法："></a>正确方法：</h4><p>右键证据文件里的检材，选择哈希值计算</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211015231422448.png" alt="image-20211015231422448"></p>
+<p>得到文件的SHA-256值</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211015231650138.png" alt="image-20211015231650138"></p>
+<blockquote>
+<p>1、计算“检材 1.E01”镜像的 SHA256 值是多少（ C ）</p>
+<p> A. 2b20022249e3e5d66d4bbed34ad337be5dd77b313c92dfe929aa56ed71449697</p>
+<p> B. 6a574c40548110598bd4c88520d34b37d13b372066737ede3104743f986b7263</p>
+<p> C. 5ee0b3809807bf8a39453695c5835cddfd33f65b4f5bee8b5670625291a6bc1c</p>
+<p> D. 8495b678da27c64b54f083afefbcf9f83f94c1de133c70c175b4a784551939dd</p>
+</blockquote>
 <h3 id="服务器内核版本？"><a href="#服务器内核版本？" class="headerlink" title="服务器内核版本？"></a>服务器内核版本？</h3><h5 id="1：登录linux，在终端输入-cat-proc-version"><a href="#1：登录linux，在终端输入-cat-proc-version" class="headerlink" title="1：登录linux，在终端输入 cat /proc/version"></a>1：登录linux，在终端输入 <code>cat /proc/version</code></h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211013191208084.png" alt="image-20211013191208084"></p>
 <h5 id="2：登录linux，在终端输入-uname-a"><a href="#2：登录linux，在终端输入-uname-a" class="headerlink" title="2：登录linux，在终端输入 uname -a"></a>2：登录linux，在终端输入 <code>uname -a</code></h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211013191001450.png" alt="image-20211013191001450"></p>
-<p>3：最省事的就是刚开机的时候会显示出来（doge）</p>
+<h5 id="3：最省事的就是刚开机的时候会显示出来（doge）"><a href="#3：最省事的就是刚开机的时候会显示出来（doge）" class="headerlink" title="3：最省事的就是刚开机的时候会显示出来（doge）"></a>3：最省事的就是刚开机的时候会显示出来（doge）</h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211016004637803.png" alt="image-20211016004637803"></p>
+<p>4: FMP取证结果 -&gt; 展开镜像 -&gt; 选中对应的 root -&gt; 系统痕迹 -&gt; 系统信息 -&gt; 查看产品名称和当前版本</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211016004911374.png" alt="image-20211016004911374"></p>
+<blockquote>
+<p>2、该服务器的操作系统版本是什么（ D ） </p>
+<p>A. CentOS release 6.5 (Final) </p>
+<p>B. Ubuntu 16.04.3 LTS </p>
+<p>C. Debian GNU/Linux 7.8 (wheezy) </p>
+<p>D.CentOS Linux release 7.6.1810(Core) </p>
+</blockquote>
+<blockquote>
+<p>3、该服务器内核版本是多少（ A ）</p>
+<p>A.3.10.0-957.el7.x86_64 </p>
+<p>B. 3.2.0-4-amd64 </p>
+<p>C. 4.8.0-52-generic </p>
+<p>D. 4.10.0-28-generic</p>
+</blockquote>
 <h3 id="硬盘分区？"><a href="#硬盘分区？" class="headerlink" title="硬盘分区？"></a>硬盘分区？</h3><h4 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h4><h5 id="输入-fdisk-l-可以查看挂载那些硬盘分区，即可得到关于磁盘分区的详情信息"><a href="#输入-fdisk-l-可以查看挂载那些硬盘分区，即可得到关于磁盘分区的详情信息" class="headerlink" title="输入 fdisk -l 可以查看挂载那些硬盘分区，即可得到关于磁盘分区的详情信息"></a>输入 <code>fdisk -l</code> 可以查看挂载那些硬盘分区，即可得到关于磁盘分区的详情信息</h5><h5 id="输入-lvdisplay-可以看到逻辑卷的详细信息"><a href="#输入-lvdisplay-可以看到逻辑卷的详细信息" class="headerlink" title="输入 lvdisplay 可以看到逻辑卷的详细信息"></a>输入 <code>lvdisplay</code> 可以看到逻辑卷的详细信息</h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211013192540678.png" alt="image-20211013192540678"></p>
 <p>逻辑区块地址<code>(Logical Block Address, LBA)</code>是描述计算机存储设备上数据所在区块的通用机制，一般用在像硬盘这样的辅助记忆设备。<code>LBA</code>可以意指某个数据区块的地址或是某个地址所指向的数据区块。</p>
-<h4 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h4><p>原服务器中硬盘分区其中含有一个 LVM 逻辑卷的分区，请找出该分区内开始的逻辑区块地址<code>（LBA）</code>。（答案格式： 扇区，<code>Sector</code>）（<strong>C</strong>）</p>
+<h4 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h4><blockquote>
+<p>4、原服务器存在多少硬盘分区？（ B ）</p>
+<p> A.1   B.2   C.3   D.4</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211016005125784.png" alt="image-20211016005125784"></p>
+<blockquote>
+<p>5、原服务器中硬盘分区其中含有一个 LVM 逻辑卷的分区，请找出该分区内开始的逻辑区块地址<code>（LBA）</code>。（答案格式： 扇区，<code>Sector</code>）（<strong>C</strong>）</p>
 <p><code>A.0    B.2048    C.2099200    D.4194344</code></p>
+</blockquote>
 <p>通过查找知道题目所说的分区是：<code>FMP</code>证据文件 -&gt; 展开镜像 -&gt; 选中 分区2 -&gt; 摘要 -&gt; 查看 物理位置：</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211015232231379.png" alt="image-20211015232231379"></p>
 <p>但是这个内存物理地址的单位是字节<code>（Byte）</code>，而一个逻辑区块占用512位，所以要将这个值除以512。</p>
 <p><code>1074790400/512=2099200</code></p>
+<blockquote>
+<p>7、该 LVM 逻辑卷分区内 root 逻辑卷的物理大小是多少？（单位：byte）（ C ）</p>
+<p> A. 2,147,483,648   B. 2,147,504,128   C. 18,249,416,704   D. 20,400,046,080</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211016005445924.png" alt="image-20211016005445924"></p>
+<p>可以用 512 * 35643392 = 1824941670 从而得出 C选项</p>
+<p>也可以用 17 *1024 * 1024 * 1024 = 18253611008 约等于 1824941670</p>
+<h4 id="逻辑卷的文件系统"><a href="#逻辑卷的文件系统" class="headerlink" title="逻辑卷的文件系统"></a>逻辑卷的文件系统</h4><blockquote>
+<p>6、该 LVM 逻辑卷分区内 root 逻辑卷的文件系统是什么？（ D ）</p>
+<p> A.NTFS  B.EXT4  C.SWAP  D.XFS</p>
+</blockquote>
+<p>通过查找知道题目所说的分区是：<code>FMP</code>证据文件 -&gt; 展开镜像 -&gt; 选中对应的 root -&gt; 摘要 -&gt; 查看 分区类型：</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211015232205519.png" alt="image-20211015232205519"></p>
 <h3 id="docker？"><a href="#docker？" class="headerlink" title="docker？"></a>docker？</h3><h5 id="输入-docker-images-查看本地所有的镜像"><a href="#输入-docker-images-查看本地所有的镜像" class="headerlink" title="输入 docker images 查看本地所有的镜像"></a>输入 <code>docker images</code> 查看本地所有的镜像</h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211013201717153.png" alt="image-20211013201717153"></p>
+<blockquote>
+<p>17、该服务器中网站运行在 docker 容器中，其中 web 服务使用的是什么应用？（ C ） </p>
+<p>A.apache   B.tomcat   C.nginx   D.IIS </p>
+</blockquote>
+<p>除了nginx选项，其他均未出现在上面的镜像中</p>
+<blockquote>
+<p>18、上题所述运行 web 服务的容器节点，使用的镜像名称是什么？（格式 REPOSITORY：TAG） （ D ）</p>
+<p> A.apache: latest   B.tomcat: jessie-slim   C.nginx: jessie-slim   D.nginx: latest</p>
+</blockquote>
+<p>REPOSITORY ： TAG即可</p>
 <h5 id="输入-docker-version-可以获得版本信息"><a href="#输入-docker-version-可以获得版本信息" class="headerlink" title="输入 docker version 可以获得版本信息"></a>输入 <code>docker version</code> 可以获得版本信息</h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211013202020275.png" alt="image-20211013202020275"></p>
 <h5 id="docker-ps-的相关指令"><a href="#docker-ps-的相关指令" class="headerlink" title="docker ps 的相关指令"></a><code>docker ps</code> 的相关指令</h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211013202625279.png" alt="image-20211013202625279"></p>
 <h5 id="docker-ps-显示正在运行中的容器节点"><a href="#docker-ps-显示正在运行中的容器节点" class="headerlink" title="docker ps 显示正在运行中的容器节点"></a><code>docker ps</code> 显示正在运行中的容器节点</h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211014225650326.png" alt="image-20211014225650326"></p>
 <h5 id="docker-ps-a-显示所有的容器节点"><a href="#docker-ps-a-显示所有的容器节点" class="headerlink" title="docker ps -a 显示所有的容器节点"></a><code>docker ps -a</code> 显示所有的容器节点</h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211014225720208.png" alt="image-20211014225720208"></p>
-<p><code>docker ps</code> 命令中在<code>PORTS</code>里面显示了两个端口，前面<code>0.0.0.0</code>就是主机，也就是自己，而后面的转发端口就对应着<code>docker</code>的端口，如果只显示端口号而未绑定主机，说明为占用当前端口。</p>
+<blockquote>
+<p>13、在运行中的容器节点中，其中一台容器名称为 romantic_varahamihira 的容器节点，它的 hostname 是什么？（ D ）</p>
+<p> A. 16fc160060c1   B. 1ef6292872e0   C. 753abb28b629   D. 53766d68636f</p>
+</blockquote>
+<blockquote>
+<p>14、上题容器节点中，占用了主机的哪个端口？（ D ）</p>
+<p> A.25   B.8012  C.8091   D.未占用端口</p>
+</blockquote>
+<blockquote>
+<p>16、容器节点 ID 为 15debb1824e6 中，占用了主机的哪个端口？（ C ）</p>
+<p> A.22    B.8091   C.39999   D.未占用端口</p>
+</blockquote>
+<blockquote>
+<p>19、使用nginx服务的容器节点占用的容器端口是什么？（ B ）</p>
+<p> A.22   B.80   C.8091   D.未占用端口</p>
+</blockquote>
+<p>观察上述的容器节点，在 command 一栏中找到 <code>“nginx -g”</code> 故可确定题目所指向的容器，进而找到容器端口。</p>
+<p><code>docker ps</code> 命令中在<code>PORTS</code>里面显示了两个端口，前面<code>0.0.0.0</code>就是主机，也就是自己，而后面的转发端口就对应着<code>docker</code>的端口，如果只显示端口号而未绑定主机，说明为占用当前端口。(别被取证大师误导，其对是否占用无区分)</p>
+<blockquote>
+<p>15、在运行中的容器节点中，其中一台容器 ID 为 15debb1824e6 的容器节点，它运行了什么服 务？（ B ） </p>
+<p>A.ftp   B.ssh   C.nginx   D.smtp</p>
+</blockquote>
+<h6 id="方法一：-1"><a href="#方法一：-1" class="headerlink" title="方法一："></a>方法一：</h6><p>通过观察上述的节点信息，在command一栏中找到 <code>&quot;/user/sbin/sshd -D&quot;</code>  故得出使用了SSH服务</p>
+<h6 id="方法二：-1"><a href="#方法二：-1" class="headerlink" title="方法二："></a>方法二：</h6><p>在取证大师中，<code>FMP</code>取证结果 -&gt; 展开镜像 -&gt; 选中对应的 root -&gt; web服务器 -&gt; Docker -&gt; 容器信息 查看 取证列表 -&gt; 找到对应的容器ID -&gt; 双击打开，在txt文本中使用搜索功能，对上述选项进行搜索，发现仅存在 ssh，故选 ssh</p>
 <h5 id="输入-docker-info-可以看到关于docker配置的相关信息"><a href="#输入-docker-info-可以看到关于docker配置的相关信息" class="headerlink" title="输入 docker info 可以看到关于docker配置的相关信息"></a>输入 <code>docker info</code> 可以看到关于docker配置的相关信息</h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211014230344942.png" alt="image-20211014230344942"></p>
+<p>或者在取证大师中可以数出个数</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211016010338036.png" alt="image-20211016010338036"></p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211016010354693.png" alt="image-20211016010354693"></p>
+<blockquote>
+<p>9、该服务器中运行了 docker 应用，在本地有多少 docker 镜像？（ B ）</p>
+<p> A.10   B.11   C.12   D.13</p>
+</blockquote>
+<p>images 意思是镜像</p>
+<blockquote>
+<p>10、该 docker 应用的 server 版本是多少？（ C ）</p>
+<p> A.16.05.2   B.17.03.8   C.18.09.7   D.19.03.3</p>
+</blockquote>
+<blockquote>
+<p>11、该 docker 应用中总共有多少容器节点？（ A ）</p>
+<p> A.10   B.11   C.12   D.13</p>
+</blockquote>
+<blockquote>
+<p>12、运行中的容器节点有多少？（ C ）</p>
+<p> A.1   B.2   C.3   D.4</p>
+</blockquote>
 <h5 id="输入docker-inspect-容器ID-可以查看该容器的详情信息"><a href="#输入docker-inspect-容器ID-可以查看该容器的详情信息" class="headerlink" title="输入docker inspect [容器ID] 可以查看该容器的详情信息"></a>输入<code>docker inspect [容器ID]</code> 可以查看该容器的详情信息</h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211014233723662.png" alt="image-20211014233723662"></p>
 <p>可以找出个容器节点于主机之间的网络连接模式是 ‘bridge’</p>
+<blockquote>
+<p>24、在 docker 中，各容器节点和主机之间的网络连接模式是什么？（ A ）</p>
+<p> A. bridge 模式   B. host 模式   C. container 模式   D.none 模式</p>
+</blockquote>
+<p>或者在取证大师中 自动取证 -&gt; root -&gt; Web服务器 -&gt; Docker -&gt; 容器信息 拉伸条后拉可以找到网络方式。</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211016010451595.png" alt="image-20211016010451595"></p>
 <h5 id="可以输入-docker-exec-it-容器ID前两位即可-bin-bash-，-查找相关文件的容器内部路径"><a href="#可以输入-docker-exec-it-容器ID前两位即可-bin-bash-，-查找相关文件的容器内部路径" class="headerlink" title="可以输入 docker exec -it [容器ID前两位即可] /bin/bash ， 查找相关文件的容器内部路径"></a>可以输入 <code>docker exec -it [容器ID前两位即可] /bin/bash</code> ， 查找相关文件的容器内部路径</h5><p>进入容器内部只需 <code>ls</code> 和 <code>cd [文件夹名]</code> 即可</p>
 <p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211014233253875.png" alt="image-20211014233253875"></p>
-<p>head -[前多少行] [文件] 可以查看文件的前多少行信息</p>
+<blockquote>
+<p>20、网站目录所在的容器内部路径为（格式：容器 ID：路径）（ B ） </p>
+<p>A. d1085c1a8828:/home/ vue2-element-touzi-admin </p>
+<p>B. 53766d68636f:/ home/ vue2-element-touzi-admin </p>
+<p>C. 16fc160060c1:/var/www/ vue2-element-touzi-admin </p>
+<p>D. 15debb1824e6: /var/www/ vue2-element-touzi-admin</p>
+</blockquote>
+<p>在取证大师里面实时搜索“vue2-element-touzi-admin“，点击命中文件名， 右端显示搜索到的文件，右键选择跳转到源文件</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211016014425179.png" alt="image-20211016014425179"></p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211016013230087.png" alt="image-20211016013230087"></p>
+<blockquote>
+<p>21、网站目录所在的主机路径为下列选项中的哪个？（ A ） A./var/lib/docker/overlay2/cca977c8ca4a251023000285fbc8b4556636e1adc53cb012c84133a7b 857abfc/diff/home/vue2-element-touzi-admin B./var/lib/docker/overlay2/fd27756120785ef656c9211b6147ef5f38d6a9811006d85359458f7fa 8d45415/diff/home/vue2-element-touzi-admin C./var/lib/docker/overlay2/f405ba5e3f1f0e04a3585fbc95a47d13b4009dd9d599ac91015babebd 5a5ff9b/diff/var/www/ vue2-element-touzi-admin D./var/lib/docker/overlay2/d42b9a02aa87386b137242f691cb3e6303c4c0f3441419efb17ff550fd f5de28/diff/var/www/ vue2-element-touzi-admin</p>
+</blockquote>
+<p>22题同理</p>
+<blockquote>
+<p>22、网站日志的路径在哪？（格式：容器 ID：路径）（ C ） </p>
+<p>A. 53766d68636f:/etc/nginx/logs/jrweb.log </p>
+<p>B. 53766d68636f:/var/log/access.log </p>
+<p>C. 16fc160060c1:/etc/nginx/logs/jrweb.log </p>
+<p>D. 16fc160060c1:/var/log/access.log</p>
+</blockquote>
+<p>我们可以看看上一个题的日志文件</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211016014902557.png" alt="image-20211016014902557"></p>
+<p>在这里明显能看到猜解密码的行为，所以这个时候就是“案发当时”，此时的<code>IP</code>地址就是<code>192.168.184.128:8091</code>， 以及犯罪嫌疑人的IP地址为 <code>192.168.184.133</code></p>
+<blockquote>
+<p>23、案发当时，该服务器的原始 IP 地址是多少？（ D ）</p>
+<p> A.192.168.160.89   B.192.168.184.100   C.192.168.120.111   D.192.168.184.128</p>
+</blockquote>
+<blockquote>
+<p>26、从网站日志中，我们可以看到嫌疑人入侵服务器所使用的 IP 是（ C ）</p>
+<p> A.192.168.184.1   B.192.168.160.89   C.192.168.184.133   D.192.168.160.169</p>
+</blockquote>
+<h3 id="数据库？"><a href="#数据库？" class="headerlink" title="数据库？"></a>数据库？</h3><p>head -[前多少行] [文件] 可以查看文件的前多少行信息</p>
 <p>查询网站使用的是什么数据库：一般来说，项目都是从<code>github</code>上面<code>clone</code>下来的，所以根目录应该在<code>home</code>文件夹下，查看<code>README.md</code>文件，发现：</p>
 <p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211014234817530.png" alt="image-20211014234817530"></p>
 <blockquote>
@@ -343,16 +482,38 @@
 </blockquote>
 <p>查看 /server 目录下的db.js文件</p>
 <p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211015000537088.png" alt="image-20211015000537088"></p>
-<p>其中第一个root为数据库的用户名，第二个root为数据库的密码，后面的192.168.184.129为数据库所在的服务器IP， 27017为数据库端口， 数据库名为tougu</p>
+<p>其中可以看出使用的数据库为mongodb，第一个root为数据库的用户名，第二个root为数据库的密码，后面的192.168.184.129为数据库所在的服务器IP， 27017为数据库端口， 数据库名为tougu</p>
+<blockquote>
+<p>28、该网站使用的是什么数据库？（ C ）</p>
+<p> A.mysql   B.oracle   C.mongodb   D.redis</p>
+</blockquote>
+<blockquote>
+<p>29、所使用数据库的端口是多少？（ D ）</p>
+<p> A.1521   B.3306   C.6379   D.27017</p>
+</blockquote>
+<blockquote>
+<p>30、数据库所在服务器 IP 是多少？（ D ）</p>
+<p> A.192.168.160.131   B.192.168.184.131   C.192.168.160.169   D.192.168.184.129</p>
+</blockquote>
+<blockquote>
+<p>31、数据库的用户名是什么？（ A ）</p>
+<p> A.root   B.tougu   C.admin   D.goose</p>
+</blockquote>
+<blockquote>
+<p>32、数据库的密码是什么？（ D ）</p>
+<p> A.123456   B.admin   C.goose   D.root</p>
+</blockquote>
+<blockquote>
+<p>33、该网站所使用的数据库库名是什么？( B ) </p>
+<p> A.root    B.tougu   C.admin   D.goose</p>
+</blockquote>
 <h5 id="输入-stat-文件名-可以查看文件时间状态"><a href="#输入-stat-文件名-可以查看文件时间状态" class="headerlink" title="输入 stat [文件名] 可以查看文件时间状态"></a>输入 <code>stat [文件名]</code> 可以查看文件时间状态</h5><h5 id="输入-more-bash-history-查看历史操作记录"><a href="#输入-more-bash-history-查看历史操作记录" class="headerlink" title="输入 more .bash_history 查看历史操作记录"></a>输入 <code>more .bash_history</code> 查看历史操作记录</h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211015001337208.png" alt="image-20211015001337208"></p>
 <p>可以知道黑客曾经对.bash_history目录进行加密</p>
-<h1 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h1><p>1、计算“检材 1.E01”镜像的 SHA256 值是多少（需取证大师 ）</p>
-<p>6、该 LVM 逻辑卷分区内 root 逻辑卷的文件系统是什么？（需取证大师 ）</p>
-<p>9、请找出该服务器的网站访问端口是什么？（ ）</p>
-<p>18、上题所述运行 web 服务的容器节点，使用的镜像名称是什么？（格式 REPOSITORY：TAG） </p>
-<p>21、网站目录所在的主机路径为下列选项中的哪个？（ 需取证大师）</p>
-<p>22、网站日志的路径在哪？（格式：容器 ID：路径）（需取证大师 ）</p>
-<p>23、案发当时，该服务器的原始 IP 地址是多少？（ 需取证大师）</p>
+<p>输入 <code>find / -name [名字]</code> 可以搜索所需要的配置文件（.conf结尾）或 日志文件（.log结尾）</p>
+<blockquote>
+<p>34、在案发时，黑客对该服务器某个文件/目录进行了加密，请问是哪个文件/目录？（ A ） A.<del>/.bash_history   B./var/log/   C./etc/ssh/sshd_config   D.</del>/ runit-agent.txt</p>
+</blockquote>
+<h1 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h1><p>9、请找出该服务器的网站访问端口是什么？（ ）</p>
 <p>25、当我们想将网站重构好时，访问网站时，web 应用在其中承担什么样的工作？（ 需取证大师）</p>
 <p>26、从网站日志中，我们可以看到嫌疑人入侵服务器所使用的 IP 是（ 需取证大师）</p>
 
@@ -423,7 +584,7 @@
 <p>导入虚拟机时注意使用转化好的虚拟磁盘（需要全部导入，并且一般选取其中最大的可能包含操作系统的放在首位导入）</p>
 <p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013002917659.png" alt="image-20211013002917659"></p>
 <p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013003021252.png" alt="image-20211013003021252"></p>
-<p>对其中 r\o进行改写为 r\w init=sysroot\bin\sh, 即可绕过密码进入系统</p>
+<p>对其中 ro进行改写为 rw init=sysroot\bin\sh, 即可绕过密码进入系统</p>
 <p>后输入chroot sasroot/ 更换根目录</p>
 <p>之后就可以用passwd来设置新密码</p>
 <p>输入exit后reboot来重启</p>
