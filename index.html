@@ -198,7 +198,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/crypto/" style="font-size: 13.33px;">crypto</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%85%A5%E9%97%A8/" style="font-size: 10px;">博客入门</a> <a href="/tags/%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81/" style="font-size: 16.67px;">电子数据取证</a>
+                        <a href="/tags/crypto/" style="font-size: 15px;">crypto</a> <a href="/tags/web/" style="font-size: 20px;">web</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E5%85%A5%E9%97%A8/" style="font-size: 10px;">博客入门</a> <a href="/tags/%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81/" style="font-size: 20px;">电子数据取证</a>
                     </div>
                 </section>
                 
@@ -277,6 +277,167 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-linux服务器取证" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2021/10/16/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%96%E8%AF%81/" class="article-date">
+      <time datetime="2021-10-16T10:02:58.000Z" itemprop="datePublished">2021-10-16</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2021/10/16/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%96%E8%AF%81/">linux服务器取证</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="Linux取证场景"><a href="#Linux取证场景" class="headerlink" title="Linux取证场景"></a>Linux取证场景</h2><h3 id="日志检查"><a href="#日志检查" class="headerlink" title="日志检查"></a>日志检查</h3><p>系统的开关机，用户登录，各种的服务的启动、关闭、故障，用户的操作历史等等，都会在本地或者其他地方留下痕迹</p>
+<h3 id="容器检查"><a href="#容器检查" class="headerlink" title="容器检查"></a>容器检查</h3><p>容器虚拟化可以方便地在服务器上部署服务群集。VM、Docker、K&amp;s(Kubernetes)，虚拟机-&gt;容器虚拟化-&gt;虚拟集群</p>
+<h3 id="文件分析"><a href="#文件分析" class="headerlink" title="文件分析"></a>文件分析</h3><p>分析应用程序的工作目录，寻找引用属性、配置，从而进行场景复现和证据收集</p>
+<h2 id="Linux-FHS"><a href="#Linux-FHS" class="headerlink" title="Linux FHS"></a>Linux FHS</h2><table>
+<thead>
+<tr>
+<th>说明</th>
+<th>目录</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/</code></td>
+<td>根目录，根目录下一般只有以下文件夹，没有文件</td>
+</tr>
+<tr>
+<td><code>/bin</code></td>
+<td>存放了系统命令的可执行文件，例如<code>cat</code>、<code>vi</code>，相当于Windows的系统环境变量<code>PATH?</code></td>
+</tr>
+<tr>
+<td><code>/home</code></td>
+<td>用户文件夹，例如/home/user1，/home/user2</td>
+</tr>
+<tr>
+<td><code>/usr</code></td>
+<td>存放了用户应用的可执行文件、代码、动态链接库等等，相当于Windows的用户环境变量PATH</td>
+</tr>
+<tr>
+<td><code>/usr/bin</code></td>
+<td>用户安装的应用可执行文件</td>
+</tr>
+<tr>
+<td><code>/usr/doc</code></td>
+<td><code>linux</code>文档</td>
+</tr>
+<tr>
+<td><code>/usr/include</code></td>
+<td>头文件目录</td>
+</tr>
+<tr>
+<td><code>/usr/lib</code></td>
+<td>存放动态链接库、软件包配置文件</td>
+</tr>
+<tr>
+<td><code>/usr/man</code></td>
+<td>执行man命令显示的帮助文档</td>
+</tr>
+<tr>
+<td><code>/usr/src</code></td>
+<td>源代码，例如<code>linux</code>内核源码：<code>/user/src/linux</code></td>
+</tr>
+<tr>
+<td><code>/usr/local</code></td>
+<td>本机单独增加的命令、动态链接库</td>
+</tr>
+<tr>
+<td><code>/root</code></td>
+<td>root用户的用户文件夹被单独拿出来放到root目录里，不在home目录里</td>
+</tr>
+<tr>
+<td><code>/etc</code></td>
+<td>存放了系统配置，例如release</td>
+</tr>
+<tr>
+<td><code>/opt</code></td>
+<td>可选应用程序的安装目录</td>
+</tr>
+<tr>
+<td><code>/dev</code></td>
+<td>存放设备文件（分字符设备和块设备）</td>
+</tr>
+<tr>
+<td><code>/boot</code></td>
+<td>系统引导</td>
+</tr>
+<tr>
+<td>/lib</td>
+<td>存放跟文件系统中的应用程序所需要的共享库级内核模块。共享库又叫动态链接共享库，作用类似windows里的<code>.dll</code>文件，存放了根文件系统程序运行所需的共享文件。</td>
+</tr>
+<tr>
+<td><code>/tmp</code></td>
+<td>临时文件夹</td>
+</tr>
+<tr>
+<td><code>/var/log</code></td>
+<td>日志</td>
+</tr>
+<tr>
+<td><code>/lost+found</code></td>
+<td>意外丢失的文件</td>
+</tr>
+<tr>
+<td><code>/proc</code></td>
+<td>虚假的目录，磁盘中并不存在，其中的内容是系统映射出来的信息</td>
+</tr>
+</tbody></table>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><h3 id="用户登录与操作历史"><a href="#用户登录与操作历史" class="headerlink" title="用户登录与操作历史"></a>用户登录与操作历史</h3><p><code>wtmp</code>文件：记录了用户登录历史和登陆时间</p>
+<p><code>btmp</code>文件：记录了未能成功登录的用户名、时间、来源</p>
+<p><code>.bash_history</code>：在每个用户的用户文件夹中，记录了该用户使用Bash执行过的命令</p>
+<h3 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h3><p>FTP的登录记录</p>
+<p>MySQL的登陆记录</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81/" rel="tag">电子数据取证</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-长安杯2019例题笔记" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -306,7 +467,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="2019长安杯Wp"><a href="#2019长安杯Wp" class="headerlink" title="2019长安杯Wp"></a>2019长安杯Wp</h2><h3 id="SHA256的计算"><a href="#SHA256的计算" class="headerlink" title="SHA256的计算"></a>SHA256的计算</h3><p><code>在windows自带的PowerShell中输入</code><em><strong>（误！！！）</strong></em></p>
+        <h2 id="2019长安杯Wp"><a href="#2019长安杯Wp" class="headerlink" title="2019长安杯Wp"></a>2019长安杯Wp</h2><h2 id="Part-1"><a href="#Part-1" class="headerlink" title="Part 1"></a>Part 1</h2><h3 id="SHA256的计算"><a href="#SHA256的计算" class="headerlink" title="SHA256的计算"></a>SHA256的计算</h3><p><code>在windows自带的PowerShell中输入</code><em><strong>（误！！！）</strong></em></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-FileHash 文件路径 -Algorithm 校验的Hash值类型| Format-List</span><br></pre></td></tr></table></figure>
 
 <p>如果不带-Algorithm参数，也就是不指明验证的Hash值类型，那么默认验证的就是SHA256值。</p>
@@ -470,8 +631,7 @@
 <p>26、从网站日志中，我们可以看到嫌疑人入侵服务器所使用的 IP 是（ C ）</p>
 <p> A.192.168.184.1   B.192.168.160.89   C.192.168.184.133   D.192.168.160.169</p>
 </blockquote>
-<h3 id="数据库？"><a href="#数据库？" class="headerlink" title="数据库？"></a>数据库？</h3><p>head -[前多少行] [文件] 可以查看文件的前多少行信息</p>
-<p>查询网站使用的是什么数据库：一般来说，项目都是从<code>github</code>上面<code>clone</code>下来的，所以根目录应该在<code>home</code>文件夹下，查看<code>README.md</code>文件，发现：</p>
+<h3 id="数据库？"><a href="#数据库？" class="headerlink" title="数据库？"></a>数据库？</h3><h5 id="head-前多少行-文件-可以查看文件的前多少行信息"><a href="#head-前多少行-文件-可以查看文件的前多少行信息" class="headerlink" title="head -[前多少行] [文件] 可以查看文件的前多少行信息"></a>head -[前多少行] [文件] 可以查看文件的前多少行信息</h5><p>查询网站使用的是什么数据库：一般来说，项目都是从<code>github</code>上面<code>clone</code>下来的，所以根目录应该在<code>home</code>文件夹下，查看<code>README.md</code>文件，发现：</p>
 <p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211014234817530.png" alt="image-20211014234817530"></p>
 <blockquote>
 <ol start="27">
@@ -509,13 +669,231 @@
 </blockquote>
 <h5 id="输入-stat-文件名-可以查看文件时间状态"><a href="#输入-stat-文件名-可以查看文件时间状态" class="headerlink" title="输入 stat [文件名] 可以查看文件时间状态"></a>输入 <code>stat [文件名]</code> 可以查看文件时间状态</h5><h5 id="输入-more-bash-history-查看历史操作记录"><a href="#输入-more-bash-history-查看历史操作记录" class="headerlink" title="输入 more .bash_history 查看历史操作记录"></a>输入 <code>more .bash_history</code> 查看历史操作记录</h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211015001337208.png" alt="image-20211015001337208"></p>
 <p>可以知道黑客曾经对.bash_history目录进行加密</p>
-<p>输入 <code>find / -name [名字]</code> 可以搜索所需要的配置文件（.conf结尾）或 日志文件（.log结尾）</p>
 <blockquote>
 <p>34、在案发时，黑客对该服务器某个文件/目录进行了加密，请问是哪个文件/目录？（ A ） A.<del>/.bash_history   B./var/log/   C./etc/ssh/sshd_config   D.</del>/ runit-agent.txt</p>
 </blockquote>
-<h1 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h1><p>9、请找出该服务器的网站访问端口是什么？（ ）</p>
+<h2 id="Part-2"><a href="#Part-2" class="headerlink" title="Part 2"></a>Part 2</h2><h5 id="输入-find-name-名字-可以搜索所需要的配置文件（-conf结尾）或-日志文件（-log结尾）"><a href="#输入-find-name-名字-可以搜索所需要的配置文件（-conf结尾）或-日志文件（-log结尾）" class="headerlink" title="输入 find / -name [名字] 可以搜索所需要的配置文件（.conf结尾）或 日志文件（.log结尾）"></a>输入 <code>find / -name [名字]</code> 可以搜索所需要的配置文件（.conf结尾）或 日志文件（.log结尾）</h5><blockquote>
+<p>35、该数据库服务器使用数据库的安装路径在哪？（ D ）</p>
+<p> A. /etc/mysql/   B. /home/redis/   C. /etc/mongo/   D. /var/lib/mongo/</p>
+</blockquote>
+<blockquote>
+<p>36、数据库的配置文件的路径？（ C ）</p>
+<p>A./var/lib/mongo/mongo.conf </p>
+<p>B./var/lib/mongo/mongod.conf </p>
+<p>C./etc/mongod.conf </p>
+<p>D./home/redis/redis.conf</p>
+</blockquote>
+<blockquote>
+<p>37、数据库的日志文件路径在哪里？（ C ）</p>
+<p>A./etc/redis.log </p>
+<p>B./var/log/mongodb.log </p>
+<p>C./var/log/mongodb/mongod.log </p>
+<p>D./var/lib/mongo/mongo.log</p>
+</blockquote>
+<h5 id="查看前端代码"><a href="#查看前端代码" class="headerlink" title="查看前端代码"></a>查看前端代码</h5><p>因为读取用户的注册信息在前端，所以我们回到前端（检材1）来看看代码：</p>
+<p>取证大师实时搜索api.js(我也不知道为什么搜这个doge)，打开可以看到</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211016113742936.png" alt="image-20211016113742936"></p>
+<p>说明该数据库中网站用户表里的密码未采用加密手段，而是直接判断</p>
+<blockquote>
+<p>39、该数据库中网站用户表里的密码字段加密方式是（ A ）</p>
+<p> A.未加密</p>
+<p> B.双重 MD5</p>
+<p> C.MD5 加 salt</p>
+<p> D.MD5</p>
+</blockquote>
+<h2 id="Part-3"><a href="#Part-3" class="headerlink" title="Part 3"></a>Part 3</h2><p>火眼仿真帮我们把root的密码设置为123456，于是我们直接登陆终端，在控制台中输入<code>history</code></p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211016235238300.png" alt="image-20211016235238300"></p>
+<p>我们看到出现了多次pptpd关键字，故可知采用了pptpd协议</p>
+<blockquote>
+<p>45、该服务器所使用的 VPN 软件，采用了什么协议（ B ） </p>
+<p>A.L2TP    B.PPTP    C.IPSec    D.NFS</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211016235430504.png" alt="image-20211016235430504"></p>
+<p>设置了多次时区，最后一次设置为 Asia/Dhaka</p>
+<p>附：可以输入<code>date -R</code>获取当前为+0600，换算较麻烦，可以作为验证</p>
+<blockquote>
+<p>46、该服务器的时区为（ D ） </p>
+<p>A. Asia/ShangHai    B. Asia/Tokyo    C. Asia/Bangkok    D. Asia/Dhaka</p>
+</blockquote>
+<p>老办法，在取证大师里实时搜索即可</p>
+<blockquote>
+<p>47、该服务器中对 VPN 软件配置的 option 的文件位置在哪里？（ A ） </p>
+<p>A. /etc/ppp/options.pptpd </p>
+<p>B./var/lib/vpn/options.pptpd </p>
+<p>C./etc/ipsec/options.ipsecd </p>
+<p>D./etc/l2tp/options.l2tpd</p>
+</blockquote>
+<p>日志文件一般存储在<code>/var/log</code>文件夹里，分别打开各个日志文件，发现wtmp存在日志文件</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017000952927.png" alt="image-20211017000952927"></p>
+<blockquote>
+<p>48、VPN 软件开启了写入客户端的连接与断开，请问写入的文件是哪个？（ A ） </p>
+<p>A.wtmp    B.btmp    C.ftmp    D.tmp</p>
+</blockquote>
+<p>上题已经知道了VPN软件配置的option文件位置，不妨打开来看看</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017001609219.png" alt="image-20211017001609219"></p>
+<p>找到了pptpd.conf配置文件的位置，顺藤摸瓜，打开配置文件看看，发现了推荐ip范围</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017001749389.png" alt="image-20211017001749389"></p>
+<blockquote>
+<p>49、VPN 软件客户端被分配的 IP 范围是（ B ） </p>
+<p>A.192.168.184.1-192.168.184.11 </p>
+<p>B.192.168.184.12-192.168.184.18 </p>
+<p>C.192.168.184.19-192.168.184.26 </p>
+<p>D.192.168.184.27-192.168.184.35</p>
+</blockquote>
+<p>还找到了VPN软件的日志路径（笑）</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017001651848.png" alt="image-20211017001651848"></p>
+<blockquote>
+<p>50、由 option 文件可以知道，option 文件配置了 VPN 软件的日志路径为（ D ） </p>
+<p>A./var/lib/logs/    B./etc/logs/    C./var/log/pptp/    D./var/log/</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017002444421.png" alt="image-20211017002444421"></p>
+<p>根据题意，直接到所在路径打开文件比对即可</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017002508598.png" alt="image-20211017002508598"></p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017002521633.png" alt="image-20211017002521633"></p>
+<p>etc/ppp/chap-secrets 文件如图所示</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017002604641.png" alt="image-20211017002604641"></p>
+<p>etc/ppp/pap-secrets 文件如图所示</p>
+<blockquote>
+<p>51、VPN 软件记录了客户端使用的名称和密码，记录的文件是（ C ） </p>
+<p>A. /etc/l2tp/chap-secrets </p>
+<p>B. /etc/ipsec/pap-secrets </p>
+<p>C. /etc/ppp/chap-secrets </p>
+<p>D. /etc/ppp/pap-secrets</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017002930685.png" alt="image-20211017002930685"></p>
+<p>由于北京时间（+08取证大师默认使用）比该服务器的市区（+06）早两个小时，所以需要将时间减去两个小时整</p>
+<blockquote>
+<p>52、在服务器时间 2019-07-02_12:08:27 登陆过 VPN 客户端的用户名是哪个？（ A ） </p>
+<p>A. root    B. vpn1    C. vpn2    D. vpn3</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017003105700.png" alt="image-20211017003105700"></p>
+<blockquote>
+<p>53、上题用户登陆时的客户 IP 是什么？（ D ） </p>
+<p>A. 192.168.184.133    B. 172.16.81.101    C. 192.168.184.134    D. 192.168.43.238</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017003553008.png" alt="image-20211017003553008"></p>
+<blockquote>
+<p>54、通过 IP172.16.80.188 登陆 VPN 服务器的用户名是哪个？（ B ）</p>
+<p> A. root    B. vpn1    C. vpn2    D. vpn3</p>
+</blockquote>
+<blockquote>
+<p>55、上题用户登陆 VPN 服务器的北京时间是（ D ） </p>
+<p>A. 2019-07-11_10:46:50 </p>
+<p>B. 2019-07-11_11:30:36 </p>
+<p>C. 2019-07-13_14:15:37 </p>
+<p>D. 2019-07-13_16:15:37</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017004214836.png" alt="image-20211017004214836"></p>
+<p>取证大师搜索<code>network.cap</code>得到Bash的历史记录，发现曾经的操作与ens33有关</p>
+<blockquote>
+<p>56、该服务器曾被进行过抓包，请问 network.cap 是对哪个网卡进行抓包的抓包文件（ B ） A.eth0    B.ens33    C.ens37    D.ens160</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017004449842.png" alt="image-20211017004449842"></p>
+<p>同理，搜索ens37，得到Bash的操作记录，曾对netwoek1.cap和net0713-1.cap进行过抓包</p>
+<p>题目要求保存下来，即未被删除，没有被rm移除</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017004708378.png" alt="image-20211017004708378"></p>
+<p>network1.cap没有保存下来</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017004755692.png" alt="image-20211017004755692"></p>
+<p>net0713-1.cap被保存下来了</p>
+<blockquote>
+<p>57、对 ens37 网卡进行抓包产生的抓包文件并保存下来的是哪个？（ D ） </p>
+<p>A. network.cap    B. network1.cap    C. net0713.cap    D. net0713-1.cap</p>
+</blockquote>
+<p>我们从上面的信息知道net0713-1.cap已经被保存下来，并且能找到该文件</p>
+<p>以cap结尾的文件我们需要用<strong>WireShark</strong>来打开（个人对该工具理解还较为浅显，需要加深理解）</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017011017220.png" alt="image-20211017011017220"></p>
+<p>解题并不是因为看懂了，而是四个选项中仅仅出现了172.16.80.62，光是凭侥幸而得出结论，哭哭了。</p>
+<p>下面引用BB大佬的话</p>
+<blockquote>
+<p>但是为什么第一个数据包里面就没有答案呢？？？这是因为该<code>vpn</code>服务器为双网卡，对内IP为<code>192.168.184.133</code>，具备对检材1（<code>192.168.184.128</code>）和检材2（<code>192.168.184.129</code>）访问权限，出口/服务端IP为<code>172.16.80.92</code>。</p>
+</blockquote>
+<blockquote>
+<p>58、从保存的数据包中分析可知，出口的 IP 为（ A ）</p>
+<p> A. 172.16.80.92 </p>
+<p>B. 172.16.81.101 </p>
+<p>C. 172.16.81.188 </p>
+<p>D. 172.16.80.133</p>
+</blockquote>
+<h2 id="Part-4"><a href="#Part-4" class="headerlink" title="Part 4"></a>Part 4</h2><p>老朋友了，选择检材右键哈希值计算SHA256，即可得到答案（误！！！，所求得的为镜像的SHA256值！！！）</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017012546445.png" alt="image-20211017012546445"></p>
+<p>80GB计算SHA256用了十几分钟（快哭了，竟然还算错了，题目要求的是文件的SHA256）</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017014012553.png" alt="image-20211017014012553"></p>
+<blockquote>
+<p>59、计算“检材 4.E01”文件的 sha256 值（ C ） </p>
+<p>A. 58a4ab5ee3dc4c4a279fa8287ed7dce315090512fa87127f8f9278c7972366c5 </p>
+<p>B. 58a4ab5ee3dc4c4a279fa8287ed7dce315090512fa87127f8f9278c7972366c6 </p>
+<p>C. e6e47e210bd56c7071ce73ab5523736120071d0f3da5335936d7beb25c3914cd </p>
+<p>D. 1e646dec202c96b72f13cc3cf224148fc4e19d6faaaf76efffc31b1ca2cdd200</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017012700260.png" alt="image-20211017012700260"></p>
+<p>取证大师的案例概览好像只对WINDOWS系统有效，并且显示的信息十分详细，就连底裤都看干净了（狗头）</p>
+<blockquote>
+<p>60、请分析该检材的操作系统版本（ A ）</p>
+<p>A. Windows 10 Education </p>
+<p>B. Windows 10 Home </p>
+<p>C. Windows 10 Pro </p>
+<p>D. Windows 10 Enterprise</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017014255144.png" alt="image-20211017014255144"></p>
+<blockquote>
+<p>61、找出该系统用户最后一次登陆时间：（ C ） </p>
+<p>A. 2019-07-14 10:50:02  </p>
+<p>B. 2019-07-14 10:10:02 </p>
+<p>C. 2019-07-14 10:40:02  </p>
+<p>D. 2019-07-14 10:30:02</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017013544571.png" alt="image-20211017013544571"></p>
+<blockquote>
+<p>62、找出该系统最后一次正常关机时间：（ C ） </p>
+<p>A.2019-07-14 17:30:05 </p>
+<p>B.2019-07-14 10:30:05  </p>
+<p>C.2019-07-14 11:30:05  </p>
+<p>D.2019-07-14 12:30:05</p>
+</blockquote>
+<p>取证大师已经在证据文件里帮我们分类好了常用文件夹，点击桌面，发现有三个Desktop文件夹，依次打开，发现题目所描述的txt文件，计算SHA256值</p>
+<blockquote>
+<p>63、请计算检材桌面上文本文件的 sha256 值：（ A ） A.58a4ab5ee3dc4c4a279fa8287ed7dce315090512fa87127f8f9278c7972366c5  B.58a4ab5ee3dc4c4a279fa8287ed7dce315090512fa87127f8f9278c7972366c6 C.58a4ab5ee3dc4c4a279fa8287ed7dce315090512fa87127f8f9278c7972366c7  D.58a4ab5ee3dc4c4a279fa8287ed7dce315090512fa87127f8f9278c7972366c8</p>
+</blockquote>
+<p>FMP -&gt; 自动取证 -&gt; 检材4.E01 -&gt; 系统痕迹 -&gt; 安装软件 ，下面的分支依次点开查看时间</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017014836965.png" alt="image-20211017014836965"></p>
+<blockquote>
+<p>64、该系统于 2019 年 7 月 13 日安装的软件为：（ A ） </p>
+<p>A.Eraser     B.Putty    C.Xftp     D.Xshell</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017015202369.png" alt="image-20211017015202369"></p>
+<p>光是通过WINRAR的使用记录查找的话，没有显示时间，看起来很难受</p>
+<p>于是换一个思路，通过FMP的WIN10时间轴，定位到2019.07.13 17:52:19，可以看到操作了WINRAR程序</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017015339856.png" alt="image-20211017015339856"></p>
+<blockquote>
+<p>65、找出该嫌疑人于 2019-07-13 17:52:19 时，使用 WinRAR 工具访问了_____文件：（ D ） A.navicat11.zip     B.we.tar.gz    C.test2-master.zip     D.BitLocker.rar</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017015732164.png" alt="image-20211017015732164"></p>
+<p>其他的软件我都认识，只不过这个xftp比较奇怪，很容易联想到Xshell（错误！！！）</p>
+<blockquote>
+<p><strong>66、系统于 2019-07-13 17:53:45 时运行了___程序：（ C ）</strong> </p>
+<p><strong>A.regedit.exe     B.WinRAR.exe    C.Xshell.exe     D.Foxmail.exe</strong></p>
+</blockquote>
+<p>文件疑似执行了删除操作，所以实时搜索找不到，本来想尝试原始数据搜索，但是特别耗时间，故而放弃。</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017020343616.png" alt="image-20211017020343616"></p>
+<p>翻翻资源管理器痕迹，无意中发现了这个文件夹，时间上恰为下载完成后解压得到的文件夹（不严谨）</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017020904302.png" alt="image-20211017020904302"></p>
+<p>嘿嘿嘿，挂载到本地磁盘，然后共享文件获取访问权限，来到了下载这里，得到了确切的下载时间</p>
+<blockquote>
+<p>67、文件 test2-master.zip 是什么时间下载到本机的：（ D ） </p>
+<p>A.2019-07-13 14:21:01     </p>
+<p>B.2019-07-13 17:22:01   </p>
+<p>C.2019-07-13 15:23:01  </p>
+<p>D.2019-07-13 16:20:01</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017021833528.png" alt="image-20211017021833528"></p>
+<p>通过在Google Chrome的下载记录发现曾经使用这个软件下载文件</p>
+<blockquote>
+<p>68、文件 test2-master.zip 是使用什么工具下载到本地的：（ A ） </p>
+<p>A.Chrome     B.Internet Explorer    C.edge     D.迅雷</p>
+</blockquote>
+<h1 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h1><p>8、请找出该服务器的网站访问端口是什么？（ ）</p>
 <p>25、当我们想将网站重构好时，访问网站时，web 应用在其中承担什么样的工作？（ 需取证大师）</p>
-<p>26、从网站日志中，我们可以看到嫌疑人入侵服务器所使用的 IP 是（ 需取证大师）</p>
+<p>66、系统于 2019-07-13 17:53:45 时运行了___程序：（ ） 有问题！！！</p>
 
       
     </div>
@@ -585,7 +963,7 @@
 <p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013002917659.png" alt="image-20211013002917659"></p>
 <p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013003021252.png" alt="image-20211013003021252"></p>
 <p>对其中 ro进行改写为 rw init=sysroot\bin\sh, 即可绕过密码进入系统</p>
-<p>后输入chroot sasroot/ 更换根目录</p>
+<p>后输入chroot sysroot/ 更换根目录</p>
 <p>之后就可以用passwd来设置新密码</p>
 <p>输入exit后reboot来重启</p>
 <h4 id="方案二："><a href="#方案二：" class="headerlink" title="方案二："></a>方案二：</h4><p>挂在可启动的系统上</p>
@@ -1210,74 +1588,10 @@
 
 
   
-    <article id="post-博客更新流程" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a  href="/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/" class="article-date">
-      <time datetime="2021-10-01T04:11:21.000Z" itemprop="datePublished">2021-10-01</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a  class="article-title" href="/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/">博客更新流程</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="博客流程"><a href="#博客流程" class="headerlink" title="博客流程"></a>博客流程</h2><h3 id="1、写博客"><a href="#1、写博客" class="headerlink" title="1、写博客"></a>1、写博客</h3><p>执行 hexo new “名字”，hexo 创建该 md 文件，使用 typora 编辑并保存</p>
-<h3 id="2、清缓存-amp-更新渲染"><a href="#2、清缓存-amp-更新渲染" class="headerlink" title="2、清缓存&amp;更新渲染"></a>2、清缓存&amp;更新渲染</h3><p>执行hexo clean清除缓存，</p>
-<p>随后执行hexo g重新渲染静态页面</p>
-<h3 id="3、推送到码云"><a href="#3、推送到码云" class="headerlink" title="3、推送到码云"></a>3、推送到码云</h3><p>执行hexo d</p>
-<h3 id="5-预览本地静态界面"><a href="#5-预览本地静态界面" class="headerlink" title="5.预览本地静态界面"></a>5.预览本地静态界面</h3><p>执行hexo s</p>
-<h3 id="6、更新码云的静态页面"><a href="#6、更新码云的静态页面" class="headerlink" title="6、更新码云的静态页面"></a>6、更新码云的静态页面</h3><p><img src="/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/alpha.png"></p>
-<h3 id="7、重新访问网站"><a href="#7、重新访问网站" class="headerlink" title="7、重新访问网站"></a>7、重新访问网站</h3><p>如果遇到多次刷新无效果的情况。可以试试按F12在网络项下刷新</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2%E5%85%A5%E9%97%A8/" rel="tag">博客入门</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 </div>
