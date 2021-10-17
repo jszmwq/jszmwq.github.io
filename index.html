@@ -477,10 +477,10 @@
 <p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211015231650138.png" alt="image-20211015231650138"></p>
 <blockquote>
 <p>1、计算“检材 1.E01”镜像的 SHA256 值是多少（ C ）</p>
-<p> A. 2b20022249e3e5d66d4bbed34ad337be5dd77b313c92dfe929aa56ed71449697</p>
-<p> B. 6a574c40548110598bd4c88520d34b37d13b372066737ede3104743f986b7263</p>
-<p> C. 5ee0b3809807bf8a39453695c5835cddfd33f65b4f5bee8b5670625291a6bc1c</p>
-<p> D. 8495b678da27c64b54f083afefbcf9f83f94c1de133c70c175b4a784551939dd</p>
+<p>A. 2b20022249e3e5d66d4bbed34ad337be5dd77b313c92dfe929aa56ed71449697</p>
+<p>B. 6a574c40548110598bd4c88520d34b37d13b372066737ede3104743f986b7263</p>
+<p>C. 5ee0b3809807bf8a39453695c5835cddfd33f65b4f5bee8b5670625291a6bc1c</p>
+<p>D. 8495b678da27c64b54f083afefbcf9f83f94c1de133c70c175b4a784551939dd</p>
 </blockquote>
 <h3 id="服务器内核版本？"><a href="#服务器内核版本？" class="headerlink" title="服务器内核版本？"></a>服务器内核版本？</h3><h5 id="1：登录linux，在终端输入-cat-proc-version"><a href="#1：登录linux，在终端输入-cat-proc-version" class="headerlink" title="1：登录linux，在终端输入 cat /proc/version"></a>1：登录linux，在终端输入 <code>cat /proc/version</code></h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211013191208084.png" alt="image-20211013191208084"></p>
 <h5 id="2：登录linux，在终端输入-uname-a"><a href="#2：登录linux，在终端输入-uname-a" class="headerlink" title="2：登录linux，在终端输入 uname -a"></a>2：登录linux，在终端输入 <code>uname -a</code></h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211013191001450.png" alt="image-20211013191001450"></p>
@@ -505,7 +505,7 @@
 <p>逻辑区块地址<code>(Logical Block Address, LBA)</code>是描述计算机存储设备上数据所在区块的通用机制，一般用在像硬盘这样的辅助记忆设备。<code>LBA</code>可以意指某个数据区块的地址或是某个地址所指向的数据区块。</p>
 <h4 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h4><blockquote>
 <p>4、原服务器存在多少硬盘分区？（ B ）</p>
-<p> A.1   B.2   C.3   D.4</p>
+<p>A.1   B.2   C.3   D.4</p>
 </blockquote>
 <p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211016005125784.png" alt="image-20211016005125784"></p>
 <blockquote>
@@ -518,14 +518,14 @@
 <p><code>1074790400/512=2099200</code></p>
 <blockquote>
 <p>7、该 LVM 逻辑卷分区内 root 逻辑卷的物理大小是多少？（单位：byte）（ C ）</p>
-<p> A. 2,147,483,648   B. 2,147,504,128   C. 18,249,416,704   D. 20,400,046,080</p>
+<p>A. 2,147,483,648   B. 2,147,504,128   C. 18,249,416,704   D. 20,400,046,080</p>
 </blockquote>
 <p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211016005445924.png" alt="image-20211016005445924"></p>
 <p>可以用 512 * 35643392 = 1824941670 从而得出 C选项</p>
 <p>也可以用 17 *1024 * 1024 * 1024 = 18253611008 约等于 1824941670</p>
 <h4 id="逻辑卷的文件系统"><a href="#逻辑卷的文件系统" class="headerlink" title="逻辑卷的文件系统"></a>逻辑卷的文件系统</h4><blockquote>
 <p>6、该 LVM 逻辑卷分区内 root 逻辑卷的文件系统是什么？（ D ）</p>
-<p> A.NTFS  B.EXT4  C.SWAP  D.XFS</p>
+<p>A.NTFS  B.EXT4  C.SWAP  D.XFS</p>
 </blockquote>
 <p>通过查找知道题目所说的分区是：<code>FMP</code>证据文件 -&gt; 展开镜像 -&gt; 选中对应的 root -&gt; 摘要 -&gt; 查看 分区类型：</p>
 <p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211015232205519.png" alt="image-20211015232205519"></p>
@@ -537,7 +537,7 @@
 <p>除了nginx选项，其他均未出现在上面的镜像中</p>
 <blockquote>
 <p>18、上题所述运行 web 服务的容器节点，使用的镜像名称是什么？（格式 REPOSITORY：TAG） （ D ）</p>
-<p> A.apache: latest   B.tomcat: jessie-slim   C.nginx: jessie-slim   D.nginx: latest</p>
+<p>A.apache: latest   B.tomcat: jessie-slim   C.nginx: jessie-slim   D.nginx: latest</p>
 </blockquote>
 <p>REPOSITORY ： TAG即可</p>
 <h5 id="输入-docker-version-可以获得版本信息"><a href="#输入-docker-version-可以获得版本信息" class="headerlink" title="输入 docker version 可以获得版本信息"></a>输入 <code>docker version</code> 可以获得版本信息</h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211013202020275.png" alt="image-20211013202020275"></p>
@@ -546,19 +546,19 @@
 <h5 id="docker-ps-a-显示所有的容器节点"><a href="#docker-ps-a-显示所有的容器节点" class="headerlink" title="docker ps -a 显示所有的容器节点"></a><code>docker ps -a</code> 显示所有的容器节点</h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211014225720208.png" alt="image-20211014225720208"></p>
 <blockquote>
 <p>13、在运行中的容器节点中，其中一台容器名称为 romantic_varahamihira 的容器节点，它的 hostname 是什么？（ D ）</p>
-<p> A. 16fc160060c1   B. 1ef6292872e0   C. 753abb28b629   D. 53766d68636f</p>
+<p>A. 16fc160060c1   B. 1ef6292872e0   C. 753abb28b629   D. 53766d68636f</p>
 </blockquote>
 <blockquote>
 <p>14、上题容器节点中，占用了主机的哪个端口？（ D ）</p>
-<p> A.25   B.8012  C.8091   D.未占用端口</p>
+<p>A.25   B.8012  C.8091   D.未占用端口</p>
 </blockquote>
 <blockquote>
 <p>16、容器节点 ID 为 15debb1824e6 中，占用了主机的哪个端口？（ C ）</p>
-<p> A.22    B.8091   C.39999   D.未占用端口</p>
+<p>A.22    B.8091   C.39999   D.未占用端口</p>
 </blockquote>
 <blockquote>
 <p>19、使用nginx服务的容器节点占用的容器端口是什么？（ B ）</p>
-<p> A.22   B.80   C.8091   D.未占用端口</p>
+<p>A.22   B.80   C.8091   D.未占用端口</p>
 </blockquote>
 <p>观察上述的容器节点，在 command 一栏中找到 <code>“nginx -g”</code> 故可确定题目所指向的容器，进而找到容器端口。</p>
 <p><code>docker ps</code> 命令中在<code>PORTS</code>里面显示了两个端口，前面<code>0.0.0.0</code>就是主机，也就是自己，而后面的转发端口就对应着<code>docker</code>的端口，如果只显示端口号而未绑定主机，说明为占用当前端口。(别被取证大师误导，其对是否占用无区分)</p>
@@ -574,26 +574,26 @@
 <p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211016010354693.png" alt="image-20211016010354693"></p>
 <blockquote>
 <p>9、该服务器中运行了 docker 应用，在本地有多少 docker 镜像？（ B ）</p>
-<p> A.10   B.11   C.12   D.13</p>
+<p>A.10   B.11   C.12   D.13</p>
 </blockquote>
 <p>images 意思是镜像</p>
 <blockquote>
 <p>10、该 docker 应用的 server 版本是多少？（ C ）</p>
-<p> A.16.05.2   B.17.03.8   C.18.09.7   D.19.03.3</p>
+<p>A.16.05.2   B.17.03.8   C.18.09.7   D.19.03.3</p>
 </blockquote>
 <blockquote>
 <p>11、该 docker 应用中总共有多少容器节点？（ A ）</p>
-<p> A.10   B.11   C.12   D.13</p>
+<p>A.10   B.11   C.12   D.13</p>
 </blockquote>
 <blockquote>
 <p>12、运行中的容器节点有多少？（ C ）</p>
-<p> A.1   B.2   C.3   D.4</p>
+<p>A.1   B.2   C.3   D.4</p>
 </blockquote>
 <h5 id="输入docker-inspect-容器ID-可以查看该容器的详情信息"><a href="#输入docker-inspect-容器ID-可以查看该容器的详情信息" class="headerlink" title="输入docker inspect [容器ID] 可以查看该容器的详情信息"></a>输入<code>docker inspect [容器ID]</code> 可以查看该容器的详情信息</h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211014233723662.png" alt="image-20211014233723662"></p>
 <p>可以找出个容器节点于主机之间的网络连接模式是 ‘bridge’</p>
 <blockquote>
 <p>24、在 docker 中，各容器节点和主机之间的网络连接模式是什么？（ A ）</p>
-<p> A. bridge 模式   B. host 模式   C. container 模式   D.none 模式</p>
+<p>A. bridge 模式   B. host 模式   C. container 模式   D.none 模式</p>
 </blockquote>
 <p>或者在取证大师中 自动取证 -&gt; root -&gt; Web服务器 -&gt; Docker -&gt; 容器信息 拉伸条后拉可以找到网络方式。</p>
 <p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211016010451595.png" alt="image-20211016010451595"></p>
@@ -625,11 +625,11 @@
 <p>在这里明显能看到猜解密码的行为，所以这个时候就是“案发当时”，此时的<code>IP</code>地址就是<code>192.168.184.128:8091</code>， 以及犯罪嫌疑人的IP地址为 <code>192.168.184.133</code></p>
 <blockquote>
 <p>23、案发当时，该服务器的原始 IP 地址是多少？（ D ）</p>
-<p> A.192.168.160.89   B.192.168.184.100   C.192.168.120.111   D.192.168.184.128</p>
+<p>A.192.168.160.89   B.192.168.184.100   C.192.168.120.111   D.192.168.184.128</p>
 </blockquote>
 <blockquote>
 <p>26、从网站日志中，我们可以看到嫌疑人入侵服务器所使用的 IP 是（ C ）</p>
-<p> A.192.168.184.1   B.192.168.160.89   C.192.168.184.133   D.192.168.160.169</p>
+<p>A.192.168.184.1   B.192.168.160.89   C.192.168.184.133   D.192.168.160.169</p>
 </blockquote>
 <h3 id="数据库？"><a href="#数据库？" class="headerlink" title="数据库？"></a>数据库？</h3><h5 id="head-前多少行-文件-可以查看文件的前多少行信息"><a href="#head-前多少行-文件-可以查看文件的前多少行信息" class="headerlink" title="head -[前多少行] [文件] 可以查看文件的前多少行信息"></a>head -[前多少行] [文件] 可以查看文件的前多少行信息</h5><p>查询网站使用的是什么数据库：一般来说，项目都是从<code>github</code>上面<code>clone</code>下来的，所以根目录应该在<code>home</code>文件夹下，查看<code>README.md</code>文件，发现：</p>
 <p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211014234817530.png" alt="image-20211014234817530"></p>
@@ -645,27 +645,27 @@
 <p>其中可以看出使用的数据库为mongodb，第一个root为数据库的用户名，第二个root为数据库的密码，后面的192.168.184.129为数据库所在的服务器IP， 27017为数据库端口， 数据库名为tougu</p>
 <blockquote>
 <p>28、该网站使用的是什么数据库？（ C ）</p>
-<p> A.mysql   B.oracle   C.mongodb   D.redis</p>
+<p>A.mysql   B.oracle   C.mongodb   D.redis</p>
 </blockquote>
 <blockquote>
 <p>29、所使用数据库的端口是多少？（ D ）</p>
-<p> A.1521   B.3306   C.6379   D.27017</p>
+<p>A.1521   B.3306   C.6379   D.27017</p>
 </blockquote>
 <blockquote>
 <p>30、数据库所在服务器 IP 是多少？（ D ）</p>
-<p> A.192.168.160.131   B.192.168.184.131   C.192.168.160.169   D.192.168.184.129</p>
+<p>A.192.168.160.131   B.192.168.184.131   C.192.168.160.169   D.192.168.184.129</p>
 </blockquote>
 <blockquote>
 <p>31、数据库的用户名是什么？（ A ）</p>
-<p> A.root   B.tougu   C.admin   D.goose</p>
+<p>A.root   B.tougu   C.admin   D.goose</p>
 </blockquote>
 <blockquote>
 <p>32、数据库的密码是什么？（ D ）</p>
-<p> A.123456   B.admin   C.goose   D.root</p>
+<p>A.123456   B.admin   C.goose   D.root</p>
 </blockquote>
 <blockquote>
 <p>33、该网站所使用的数据库库名是什么？( B ) </p>
-<p> A.root    B.tougu   C.admin   D.goose</p>
+<p>A.root    B.tougu   C.admin   D.goose</p>
 </blockquote>
 <h5 id="输入-stat-文件名-可以查看文件时间状态"><a href="#输入-stat-文件名-可以查看文件时间状态" class="headerlink" title="输入 stat [文件名] 可以查看文件时间状态"></a>输入 <code>stat [文件名]</code> 可以查看文件时间状态</h5><h5 id="输入-more-bash-history-查看历史操作记录"><a href="#输入-more-bash-history-查看历史操作记录" class="headerlink" title="输入 more .bash_history 查看历史操作记录"></a>输入 <code>more .bash_history</code> 查看历史操作记录</h5><p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211015001337208.png" alt="image-20211015001337208"></p>
 <p>可以知道黑客曾经对.bash_history目录进行加密</p>
@@ -674,7 +674,7 @@
 </blockquote>
 <h2 id="Part-2"><a href="#Part-2" class="headerlink" title="Part 2"></a>Part 2</h2><h5 id="输入-find-name-名字-可以搜索所需要的配置文件（-conf结尾）或-日志文件（-log结尾）"><a href="#输入-find-name-名字-可以搜索所需要的配置文件（-conf结尾）或-日志文件（-log结尾）" class="headerlink" title="输入 find / -name [名字] 可以搜索所需要的配置文件（.conf结尾）或 日志文件（.log结尾）"></a>输入 <code>find / -name [名字]</code> 可以搜索所需要的配置文件（.conf结尾）或 日志文件（.log结尾）</h5><blockquote>
 <p>35、该数据库服务器使用数据库的安装路径在哪？（ D ）</p>
-<p> A. /etc/mysql/   B. /home/redis/   C. /etc/mongo/   D. /var/lib/mongo/</p>
+<p>A. /etc/mysql/   B. /home/redis/   C. /etc/mongo/   D. /var/lib/mongo/</p>
 </blockquote>
 <blockquote>
 <p>36、数据库的配置文件的路径？（ C ）</p>
@@ -696,10 +696,10 @@
 <p>说明该数据库中网站用户表里的密码未采用加密手段，而是直接判断</p>
 <blockquote>
 <p>39、该数据库中网站用户表里的密码字段加密方式是（ A ）</p>
-<p> A.未加密</p>
-<p> B.双重 MD5</p>
-<p> C.MD5 加 salt</p>
-<p> D.MD5</p>
+<p>A.未加密</p>
+<p>B.双重 MD5</p>
+<p>C.MD5 加 salt</p>
+<p>D.MD5</p>
 </blockquote>
 <h2 id="Part-3"><a href="#Part-3" class="headerlink" title="Part 3"></a>Part 3</h2><p>火眼仿真帮我们把root的密码设置为123456，于是我们直接登陆终端，在控制台中输入<code>history</code></p>
 <p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211016235238300.png" alt="image-20211016235238300"></p>
@@ -774,7 +774,7 @@
 <p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017003553008.png" alt="image-20211017003553008"></p>
 <blockquote>
 <p>54、通过 IP172.16.80.188 登陆 VPN 服务器的用户名是哪个？（ B ）</p>
-<p> A. root    B. vpn1    C. vpn2    D. vpn3</p>
+<p>A. root    B. vpn1    C. vpn2    D. vpn3</p>
 </blockquote>
 <blockquote>
 <p>55、上题用户登陆 VPN 服务器的北京时间是（ D ） </p>
@@ -809,7 +809,7 @@
 </blockquote>
 <blockquote>
 <p>58、从保存的数据包中分析可知，出口的 IP 为（ A ）</p>
-<p> A. 172.16.80.92 </p>
+<p>A. 172.16.80.92 </p>
 <p>B. 172.16.81.101 </p>
 <p>C. 172.16.81.188 </p>
 <p>D. 172.16.80.133</p>
@@ -869,8 +869,10 @@
 </blockquote>
 <p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017015732164.png" alt="image-20211017015732164"></p>
 <p>其他的软件我都认识，只不过这个xftp比较奇怪，很容易联想到Xshell（错误！！！）</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017120946484.png" alt="image-20211017120946484"></p>
+<p>在应用程序使用痕迹中<strong>仔细检索</strong>，发现了foxmail.exe曾在该时间使用</p>
 <blockquote>
-<p><strong>66、系统于 2019-07-13 17:53:45 时运行了___程序：（ C ）</strong> </p>
+<p><strong>66、系统于 2019-07-13 17:53:45 时运行了___程序：（ D ）</strong> </p>
 <p><strong>A.regedit.exe     B.WinRAR.exe    C.Xshell.exe     D.Foxmail.exe</strong></p>
 </blockquote>
 <p>文件疑似执行了删除操作，所以实时搜索找不到，本来想尝试原始数据搜索，但是特别耗时间，故而放弃。</p>
@@ -891,9 +893,261 @@
 <p>68、文件 test2-master.zip 是使用什么工具下载到本地的：（ A ） </p>
 <p>A.Chrome     B.Internet Explorer    C.edge     D.迅雷</p>
 </blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017123416942.png" alt="image-20211017123416942"></p>
+<p>可以从上面的信息看到，文件创建时间为00秒，经过十五秒后文件修改，可以理解为下载文件从创建新文件到下载信息完成。</p>
+<blockquote>
+<p>70、嫌疑人通过远程连接到 128 服务器，下载了什么文件到本机：（ B ） </p>
+<p>A.web.tar.gz     B.we.tar.gz    C.home.tar.gz     D.wwwroot.tar.gz</p>
+</blockquote>
+<blockquote>
+<p>71、承接上一题，下载该文件用了多长时间：（ C ） </p>
+<p>A.10 秒     B.20 秒    C.15 秒     D.25 秒</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017124656586.png" alt="image-20211017124656586"></p>
+<p>我们在检材4中没有发现we.tar.gz，应该是被删掉了，不过实时搜索的时候发现在检材一中发现了该文件，可以推断出该电脑与服务器曾经进行过连接操作。</p>
+<blockquote>
+<p>72、请计算该下载文件的 sha256 值：（ D ） A.077d894557edf44e5792e0214e0f1c46b9b615be11ac306bcce2af9d666f47d8  B.077d894557edf44e5792e0214e0f1c46b9b615be11ac306bcce2af9d666f47d7  C.077d894557edf44e5792e0214e0f1c46b9b615be11ac306bcce2af9d666f47d6  D.077d894557edf44e5792e0214e0f1c46b9b615be11ac306bcce2af9d666f47d5</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017121904622.png" alt="image-20211017121904622"></p>
+<p><strong>国际移动设备识别码</strong>（<strong>International Mobile Equipment Identity</strong>，<strong>IMEI</strong>），即通常所说的手机序列号、手机“串号”，用于在移动电话网络中识别每一部独立的手机等移动通信设备，相当于移动电话的身份证。</p>
+<blockquote>
+<p>73、请分析并提取，嫌疑人所用的手机的 IMEI 号码：（ C ） </p>
+<p>A.352021062748965     B.352021062748966    C.352021062748967      D.352021062748968</p>
+</blockquote>
+<p>对于以下几题，在电脑里没有相关的社交软件的使用记录，故可推断出信息极有可能被保存在手机备份中。</p>
+<p>我们在火眼证据分析中找到手机备份，然后添加到检材，然后分析，密码？？试一下检材4桌面上的``niuroumian6`！对了！</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017193556301.png" alt="image-20211017193556301"></p>
+<blockquote>
+<p>74、嫌疑人是通过何种方式联系到售卖恶意程序的卖家的：（ B ）</p>
+<p> A.微信     B.QQ    C.短信     D.邮件</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017193623009.png" alt="image-20211017193623009"></p>
+<blockquote>
+<p>75、嫌疑人和卖家的资金来往是通过何种方式：（ A ） </p>
+<p>A.微信     B.QQ    C.银行转账     D.支付宝</p>
+</blockquote>
+<blockquote>
+<p>76、嫌疑人在犯罪过程中所使用的 QQ 账号为：（ A ）</p>
+<p> A.1649840939     B.1137588348     C.364505251     D.1722629449</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017194124463.png" alt="image-20211017194124463"></p>
+<blockquote>
+<p>77、卖家所使用的微信账号 ID 为：（ C ） </p>
+<p>A.refrain_C     B.flame_guan    C.chao636787     D.sword19880521</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017194802500.png" alt="image-20211017194802500"></p>
+<p>查找edge的下载记录时，发现两个文件没有大小，但是在左下角有记录，发现是卖家所给的站点，故可推断下载了两个文件，并且下载地点时D盘</p>
+<blockquote>
+<p>78、嫌疑人下载了几个恶意程序到本机：（ B ） </p>
+<p>A.1     B.2    C.3     D.4</p>
+</blockquote>
+<blockquote>
+<p>79、恶意程序被嫌疑人保存在什么位置：（ D ） </p>
+<p>A.D:/DOWNLOAD     B.C:/USER    C.C:/     D.D:/</p>
+</blockquote>
+<blockquote>
+<p>80、恶意程序是使用什么工具下载到本地的：（ C ） </p>
+<p>A.Chrome     B.Internet Explorer    C.edge     D.迅雷</p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211017195754325.png" alt="image-20211017195754325"></p>
+<p>看着有种莫名的喜感</p>
+<blockquote>
+<p>81、嫌疑人是什么时间开始对受害者实施诈骗的：（ C ） </p>
+<p>A.2019-07-13 19:14:44  </p>
+<p>B.2019-07-13 19:24:44 </p>
+<p>C.2019-07-13 19:04:44  </p>
+<p>D.2019-07-13 19:44:44</p>
+</blockquote>
+<hr>
+<h3 id="干不动了，下面放的是BB的题解，我这种菜鸟就只能走到这里了。。。"><a href="#干不动了，下面放的是BB的题解，我这种菜鸟就只能走到这里了。。。" class="headerlink" title="干不动了，下面放的是BB的题解，我这种菜鸟就只能走到这里了。。。"></a>干不动了，下面放的是BB的题解，我这种菜鸟就只能走到这里了。。。</h3><p>在电脑里面的备份平台里面有一台虚拟机，搞出来，有密码？？？搞他！我们先<a target="_blank" rel="noopener" href="https://www.cnblogs.com/lcl0421/p/9227805.html">修改密码</a>，在<code>/home/admin888/fund/</code>文件夹下发现<code>sqlite</code>数据库，我们导出来~</p>
+<blockquote>
+<p><code>$ scp root@192.168.247.155:/home/admin888/fund/db.sqlite3 ./db.sqlite3</code></p>
+<p><code>$ python3 -m http.server 2021</code></p>
+</blockquote>
+<p>然后根据手机号定位受害人是赵昊，数据库里面查看银行卡号：</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201107154313948.png" alt="image-20201107154313948"></p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201107154258903.png" alt="image-20201107154258903"></p>
+<blockquote>
+<ol start="83">
+<li><p>请综合分析，嫌疑人第一次入侵目标服务器的行为发生在：（<strong>C</strong>）</p>
+<p><code> A. 2019-07-13 16:17:30     B. 2019-07-13 16:17:32     C. 2019-07-13 16:17:35     D. 2019-07-13 16:17:38</code></p>
+</li>
+</ol>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201107154615513.png" alt="image-20201107154615513"></p>
+<blockquote>
+<ol start="84">
+<li><p>请综合分析，嫌疑人入侵服务所使用的登陆方式为：（<strong>B</strong>）</p>
+<p> A. SSH 密码登陆     B. SSH 密钥登陆     C. 连接后门程序     D.FTP 登陆</p>
+</li>
+</ol>
+</blockquote>
+<p>我们之前在检材四中的xshell数据文件中见到了密钥文件：</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201107155204586.png" alt="image-20201107155204586"></p>
+<blockquote>
+<ol start="85">
+<li><p>可知嫌疑人应对外发送过邮件，请分析并找到发出的邮件，可知邮件的发送时间为：（<strong>B</strong>）</p>
+<p><code> A. 2019-07-13 17:55       B. 2019-07-14 17:56       C. 2019-07-14 17:57        D. 2019-07-14 17:58</code></p>
+</li>
+<li><p>可知嫌疑人应对外发送过邮件，请分析并找到发出的邮件，可知邮件收件人为：（<strong>B</strong>）</p>
+<p><code> A. 1649841939@qq.com    B. 1649840939@qq.com    C. 1649845939@qq.com    D. 1649848939@qq.com</code></p>
+</li>
+</ol>
+</blockquote>
+<p>这个题目是真的骚，我们在前面有发现，他下载过<code>Foxmail</code>，于是我们查看<code>Foxmail</code>使用痕迹，然后把时间定位到<code>2019-07-13 17:52:20</code>，所以一般就选择A，但是是错的……因为他不一定用<code>Foxmail</code>发文件。所以我们换一个思路，在检材三中（嫌疑人使用的VPN服务器）有数据包，既然他发邮件，那么一定走了代理，所以我们再研究研究那个检材3的那两个数据包。这里有一个姿势点：</p>
+<blockquote>
+<p>常用的电子邮件协议有<code>SMTP、POP3、IMAP4</code>它们都隶属于<code>TCP/IP</code>协议簇.</p>
+</blockquote>
+<p>所以我们数据包里面直接找这几个协议：<img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108094246421.png" alt="image-20201108094246421"></p>
+<blockquote>
+<ol start="87">
+<li><p>请重构被入侵的网站，可知该网站后台管理界面的登陆用户名为：（<strong>C</strong>）</p>
+<p><code> A. root       B Administered       C. admin        D. user</code></p>
+</li>
+</ol>
+</blockquote>
+<p>重构网站需要先恢复数据库，我们再检材2中有加密程序，有加密过的数据库。所以我们开始老本行！逆！</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108111125565.png" alt="image-20201108111125565"></p>
+<p>思路很简单，上<code>exp</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;db.encrypt&quot;</span>,<span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    s=f.read()</span><br><span class="line"></span><br><span class="line">r=<span class="built_in">bytes</span>([((x^<span class="number">0xaa</span>)+<span class="number">256</span>-<span class="number">66</span>)%<span class="number">256</span> <span class="keyword">for</span> x <span class="keyword">in</span> s])</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;db&#x27;</span>, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> inp:</span><br><span class="line">    inp.write(r)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后计算<code>SHA256</code>：<img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108112522288.png" alt="image-20201108112522288"></p>
+<p>我们在检材4的<code>C</code>盘中看到了一个待挂载的硬盘：</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/images/image-20201108154253039.png" alt="image-20201108154253039"></p>
+<p>然后双击，显示<code>Bitlocker</code>：<img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108154511990.png" alt="image-20201108154511990"></p>
+<p>我们打开<code>Bitlocker</code>：<img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108154544420.png" alt="image-20201108154544420"></p>
+<p>现在我们缺少密码……还记得前面在翻<code>QQ</code>的时候看到的那个消息嘛，提示一下：</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108154812496.png" alt="image-20201108154812496"></p>
+<p>我们再根据他的<code>QQ</code>号和上面这个内容，可以猜到，在前面我们分析的邮件正是他用来备份密码的右键，我们复原一下邮件：</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108162121999.png" alt="image-20201108162121999"></p>
+<p>发现4个<code>EML</code>文件，导出以后，直接下载<img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108162907437.png" alt="image-20201108162907437"></p>
+<p>但是有密码！！！我们联想检材4桌面上的字典和<code>niuroumian6</code>，我们尝试用这个字典来爆破压缩包。这里爆破用的工具是开膛手<code>john</code>和<code>hashcat</code>：</p>
+<blockquote>
+<p><code>$ rar2john.exe BitLocker.rar </code>BitLocker.rar:$rar5$16$0c231f49ba3ded4bc944dee58f2be760$15$2a5c3ec4a5380b7a9d5517cc8ba386b6$8$07400e39e08a2e03`</p>
+<p><code>$ hashcat.exe -m 13000 -a 0 $rar5$16$0c231f49ba3ded4bc944dee58f2be760$15$2a5c3ec4a5380b7a9d5517cc8ba386b6$8$07400e39e08a2e03 新建文本文档.txt</code></p>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201110210507588.png" alt="image-20201110210507588"></p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201110210522337.png" alt="image-20201110210522337"></p>
+<p>打开密钥备份文件，用恢复密钥成功解锁硬盘：</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201110210731636.png" alt="image-20201110210731636"></p>
+<p>查看<code>db</code>文件，和我们前面逆向加密程序恢复的<code>db</code>一样。</p>
+<p>里面还有那个网站的……所有东西，那我们把这个<code>dump</code>出来，：</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201111111604097.png" alt="image-20201111111604097"></p>
+<blockquote>
+<ol start="88">
+<li><p>请重构被入侵的网站，并登陆网站后台管理界面，对该网站进行证据固定，可知该网站首页左侧导航栏，不包含下列那个内容：（<strong>D</strong>）</p>
+<p> A. 信息列表       B. 资金管理       C. 资金数据       D. 会员信息</p>
+</li>
+<li><p>通过分析知，嫌疑人对目标服务器植入了勒索程序，请解密检材 2 中的被加密数据库，</p>
+<p> 其<code>sha256</code>值为：（<strong>A</strong>）</p>
+<p><code> A. 8dcf2f71482bb492b546eec746c714be9324ea254778bf5cbb9e5115b30c77a2</code></p>
+<p><code> B. 8dcf2f71482bb492b546eec746c714be9324ea254778bf5cbb9e5115b30c77a3</code></p>
+<p> <code>C. 8dcf2f71482bb492b546eec746c714be9324ea254778bf5cbb9e5115b30c77a4</code></p>
+<p> <code>D.8dcf2f71482bb492b546eec746c714be9324ea254778bf5cbb9e5115b30c77a5</code></p>
+</li>
+</ol>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201111125021116.png" alt="image-20201111125021116"></p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201111112517872.png" alt="image-20201111112517872"></p>
+<blockquote>
+<ol start="90">
+<li><p>通过分析知，嫌疑人有对目标服务器植入 <code>ddos </code>程序，对该程序进行功能性分析，可知该程序会将自身复制到目标机器的什么目录下：（<strong>B</strong>）</p>
+<p><code> A. /etc       B. /lib       C. /root       D. /tmp</code></p>
+</li>
+<li><p>通过分析知，嫌疑人有对目标服务器植入 ddos 程序，对该程序进行功能性分析，可知该程序主控地址为（多选）：（<strong>AD</strong>）</p>
+<p><code>A. shaoqian.f3322.net     B. shaoqian.f3344.net     C. gh.dsaj3a2.org     D. gh.dsaj2a1.org</code></p>
+</li>
+</ol>
+</blockquote>
+<p>根据聊天记录易知，该<code>ddos</code>程序是<code>runit</code>，我们在检材四里面找到该文件，然后逆向分析……</p>
+<p>我们在main函数里面看见有一些乱码，然后前面跟了解密函数。我们跟进然后机密看看：</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201112131329103.png" alt="image-20201112131329103"></p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201112131341467.png" alt="image-20201112131341467"></p>
+<p>然后我们再找找程序里面还有那些加密数据，然后写个脚本解一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">enc=[<span class="string">&quot;m7A4nQ_/nA&quot;</span>,<span class="string">&quot;m [(n3&quot;</span>,<span class="string">&quot;m6_6n3&quot;</span>,<span class="string">&quot;m4S4nAC/n&amp;ZV&quot;</span>,<span class="string">&quot;m.[$n__#4%\\C&quot;</span>,<span class="string">&quot;m.[$n3&quot;</span>,<span class="string">&quot;m4S4nAC/nA&quot;</span>,<span class="string">&quot;m4S4nAC/n&amp;ZV&quot;</span>,<span class="string">&quot;m.[$n__#4%\\C&quot;</span>,<span class="string">&quot;m.[$n3&quot;</span>]</span><br><span class="line">a=[<span class="number">0x36</span>,<span class="number">0x46</span>,<span class="number">0x36</span>,<span class="number">0x7B</span>,<span class="number">0x1C</span>,<span class="number">0x19</span>,<span class="number">0x27</span>,<span class="number">0x34</span>,<span class="number">0x2D</span>,<span class="number">0x55</span>,<span class="number">0x1B</span>,<span class="number">0x50</span>,<span class="number">0x42</span>,<span class="number">0x27</span>,<span class="number">0x5A</span>,<span class="number">0x70</span>,<span class="number">0x23</span>,<span class="number">0x1C</span>,<span class="number">0x29</span>,<span class="number">0x33</span>,<span class="number">0x54</span>,<span class="number">0x19</span>,<span class="number">0x23</span>,<span class="number">0x6E</span>,<span class="number">0x34</span>,<span class="number">0x17</span>,<span class="number">0x45</span>,<span class="number">0x5C</span>,<span class="number">0x41</span>,<span class="number">0x79</span>,<span class="number">0x59</span>,<span class="number">0x26</span>,<span class="number">0x7F</span>,<span class="number">0x46</span>,<span class="number">0x23</span>,<span class="number">0x32</span>,<span class="number">0x47</span>]</span><br><span class="line">b=[<span class="number">0x25</span>,<span class="number">0x2A</span>,<span class="number">0x1C</span>,<span class="number">0x22</span>,<span class="number">0x32</span>,<span class="number">0x52</span>,<span class="number">0x5C</span>,<span class="number">0x73</span>,<span class="number">0x20</span>,<span class="number">0x70</span>,<span class="number">0x17</span>,<span class="number">0x5A</span>,<span class="number">0x46</span>,<span class="number">0x56</span>,<span class="number">0x7C</span>,<span class="number">0x2</span>,<span class="number">0x76</span>,<span class="number">0x76</span>,<span class="number">0x6</span>,<span class="number">0x3A</span>,<span class="number">0x32</span>,<span class="number">0x5B</span>,<span class="number">0x57</span>,<span class="number">0x2E</span>,<span class="number">0x30</span>,<span class="number">0x28</span>,<span class="number">0x58</span>,<span class="number">0x5B</span>,<span class="number">0x1A</span>,<span class="number">0x57</span>,<span class="number">0x75</span>,<span class="number">0x3</span>,<span class="number">0x70</span>,<span class="number">0x70</span>,<span class="number">0x1C</span>,<span class="number">0x29</span>,<span class="number">0x33</span>,<span class="number">0x54</span>,<span class="number">0x0C</span>,<span class="number">0x73</span>,<span class="number">0x75</span>,<span class="number">0x75</span>,<span class="number">0x0D</span>,<span class="number">0x49</span>,<span class="number">0x5</span>,<span class="number">0x9</span>,<span class="number">0x75</span>,<span class="number">0x1E</span>,<span class="number">0x74</span>,<span class="number">0x72</span>,<span class="number">0x1C</span>,<span class="number">0x74</span>,<span class="number">0x71</span>,<span class="number">0x1</span>,<span class="number">0x18</span>,<span class="number">0x73</span>,<span class="number">0x7B</span>,<span class="number">0x73</span>,<span class="number">0x0D</span>]</span><br><span class="line">key = [<span class="number">0x42</span>,<span class="number">0x42</span>,<span class="number">0x32</span>,<span class="number">0x46</span>,<span class="number">0x41</span>,<span class="number">0x33</span>,<span class="number">0x36</span>,<span class="number">0x41</span>,<span class="number">0x41</span>,<span class="number">0x41</span>,<span class="number">0x39</span>,<span class="number">0x35</span>,<span class="number">0x34</span>,<span class="number">0x31</span>,<span class="number">0x46</span>,<span class="number">0x30</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> enc:</span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(i)):</span><br><span class="line">		<span class="built_in">print</span>(<span class="built_in">chr</span>(<span class="built_in">ord</span>(i[j])^key[j%<span class="number">16</span>]),end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">	<span class="built_in">print</span>()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(a)):</span><br><span class="line">	<span class="built_in">print</span>(<span class="built_in">chr</span>(a[i]^key[i%<span class="number">16</span>]),end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(a)):</span><br><span class="line">	<span class="built_in">print</span>(<span class="built_in">chr</span>(b[i]^key[i%<span class="number">16</span>]),end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201112150926723.png" alt="image-20201112150926723"></p>
+<p>然后，，，然后我就不会了……至于复制到哪里，我是拿着答案去找的。main函数调用了一个daemon_process:</p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201112152112264.png" alt="image-20201112152112264"></p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201112152342036.png" alt="image-20201112152342036"></p>
+<p>应该就是这样吧……</p>
+<blockquote>
+<p>Frank会长说：“一直纠结一个题就没意思了！”</p>
+</blockquote>
+<p>那就，，，放过吧~</p>
+<blockquote>
+<ol start="92">
+<li><p>压缩包 <code>test2-master.zip</code> 中的文件是什么？（<strong>C</strong>）</p>
+<p> A.恶意软件       B.加密程序       C.密钥文件       D.下载软件</p>
+</li>
+</ol>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201111212304607.png" alt="image-20201111212304607"></p>
+<blockquote>
+<ol start="93">
+<li><p>应用程序 <code>TrueCrypt-7.2.exe </code>是在什么时间下载到本机的？（<strong>C</strong>）</p>
+<p><code> A. 2019-07-06 00:04:38     B. 2019-07-06 00:06:38     C. 2019-07-06 00:08:38     D. 2019-07-06 00:10:38</code></p>
+</li>
+</ol>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201111212528321.png" alt="image-20201111212528321"></p>
+<blockquote>
+<ol start="94">
+<li><p>文件 runit.txt 从哪个域名下载的？（<strong>D</strong>） </p>
+<p> <code>A.https://pan.forensix.cn/lib/367d7f96-299f-4029-91a8-a31594b736cf/runit</code></p>
+<p><code> B. https://pan.baidu.com/s/19uDE7H2RtEf7LLBgs5sDmg?errno=0&amp;errmsg=AuthLoginSucess&amp;&amp;bduss=&amp;ssnerror=0&amp;traceid=</code></p>
+<p> <code>C.https://pan.forensix.cn/seafhttp/files/dec88b97-b2bc-414f-93a3-dcbbc15d615/runit</code></p>
+<p><code> D.https://pan.forensix.cn/seafhttp/files/8fdf1982-e323-4efe-ae28-2bba21b5162c/runit</code></p>
+</li>
+</ol>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201111212723050.png" alt="image-20201111212723050"></p>
+<blockquote>
+<ol start="95">
+<li><p><code>BitLocker </code>密钥在什么位置？（<strong>B</strong>）</p>
+<p><code>A. D:/DOWNLOAD       B. C:/USER       C. C:/       D. D:/</code></p>
+</li>
+<li><p><code>BitLocker.rar </code>生成的时间是？（<strong>B</strong>）</p>
+<p> <code>A. 2019-07-13 17:51:47     B. 2019-07-13 17:52:19     C. 2019-07-13 17:53:24     D. 2019-07-13 16:31:06</code></p>
+</li>
+</ol>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201111212942950.png" alt="image-20201111212942950"></p>
+<blockquote>
+<ol start="97">
+<li><p>文件 <code>we.tar.gz</code> 传输完成的时间是？（<strong>C</strong>）</p>
+<p><code> A. 2019-07-13 16:31:06     B. 2019-07-13 16;33:00     C. 2019-07-13 16:33:15     D. 2019-07-13 16:33:30</code></p>
+</li>
+</ol>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201111213246657.png" alt="image-20201111213246657"></p>
+<blockquote>
+<ol start="98">
+<li><p>嫌疑人在什么时间登陆网页微信？（<strong>A</strong>）</p>
+<p> <code>A. 2019-07-13 16:34:55     B. 2019-07-13 16:40:13     C. 2019-07-13 16:45:45     D.2019-07-13 16:53:45</code></p>
+</li>
+</ol>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201111213636179.png" alt="image-20201111213636179"></p>
+<blockquote>
+<ol start="99">
+<li><p>嫌疑人于 <code>2019-07-13 17:22:23 </code>下载了什么文件？（<strong>B</strong>）</p>
+<p> A.网站目录压缩文件     B.数据库备份文件     C.网站日志文件     D.数据库日志文件</p>
+</li>
+</ol>
+</blockquote>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201111215055052.png" alt="image-20201111215055052"></p>
+<blockquote>
+<ol start="100">
+<li><p>硬盘 C 盘根目录中，文件<code>pagefile.sys.vhd</code>的作用是什么？（<strong>D</strong>）</p>
+<p> A.<code> pagefile</code> 页面交换文件     B. 虚拟机启动文件     C. 系统配置文件     D. 虚拟磁盘</p>
+</li>
+</ol>
+</blockquote>
+<p>……在前面我们双击这个，然后解开<code>Bitlocker</code>，就挂载上了<code>D</code>    盘，所以应该是虚拟磁盘。</p>
 <h1 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h1><p>8、请找出该服务器的网站访问端口是什么？（ ）</p>
 <p>25、当我们想将网站重构好时，访问网站时，web 应用在其中承担什么样的工作？（ 需取证大师）</p>
-<p>66、系统于 2019-07-13 17:53:45 时运行了___程序：（ ） 有问题！！！</p>
+<p>69、嫌疑人成功连接至 192.168.184.128 服务器的时间为：（ ）</p>
 
       
     </div>
