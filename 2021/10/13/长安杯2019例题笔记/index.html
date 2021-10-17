@@ -91,7 +91,7 @@
 <meta property="og:image" content="https://jszmwq.github.io/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108094246421.png">
 <meta property="og:image" content="https://jszmwq.github.io/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108111125565.png">
 <meta property="og:image" content="https://jszmwq.github.io/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108112522288.png">
-<meta property="og:image" content="https://jszmwq.github.io/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/images/image-20201108154253039.png">
+<meta property="og:image" content="https://jszmwq.github.io/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108154253039.png">
 <meta property="og:image" content="https://jszmwq.github.io/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108154511990.png">
 <meta property="og:image" content="https://jszmwq.github.io/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108154544420.png">
 <meta property="og:image" content="https://jszmwq.github.io/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108154812496.png">
@@ -116,7 +116,7 @@
 <meta property="og:image" content="https://jszmwq.github.io/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201111213636179.png">
 <meta property="og:image" content="https://jszmwq.github.io/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201111215055052.png">
 <meta property="article:published_time" content="2021-10-13T11:02:51.000Z">
-<meta property="article:modified_time" content="2021-10-17T12:53:49.038Z">
+<meta property="article:modified_time" content="2021-10-17T16:03:48.413Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="电子数据取证">
 <meta name="twitter:card" content="summary">
@@ -946,7 +946,7 @@
 </blockquote>
 <p>这个题目是真的骚，我们在前面有发现，他下载过<code>Foxmail</code>，于是我们查看<code>Foxmail</code>使用痕迹，然后把时间定位到<code>2019-07-13 17:52:20</code>，所以一般就选择A，但是是错的……因为他不一定用<code>Foxmail</code>发文件。所以我们换一个思路，在检材三中（嫌疑人使用的VPN服务器）有数据包，既然他发邮件，那么一定走了代理，所以我们再研究研究那个检材3的那两个数据包。这里有一个姿势点：</p>
 <blockquote>
-<p>常用的电子邮件协议有<code>SMTP、POP3、IMAP4</code>它们都隶属于<code>TCP/IP</code>协议簇.</p>
+<p><strong>常用的电子邮件协议有<code>SMTP、POP3、IMAP4</code>它们都隶属于<code>TCP/IP</code>协议簇.</strong></p>
 </blockquote>
 <p>所以我们数据包里面直接找这几个协议：<img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108094246421.png" alt="image-20201108094246421"></p>
 <blockquote>
@@ -963,7 +963,7 @@
 
 <p>然后计算<code>SHA256</code>：<img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108112522288.png" alt="image-20201108112522288"></p>
 <p>我们在检材4的<code>C</code>盘中看到了一个待挂载的硬盘：</p>
-<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/images/image-20201108154253039.png" alt="image-20201108154253039"></p>
+<p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108154253039.png" alt="image-20201108154253039"></p>
 <p>然后双击，显示<code>Bitlocker</code>：<img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108154511990.png" alt="image-20201108154511990"></p>
 <p>我们打开<code>Bitlocker</code>：<img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201108154544420.png" alt="image-20201108154544420"></p>
 <p>现在我们缺少密码……还记得前面在翻<code>QQ</code>的时候看到的那个消息嘛，提示一下：</p>
@@ -978,6 +978,8 @@
 </blockquote>
 <p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201110210507588.png" alt="image-20201110210507588"></p>
 <p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201110210522337.png" alt="image-20201110210522337"></p>
+<p>215643485745446664666432494f413536343335363a223a22</p>
+<p>!VCHWEDfdfd2IOA564356:”:”</p>
 <p>打开密钥备份文件，用恢复密钥成功解锁硬盘：</p>
 <p><img src="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201110210731636.png" alt="image-20201110210731636"></p>
 <p>查看<code>db</code>文件，和我们前面逆向加密程序恢复的<code>db</code>一样。</p>
@@ -1109,7 +1111,7 @@
         <p><span>本文标题:</span><a  href="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/">长安杯2019例题笔记</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问  的个人博客"></a></p>
         <p><span>发布时间:</span>2021年10月13日 - 19时02分</p>
-        <p><span>最后更新:</span>2021年10月17日 - 20时53分</p>
+        <p><span>最后更新:</span>2021年10月18日 - 00时03分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/" title="长安杯2019例题笔记">https://jszmwq.github.io/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/</a>
             <span class="copy-path" data-clipboard-text="原文: https://jszmwq.github.io/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/　　作者: " title=""></span>
