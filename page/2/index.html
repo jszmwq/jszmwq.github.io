@@ -277,6 +277,177 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-babeRCE" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2021/10/01/babeRCE/" class="article-date">
+      <time datetime="2021-10-01T15:46:39.000Z" itemprop="datePublished">2021-10-01</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2021/10/01/babeRCE/">babeRCE</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="babeRCE"><a href="#babeRCE" class="headerlink" title="babeRCE"></a>babeRCE</h2><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p><img src="/2021/10/01/babeRCE/image-20211001235119791.png" alt="image-20211001235119791"></p>
+<p>解题思路</p>
+<p>输入  47.93.215.154:5000/?rce=ls  可以得到   flag.php index.php</p>
+<p>目标就是实现指令cat flag.php 不过需要绕开指令检测</p>
+<p>在指令中穿插 \ 或 $@ 即可绕开， ${IFS} 可以代替空格</p>
+<p><code>http://47.93.215.154:5000/?rce=ca$@t$&#123;IFS&#125;fla$@g.php</code></p>
+<p><code>http://47.93.215.154:5000/?rce=ca\t$&#123;IFS&#125;fla\g.php</code></p>
+<p>其他的还有待补充</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/" rel="tag">web</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-几道web题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/" class="article-date">
+      <time datetime="2021-10-01T11:13:00.000Z" itemprop="datePublished">2021-10-01</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a  class="article-title" href="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/">几道web题</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="2048"><a href="#2048" class="headerlink" title="2048"></a>2048</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001191433709.png" alt="image-20211001191433709"></p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001191507747.png" alt="image-20211001191507747"></p>
+<p>打开网页后是一个如图所示的小游戏，几番折腾后游戏结束</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001191642280.png" alt="image-20211001191642280"></p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001191653895.png" alt="image-20211001191653895"></p>
+<p>我们按F12查看源码，搜索flag和score相关关键词，发现了一个函数，即为解体的关键</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001194930314.png" alt="image-20211001194930314"></p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001191908626.png" alt="image-20211001191908626"></p>
+<p>当游戏失败时，调用obj.getFlag，并对其中obj.score的数值进行判断，仅当score&gt;50001时才给出flag</p>
+<h4 id="解法一："><a href="#解法一：" class="headerlink" title="解法一："></a>解法一：</h4><p>在F12的控制台中输入</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001195606298.png" alt="image-20211001195606298"></p>
+<h4 id="解法二："><a href="#解法二：" class="headerlink" title="解法二："></a>解法二：</h4><p>打开网址47.93.215.154:5001/flag.php?score=50001即可得到flag</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001195557547.png" alt="image-20211001195557547"></p>
+<h2 id="Web-Inc"><a href="#Web-Inc" class="headerlink" title="Web_Inc"></a>Web_Inc</h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001195843736.png" alt="image-20211001195843736"></p>
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>变量a通过get传参，变量b通过post传参</p>
+<p>题中对a和b的值和MD5进行比较，当且仅当值不等且MD5相等时给出flag</p>
+<h4 id="相关知识点："><a href="#相关知识点：" class="headerlink" title="相关知识点："></a>相关知识点：</h4><h5 id="等号的数量问题："><a href="#等号的数量问题：" class="headerlink" title="等号的数量问题："></a>等号的数量问题：</h5><p>三个等号 为 类型相等 并且 值相等</p>
+<p>两个等号 仅仅为 值相等</p>
+<p><strong>(若字符串以数字开头，则取开头数字作为转换结果，若无则输出0)</strong></p>
+<p>“abc” == 0  值为 True</p>
+<h5 id="MD5碰撞及绕过："><a href="#MD5碰撞及绕过：" class="headerlink" title="MD5碰撞及绕过："></a>MD5碰撞及绕过：</h5><h6 id="1、构造数组"><a href="#1、构造数组" class="headerlink" title="1、构造数组"></a>1、构造数组</h6><p>在 PHP5 和 PHP7 中，当两个 md5 进行比较时，若参数是不同的数组，那么 <code>==</code> 和 <code>===</code> 比较的结果均为 True</p>
+<p>$a = $GET[“a”]; $b = $GET[“b”];时可以构造<strong>a[]=1&amp;&amp;b[]=1</strong></p>
+<h6 id="2、构造0E（仅适用于”-“）"><a href="#2、构造0E（仅适用于”-“）" class="headerlink" title="2、构造0E（仅适用于”==“）"></a>2、构造0E（仅适用于”==“）</h6><p>如果md5的值是以0e开头的，那么就与其他的0e开头的Md5值是相等的</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001211508144.png" alt="image-20211001211508144"></p>
+<p>得到FLAG</p>
+<h2 id="ezinclude（我们仍未知道那天所解的题的解法）"><a href="#ezinclude（我们仍未知道那天所解的题的解法）" class="headerlink" title="ezinclude（我们仍未知道那天所解的题的解法）"></a>ezinclude<em><strong>（我们仍未知道那天所解的题的解法）</strong></em></h2><h3 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h3><p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001225145844.png" alt="image-20211001225145844"></p>
+<h3 id="题解（尚未知晓原理，以后补充）"><a href="#题解（尚未知晓原理，以后补充）" class="headerlink" title="题解（尚未知晓原理，以后补充）"></a>题解（尚未知晓原理，以后补充）</h3><p><em><strong>47.98.215.112:5000/?file=php://filter/convert.base64-encode/resource=flag.php</strong></em></p>
+<p>得到PD8kZmxhZz0ibW9lY3Rme3hkc2VjNmFzZGdhczdhaGZzZmF4Y3pjfSI7Pz4=</p>
+<p>利用base64解码得到<?$flag="moectf{xdsec6asdgas7ahfsfaxczc}";?></p>
+<h2 id="Do-you-know-HTTP"><a href="#Do-you-know-HTTP" class="headerlink" title="Do you know HTTP?"></a>Do you know HTTP?</h2><p>打开网页几个大字赫然在目</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211002110958776.png" alt="image-20211002110958776"></p>
+<p>借鉴之前小饼干的经验，该题应该是想要让我们伪造请求方式和各种的请求头来解题</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211002112048169.png" alt="image-20211002112048169"></p>
+<p>伪造请求头 X-Forwarded-For： 简称XFF头，它代表客户端，也就是HTTP的请求端真实的IP。</p>
+<p> 请求头格式：X-Forwarded-For: client, proxy1, proxy2 client</p>
+<p>即客户端真实 ip，后两项是代理 ip，可缺省，最终在服务端接收前都会被补齐。</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211002112323207.png" alt="image-20211002112323207"></p>
+<p>伪造请求头Referer可以伪造来源地址</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211002112704997.png" alt="image-20211002112704997"></p>
+<p>User-Agent代表的是浏览服务器，只需要把值更改为LT即可</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211002113354175.png" alt="image-20211002113354175"></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/" rel="tag">web</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-web方向入门" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
