@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>美亚杯团体赛2020例题笔记 | j52nnw9的博客</title><meta name="keywords" content="电子数据取证"><meta name="author" content="萌新QAQ"><meta name="copyright" content="萌新QAQ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1、Zello服务器的哈希值（SHA256）是甚么A:ACC956EEE5121EDC2F9DC19ACFC8720E443810CBC5B83128EC62F9F4AAEA30B8 B:30B856EEE5121EDC2F9DC19ACFC8720E443810CBC5B83128EC62F9F4AAEAACC9 C:ACC930B856EEE5121EDC2F9DC19ACFC8720E443">
+<meta property="og:type" content="article">
+<meta property="og:title" content="美亚杯团体赛2020例题笔记">
+<meta property="og:url" content="https://jszmwq.github.io/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="j52nnw9的博客">
+<meta property="og:description" content="1、Zello服务器的哈希值（SHA256）是甚么A:ACC956EEE5121EDC2F9DC19ACFC8720E443810CBC5B83128EC62F9F4AAEA30B8 B:30B856EEE5121EDC2F9DC19ACFC8720E443810CBC5B83128EC62F9F4AAEAACC9 C:ACC930B856EEE5121EDC2F9DC19ACFC8720E443">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-11-03T12:51:14.000Z">
+<meta property="article:modified_time" content="2021-11-03T15:42:14.932Z">
+<meta property="article:author" content="萌新QAQ">
+<meta property="article:tag" content="电子数据取证">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jszmwq.github.io/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '美亚杯团体赛2020例题笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-11-03 23:42:14'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/image.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">j52nnw9的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">美亚杯团体赛2020例题笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-11-03T12:51:14.000Z" title="发表于 2021-11-03 20:51:14">2021-11-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-03T15:42:14.932Z" title="更新于 2021-11-03 23:42:14">2021-11-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="美亚杯团体赛2020例题笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="1、Zello服务器的哈希值（SHA256）是甚么"><a href="#1、Zello服务器的哈希值（SHA256）是甚么" class="headerlink" title="1、Zello服务器的哈希值（SHA256）是甚么"></a>1、Zello服务器的哈希值（SHA256）是甚么</h3><p>A:ACC956EEE5121EDC2F9DC19ACFC8720E443810CBC5B83128EC62F9F4AAEA30B8 B:30B856EEE5121EDC2F9DC19ACFC8720E443810CBC5B83128EC62F9F4AAEAACC9 C:ACC930B856EEE5121EDC2F9DC19ACFC8720E443810CBC5B83128EC62F9F4AAEA D:56EEE5121EDC2F9DC19ACFC8720E443810CBC5B83128EC62F9F4AAEAACC930B8 E:418856EEE5121EDC2F9DC19ACFC8720E443810CBC5B83128EC62F9F4AAEAACC6</p>
+<p><strong>答案：B</strong></p>
+<p>计算30GB文件用时大约为6分钟</p>
+<h3 id="2、卷组是何时创建的？"><a href="#2、卷组是何时创建的？" class="headerlink" title="2、卷组是何时创建的？"></a>2、卷组是何时创建的？</h3><p>A:2020/09/01 10:22 </p>
+<p>B:2020/09/02 10:22 </p>
+<p>C:2020/09/03 05:22 </p>
+<p>D:2020/09/03 16:22 </p>
+<p>E:2020/09/03 10:22</p>
+<p><strong>答案：E</strong></p>
+<p>在火眼仿真虚拟机可以看到</p>
+<h3 id="3、卷组的名称是甚么？"><a href="#3、卷组的名称是甚么？" class="headerlink" title="3、卷组的名称是甚么？"></a>3、卷组的名称是甚么？</h3><p>A:ubuntu    B:Debian     C:ubuntu-xp     D:Kali-vg     E:ubuntu-vg</p>
+<p><strong>答案：E</strong></p>
+<h4 id="在终端内输入-lvdisplay-，可以得到逻辑卷的详情信息"><a href="#在终端内输入-lvdisplay-，可以得到逻辑卷的详情信息" class="headerlink" title="在终端内输入 lvdisplay ，可以得到逻辑卷的详情信息"></a>在终端内输入 <code>lvdisplay</code> ，可以得到逻辑卷的详情信息</h4><p><img src="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211103210735074.png" alt="image-20211103210735074"></p>
+<h3 id="4、物理卷的PV-UUID是多少？"><a href="#4、物理卷的PV-UUID是多少？" class="headerlink" title="4、物理卷的PV UUID是多少？"></a>4、物理卷的PV UUID是多少？</h3><p>A:FF6neD-j49V-7o4g-Uugw-X </p>
+<p>B:IF6neD-j49V-555g-Uugw-XP </p>
+<p>C:EF6neO-j49V-704g-Uugw-X </p>
+<p>D:IF6neD-j49V-704g-Uugw-X </p>
+<p>E:F48neD-j49V-704g-Uugw-X</p>
+<p><strong>答案：C</strong></p>
+<h4 id="在终端内输入-pvdisplay-查看到物理卷的详情信息"><a href="#在终端内输入-pvdisplay-查看到物理卷的详情信息" class="headerlink" title="在终端内输入 pvdisplay 查看到物理卷的详情信息"></a>在终端内输入 <code>pvdisplay</code> 查看到物理卷的详情信息</h4><p><img src="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211103214646237.png" alt="image-20211103214646237"></p>
+<h3 id="5、卷组的VG-UUID是甚么？"><a href="#5、卷组的VG-UUID是甚么？" class="headerlink" title="5、卷组的VG UUID是甚么？"></a>5、卷组的VG UUID是甚么？</h3><p>A:AaJRmQ-tjaG-tmrX-Vnyu-xhS7-9zDttW </p>
+<p>B:ZaRRnQ-S7Tp-tjaG-tmr-Vnyu-xhS7-9zDttW </p>
+<p>C:JJJRmQ-S7Tp-tjaG-xhS7-9zDttW </p>
+<p>D:ZaJRmQ-S7Tp-tjaG-tmrX-Vnyu-xhS7-9zDttW </p>
+<p>E:Cannot be found</p>
+<p><strong>答案：D</strong></p>
+<h4 id="在终端内输入-vgdisplay-，可以得到卷组的详情信息"><a href="#在终端内输入-vgdisplay-，可以得到卷组的详情信息" class="headerlink" title="在终端内输入 vgdisplay ，可以得到卷组的详情信息"></a>在终端内输入 <code>vgdisplay</code> ，可以得到卷组的详情信息</h4><p><img src="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211103214937227.png" alt="image-20211103214937227"></p>
+<h3 id="6、Zello服务器的Linux内核版本是甚么？"><a href="#6、Zello服务器的Linux内核版本是甚么？" class="headerlink" title="6、Zello服务器的Linux内核版本是甚么？"></a>6、Zello服务器的Linux内核版本是甚么？</h3><p>A:4.1-generic </p>
+<p>B:5.4.0-48-generic </p>
+<p>C:5.4-48-static </p>
+<p>D:6.4.0-generic </p>
+<p>E:Cannot be found</p>
+<p><strong>答案：B</strong></p>
+<h4 id="在终端内输入-uname-a"><a href="#在终端内输入-uname-a" class="headerlink" title="在终端内输入 uname -a"></a>在终端内输入 <code>uname -a</code></h4><p><img src="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211103215211692.png" alt="image-20211103215211692"></p>
+<h3 id="7、Zello服务器的操作系统版本是甚么？"><a href="#7、Zello服务器的操作系统版本是甚么？" class="headerlink" title="7、Zello服务器的操作系统版本是甚么？"></a>7、Zello服务器的操作系统版本是甚么？</h3><p>A:20.03 LTS </p>
+<p>B:19.04.1 LTS </p>
+<p>C:18.04.1 LTS </p>
+<p>D:21.04.2 LTS </p>
+<p>E:20.04.1 LTS</p>
+<p><strong>答案：E</strong></p>
+<p><img src="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211103213844772.png" alt="image-20211103213844772"></p>
+<h3 id="8、Zello服务器的主机名是甚么？"><a href="#8、Zello服务器的主机名是甚么？" class="headerlink" title="8、Zello服务器的主机名是甚么？"></a>8、Zello服务器的主机名是甚么？</h3><p>A:zello </p>
+<p>B:zello-group </p>
+<p>C:zello-on </p>
+<p>D:zello-server </p>
+<p>E:server-zello</p>
+<p><strong>答案：A</strong></p>
+<p><img src="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211103214340142.png" alt="image-20211103214340142"></p>
+<h3 id="9、Zello服务器的计算器ID是甚么？"><a href="#9、Zello服务器的计算器ID是甚么？" class="headerlink" title="9、Zello服务器的计算器ID是甚么？"></a>9、Zello服务器的计算器ID是甚么？</h3><p>A:ff39cddc1d794eb6888962aafa17ab28 </p>
+<p>B:ab28ff39cddc1d794eb6888962aafa17 </p>
+<p>C:ff40cddc1d794eb6888962aafa17ab281 </p>
+<p>D:df39cddc1d794eb6888962aafa17ab2B </p>
+<p>E:fdg39cddc1d794eb6888962aafa17ab28</p>
+<p><strong>答案：</strong></p>
+<h3 id="10、Zello服务器中使用的wordpress版本是-甚么？"><a href="#10、Zello服务器中使用的wordpress版本是-甚么？" class="headerlink" title="10、Zello服务器中使用的wordpress版本是 甚么？"></a>10、Zello服务器中使用的wordpress版本是 甚么？</h3><p>A:5.4.2 </p>
+<p>B:5.5.1 </p>
+<p>C:5.5.0.3 </p>
+<p>D:5.2.4 </p>
+<p>E:2.5.5</p>
+<p><strong>答案：</strong></p>
+<h3 id="11、Zello服务器与之同步的主机名是甚么？"><a href="#11、Zello服务器与之同步的主机名是甚么？" class="headerlink" title="11、Zello服务器与之同步的主机名是甚么？"></a>11、Zello服务器与之同步的主机名是甚么？</h3><p>A:NTP-server-based </p>
+<p>B:NTP-host </p>
+<p>C:Zello-server-host </p>
+<p>D:NTP-server-host-zello </p>
+<p>E:NTP-server-host</p>
+<p><strong>答案：</strong></p>
+<h3 id="Zello服务器的时区是甚么？"><a href="#Zello服务器的时区是甚么？" class="headerlink" title="Zello服务器的时区是甚么？"></a>Zello服务器的时区是甚么？</h3><p>A:Asia/Dhaka </p>
+<p>B:Asia/Hong Kong </p>
+<p>C:Asia/Bangkok </p>
+<p>D:Asia/Yangon </p>
+<p>E:Asia/Yekaterinburg</p>
+<p><strong>答案：</strong></p>
+<h3 id="有多少个本地用户已登录到Zello服务器？"><a href="#有多少个本地用户已登录到Zello服务器？" class="headerlink" title="有多少个本地用户已登录到Zello服务器？"></a>有多少个本地用户已登录到Zello服务器？</h3><p>A:1      B:2      C:3      D:4      E:5</p>
+<p><strong>答案：</strong></p>
+<h3 id="植入网络目录（Webdirectory）的网页-壳层（Web-Shell）的哈希值（MD5）是甚么？"><a href="#植入网络目录（Webdirectory）的网页-壳层（Web-Shell）的哈希值（MD5）是甚么？" class="headerlink" title="植入网络目录（Webdirectory）的网页 壳层（Web Shell）的哈希值（MD5）是甚么？"></a>植入网络目录（Webdirectory）的网页 壳层（Web Shell）的哈希值（MD5）是甚么？</h3><p>A:FC0C5B5E56D56C6BBA6E1BAD595BECFD </p>
+<p>B:FC0CECFD5B5E56D56C6BBA6E1BAD595</p>
+<p>B C:CCFO585E56D56C6BBA6E1BAD595BFC0C </p>
+<p>D:ED455B5E56D56C6BBA6E1BAD595BFC8C </p>
+<p>E:ECFD5B5E56D56C6BBA6E1BAD595BFC0C</p>
+<p><strong>答案：</strong></p>
+<h3 id="var-www-html-wordpress-net-2020-Login-index-php’有-甚么作用？"><a href="#var-www-html-wordpress-net-2020-Login-index-php’有-甚么作用？" class="headerlink" title="\ var \ www \ html \ wordpress \ net \ 2020 \ Login \ index.php’有 甚么作用？"></a>\ var \ www \ html \ wordpress \ net \ 2020 \ Login \ index.php’有 甚么作用？</h3><p>A:下载木马程序    B:攻击目标服务器    C:上载档案到服务器    D:盗取资料    E:这是个普通页面</p>
+<p><strong>答案：D</strong></p>
+<p>找到文件，打开后发现有关于passward的信息，猜测是登录界面，一不小心点开了<code>log1ns.txt</code>，</p>
+<p><img src="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211103222309955.png" alt="image-20211103222309955"></p>
+<p>其中记录了用户的表单信息，根据下面题的提示，故可知是盗取用户资料</p>
+<h3 id="钓鱼网站伪装成甚么网站？"><a href="#钓鱼网站伪装成甚么网站？" class="headerlink" title="钓鱼网站伪装成甚么网站？"></a>钓鱼网站伪装成甚么网站？</h3><p>A:Yahoo     B:Google     C:Apple     D:Netflix     E:Spotify</p>
+<p><strong>答案：D</strong></p>
+<p><img src="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211103222419861.png" alt="image-20211103222419861"></p>
+<p>随便翻翻就翻到了</p>
+<h3 id="下列哪个IP对Zello服务器进行了蛮力攻-击？"><a href="#下列哪个IP对Zello服务器进行了蛮力攻-击？" class="headerlink" title="下列哪个IP对Zello服务器进行了蛮力攻 击？"></a>下列哪个IP对Zello服务器进行了蛮力攻 击？</h3><p>A:213.186.93.68    B:223.186.92.68    C:221.186.91.68    D:203.186.94.68    E:203.186.90.50</p>
+<p>答案：</p>
+<p><code>58.152.54.77</code>  我记住你了！！！</p>
+<h3 id="Zello-Web服务器的URL是甚么？"><a href="#Zello-Web服务器的URL是甚么？" class="headerlink" title="Zello Web服务器的URL是甚么？"></a>Zello Web服务器的URL是甚么？</h3><p>A:<a target="_blank" rel="noopener" href="http://zello-online.net/">http://zello-online.net/</a> </p>
+<p>B:<a target="_blank" rel="noopener" href="http://zello-onlineshop.com/">http://zello-onlineshop.com/</a> </p>
+<p>C:<a target="_blank" rel="noopener" href="http://zello-onlineshop.sytes.net/">http://zello-onlineshop.sytes.net/</a> </p>
+<p>D:<a target="_blank" rel="noopener" href="http://zero-onlineshop.org/">http://zero-onlineshop.org/</a> </p>
+<p>E:<a target="_blank" rel="noopener" href="http://zello-onlineshops.com/">http://zello-onlineshops.com/</a></p>
+<p><strong>答案：C</strong></p>
+<p>本来想着寻找蛮力的IP地址，肯定被日志文件记录下来了，但是IP却与题目中给出的不相符，故猜想通过代理伪造IP，需要后面的题目才能解出来。不过意外收获就是这里的服务器URL</p>
+<p><img src="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211103222810021.png" alt="image-20211103222810021"></p>
+<h3 id="LVM2容器的第一个扇区是什么？"><a href="#LVM2容器的第一个扇区是什么？" class="headerlink" title="LVM2容器的第一个扇区是什么？"></a>LVM2容器的第一个扇区是什么？</h3><p>A:2101248     B:2100049     C:2101250     D:5101246     E:210222</p>
+<p><strong>答案：A</strong></p>
+<h3 id="Zello服务器中LVM2容器的大小（以字节为单位）是甚么？"><a href="#Zello服务器中LVM2容器的大小（以字节为单位）是甚么？" class="headerlink" title="Zello服务器中LVM2容器的大小（以字节为单位）是甚么？"></a>Zello服务器中LVM2容器的大小（以字节为单位）是甚么？</h3><p>A:21135367167    B:31135367168    C:3553536000    D:64615367165    E:42425367164</p>
+<p><strong>答案：B</strong></p>
+<p><img src="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211103221605151.png" alt="image-20211103221605151"></p>
+<h2 id="扇区、容器大小的计算"><a href="#扇区、容器大小的计算" class="headerlink" title="扇区、容器大小的计算"></a>扇区、容器大小的计算</h2><p>起始物理位置位于1075838976，由于单位是byte，而<strong>一个区块是512byte</strong>，则我们需要将数除512得到的结果就是起始扇区位置</p>
+<p>而扇区数为60811264，计算以字节为单位的大小，我们就需要对扇区数乘512，得到的结果就是容器的大小</p>
+<h3 id="在Zello服务器以及Alice的装置中可以-找到甚么共同文件？"><a href="#在Zello服务器以及Alice的装置中可以-找到甚么共同文件？" class="headerlink" title="在Zello服务器以及Alice的装置中可以 找到甚么共同文件？"></a>在Zello服务器以及Alice的装置中可以 找到甚么共同文件？</h3><p>A:login.txt     B:inter.zip     C:R3ZZ.txt     D:password.txt    E:Downloads.7z</p>
+<p><strong>答案：C</strong></p>
+<p>做题思路很简单，就是在取证大师的搜索中挨个文件进行检索即可</p>
+<p><img src="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211103224350601.png" alt="image-20211103224350601"></p>
+<h3 id="2020年8月29日在Xeno服务器中发现的-攻击类型是甚么？"><a href="#2020年8月29日在Xeno服务器中发现的-攻击类型是甚么？" class="headerlink" title="2020年8月29日在Xeno服务器中发现的 攻击类型是甚么？"></a>2020年8月29日在Xeno服务器中发现的 攻击类型是甚么？</h3><p>A:HTTP GET/POST Flood   B:NTP Amplification   C:Ping of Death   D:SYN Flood   E:SNMP Flood</p>
+<p><strong>答案：A</strong></p>
+<h3 id="哪个IP地址在日志中条目数量最多？"><a href="#哪个IP地址在日志中条目数量最多？" class="headerlink" title="哪个IP地址在日志中条目数量最多？"></a>哪个IP地址在日志中条目数量最多？</h3><p>A:14.102.184.0    B:156.145.63.5    C:14.200.184.10    D:14.24.144.219    E:45.133.180.5</p>
+<p><strong>答案：A</strong></p>
+<h3 id="这个登录次数最多的IP地址，它访问最多的是哪个页面？"><a href="#这个登录次数最多的IP地址，它访问最多的是哪个页面？" class="headerlink" title="这个登录次数最多的IP地址，它访问最多的是哪个页面？"></a>这个登录次数最多的IP地址，它访问最多的是哪个页面？</h3><p>A:listen.icepush.xml </p>
+<p>B:risk.xhtml </p>
+<p>C:explorer.xhtml </p>
+<p>D:login.jsp </p>
+<p>E:listViewRisjs.xhtml</p>
+<p>答案：</p>
+<p>（建议编写一个程序统计IP地址、页面出现的次数）</p>
+<h3 id="这个登录次数最多的IP地址来自哪个国-家或地区？"><a href="#这个登录次数最多的IP地址来自哪个国-家或地区？" class="headerlink" title="这个登录次数最多的IP地址来自哪个国 家或地区？"></a>这个登录次数最多的IP地址来自哪个国 家或地区？</h3><p>A:Hong Kong    B:Macau    C:China(Mainland)    D:South Africa    E:United states</p>
+<p>答案：</p>
+<h3 id="这个登录次数最多的IP地址，合共有多少次成功登录"><a href="#这个登录次数最多的IP地址，合共有多少次成功登录" class="headerlink" title="这个登录次数最多的IP地址，合共有多少次成功登录?"></a>这个登录次数最多的IP地址，合共有多少次成功登录?</h3><p>A:28     B:18     C:51     D:0     E:80</p>
+<p>答案：</p>
+<h3 id="除DDoS之外，还可能涉及其他攻击吗？"><a href="#除DDoS之外，还可能涉及其他攻击吗？" class="headerlink" title="除DDoS之外，还可能涉及其他攻击吗？"></a>除DDoS之外，还可能涉及其他攻击吗？</h3><p>A:SQL注入     B:命令注入     C:系统漏洞攻击     D:跨站脚本攻击     E:暴力破解攻击</p>
+<p>答案：</p>
+<h3 id="从该网站下载了多少数据？"><a href="#从该网站下载了多少数据？" class="headerlink" title="从该网站下载了多少数据？"></a>从该网站下载了多少数据？</h3><p>A:大概 20 MB    B:大概 200 MB    C:大概 1 GB    D:大概 5 GB    E:现有资料不足以作推断</p>
+<p>答案：</p>
+<h3 id="Bob路由器的型号是甚么？"><a href="#Bob路由器的型号是甚么？" class="headerlink" title="Bob路由器的型号是甚么？"></a>Bob路由器的型号是甚么？</h3><p>A:BL - WR740N    B:TL - WR740N    C:Archer c 1200    D:archer c7    E:TP - WRB41N</p>
+<p><strong>答案：B</strong></p>
+<p>这个可以查看取证照片获取信息</p>
+<h3 id="Bob家的IP地址是甚么？"><a href="#Bob家的IP地址是甚么？" class="headerlink" title="Bob家的IP地址是甚么？"></a>Bob家的IP地址是甚么？</h3><p>A:15.111.174.91    B:14.101.192.1    C:27.111.174.91    D:1.31.23.101    E:182.11.21.31</p>
+<p>答案：</p>
+<h3 id="使用路由器的装置的Mac地址是甚么Alice？"><a href="#使用路由器的装置的Mac地址是甚么Alice？" class="headerlink" title="使用路由器的装置的Mac地址是甚么Alice？"></a>使用路由器的装置的Mac地址是甚么Alice？</h3><p>A:00:BA:F5:89:89:FE </p>
+<p>B:A4:4E:31:EC:24:00 </p>
+<p>C:60:67:20:3D:3B:OC </p>
+<p>D:00:0A:F5:89:89:FF </p>
+<p>E:00AA:F5:82:89:FD</p>
+<p>答案：</p>
+<h3 id="使用路由器的装置的Mac地址是甚么Cole？"><a href="#使用路由器的装置的Mac地址是甚么Cole？" class="headerlink" title="使用路由器的装置的Mac地址是甚么Cole？"></a>使用路由器的装置的Mac地址是甚么Cole？</h3><p>A:8C:3A:E3:93:80:09 </p>
+<p>B:00:0A:F5:89:89:FF </p>
+<p>C:3C:BA:E3:93:80:09 </p>
+<p>D:00:0A:F5:89:89:FC </p>
+<p>E:38:48:4C:17:9A:OC</p>
+<p>答案：</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">萌新QAQ</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://jszmwq.github.io/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/">https://jszmwq.github.io/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://jszmwq.github.io" target="_blank">j52nnw9的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81/">电子数据取证</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/10/28/Hackergame-EasyRSA/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Hackergame_EasyRSA</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/10/13/RAID%E9%87%8D%E7%BB%84/" title="RAID重组"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-13</div><div class="title">RAID重组</div></div></a></div><div><a href="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/" title="2021长安杯做题总结"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-26</div><div class="title">2021长安杯做题总结</div></div></a></div><div><a href="/2021/10/16/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%96%E8%AF%81/" title="linux服务器取证"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-16</div><div class="title">linux服务器取证</div></div></a></div><div><a href="/2021/10/12/%E6%95%B0%E5%AD%97%E5%8F%96%E8%AF%81/" title="数字取证"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-12</div><div class="title">数字取证</div></div></a></div><div><a href="/2021/10/13/%E9%95%BF%E5%AE%89%E6%9D%AF2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/" title="长安杯2019例题笔记"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-13</div><div class="title">长安杯2019例题笔记</div></div></a></div><div><a href="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/" title="长安杯2020例题笔记"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-18</div><div class="title">长安杯2020例题笔记</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/image.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">萌新QAQ</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81Zello%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%93%88%E5%B8%8C%E5%80%BC%EF%BC%88SHA256%EF%BC%89%E6%98%AF%E7%94%9A%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">1、Zello服务器的哈希值（SHA256）是甚么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%8D%B7%E7%BB%84%E6%98%AF%E4%BD%95%E6%97%B6%E5%88%9B%E5%BB%BA%E7%9A%84%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">2、卷组是何时创建的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%8D%B7%E7%BB%84%E7%9A%84%E5%90%8D%E7%A7%B0%E6%98%AF%E7%94%9A%E4%B9%88%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">3、卷组的名称是甚么？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E7%BB%88%E7%AB%AF%E5%86%85%E8%BE%93%E5%85%A5-lvdisplay-%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%BE%97%E5%88%B0%E9%80%BB%E8%BE%91%E5%8D%B7%E7%9A%84%E8%AF%A6%E6%83%85%E4%BF%A1%E6%81%AF"><span class="toc-number">3.1.</span> <span class="toc-text">在终端内输入 lvdisplay ，可以得到逻辑卷的详情信息</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E7%89%A9%E7%90%86%E5%8D%B7%E7%9A%84PV-UUID%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">4、物理卷的PV UUID是多少？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E7%BB%88%E7%AB%AF%E5%86%85%E8%BE%93%E5%85%A5-pvdisplay-%E6%9F%A5%E7%9C%8B%E5%88%B0%E7%89%A9%E7%90%86%E5%8D%B7%E7%9A%84%E8%AF%A6%E6%83%85%E4%BF%A1%E6%81%AF"><span class="toc-number">4.1.</span> <span class="toc-text">在终端内输入 pvdisplay 查看到物理卷的详情信息</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%8D%B7%E7%BB%84%E7%9A%84VG-UUID%E6%98%AF%E7%94%9A%E4%B9%88%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">5、卷组的VG UUID是甚么？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E7%BB%88%E7%AB%AF%E5%86%85%E8%BE%93%E5%85%A5-vgdisplay-%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%BE%97%E5%88%B0%E5%8D%B7%E7%BB%84%E7%9A%84%E8%AF%A6%E6%83%85%E4%BF%A1%E6%81%AF"><span class="toc-number">5.1.</span> <span class="toc-text">在终端内输入 vgdisplay ，可以得到卷组的详情信息</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81Zello%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84Linux%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E6%98%AF%E7%94%9A%E4%B9%88%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">6、Zello服务器的Linux内核版本是甚么？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E7%BB%88%E7%AB%AF%E5%86%85%E8%BE%93%E5%85%A5-uname-a"><span class="toc-number">6.1.</span> <span class="toc-text">在终端内输入 uname -a</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81Zello%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E6%98%AF%E7%94%9A%E4%B9%88%EF%BC%9F"><span class="toc-number">7.</span> <span class="toc-text">7、Zello服务器的操作系统版本是甚么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81Zello%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E4%B8%BB%E6%9C%BA%E5%90%8D%E6%98%AF%E7%94%9A%E4%B9%88%EF%BC%9F"><span class="toc-number">8.</span> <span class="toc-text">8、Zello服务器的主机名是甚么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81Zello%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E8%AE%A1%E7%AE%97%E5%99%A8ID%E6%98%AF%E7%94%9A%E4%B9%88%EF%BC%9F"><span class="toc-number">9.</span> <span class="toc-text">9、Zello服务器的计算器ID是甚么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%E3%80%81Zello%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%9A%84wordpress%E7%89%88%E6%9C%AC%E6%98%AF-%E7%94%9A%E4%B9%88%EF%BC%9F"><span class="toc-number">10.</span> <span class="toc-text">10、Zello服务器中使用的wordpress版本是 甚么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E3%80%81Zello%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E4%B9%8B%E5%90%8C%E6%AD%A5%E7%9A%84%E4%B8%BB%E6%9C%BA%E5%90%8D%E6%98%AF%E7%94%9A%E4%B9%88%EF%BC%9F"><span class="toc-number">11.</span> <span class="toc-text">11、Zello服务器与之同步的主机名是甚么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zello%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%97%B6%E5%8C%BA%E6%98%AF%E7%94%9A%E4%B9%88%EF%BC%9F"><span class="toc-number">12.</span> <span class="toc-text">Zello服务器的时区是甚么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E6%9C%AC%E5%9C%B0%E7%94%A8%E6%88%B7%E5%B7%B2%E7%99%BB%E5%BD%95%E5%88%B0Zello%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%9F"><span class="toc-number">13.</span> <span class="toc-text">有多少个本地用户已登录到Zello服务器？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A4%8D%E5%85%A5%E7%BD%91%E7%BB%9C%E7%9B%AE%E5%BD%95%EF%BC%88Webdirectory%EF%BC%89%E7%9A%84%E7%BD%91%E9%A1%B5-%E5%A3%B3%E5%B1%82%EF%BC%88Web-Shell%EF%BC%89%E7%9A%84%E5%93%88%E5%B8%8C%E5%80%BC%EF%BC%88MD5%EF%BC%89%E6%98%AF%E7%94%9A%E4%B9%88%EF%BC%9F"><span class="toc-number">14.</span> <span class="toc-text">植入网络目录（Webdirectory）的网页 壳层（Web Shell）的哈希值（MD5）是甚么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#var-www-html-wordpress-net-2020-Login-index-php%E2%80%99%E6%9C%89-%E7%94%9A%E4%B9%88%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="toc-number">15.</span> <span class="toc-text">\ var \ www \ html \ wordpress \ net \ 2020 \ Login \ index.php’有 甚么作用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99%E4%BC%AA%E8%A3%85%E6%88%90%E7%94%9A%E4%B9%88%E7%BD%91%E7%AB%99%EF%BC%9F"><span class="toc-number">16.</span> <span class="toc-text">钓鱼网站伪装成甚么网站？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E5%88%97%E5%93%AA%E4%B8%AAIP%E5%AF%B9Zello%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9B%E8%A1%8C%E4%BA%86%E8%9B%AE%E5%8A%9B%E6%94%BB-%E5%87%BB%EF%BC%9F"><span class="toc-number">17.</span> <span class="toc-text">下列哪个IP对Zello服务器进行了蛮力攻 击？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zello-Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84URL%E6%98%AF%E7%94%9A%E4%B9%88%EF%BC%9F"><span class="toc-number">18.</span> <span class="toc-text">Zello Web服务器的URL是甚么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LVM2%E5%AE%B9%E5%99%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%89%87%E5%8C%BA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">19.</span> <span class="toc-text">LVM2容器的第一个扇区是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Zello%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%ADLVM2%E5%AE%B9%E5%99%A8%E7%9A%84%E5%A4%A7%E5%B0%8F%EF%BC%88%E4%BB%A5%E5%AD%97%E8%8A%82%E4%B8%BA%E5%8D%95%E4%BD%8D%EF%BC%89%E6%98%AF%E7%94%9A%E4%B9%88%EF%BC%9F"><span class="toc-number">20.</span> <span class="toc-text">Zello服务器中LVM2容器的大小（以字节为单位）是甚么？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%87%E5%8C%BA%E3%80%81%E5%AE%B9%E5%99%A8%E5%A4%A7%E5%B0%8F%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number"></span> <span class="toc-text">扇区、容器大小的计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8Zello%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BB%A5%E5%8F%8AAlice%E7%9A%84%E8%A3%85%E7%BD%AE%E4%B8%AD%E5%8F%AF%E4%BB%A5-%E6%89%BE%E5%88%B0%E7%94%9A%E4%B9%88%E5%85%B1%E5%90%8C%E6%96%87%E4%BB%B6%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">在Zello服务器以及Alice的装置中可以 找到甚么共同文件？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2020%E5%B9%B48%E6%9C%8829%E6%97%A5%E5%9C%A8Xeno%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E5%8F%91%E7%8E%B0%E7%9A%84-%E6%94%BB%E5%87%BB%E7%B1%BB%E5%9E%8B%E6%98%AF%E7%94%9A%E4%B9%88%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">2020年8月29日在Xeno服务器中发现的 攻击类型是甚么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%AA%E4%B8%AAIP%E5%9C%B0%E5%9D%80%E5%9C%A8%E6%97%A5%E5%BF%97%E4%B8%AD%E6%9D%A1%E7%9B%AE%E6%95%B0%E9%87%8F%E6%9C%80%E5%A4%9A%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">哪个IP地址在日志中条目数量最多？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%99%E4%B8%AA%E7%99%BB%E5%BD%95%E6%AC%A1%E6%95%B0%E6%9C%80%E5%A4%9A%E7%9A%84IP%E5%9C%B0%E5%9D%80%EF%BC%8C%E5%AE%83%E8%AE%BF%E9%97%AE%E6%9C%80%E5%A4%9A%E7%9A%84%E6%98%AF%E5%93%AA%E4%B8%AA%E9%A1%B5%E9%9D%A2%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">这个登录次数最多的IP地址，它访问最多的是哪个页面？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%99%E4%B8%AA%E7%99%BB%E5%BD%95%E6%AC%A1%E6%95%B0%E6%9C%80%E5%A4%9A%E7%9A%84IP%E5%9C%B0%E5%9D%80%E6%9D%A5%E8%87%AA%E5%93%AA%E4%B8%AA%E5%9B%BD-%E5%AE%B6%E6%88%96%E5%9C%B0%E5%8C%BA%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">这个登录次数最多的IP地址来自哪个国 家或地区？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%99%E4%B8%AA%E7%99%BB%E5%BD%95%E6%AC%A1%E6%95%B0%E6%9C%80%E5%A4%9A%E7%9A%84IP%E5%9C%B0%E5%9D%80%EF%BC%8C%E5%90%88%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E6%AC%A1%E6%88%90%E5%8A%9F%E7%99%BB%E5%BD%95"><span class="toc-number">6.</span> <span class="toc-text">这个登录次数最多的IP地址，合共有多少次成功登录?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%A4DDoS%E4%B9%8B%E5%A4%96%EF%BC%8C%E8%BF%98%E5%8F%AF%E8%83%BD%E6%B6%89%E5%8F%8A%E5%85%B6%E4%BB%96%E6%94%BB%E5%87%BB%E5%90%97%EF%BC%9F"><span class="toc-number">7.</span> <span class="toc-text">除DDoS之外，还可能涉及其他攻击吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E8%AF%A5%E7%BD%91%E7%AB%99%E4%B8%8B%E8%BD%BD%E4%BA%86%E5%A4%9A%E5%B0%91%E6%95%B0%E6%8D%AE%EF%BC%9F"><span class="toc-number">8.</span> <span class="toc-text">从该网站下载了多少数据？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bob%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E5%9E%8B%E5%8F%B7%E6%98%AF%E7%94%9A%E4%B9%88%EF%BC%9F"><span class="toc-number">9.</span> <span class="toc-text">Bob路由器的型号是甚么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bob%E5%AE%B6%E7%9A%84IP%E5%9C%B0%E5%9D%80%E6%98%AF%E7%94%9A%E4%B9%88%EF%BC%9F"><span class="toc-number">10.</span> <span class="toc-text">Bob家的IP地址是甚么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E8%A3%85%E7%BD%AE%E7%9A%84Mac%E5%9C%B0%E5%9D%80%E6%98%AF%E7%94%9A%E4%B9%88Alice%EF%BC%9F"><span class="toc-number">11.</span> <span class="toc-text">使用路由器的装置的Mac地址是甚么Alice？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E8%A3%85%E7%BD%AE%E7%9A%84Mac%E5%9C%B0%E5%9D%80%E6%98%AF%E7%94%9A%E4%B9%88Cole%EF%BC%9F"><span class="toc-number">12.</span> <span class="toc-text">使用路由器的装置的Mac地址是甚么Cole？</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/" title="美亚杯团体赛2020例题笔记"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="美亚杯团体赛2020例题笔记"/></a><div class="content"><a class="title" href="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/" title="美亚杯团体赛2020例题笔记">美亚杯团体赛2020例题笔记</a><time datetime="2021-11-03T12:51:14.000Z" title="发表于 2021-11-03 20:51:14">2021-11-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/28/Hackergame-EasyRSA/" title="Hackergame_EasyRSA"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hackergame_EasyRSA"/></a><div class="content"><a class="title" href="/2021/10/28/Hackergame-EasyRSA/" title="Hackergame_EasyRSA">Hackergame_EasyRSA</a><time datetime="2021-10-28T15:36:37.000Z" title="发表于 2021-10-28 23:36:37">2021-10-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/27/%E5%9B%BE%E8%A7%A3%E5%AF%86%E7%A0%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="图解密码技术笔记"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="图解密码技术笔记"/></a><div class="content"><a class="title" href="/2021/10/27/%E5%9B%BE%E8%A7%A3%E5%AF%86%E7%A0%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="图解密码技术笔记">图解密码技术笔记</a><time datetime="2021-10-26T16:34:00.000Z" title="发表于 2021-10-27 00:34:00">2021-10-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/" title="2021长安杯做题总结"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021长安杯做题总结"/></a><div class="content"><a class="title" href="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/" title="2021长安杯做题总结">2021长安杯做题总结</a><time datetime="2021-10-26T15:55:39.000Z" title="发表于 2021-10-26 23:55:39">2021-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/" title="长安杯2020例题笔记"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="长安杯2020例题笔记"/></a><div class="content"><a class="title" href="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/" title="长安杯2020例题笔记">长安杯2020例题笔记</a><time datetime="2021-10-18T15:07:10.000Z" title="发表于 2021-10-18 23:07:10">2021-10-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 萌新QAQ</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/hideMobileSidebar.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
