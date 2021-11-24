@@ -1,0 +1,625 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>美亚杯个人赛2019例题笔记 | j52nnw9的博客</title><meta name="keywords" content="电子数据取证"><meta name="author" content="萌新QAQ"><meta name="copyright" content="萌新QAQ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="资格赛 - 案情介绍1.何源是一名 25 岁的客服人员，在一间电讯公司工作。某日，何源在用 iPhone 手机在政府建筑物 中偷拍车牌期间被警员截停，盘问期间警员检查手机相册发现多张车牌图片，何源情绪紧张，趁 警员不被，抢过手机丢入车流，被完全损毁。行为十分可疑，警方于是展开调查。审讯期间何源 承认利用自己职权的便利，登入公司储存客户数据的服务器，非法取得一些政府人员的个人资 料，例如姓名，车牌号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="美亚杯个人赛2019例题笔记">
+<meta property="og:url" content="https://jszmwq.github.io/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="j52nnw9的博客">
+<meta property="og:description" content="资格赛 - 案情介绍1.何源是一名 25 岁的客服人员，在一间电讯公司工作。某日，何源在用 iPhone 手机在政府建筑物 中偷拍车牌期间被警员截停，盘问期间警员检查手机相册发现多张车牌图片，何源情绪紧张，趁 警员不被，抢过手机丢入车流，被完全损毁。行为十分可疑，警方于是展开调查。审讯期间何源 承认利用自己职权的便利，登入公司储存客户数据的服务器，非法取得一些政府人员的个人资 料，例如姓名，车牌号">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jszmwq.github.io/img/Animation/2.webp">
+<meta property="article:published_time" content="2021-11-10T15:26:57.000Z">
+<meta property="article:modified_time" content="2021-11-12T10:39:56.113Z">
+<meta property="article:author" content="萌新QAQ">
+<meta property="article:tag" content="电子数据取证">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jszmwq.github.io/img/Animation/2.webp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jszmwq.github.io/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '美亚杯个人赛2019例题笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-11-12 18:39:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/image.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/Animation/2.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">j52nnw9的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">美亚杯个人赛2019例题笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-11-10T15:26:57.000Z" title="发表于 2021-11-10 23:26:57">2021-11-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-12T10:39:56.113Z" title="更新于 2021-11-12 18:39:56">2021-11-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="美亚杯个人赛2019例题笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="资格赛-案情介绍"><a href="#资格赛-案情介绍" class="headerlink" title="资格赛 - 案情介绍"></a>资格赛 - 案情介绍</h2><p>1.何源是一名 25 岁的客服人员，在一间电讯公司工作。某日，何源在用 iPhone 手机在政府建筑物 中偷拍车牌期间被警员截停，盘问期间警员检查手机相册发现多张车牌图片，何源情绪紧张，趁 警员不被，抢过手机丢入车流，被完全损毁。行为十分可疑，警方于是展开调查。审讯期间何源 承认利用自己职权的便利，登入公司储存客户数据的服务器，非法取得一些政府人员的个人资 料，例如姓名，车牌号码，电话等等，再将这些数据出售。</p>
+<p>2.警方检获何源个人计算机，以及何源公司计算机（由于何的公司不允许警方检取整台计算机, 人 员只能取得内存数据档案(memory image) 以作分析)。现你被委派对何的计算机进行电子数据取 证，还原事件经过。 </p>
+<p>你会获得何源 ( YuanHe ) 计算机的硬盘镜像文件 “win2.E01”以及何源公司计算机的内存数据档案 “memdump.mem”。 根据这两个镜像文件的内容，请回答以下问题：</p>
+<h3 id="1-、何源的个人计算机硬盘已成功被取证并制作成镜像（Forensic-Image），下列哪个是镜像的-SHA1-哈希值？"><a href="#1-、何源的个人计算机硬盘已成功被取证并制作成镜像（Forensic-Image），下列哪个是镜像的-SHA1-哈希值？" class="headerlink" title="1 、何源的个人计算机硬盘已成功被取证并制作成镜像（Forensic Image），下列哪个是镜像的 SHA1 哈希值？"></a>1 、何源的个人计算机硬盘已成功被取证并制作成镜像（Forensic Image），下列哪个是镜像的 SHA1 哈希值？</h3><p>A. 6891d022c7e6fe81dc8ba2160e1ab610891596d3 </p>
+<p>B. 3e57817ea6263bc2c696a3455cc96381 </p>
+<p>C. ed43de631a56dd2c8bac4abbd3882c86 </p>
+<p>D. dd32beac5ef2cd1cac06bdd8b5e88cbc4eb94de9 </p>
+<p>E. 48a45c39da458f3cadd92017e0247454dc8bff66 </p>
+<h3 id="2-、在何源的个人计算机中，硬盘中包含哪个操作系统（Operating-System）？"><a href="#2-、在何源的个人计算机中，硬盘中包含哪个操作系统（Operating-System）？" class="headerlink" title="2 、在何源的个人计算机中，硬盘中包含哪个操作系统（Operating System）？"></a>2 、在何源的个人计算机中，硬盘中包含哪个操作系统（Operating System）？</h3><p>A. Windows 7      B. FAT32      C. Windows 10      D. Kali Linux      E. NTFS </p>
+<p><strong>答案：C</strong></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111001043643.png" alt="image-20211111001043643"></p>
+<h3 id="3-、何源个人计算机的文件系统-File-System-是什么？"><a href="#3-、何源个人计算机的文件系统-File-System-是什么？" class="headerlink" title="3 、何源个人计算机的文件系统(File System)是什么？"></a>3 、何源个人计算机的文件系统(File System)是什么？</h3><p>A. FAT16 B. FAT32 C. Windows 7 D. NTFS E. Windows 10 </p>
+<p><strong>答案：D</strong></p>
+<p>分区5 OS[D]盘含有WINDOWS文件夹，为系统盘</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111001521868.png" alt="image-20211111001521868"></p>
+<p>找到其分区类型</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111001607538.png"></p>
+<blockquote>
+<p>磁盘文件系统是一种设计用来利用数据存储设备来保存计算机文件的文件系统，最常用的数据存储设备是磁盘驱动器，可以直接或者间接地连接到计算机上。例如：<br>Windows系的：FAT、exFAT、NTFS；<br>macOS系的：HFS、HFS+、 APFS；<br>Linux系的：ext2、ext3、ext4、ODS-5、btrfs、XFS、UFS、ZFS。</p>
+</blockquote>
+<h3 id="4-在何源的个人计算机中，你能找到操作系统分区的总容量吗-单位：字节-byte-？"><a href="#4-在何源的个人计算机中，你能找到操作系统分区的总容量吗-单位：字节-byte-？" class="headerlink" title="4 在何源的个人计算机中，你能找到操作系统分区的总容量吗 (单位：字节 byte)？"></a>4 在何源的个人计算机中，你能找到操作系统分区的总容量吗 (单位：字节 byte)？</h3><p> A. 492,083,081,216 </p>
+<p>B. 105,685,986,874 </p>
+<p>C. 386,908,999,680 </p>
+<p>D. 105,174,081,536 </p>
+<p>E. 492,594,986,554 </p>
+<p><strong>答案：A</strong></p>
+<p>由上题分区图可以看到扇区数为961099776个扇区</p>
+<p>扇区数乘上  512字节/扇区  得到492083085312字节 最接近A答案</p>
+<h3 id="5-在何源的个人计算机中，操作系统分区的-Bitmap-的起始物理扇区位置-Physical-Sector-Number-是多少？"><a href="#5-在何源的个人计算机中，操作系统分区的-Bitmap-的起始物理扇区位置-Physical-Sector-Number-是多少？" class="headerlink" title="5 在何源的个人计算机中，操作系统分区的$Bitmap 的起始物理扇区位置(Physical Sector Number)是多少？"></a>5 在何源的个人计算机中，操作系统分区的$Bitmap 的起始物理扇区位置(Physical Sector Number)是多少？</h3><p>A. 5,683,328      B. 6,170,040      C. 7,026,176      D. 8,498,304      E. 9,168,216 </p>
+<p><strong>答案：E</strong></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111002502524.png" alt="image-20211111002502524"></p>
+<p>很容易找到其物理位置，由于其单位为字节，所以我们要除上  512字节/扇区 得到 9168216扇区</p>
+<h3 id="6-在何源的个人计算机中，请问操作系统的安装日期是？-（答案格式-－“世界协调时间＂：YYYY-MM-DD-HH-MM-UTC）"><a href="#6-在何源的个人计算机中，请问操作系统的安装日期是？-（答案格式-－“世界协调时间＂：YYYY-MM-DD-HH-MM-UTC）" class="headerlink" title="6 在何源的个人计算机中，请问操作系统的安装日期是？ （答案格式 －“世界协调时间＂：YYYY-MM-DD HH:MM UTC）"></a>6 在何源的个人计算机中，请问操作系统的安装日期是？ （答案格式 －“世界协调时间＂：YYYY-MM-DD HH:MM UTC）</h3><p>A. 2019-10-16 04:44 UTC </p>
+<p>B. 2019-10-17 16:25 UTC </p>
+<p>C. 2019-10-16 10:12 UTC  </p>
+<p>D. 2019-10-18 02:13 UTC </p>
+<p>E. 2019-10-18 09:14 UTC </p>
+<p><strong>答案：A</strong></p>
+<p>时间注意是UTC，与北京时间 UTC +8 相隔8小时</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111002649063.png" alt="image-20211111002649063"></p>
+<h3 id="7-在何源的个人计算机中，每个扇区-Sector-包含多少个字节？（单位-byte）"><a href="#7-在何源的个人计算机中，每个扇区-Sector-包含多少个字节？（单位-byte）" class="headerlink" title="7 在何源的个人计算机中，每个扇区(Sector)包含多少个字节？（单位: byte）"></a>7 在何源的个人计算机中，每个扇区(Sector)包含多少个字节？（单位: byte）</h3><p>A. 512 bytes B. 1024 bytes C. 2048 bytes D. 4096 bytes E. 8192 bytes </p>
+<p>答案：A</p>
+<h3 id="8-在何源的个人计算机中，操作系统的时区是哪个时区？"><a href="#8-在何源的个人计算机中，操作系统的时区是哪个时区？" class="headerlink" title="8 在何源的个人计算机中，操作系统的时区是哪个时区？"></a>8 在何源的个人计算机中，操作系统的时区是哪个时区？</h3><p>A. Eastern Standard Time (GMT-05:00) : US and Canada</p>
+<p>B. Pacific Standard Time (GMT-08:00): Tijuana </p>
+<p>C. Korea Standard Time (GMT+09:00): Seoul </p>
+<p>D. GMT Standard Time (GMT): Dublin, Edinburgh, Lisbon, London </p>
+<p>E. China Standard Time (GMT+08:00): Beijing, Chongqing, Hong Kong, Shanghai </p>
+<p><strong>答案：E</strong></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111002815588.png" alt="image-20211111002815588"></p>
+<h3 id="9-在何源个人计算机的操作系统中，下列哪个是计算机的主机名"><a href="#9-在何源个人计算机的操作系统中，下列哪个是计算机的主机名" class="headerlink" title="9 在何源个人计算机的操作系统中，下列哪个是计算机的主机名?"></a>9 在何源个人计算机的操作系统中，下列哪个是计算机的主机名?</h3><p>A. DESKTOP-JW47K02 </p>
+<p>B. HEYuan-WIN1 </p>
+<p>C. HEYuan-WIN2 </p>
+<p>D. DESKTOP-SM22M96 </p>
+<p>E. DESKTOP-WE23K24 </p>
+<p><strong>答案：D</strong></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111130452997.png" alt="image-20211111130452997"></p>
+<h3 id="10-在何源的个人计算机中，以下哪一个是用户“He-Yuan”的-SID？"><a href="#10-在何源的个人计算机中，以下哪一个是用户“He-Yuan”的-SID？" class="headerlink" title="10 在何源的个人计算机中，以下哪一个是用户“He Yuan”的 SID？"></a>10 在何源的个人计算机中，以下哪一个是用户“He Yuan”的 SID？</h3><p>A. S-1-5-21-1551135561-2581751248-1803739423-1001 </p>
+<p>B. S-1-5-21-1551135561-2581751248-1803739423-1000 </p>
+<p>C. S-1-5-21-1551135561-2581751248-1803739423-500 </p>
+<p>D. S-1-5-21-1551135561-2581751248-1803739423-501 </p>
+<p>E. None </p>
+<p><strong>答案：B</strong></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111130535509.png" alt="image-20211111130535509"></p>
+<h3 id="11-在何源的个人计算机中，下列哪个-USB-移动储存装置-U-盘-曾被分配为‘E’磁盘分区代号-Drive-Letter"><a href="#11-在何源的个人计算机中，下列哪个-USB-移动储存装置-U-盘-曾被分配为‘E’磁盘分区代号-Drive-Letter" class="headerlink" title="11 在何源的个人计算机中，下列哪个 USB 移动储存装置 (U 盘)曾被分配为‘E’磁盘分区代号(Drive Letter) ?"></a>11 在何源的个人计算机中，下列哪个 USB 移动储存装置 (U 盘)曾被分配为‘E’磁盘分区代号(Drive Letter) ?</h3><p>A. Kingston DataTraveler 3.0 USB Device </p>
+<p>B. SanDisk Transcend USB Device </p>
+<p>C. Samsung Portable SSD USB Device </p>
+<p>D. WD My Passport 3.0 USB Device </p>
+<p>E. Seagate Flash Disk USB Device</p>
+<p>答案：</p>
+<p>这题答案有问题</p>
+<p>28条U盘使用记录，只有一条显示挂载的是E盘</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111130953431.png" alt="image-20211111130953431"></p>
+<h3 id="12-在何源的个人计算机中，用户“He-Yuan”曾经在挂载为“E”盘的-USB-移动储存装置中访问过一些文件-文件-夹，以下哪一个不是？"><a href="#12-在何源的个人计算机中，用户“He-Yuan”曾经在挂载为“E”盘的-USB-移动储存装置中访问过一些文件-文件-夹，以下哪一个不是？" class="headerlink" title="12 在何源的个人计算机中，用户“He Yuan”曾经在挂载为“E”盘的 USB 移动储存装置中访问过一些文件/文件 夹，以下哪一个不是？"></a>12 在何源的个人计算机中，用户“He Yuan”曾经在挂载为“E”盘的 USB 移动储存装置中访问过一些文件/文件 夹，以下哪一个不是？</h3><p>A. E:\美国恐怖故事 </p>
+<p>B. E:\New Text Document.txt </p>
+<p>C. E:\CONFIDENTIAL.doc </p>
+<p>D. E:\PycharmProjects </p>
+<p>E. A,B,C,D </p>
+<p><strong>答案：C</strong></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111132110994.png" alt="image-20211111132110994"></p>
+<h3 id="13-在何源的个人计算机中，用户“He-Yuan”最近在本机上访问过一些文件，以下哪一个不是？"><a href="#13-在何源的个人计算机中，用户“He-Yuan”最近在本机上访问过一些文件，以下哪一个不是？" class="headerlink" title="13 在何源的个人计算机中，用户“He Yuan”最近在本机上访问过一些文件，以下哪一个不是？"></a>13 在何源的个人计算机中，用户“He Yuan”最近在本机上访问过一些文件，以下哪一个不是？</h3><p>A. Sample Project Plan.doc </p>
+<p>B. URGENT.doc </p>
+<p>C. connect.py </p>
+<p>D. 美国恐怖故事 01.mp4 </p>
+<p>E. Comprehensive-Minute-Template.doc </p>
+<p><strong>答案：B</strong></p>
+<p>挨个搜索即可，只有URGENT.doc在用户痕迹中未找到访问记录</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111132408908.png" alt="image-20211111132408908"></p>
+<h3 id="14-在何源的个人计算机中，以下哪一个是程序“VERACRYPT-EXE”的运行次数？"><a href="#14-在何源的个人计算机中，以下哪一个是程序“VERACRYPT-EXE”的运行次数？" class="headerlink" title="14 在何源的个人计算机中，以下哪一个是程序“VERACRYPT.EXE”的运行次数？"></a>14 在何源的个人计算机中，以下哪一个是程序“VERACRYPT.EXE”的运行次数？</h3><p>A. 1 B. 2 C. 3 D. 4 E. 6 </p>
+<p><strong>答案：3</strong></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111153640106.png" alt="image-20211111153640106"></p>
+<h3 id="15-在何源的个人计算机中，在程序“VERACRYPT-EXE”运行时，以下哪个-dll-文件并没有同时被加载？"><a href="#15-在何源的个人计算机中，在程序“VERACRYPT-EXE”运行时，以下哪个-dll-文件并没有同时被加载？" class="headerlink" title="15 在何源的个人计算机中，在程序“VERACRYPT.EXE”运行时，以下哪个 dll 文件并没有同时被加载？"></a>15 在何源的个人计算机中，在程序“VERACRYPT.EXE”运行时，以下哪个 dll 文件并没有同时被加载？</h3><p>A. COMDLG32.DLL B. CRYPT32.DLL C. SECUR32.DLL D. CRYPTSP.DLL E. ENCRYPT.DLL </p>
+<p><strong>答案：E</strong></p>
+<p>这题需要将verycrypt.exe文件导出，放进<code>Dependency Walker</code>中进行分析，但是要注意分析的时候程序会处于无响应状态，严重影响做题效率，三思。</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111163032338.png" alt="image-20211111163032338"></p>
+<p>程序都帮我们分析好了，直接找到答案即可</p>
+<h3 id="16-在何源的个人计算机中，用户“He-Yuan”的桌面墙纸（Wall-paper）背景是什么颜色？"><a href="#16-在何源的个人计算机中，用户“He-Yuan”的桌面墙纸（Wall-paper）背景是什么颜色？" class="headerlink" title="16 在何源的个人计算机中，用户“He Yuan”的桌面墙纸（Wall paper）背景是什么颜色？"></a>16 在何源的个人计算机中，用户“He Yuan”的桌面墙纸（Wall paper）背景是什么颜色？</h3><p>A. 黑色      B. 灰色      C. 蓝色      D. 红色      E. 绿色</p>
+<p><strong>答案：C</strong></p>
+<p>进虚拟仿真中就能看到壁纸颜色了，使用火眼仿真会遇到账户创建错误，因为本来就是空密码，可以找到虚拟机文件后缀为vmx的打开看一看</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111164052873.png" alt="image-20211111164052873"></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111163638203.png" alt="image-20211111163638203"></p>
+<h3 id="17-在何源的个人计算机中，以下哪个文件在电脑-power-off-的时候仍然拥有内存的内容-此文件具有与电脑内存-（RAM）相似的大小并保存在根目录。"><a href="#17-在何源的个人计算机中，以下哪个文件在电脑-power-off-的时候仍然拥有内存的内容-此文件具有与电脑内存-（RAM）相似的大小并保存在根目录。" class="headerlink" title="17 在何源的个人计算机中，以下哪个文件在电脑 power off 的时候仍然拥有内存的内容? 此文件具有与电脑内存 （RAM）相似的大小并保存在根目录。"></a>17 在何源的个人计算机中，以下哪个文件在电脑 power off 的时候仍然拥有内存的内容? 此文件具有与电脑内存 （RAM）相似的大小并保存在根目录。</h3><p>A. WIN386.SWP B. HIBERFIL.sys C. PAGEFILE.SYS D. NTUSER.DAT E. SWAPFILE.SYS </p>
+<p>答案：B</p>
+<p>本题为系统知识的考查， HIBERFIL.sys该文件在电脑休眠时，保存系统内存信息作为备份，可以读取电脑休眠前的内存状态。</p>
+<h3 id="18-在何源的个人计算机中，以下哪个-database-文件存有此操作系统的-timeline-痕迹？"><a href="#18-在何源的个人计算机中，以下哪个-database-文件存有此操作系统的-timeline-痕迹？" class="headerlink" title="18 在何源的个人计算机中，以下哪个 database 文件存有此操作系统的 timeline 痕迹？"></a>18 在何源的个人计算机中，以下哪个 database 文件存有此操作系统的 timeline 痕迹？</h3><p>A. SRUDB.dat B. Windows.edb C. Spartan.edb D. ActivitiesCache.db E. Thumbs.db  </p>
+<p><strong>答案：D</strong></p>
+<p>timeline保存系统七天内的打开文件记录，对于WIN10内的任务视图</p>
+<p>等效于取证大师中的WIN10时间轴</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112161104889.png" alt="image-20211112161104889"></p>
+<p>选择其中任意一个，右键跳转到源文件，对应的是一个数据库文件，其中保存着历史记录</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112161133117.png" alt="image-20211112161133117"></p>
+<h3 id="19-在何源的个人计算机中，曾被分配过的-ip-地址是？"><a href="#19-在何源的个人计算机中，曾被分配过的-ip-地址是？" class="headerlink" title="19 在何源的个人计算机中，曾被分配过的 ip 地址是？"></a>19 在何源的个人计算机中，曾被分配过的 ip 地址是？</h3><p>A. 147.8.177.224 B. 147.10.188.23 C. 192.168.0.110 D. 10.12.9.214 E. 192.168.1.2 </p>
+<p><strong>答案：A</strong></p>
+<p>嘿嘿嘿，以题找题，挨个搜索发现只有A选项搜索有结果</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111164318784.png" alt="image-20211111164318784"></p>
+<h3 id="20-在何源的个人计算机中，用户”Administrator”的-Internet-Explorer-浏览器的-start-page-是以下哪个？"><a href="#20-在何源的个人计算机中，用户”Administrator”的-Internet-Explorer-浏览器的-start-page-是以下哪个？" class="headerlink" title="20 在何源的个人计算机中，用户”Administrator”的 Internet Explorer 浏览器的 start page 是以下哪个？"></a>20 在何源的个人计算机中，用户”Administrator”的 Internet Explorer 浏览器的 start page 是以下哪个？</h3><p>A. <a target="_blank" rel="noopener" href="http://go.microsoft.com/">http://go.microsoft.com</a> </p>
+<p>B. <a target="_blank" rel="noopener" href="https://www.bing.com/">https://www.bing.com</a> </p>
+<p>C. <a target="_blank" rel="noopener" href="http://www.baidu.com/">http://www.baidu.com</a> </p>
+<p>D. <a target="_blank" rel="noopener" href="https://www.google.com/">https://www.google.com</a> </p>
+<p>E. <a target="_blank" rel="noopener" href="http://hao.360.cn/">http://hao.360.cn</a> </p>
+<p><strong>答案：A</strong></p>
+<p>首先在开始菜单里切换登录用户Adminstractor密码同样为空</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111164734598.png" alt="image-20211111164734598"></p>
+<p>切换后打开Internet Explorer 浏览器即可</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111164717186.png" alt="image-20211111164717186"></p>
+<p>很容易看到是go.microsoft.com</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111164918421.png" alt="image-20211111164918421"></p>
+<h3 id="21-在何源的个人计算机中，你是否可以找到何源-iPhone-手机的线索。关于他的手机，以下哪条信息不正确？"><a href="#21-在何源的个人计算机中，你是否可以找到何源-iPhone-手机的线索。关于他的手机，以下哪条信息不正确？" class="headerlink" title="21 在何源的个人计算机中，你是否可以找到何源 iPhone 手机的线索。关于他的手机，以下哪条信息不正确？"></a>21 在何源的个人计算机中，你是否可以找到何源 iPhone 手机的线索。关于他的手机，以下哪条信息不正确？</h3><p>A. IMEI：359461082062689 </p>
+<p>B. Serial Number：F17V1L6EHG70 </p>
+<p>C. Apple ID ：<a href="mailto:&#x68;&#101;&#x79;&#117;&#x61;&#x6e;&#53;&#x31;&#54;&#64;&#x69;&#99;&#x6c;&#x6f;&#x75;&#x64;&#x2e;&#x63;&#x6f;&#x6d;">&#x68;&#101;&#x79;&#117;&#x61;&#x6e;&#53;&#x31;&#54;&#64;&#x69;&#99;&#x6c;&#x6f;&#x75;&#x64;&#x2e;&#x63;&#x6f;&#x6d;</a> </p>
+<p>D. MSISDN: 85259114189 </p>
+<p>E. 无 </p>
+<p><strong>答案：C</strong></p>
+<p>我们很容易在取证大师找到手机备份，只不过导出的是以文件夹形式，用弘联证据大师只能打开压缩包形式，所以我们需要将备份文件解压再放进去分析</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111165305315.png" alt="image-20211111165305315"></p>
+<p>得到分析的手机基本信息</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111165534670.png" alt="image-20211111165534670"></p>
+<p>大概了解一下：MSISDN号码是在公共电话网交换网络编号计划中,唯一能识别移动用户的号码.</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111165645893.png" alt="image-20211111165645893"></p>
+<p>发现APPLE ID与题中选项不相符</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111165759197.png" alt="image-20211111165759197"></p>
+<h3 id="22-用户“He-Yuan”在-WhatsApp-上与谁进行了对话？"><a href="#22-用户“He-Yuan”在-WhatsApp-上与谁进行了对话？" class="headerlink" title="22 用户“He Yuan”在 WhatsApp 上与谁进行了对话？"></a>22 用户“He Yuan”在 WhatsApp 上与谁进行了对话？</h3><p>A. Keanu Reeves </p>
+<p>B. Michael Nyqvist </p>
+<p>C. Peter Wang </p>
+<p>D. John Manager </p>
+<p>E. Michael Brown </p>
+<p>答案：D</p>
+<p>He Yuan总共与两个人进行过交流，选择题目选项中的即可</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111170527048.png" alt="image-20211111170527048"></p>
+<h3 id="23-在手机联系人中，Anthony-Chung-的手机号是多少？"><a href="#23-在手机联系人中，Anthony-Chung-的手机号是多少？" class="headerlink" title="23 在手机联系人中，Anthony Chung 的手机号是多少？"></a>23 在手机联系人中，Anthony Chung 的手机号是多少？</h3><p>A. +85252018664 </p>
+<p>B. +85257025241 </p>
+<p>C. +85257024765 </p>
+<p>D. +8613890274976 </p>
+<p>E. +8613928749036 </p>
+<p><strong>答案：A</strong></p>
+<p>名字后面跟着的就是手机号吧</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111170719432.png" alt="image-20211111170719432"></p>
+<h3 id="24-He-Yuan-在-iPhone-自带的-Safari-浏览器中搜索过一些关键词，以下哪一个不是？"><a href="#24-He-Yuan-在-iPhone-自带的-Safari-浏览器中搜索过一些关键词，以下哪一个不是？" class="headerlink" title="24 He Yuan 在 iPhone 自带的 Safari 浏览器中搜索过一些关键词，以下哪一个不是？"></a>24 He Yuan 在 iPhone 自带的 Safari 浏览器中搜索过一些关键词，以下哪一个不是？</h3><p>A. 野狼 disco </p>
+<p>B. 拜佛过人 professor </p>
+<p>C. engineer’s day 1024 </p>
+<p>D. Programmer’s Day no bug </p>
+<p>E. poptown 攻略 </p>
+<p>答案：B</p>
+<p>以一比对就能知道了</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111170919384.png" alt="image-20211111170919384"></p>
+<h3 id="25-用户“He-Yuan”的-WeChat-ID-是多少？"><a href="#25-用户“He-Yuan”的-WeChat-ID-是多少？" class="headerlink" title="25 用户“He Yuan”的 WeChat ID 是多少？"></a>25 用户“He Yuan”的 WeChat ID 是多少？</h3><p>A. HEYUAN516 </p>
+<p>B. wxid_9y8cs5hdin2i15 </p>
+<p>C. wxid_9y8cs5hdin2i14 </p>
+<p>D. wxid_9y8cs5hdin2i13 </p>
+<p>E. wxid_9y8cs5hdin2i12 </p>
+<p><strong>答案：E</strong></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111170935633.png" alt="image-20211111170935633"></p>
+<h3 id="26-在-WeChat-的多个聊天记录中，用户“He-Yuan”没有聊到过哪个话题？"><a href="#26-在-WeChat-的多个聊天记录中，用户“He-Yuan”没有聊到过哪个话题？" class="headerlink" title="26 在 WeChat 的多个聊天记录中，用户“He Yuan”没有聊到过哪个话题？"></a>26 在 WeChat 的多个聊天记录中，用户“He Yuan”没有聊到过哪个话题？</h3><p>A. 与中介谈买房 </p>
+<p>B. 与老板谈洗钱 </p>
+<p>C. 与黑客谈交易 </p>
+<p>D. 与网贷谈借钱 </p>
+<p>E. 与朋友谈炒房 </p>
+<p><strong>答案：B</strong></p>
+<p>可以看到He Yuan的生活日常：与朋友聚餐、分享照片，与中介谈房，网贷借钱，买房，与黑客交易数据，这里没有与老板的聊天记录</p>
+<h3 id="27-从-WeChat-中的一个聊天记录中可知，用户“He-Yuan”持有多少人的数据？"><a href="#27-从-WeChat-中的一个聊天记录中可知，用户“He-Yuan”持有多少人的数据？" class="headerlink" title="27 从 WeChat 中的一个聊天记录中可知，用户“He Yuan”持有多少人的数据？"></a>27 从 WeChat 中的一个聊天记录中可知，用户“He Yuan”持有多少人的数据？</h3><p>A. About 500 B. About 1000 C. About 2000 D. About 3000 E. About 5000 </p>
+<p><strong>答案：C</strong></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111171543793.png" alt="image-20211111171543793"></p>
+<h3 id="28-接上题，Hacker-最后要支付多少-Bitcoin-给-He-Yuan"><a href="#28-接上题，Hacker-最后要支付多少-Bitcoin-给-He-Yuan" class="headerlink" title="28 接上题，Hacker 最后要支付多少 Bitcoin 给 He Yuan?"></a>28 接上题，Hacker 最后要支付多少 Bitcoin 给 He Yuan?</h3><p>A. 0.002312 B. 0.066666 C. 0.036354 D. 0.014594 E. 0.012398 </p>
+<p><strong>答案：D</strong></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111171614538.png" alt="image-20211111171614538"></p>
+<h3 id="29-接上题，He-Yuan-的-Bitcoin-收款地址是多少？"><a href="#29-接上题，He-Yuan-的-Bitcoin-收款地址是多少？" class="headerlink" title="29 接上题，He Yuan 的 Bitcoin 收款地址是多少？"></a>29 接上题，He Yuan 的 Bitcoin 收款地址是多少？</h3><p>A. cI7g0tIzPuP2pxb20HQHNGOQdpmptDaCBf </p>
+<p>B. InCeInFZmAP3PCLHLOchKTEZevQdHgQdP3 </p>
+<p>C. 4qISisBY2Z8xgh9C6orRfuRzmzXKznUc5Z </p>
+<p>D. 18yZq8Dboyuvnd3R6pqG9kJkaZBki2JCoN </p>
+<p>E. n5X7jwdPspKRgnZU6xzcEQueJanRqGdZQd </p>
+<p><strong>答案：D</strong></p>
+<p>遇到问题了，就是火眼证据大师对于微信交流的照片不能很好的还原，只能盯着两个无法显示的照片发愁。。。</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111171817186.png" alt="image-20211111171817186"></p>
+<h2 id="问题解决办法（非常重要）："><a href="#问题解决办法（非常重要）：" class="headerlink" title="问题解决办法（非常重要）："></a>问题解决办法（非常重要）：</h2><p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112115730882.png" alt="image-20211112115730882"></p>
+<p>由上图可以得知手机共有两个备份，但是我们只能找到一个备份，原因就是备份被覆盖了。</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112120100156.png" alt="image-20211112120100156"></p>
+<p>在导出的时候系统会自动将这些重复的文件重命名，一些较晚的备份就会被忽略，所以备份就加载不出来了</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112120434161.png" alt="image-20211112120434161"></p>
+<p>由于我已经将文件修改过了，故仅介绍修改方法：先将不含（1）、（2）的文件删掉，之后其中的含有 (2) 的文件改名删掉（2）即可，这样操作后微信一些重要的图片就会显示出来了</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112120835779.png" alt="image-20211112120835779"></p>
+<h3 id="30-接上题，He-Yuan-分享给-Hacker-的百度网盘链接是多少"><a href="#30-接上题，He-Yuan-分享给-Hacker-的百度网盘链接是多少" class="headerlink" title="30 接上题，He Yuan 分享给 Hacker 的百度网盘链接是多少?"></a>30 接上题，He Yuan 分享给 Hacker 的百度网盘链接是多少?</h3><p>A. <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/u8rLTgLZabfd9Va1wRjzyc9">https://pan.baidu.com/s/u8rLTgLZabfd9Va1wRjzyc9</a> </p>
+<p>B. <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/nIDo2yLop_ciNUxihF2cZi8">https://pan.baidu.com/s/nIDo2yLop_ciNUxihF2cZi8</a>  </p>
+<p>C. <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/N6RiGxMZDnswlOUKRi0IB6Q">https://pan.baidu.com/s/N6RiGxMZDnswlOUKRi0IB6Q</a> </p>
+<p>D. <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/uFUc4W0zYmrGZMOxVm843GU">https://pan.baidu.com/s/uFUc4W0zYmrGZMOxVm843GU</a> </p>
+<p>E. <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1QfrGtSAAffkyvnxi_aY3Ww">https://pan.baidu.com/s/1QfrGtSAAffkyvnxi_aY3Ww</a>  </p>
+<p><strong>答案：E</strong></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111172008277.png" alt="image-20211111172008277"></p>
+<h3 id="31-接上题，He-Yuan-提到的解压密码是多少？"><a href="#31-接上题，He-Yuan-提到的解压密码是多少？" class="headerlink" title="31 接上题，He Yuan 提到的解压密码是多少？"></a>31 接上题，He Yuan 提到的解压密码是多少？</h3><p>A. bAtNyn3lHwP8xXW </p>
+<p>B. hNfpdKcJlvpEFEa </p>
+<p>C. decrypt123456 </p>
+<p>D. 2019123456 </p>
+<p>E. HetoHacker123456 </p>
+<p><strong>答案：E</strong></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111172223096.png" alt="image-20211111172223096"></p>
+<h3 id="32-接上题，He-Yuan-收到了来自哪位-hacker-的转账？-hacker-的-wechat-ID-是多少？"><a href="#32-接上题，He-Yuan-收到了来自哪位-hacker-的转账？-hacker-的-wechat-ID-是多少？" class="headerlink" title="32 接上题，He Yuan 收到了来自哪位 hacker 的转账？ hacker 的 wechat ID 是多少？"></a>32 接上题，He Yuan 收到了来自哪位 hacker 的转账？ hacker 的 wechat ID 是多少？</h3><p>A. Kevin , wxid_ugo2wrc3fuci22  </p>
+<p>B. Scott , wxid_i1lhj24r792i22  </p>
+<p>C. Iva , wxid_7qh2jzeomtvp22  </p>
+<p>D. John , wxid_QAZbWKIgIz4jpu </p>
+<p>E. Jack , wxid_dbEx7dtbX4zPbb </p>
+<p><strong>答案：A</strong></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111172326168.png" alt="image-20211111172326168"></p>
+<h3 id="33-根据-Wechat-聊天记录，He-Yuan-在-2019-10-26-号（UTC-8）晚上跟哪位朋友出去吃晚饭了？朋友的-Wechat-ID-是多少"><a href="#33-根据-Wechat-聊天记录，He-Yuan-在-2019-10-26-号（UTC-8）晚上跟哪位朋友出去吃晚饭了？朋友的-Wechat-ID-是多少" class="headerlink" title="33 根据 Wechat 聊天记录，He Yuan 在 2019-10-26 号（UTC+8）晚上跟哪位朋友出去吃晚饭了？朋友的 Wechat ID 是多少?"></a>33 根据 Wechat 聊天记录，He Yuan 在 2019-10-26 号（UTC+8）晚上跟哪位朋友出去吃晚饭了？朋友的 Wechat ID 是多少?</h3><p>A. Iron Man , wxid_0ZYBi7dchvMIym </p>
+<p>B. Black Panther , wxid_zSrai2bRoLUNVb </p>
+<p>C. Red Bull , wxid_2yy2ekynoLbnq3 </p>
+<p>D. White Tiger, wxid_whMQ2YOLPiNNt7 </p>
+<p>E. Black Sheep , wxid_s00vt9uixjq922</p>
+<p><strong>答案：E</strong></p>
+<p>跟小黑🐏一起吃饭</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111173040614.png" alt="image-20211111173040614"></p>
+<h3 id="34-在2019-10-31-UTC-8-，何源用iPhone手机在车库拍了一些车的照片-请问最早的那张车照片是什么时候拍的？"><a href="#34-在2019-10-31-UTC-8-，何源用iPhone手机在车库拍了一些车的照片-请问最早的那张车照片是什么时候拍的？" class="headerlink" title="34 在2019-10-31(UTC+8)，何源用iPhone手机在车库拍了一些车的照片,请问最早的那张车照片是什么时候拍的？"></a>34 在2019-10-31(UTC+8)，何源用iPhone手机在车库拍了一些车的照片,请问最早的那张车照片是什么时候拍的？</h3><p>A. 10/31/2019 18:53:29 PM(UTC+8) </p>
+<p>B. 10/30/2019 10:43:27 AM(UTC+8) </p>
+<p>C. 10/26/2019 19:53:29 PM(UTC+8) </p>
+<p>D. 10/28/2019 20:40:30 PM(UTC+8) </p>
+<p>E. 10/27/2019 10:53:29 AM(UTC+8) </p>
+<p>答案：</p>
+<p>题目有问题，不看</p>
+<h3 id="35-接上题，请问照片”IMG-0075-HEIC”拍摄地-GPS-坐标是以下哪一个？"><a href="#35-接上题，请问照片”IMG-0075-HEIC”拍摄地-GPS-坐标是以下哪一个？" class="headerlink" title="35 接上题，请问照片”IMG_0075.HEIC”拍摄地 GPS 坐标是以下哪一个？"></a>35 接上题，请问照片”IMG_0075.HEIC”拍摄地 GPS 坐标是以下哪一个？</h3><p>A. 28 deg 13’ 5.25” N, 125 deg 9’ 6.34” E </p>
+<p>B. 22 deg 17’ 1.36” N, 114 deg 8’ 9.91” E </p>
+<p>C. 120 deg 23’ 5.58” N, 119 deg 7’ 4.53” E </p>
+<p>D. 88 deg 6’ 2.14” N, 130 deg 6’ 7.86” E </p>
+<p>E. 100 deg 17’ 1.36” N, 224 deg 6’ 8.57” E </p>
+<p><strong>答案：B</strong></p>
+<p>搜索找到该图片，之后导出查看详情信息</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112121624523.png" alt="image-20211112121624523"></p>
+<h3 id="36-在何源的个人计算机中，你能找到一个-Veracrypt-加密容器文件吗？它的原始文件名是？"><a href="#36-在何源的个人计算机中，你能找到一个-Veracrypt-加密容器文件吗？它的原始文件名是？" class="headerlink" title="36 在何源的个人计算机中，你能找到一个 Veracrypt 加密容器文件吗？它的原始文件名是？"></a>36 在何源的个人计算机中，你能找到一个 Veracrypt 加密容器文件吗？它的原始文件名是？</h3><p>A. containerx.txt </p>
+<p>B. VC_Container </p>
+<p>C. $RV61F4M </p>
+<p>D. data encrypt.txt </p>
+<p>E. $IV61F4M </p>
+<p><strong>答案：D</strong></p>
+<p>仿真打开虚拟机，打开VeraCrypt文件，会显示上一次加载的历史记录</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112122326164.png" alt="image-20211112122326164"></p>
+<h3 id="37-接上题，此-Veracrypt-加密容器文件之前可能被挂载为哪一个盘符-drive-letter"><a href="#37-接上题，此-Veracrypt-加密容器文件之前可能被挂载为哪一个盘符-drive-letter" class="headerlink" title="37 接上题，此 Veracrypt 加密容器文件之前可能被挂载为哪一个盘符(drive letter) ?"></a>37 接上题，此 Veracrypt 加密容器文件之前可能被挂载为哪一个盘符(drive letter) ?</h3><p>A. A: B. B: C. Z: D. D: E. E: </p>
+<p>答案：A</p>
+<p>查看取证大师里面的最近访问的文档，会发现A盘的痕迹，推断应该使用VeraCrypt加载</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112122438093.png" alt="image-20211112122438093"></p>
+<h3 id="38-在何源的个人计算机中，何源曾在电脑上登陆过客户端百度云盘，请问他的-Baidu-账号是多少？"><a href="#38-在何源的个人计算机中，何源曾在电脑上登陆过客户端百度云盘，请问他的-Baidu-账号是多少？" class="headerlink" title="38 在何源的个人计算机中，何源曾在电脑上登陆过客户端百度云盘，请问他的 Baidu 账号是多少？"></a>38 在何源的个人计算机中，何源曾在电脑上登陆过客户端百度云盘，请问他的 Baidu 账号是多少？</h3><p>A. Yuanhe516 B. Heyuan516 C. Heyuan515 D. Yuanhe515 E. None</p>
+<p><strong>答案：C</strong></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111200919054.png" alt="image-20211111200919054"></p>
+<h3 id="39-在何源的个人计算机中，何源利用客户端百度网盘上传过一些文件，请问以下哪一个是？"><a href="#39-在何源的个人计算机中，何源利用客户端百度网盘上传过一些文件，请问以下哪一个是？" class="headerlink" title="39 在何源的个人计算机中，何源利用客户端百度网盘上传过一些文件，请问以下哪一个是？"></a>39 在何源的个人计算机中，何源利用客户端百度网盘上传过一些文件，请问以下哪一个是？</h3><p>A. 美国恐怖故事 04.mp4 </p>
+<p>B. Crawler_connect.py </p>
+<p>C. file encrypt.doc  </p>
+<p>D. Secret.xlsx </p>
+<p>E. Company_info.xlsx </p>
+<p><strong>答案：A</strong></p>
+<p>找到上传文件记录</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111174823869.png" alt="image-20211111174823869"></p>
+<h3 id="40-在何源的个人计算机中，何源-iPhone-手机中的一些图片曾被同步到他的百度网盘中，请问图片“2019-06-21-113537-jpg”的-MD5-hash-值是多少？"><a href="#40-在何源的个人计算机中，何源-iPhone-手机中的一些图片曾被同步到他的百度网盘中，请问图片“2019-06-21-113537-jpg”的-MD5-hash-值是多少？" class="headerlink" title="40 在何源的个人计算机中，何源 iPhone 手机中的一些图片曾被同步到他的百度网盘中，请问图片“2019-06-21  113537.jpg”的 MD5 hash 值是多少？"></a>40 在何源的个人计算机中，何源 iPhone 手机中的一些图片曾被同步到他的百度网盘中，请问图片“2019-06-21  113537.jpg”的 MD5 hash 值是多少？</h3><p>A. fe41107c5260498e67171755e2b4bb1d </p>
+<p>B. 6055e4fa9e8a56c708a3db7198d091e7 </p>
+<p>C. 7b8e1183d80962c0ad5a95ec673317a7 </p>
+<p>D. 148685a257c49247f09b942237f1a248 </p>
+<p>E. db4a58e48ef51ca2c6c0f6e07f44d186 </p>
+<p><strong>答案：C</strong></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111175056668.png" alt="image-20211111175056668"></p>
+<h3 id="41-在何源的个人计算机中，何源用百度网盘上传文件“-美国恐怖故事-美国恐怖故事-01-mp4”的起始时间是？-（格式：UNIX-Timestamp-UTC-8）"><a href="#41-在何源的个人计算机中，何源用百度网盘上传文件“-美国恐怖故事-美国恐怖故事-01-mp4”的起始时间是？-（格式：UNIX-Timestamp-UTC-8）" class="headerlink" title="41 在何源的个人计算机中，何源用百度网盘上传文件“/美国恐怖故事/美国恐怖故事 01.mp4”的起始时间是？ （格式：UNIX Timestamp UTC+8）"></a>41 在何源的个人计算机中，何源用百度网盘上传文件“/美国恐怖故事/美国恐怖故事 01.mp4”的起始时间是？ （格式：UNIX Timestamp UTC+8）</h3><p>A. 1572506551 B. 1572506618 C. 1572506608 D. 1572506551 E. 1572507864 </p>
+<p><strong>答案：A</strong></p>
+<p>这题的难点在于北京时间与UNIX UTC +8的转换</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111175139865.png"></p>
+<p>可以写一个python程序来进行时间之间的转换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment">#普通时间装换成UNIX时间</span></span><br><span class="line">time_str = <span class="string">&quot;2019-10-31 15:22:31&quot;</span>                                                   <span class="comment"># 普通时间 格式为XXXX-XX-XX XX:XX:XX</span></span><br><span class="line">get_unix_time = <span class="built_in">int</span>(time.mktime(time.strptime(time_str, <span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)))  <span class="comment"># 获取Unix时间戳</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;得到的Unix时间戳是: <span class="subst">&#123;get_unix_time&#125;</span>&quot;</span>)</span><br><span class="line"><span class="comment">#UNIX时间装换成普通时间</span></span><br><span class="line">time_unix = <span class="number">1577811661</span>                                      <span class="comment"># Unix时间戳</span></span><br><span class="line">time_normal = time.gmtime(time_unix)                        <span class="comment"># 转换为普通时间格式（时间数组）</span></span><br><span class="line">dt = time.strftime(<span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>,time_normal)         <span class="comment"># 格式化为需要的格式</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;根据Unix时间戳得到的普通时间：<span class="subst">&#123;dt&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="42-在何源的个人计算机中，可以发现有多少文件-文件夹存在于何源的百度网盘中？"><a href="#42-在何源的个人计算机中，可以发现有多少文件-文件夹存在于何源的百度网盘中？" class="headerlink" title="42 在何源的个人计算机中，可以发现有多少文件,文件夹存在于何源的百度网盘中？"></a>42 在何源的个人计算机中，可以发现有多少文件,文件夹存在于何源的百度网盘中？</h3><p>A. Files: 55, Folder: 3 </p>
+<p>B. Files: 82，Folder: 2 </p>
+<p>C. Files: 23, Folder: 1 </p>
+<p>D. Files: 90, Folder: 2</p>
+<p>E. Files: 102, Folder: 7 </p>
+<p><strong>答案：B</strong></p>
+<p>这个在百度云管家的本地缓存记录能找到，其中有两个文件0字节是因为其本身只是个文件夹</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111200805789.png" alt="image-20211111200805789"></p>
+<h3 id="43-在何源的个人计算机中，用户“He-Yuan”曾用-Microsoft-Edge-浏览器-google-搜索过一些信息，以下哪个不是-搜索的关键词？"><a href="#43-在何源的个人计算机中，用户“He-Yuan”曾用-Microsoft-Edge-浏览器-google-搜索过一些信息，以下哪个不是-搜索的关键词？" class="headerlink" title="43 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器 google 搜索过一些信息，以下哪个不是 搜索的关键词？"></a>43 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器 google 搜索过一些信息，以下哪个不是 搜索的关键词？</h3><p>A. gmail register B. tor data sale C. online lender D. shadowsock  E. how to hide a partition</p>
+<p><strong>答案：D</strong></p>
+<p>翻一翻，找一找</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111201032223.png" alt="image-20211111201032223"></p>
+<h3 id="44-在何源的个人计算机中，用户“He-Yuan”曾用-Microsoft-Edge-浏览器注册过一个新的-Gmail-account-请从网页标题痕迹中找出此账号。"><a href="#44-在何源的个人计算机中，用户“He-Yuan”曾用-Microsoft-Edge-浏览器注册过一个新的-Gmail-account-请从网页标题痕迹中找出此账号。" class="headerlink" title="44 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器注册过一个新的 Gmail account,请从网页标题痕迹中找出此账号。"></a>44 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器注册过一个新的 Gmail account,请从网页标题痕迹中找出此账号。</h3><p>A. <a href="mailto:&#106;&#x61;&#x63;&#107;&#x68;&#x65;&#x36;&#54;&#x36;&#64;&#x67;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#111;&#x6d;">&#106;&#x61;&#x63;&#107;&#x68;&#x65;&#x36;&#54;&#x36;&#64;&#x67;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#111;&#x6d;</a> </p>
+<p>B. <a href="mailto:&#x6a;&#111;&#104;&#x6e;&#x68;&#x65;&#x37;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#109;">&#x6a;&#111;&#104;&#x6e;&#x68;&#x65;&#x37;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#109;</a> </p>
+<p>C. <a href="mailto:&#x6a;&#x61;&#x63;&#107;&#115;&#111;&#x6e;&#104;&#x65;&#x38;&#x40;&#x67;&#109;&#x61;&#105;&#108;&#46;&#99;&#111;&#109;">&#x6a;&#x61;&#x63;&#107;&#115;&#111;&#x6e;&#104;&#x65;&#x38;&#x40;&#x67;&#109;&#x61;&#105;&#108;&#46;&#99;&#111;&#109;</a> </p>
+<p>D. <a href="mailto:&#106;&#x6f;&#x72;&#107;&#x65;&#114;&#x68;&#101;&#x38;&#x38;&#56;&#x40;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#106;&#x6f;&#x72;&#107;&#x65;&#114;&#x68;&#101;&#x38;&#x38;&#56;&#x40;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a> </p>
+<p>E. <a href="mailto:&#121;&#117;&#97;&#x6e;&#x68;&#101;&#54;&#x36;&#54;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;">&#121;&#117;&#97;&#x6e;&#x68;&#101;&#54;&#x36;&#54;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;</a> </p>
+<p><strong>答案：C</strong></p>
+<p>通过对题目中各个选项进行搜索，发现只能选C</p>
+<h3 id="45-在何源的个人计算机中，用户“He-Yuan”曾用-Microsoft-Edge-浏览器下载过一些文件，以下哪一个不是？"><a href="#45-在何源的个人计算机中，用户“He-Yuan”曾用-Microsoft-Edge-浏览器下载过一些文件，以下哪一个不是？" class="headerlink" title="45 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器下载过一些文件，以下哪一个不是？"></a>45 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器下载过一些文件，以下哪一个不是？</h3><p>A. WeChat_C1018.exe </p>
+<p>B. bitcoin-018.1-win64-setup.exe </p>
+<p>C. torbrowser-install-win64-8.5.5_en-US.exe </p>
+<p>D. SteamSetup.exe </p>
+<p>E. BaiduNetdisk_6.8.4.1.exe </p>
+<p><strong>答案：B</strong></p>
+<p>在edge的下载记录中可以看到曾经下载过A和D两个文件</p>
+<p>C选项最然没有出现在下载记录中，但是能够搜到历史记录</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111233744778.png" alt="image-20211111233744778"></p>
+<p>E项也能找到</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111233900968.png" alt="image-20211111233900968"></p>
+<h3 id="46-在何源的个人计算机中，用户“He-Yuan”曾用以下哪款网页浏览器登陆过网页版百度网盘？"><a href="#46-在何源的个人计算机中，用户“He-Yuan”曾用以下哪款网页浏览器登陆过网页版百度网盘？" class="headerlink" title="46 在何源的个人计算机中，用户“He Yuan”曾用以下哪款网页浏览器登陆过网页版百度网盘？"></a>46 在何源的个人计算机中，用户“He Yuan”曾用以下哪款网页浏览器登陆过网页版百度网盘？</h3><p>A. Internet Explorer B. Firefox C. Chrome D. Microsoft Edge E. Tor </p>
+<p><strong>答案：D</strong></p>
+<p>搜索pan.baidu.com即可，A选项的浏览器虽然也出现过记录，但是并不能说明曾经登陆过</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111234205618.png" alt="image-20211111234205618"></p>
+<h3 id="47-在何源的个人计算机中，用户“He-Yuan”曾用-Tor-浏览器访问过一些网站，以下哪一个不是？"><a href="#47-在何源的个人计算机中，用户“He-Yuan”曾用-Tor-浏览器访问过一些网站，以下哪一个不是？" class="headerlink" title="47 在何源的个人计算机中，用户“He Yuan”曾用 Tor 浏览器访问过一些网站，以下哪一个不是？"></a>47 在何源的个人计算机中，用户“He Yuan”曾用 Tor 浏览器访问过一些网站，以下哪一个不是？</h3><p>A. <a target="_blank" rel="noopener" href="https://duckduckgo.com/">https://duckduckgo.com</a> </p>
+<p>B. <a target="_blank" rel="noopener" href="http://deepmix2cmtqm5ut74f4acz2eskr5htcdetpzupmdkas6fzi4cnc7sad.onion/">http://deepmix2cmtqm5ut74f4acz2eskr5htcdetpzupmdkas6fzi4cnc7sad.onion</a> </p>
+<p>C. <a target="_blank" rel="noopener" href="http://vfqnd6mieccqyiit.onion/">http://vfqnd6mieccqyiit.onion</a> </p>
+<p>D. <a target="_blank" rel="noopener" href="http://bntee6mf5w2okbpxdxheq7bk36yfmwithltxubliyvum6wlrrxzn72id.onion/">http://bntee6mf5w2okbpxdxheq7bk36yfmwithltxubliyvum6wlrrxzn72id.onion</a> </p>
+<p>E. <a target="_blank" rel="noopener" href="http://silkroadjuwsx3nq.onion/">http://silkroadjuwsx3nq.onion</a> </p>
+<p><strong>答案：E</strong></p>
+<p>参照上面的目录找到一个数据库文件，里面记录着历史记录的一些信息</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112123116709.png" alt="image-20211112123116709"></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112123251862.png" alt="image-20211112123251862"></p>
+<p>找到以一比对就行</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112123609054.png" alt="image-20211112123609054"></p>
+<h3 id="48-接上题，以下哪个-URL-是由用户手动输入到-Tor-浏览器中的？"><a href="#48-接上题，以下哪个-URL-是由用户手动输入到-Tor-浏览器中的？" class="headerlink" title="48 接上题，以下哪个 URL 是由用户手动输入到 Tor 浏览器中的？"></a>48 接上题，以下哪个 URL 是由用户手动输入到 Tor 浏览器中的？</h3><p>A. <a target="_blank" rel="noopener" href="http://tfwdi3izigxllure.onion/">http://tfwdi3izigxllure.onion</a> </p>
+<p>B. <a target="_blank" rel="noopener" href="https://hiddenwikitor.com/">https://hiddenwikitor.com</a> </p>
+<p>C. <a target="_blank" rel="noopener" href="http://deepmix5e3vptpr2.onion/">http://deepmix5e3vptpr2.onion</a> </p>
+<p>D. <a target="_blank" rel="noopener" href="http://vfqnd6mieccqyiit.onion/">http://vfqnd6mieccqyiit.onion</a> </p>
+<p>E. <a target="_blank" rel="noopener" href="http://smoker32pk4qt3mx.onion/">http://smoker32pk4qt3mx.onion</a> </p>
+<p><strong>答案：C</strong></p>
+<img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112123908731.png" alt="image-20211112123908731">
+
+<p>找到typed为1的url即可</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112124513741.png" alt="image-20211112124513741"></p>
+<h3 id="49-接上题，关于网页”http-rso4hutlefirefqp-onion”，以下哪一个描述是正确的？"><a href="#49-接上题，关于网页”http-rso4hutlefirefqp-onion”，以下哪一个描述是正确的？" class="headerlink" title="49 接上题，关于网页”http://rso4hutlefirefqp.onion”，以下哪一个描述是正确的？"></a>49 接上题，关于网页”<a href="http://rso4hutlefirefqp.onion”，以下哪一个描述是正确的？">http://rso4hutlefirefqp.onion”，以下哪一个描述是正确的？</a></h3><p>A. ccPal - stolen creditcards, ebay and paypal accounts for bitcoins - buy CVV2s for bitcoin - PayPals  for Bitcoin - Ebay Accounts for Bitcoin </p>
+<p>B. UKPassports - Buy passport from the United Kingdom UK, real passports from the UK, no fake passports </p>
+<p>C. Stolen Apple Products for Bitcoin. Get the newest apple products for a fraction of the price.  Iphones for Bitcoin, Ipads for Bitcoin. </p>
+<p>D. NLGrowers - Buy Weed, Hash, Cannabis, Marijuana with from the netherlands with Bitcoins - your deep  web weed source </p>
+<p>E. We sell medical cannabis, rick simpson cannabis oil and other medical cannabis products </p>
+<p><strong>答案：E</strong></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112124700450.png" alt="image-20211112124700450"></p>
+<h3 id="50-接上题，哪个网页引导用户到了网页”-http-vfqnd6mieccqyiit-onion”"><a href="#50-接上题，哪个网页引导用户到了网页”-http-vfqnd6mieccqyiit-onion”" class="headerlink" title="50 接上题，哪个网页引导用户到了网页” http://vfqnd6mieccqyiit.onion”?"></a>50 接上题，哪个网页引导用户到了网页” <a target="_blank" rel="noopener" href="http://vfqnd6mieccqyiit.onion”/">http://vfqnd6mieccqyiit.onion”</a>?</h3><p>A. <a target="_blank" rel="noopener" href="https://thehiddenwiki.org/">https://thehiddenwiki.org</a> </p>
+<p>B. <a target="_blank" rel="noopener" href="http://hiddenwikitor.com/">http://hiddenwikitor.com</a></p>
+<p>C. <a target="_blank" rel="noopener" href="https://onionshare.org/">https://onionshare.org</a> </p>
+<p>D. <a target="_blank" rel="noopener" href="http://xfnwyig7olypdq5r.onion/">http://xfnwyig7olypdq5r.onion</a> </p>
+<p>E. <a target="_blank" rel="noopener" href="https://www.onionexplore.org/">https://www.onionexplore.org</a>  </p>
+<p><strong>答案：D</strong></p>
+<p>找到相邻的即可url</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112125006851.png" alt="image-20211112125006851"></p>
+<h3 id="51-分析何源的公司计算机内存镜像，何源的公司计算机操作系统以及硬件架构是什么？"><a href="#51-分析何源的公司计算机内存镜像，何源的公司计算机操作系统以及硬件架构是什么？" class="headerlink" title="51 分析何源的公司计算机内存镜像，何源的公司计算机操作系统以及硬件架构是什么？"></a>51 分析何源的公司计算机内存镜像，何源的公司计算机操作系统以及硬件架构是什么？</h3><p>A. Windows 7 x86 B. Windows 7 x64 C. Windows 8 x86 D. Windows 8 x64 E. Windows 10 x64 </p>
+<p><strong>答案：C</strong></p>
+<p>装配好volatility后再命令行中输入</p>
+<p><code>python vol.py -f E:\百度网盘电子取证\HE_Company_Windows_RAM\memdump.mem windows.info</code></p>
+<p><code>-f 【路径文件】</code>路径文件自己调整</p>
+<p>可以看到系统及基本信息（可能还要仔细看一看）</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112162849939.png" alt="image-20211112162849939"></p>
+<p>内存镜像制作时间为(SystemTime): 2019年10月31日，注意这是UTC时间需要加8才是中国时区。</p>
+<p>2.2 NTBuildLab第一个数字7601，根据Windows版本号查询得知该系统为Windows 7, X86。</p>
+<p>2.3 Is64Bit False 表示这不是是一个64位系统。DTB的话貌似是出现在linux系统中。</p>
+<blockquote>
+<p>banners.Banners     Attempts to identify potential linux banners in an image<br>    configwriter.ConfigWriter<br>                        Runs the automagics and both prints and outputs configuration in the output directory.<br>    frameworkinfo.FrameworkInfo<br>                        Plugin to list the various modular components of Volatility<br>    isfinfo.IsfInfo     Determines information about the currently available ISF files, or a specific one<br>    layerwriter.LayerWriter<br>                        Runs the automagics and writes out the primary layer produced by the stacker.<br>    linux.bash.Bash     Recovers bash command history from memory.<br>    linux.check_afinfo.Check_afinfo<br>                        Verifies the operation function pointers of network protocols.<br>    linux.check_creds.Check_creds<br>                        Checks if any processes are sharing credential structures<br>    linux.check_idt.Check_idt<br>                        Checks if the IDT has been altered<br>    linux.check_modules.Check_modules<br>                        Compares module list to sysfs info, if available<br>    linux.check_syscall.Check_syscall<br>                        Check system call table for hooks.<br>    linux.elfs.Elfs     Lists all memory mapped ELF files for all processes.<br>    linux.keyboard_notifiers.Keyboard_notifiers<br>                        Parses the keyboard notifier call chain<br>    linux.lsmod.Lsmod   Lists loaded kernel modules.<br>    linux.lsof.Lsof     Lists all memory maps for all processes.<br>    linux.malfind.Malfind<br>                        Lists process memory ranges that potentially contain injected code.<br>    linux.proc.Maps     Lists all memory maps for all processes.<br>    linux.pslist.PsList<br>                        Lists the processes present in a particular linux memory image.<br>    linux.pstree.PsTree<br>                        Plugin for listing processes in a tree based on their parent process ID.<br>    linux.tty_check.tty_check<br>                        Checks tty devices for hooks<br>    mac.bash.Bash       Recovers bash command history from memory.<br>    mac.check_syscall.Check_syscall<br>                        Check system call table for hooks.<br>    mac.check_sysctl.Check_sysctl<br>                        Check sysctl handlers for hooks.<br>    mac.check_trap_table.Check_trap_table<br>                        Check mach trap table for hooks.<br>    mac.ifconfig.Ifconfig<br>                        Lists loaded kernel modules<br>    mac.kauth_listeners.Kauth_listeners<br>                        Lists kauth listeners and their status<br>    mac.kauth_scopes.Kauth_scopes<br>                        Lists kauth scopes and their status<br>    mac.kevents.Kevents<br>                        Lists event handlers registered by processes<br>    mac.list_files.List_Files<br>                        Lists all open file descriptors for all processes.<br>    mac.lsmod.Lsmod     Lists loaded kernel modules.<br>    mac.lsof.Lsof       Lists all open file descriptors for all processes.<br>    mac.malfind.Malfind<br>                        Lists process memory ranges that potentially contain injected code.<br>    mac.mount.Mount     A module containing a collection of plugins that produce data typically foundin Mac’s mount command<br>    mac.netstat.Netstat<br>                        Lists all network connections for all processes.<br>    mac.proc_maps.Maps  Lists process memory ranges that potentially contain injected code.<br>    mac.psaux.Psaux     Recovers program command line arguments.<br>    mac.pslist.PsList   Lists the processes present in a particular mac memory image.<br>    mac.pstree.PsTree   Plugin for listing processes in a tree based on their parent process ID.<br>    mac.socket_filters.Socket_filters<br>                        Enumerates kernel socket filters.<br>    mac.timers.Timers   Check for malicious kernel timers.<br>    mac.trustedbsd.Trustedbsd<br>                        Checks for malicious trustedbsd modules<br>    mac.vfsevents.VFSevents<br>                        Lists processes that are filtering file system events<br>    timeliner.Timeliner<br>                        Runs all relevant plugins that provide time related information and orders the results by time.<br>    windows.bigpools.BigPools<br>                        List big page pools.<br>    windows.cachedump.Cachedump<br>                        Dumps lsa secrets from memory<br>    windows.callbacks.Callbacks<br>                        Lists kernel callbacks and notification routines.<br>    windows.cmdline.CmdLine<br>                        Lists process command line arguments.<br>    windows.dlllist.DllList<br>                        Lists the loaded modules in a particular windows memory image.<br>    windows.driverirp.DriverIrp<br>                        List IRPs for drivers in a particular windows memory image.<br>    windows.driverscan.DriverScan<br>                        Scans for drivers present in a particular windows memory image.<br>    windows.dumpfiles.DumpFiles<br>                        Dumps cached file contents from Windows memory samples.<br>    windows.envars.Envars<br>                        Display process environment variables<br>    windows.filescan.FileScan<br>                        Scans for file objects present in a particular windows memory image.<br>    windows.getservicesids.GetServiceSIDs<br>                        Lists process token sids.<br>    windows.getsids.GetSIDs<br>                        Print the SIDs owning each process<br>    windows.handles.Handles<br>                        Lists process open handles.<br>    windows.hashdump.Hashdump<br>                        Dumps user hashes from memory<br>    windows.info.Info   Show OS &amp; kernel details of the memory sample being analyzed.<br>    windows.lsadump.Lsadump<br>                        Dumps lsa secrets from memory<br>    windows.malfind.Malfind<br>                        Lists process memory ranges that potentially contain injected code.<br>    windows.memmap.Memmap<br>                        Prints the memory map<br>    windows.modscan.ModScan<br>                        Scans for modules present in a particular windows memory image.<br>    windows.modules.Modules<br>                        Lists the loaded kernel modules.<br>    windows.mutantscan.MutantScan<br>                        Scans for mutexes present in a particular windows memory image.<br>    windows.netscan.NetScan<br>                        Scans for network objects present in a particular windows memory image.<br>    windows.poolscanner.PoolScanner<br>                        A generic pool scanner plugin.<br>    windows.privileges.Privs<br>                        Lists process token privileges<br>    windows.pslist.PsList<br>                        Lists the processes present in a particular windows memory image.<br>    windows.psscan.PsScan<br>                        Scans for processes present in a particular windows memory image.<br>    windows.pstree.PsTree<br>                        Plugin for listing processes in a tree based on their parent process ID.<br>    windows.registry.certificates.Certificates<br>                        Lists the certificates in the registry’s Certificate Store.<br>    windows.registry.hivelist.HiveList<br>                        Lists the registry hives present in a particular memory image.<br>    windows.registry.hivescan.HiveScan<br>                        Scans for registry hives present in a particular windows memory image.<br>    windows.registry.printkey.PrintKey<br>                        Lists the registry keys under a hive or specific key value.<br>    windows.registry.userassist.UserAssist<br>                        Print userassist registry keys and information.<br>    windows.ssdt.SSDT   Lists the system call table.<br>    windows.statistics.Statistics<br>    windows.strings.Strings<br>                        Reads output from the strings command and indicates which process(es) each string belongs to.<br>    windows.svcscan.SvcScan<br>                        Scans for windows services.<br>    windows.symlinkscan.SymlinkScan<br>                        Scans for links present in a particular windows memory image.<br>    windows.vadinfo.VadInfo<br>                        Lists process memory ranges.<br>    windows.vadyarascan.VadYaraScan<br>                        Scans all the Virtual Address Descriptor memory maps using yara.<br>    windows.verinfo.VerInfo<br>                        Lists version information from PE files.<br>    windows.virtmap.VirtMap<br>                        Lists virtual mapped sections.<br>    yarascan.YaraScan   Scans kernel memory using yara rules (string or file).</p>
+</blockquote>
+<h3 id="52-分析何源的公司计算机内存镜像，以下哪一个是进程“explorer-exe”的-PID"><a href="#52-分析何源的公司计算机内存镜像，以下哪一个是进程“explorer-exe”的-PID" class="headerlink" title="52 分析何源的公司计算机内存镜像，以下哪一个是进程“explorer.exe”的 PID?"></a>52 分析何源的公司计算机内存镜像，以下哪一个是进程“explorer.exe”的 PID?</h3><p>A. 5098 B. 3484 C. 3048 D. 2236 E. 9875 </p>
+<p><strong>答案：B</strong></p>
+<p>输入指令可以查看进程列表</p>
+<p><code>python vol.py -f E:\百度网盘电子取证\HE_Company_Windows_RAM\memdump.mem windows.pslist</code></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112163100544.png" alt="image-20211112163100544"></p>
+<p>其他的我也一并放出来吧</p>
+<h4 id="进程命令行参数-windows-cmdline-CmdLine"><a href="#进程命令行参数-windows-cmdline-CmdLine" class="headerlink" title="进程命令行参数(windows.cmdline.CmdLine)"></a><strong>进程命令行参数(windows.cmdline.CmdLine)</strong></h4><p>进程号(PID)，进程名称(Process)和参数(Args)三列</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112165849860.png" alt="image-20211112165849860"></p>
+<h4 id="进程列表-windows-pstree"><a href="#进程列表-windows-pstree" class="headerlink" title="进程列表(windows.pstree)"></a><strong>进程列表(windows.pstree)</strong></h4><p>pstree可以获得关于进程的大量消息：</p>
+<p>4.1 子父进程关系：PID代表当前进程ID，PPID代表父进程ID。</p>
+<p>pstree按照子父进程关系(每行前面星号个数)排列进程信息。</p>
+<p>比如424号进程(wininit.exe)下有1个子进程(PID为524的services.exe)。</p>
+<p>反过来讲，PID为524的services.exe的父进程为PID为424的wininit.exe。</p>
+<p>4.2 Wow64是用于在64位系统上运行32位应用程序的子系统。</p>
+<p>如果值为False表示该进程是一个原生的64位应用程序，否则为32位应用程序。</p>
+<p>4.3 Windows中4号进程固定为System，它是Windows页面内存管理进程。</p>
+<p>其创建时间基本等于系统开机时间。</p>
+<p>4.4 进程名称，句柄数，线程数这些是很多比赛中会经常考到的值。</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112170025080.png" alt="image-20211112170025080"></p>
+<h4 id="动态库列表-windows-dlllist"><a href="#动态库列表-windows-dlllist" class="headerlink" title="动态库列表(windows.dlllist)"></a><strong>动态库列表(windows.dlllist)</strong></h4><p>动态库列表可以从内存中搜索所有进程加载的动态库列表，有一些关键字段分别是所属进程PID，进程名称，动态库路径。</p>
+<p>需要注意可执行文件自身也会当作动态库显示出来。</p>
+<p>当需要从内存中导出指定进程的可执行文件时，可以采用–dump参数，比如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pythonvolatility3\vol.py -f Spring-PC_memory.raw windows.dlllist --pid 2176  --dump</span><br></pre></td></tr></table></figure>
+
+<p>Tips：dlllist输出大量信息很难做查找工作，此时可以用重定向将结果输出到文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pythonvolatility3\vol.py -f Spring-PC_memory.raw windows.dlllist  &gt; dllresult.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112170419217.png" alt="image-20211112170419217"></p>
+<h4 id="账户信息（windows-hashdump）"><a href="#账户信息（windows-hashdump）" class="headerlink" title="账户信息（windows.hashdump）"></a><strong>账户信息（windows.hashdump）</strong></h4><p>只有很少的几个字段，主要是用户名，rid和nthash</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112170755034.png" alt="image-20211112170755034"></p>
+<h4 id="注册表数据-windows-registry-hivelist"><a href="#注册表数据-windows-registry-hivelist" class="headerlink" title="注册表数据(windows.registry.hivelist)"></a><strong>注册表数据(windows.registry.hivelist)</strong></h4><p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/e17fbb37a3b34b8b149a057a815a045c.webp" alt="img"></p>
+<p>上面结果只能看看，加–dump参数把注册表文件导出来才有实际价值。</p>
+<p>将导出的SAM,SYSTEM,SOFTWARE,SECURITY等文件放在Windows/System32/config文件夹下，加载火眼证据分析，就可以获得更为完整的用户数据：</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/01cf01785b4b22fe48c3b00a8ac99124.webp" alt="img"></p>
+<h4 id="网络连接状态-windows-netscan-NetScan"><a href="#网络连接状态-windows-netscan-NetScan" class="headerlink" title="网络连接状态(windows.netscan.NetScan)"></a><strong>网络连接状态(windows.netscan.NetScan)</strong></h4><p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/2c574c18654231756d3df452d692b6e3.webp" alt="img"></p>
+<h4 id="服务运行状态-windows-svcscan"><a href="#服务运行状态-windows-svcscan" class="headerlink" title="服务运行状态(windows.svcscan)"></a><strong>服务运行状态(windows.svcscan)</strong></h4><p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/cf4cefce54d3d159227096ad2f117cec.webp" alt="img"></p>
+<h4 id="进程环境变量-windows-envars"><a href="#进程环境变量-windows-envars" class="headerlink" title="进程环境变量(windows.envars)"></a><strong>进程环境变量(windows.envars)</strong></h4><p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/d27ee2d33d6fe3a3f329974d7b4617fa.webp" alt="img"></p>
+<h4 id="进程缓存的文件-windows-dumpfiles"><a href="#进程缓存的文件-windows-dumpfiles" class="headerlink" title="进程缓存的文件(windows.dumpfiles)"></a><strong>进程缓存的文件(windows.dumpfiles)</strong></h4><p>该命令默认将内存中全部缓存文件dump到本地目录，所以使用改命令时务必添加–pid参数，导出来的大部分都是dll。</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/d1abe84c42fff54e7d3f2e41e41c0065.webp" alt="img"></p>
+<p><strong>常见恶意文件分析思路：</strong></p>
+<p>\1. 使用windows.pstree找到其pid；</p>
+<p>\2. 根据pid使用windows.netscan.NetScan查找端口监听情况；</p>
+<p>\3. 根据pid使用windows.cmdline.CmdLine获得启动参数；</p>
+<p>\4. 根据pid使用windows.handles获得打开句柄(通常包含注册表和文件)；</p>
+<p>\5. 根据pid使用windows.dlllist 导出exe和相关dll到本地做逆向分析；</p>
+<h3 id="53-分析何源的公司计算机内存镜像，以下哪一个是正确的用户-SID-？"><a href="#53-分析何源的公司计算机内存镜像，以下哪一个是正确的用户-SID-？" class="headerlink" title="53 分析何源的公司计算机内存镜像，以下哪一个是正确的用户 SID ？"></a>53 分析何源的公司计算机内存镜像，以下哪一个是正确的用户 SID ？</h3><p>A. HTC_admin : S-1-5-21-2316527938-3914680751-2175519146-1001 </p>
+<p>B. TMP_User : S-1-5-21-2316527938-3914680751-2175519146-1002 </p>
+<p>C. TMP : S-1-5-21-2316527938-3914680751-2175519146-1001 </p>
+<p>D. YuanHe : S-1-5-21-2316527938-3914680751-2175519146-1002 </p>
+<p>E. None</p>
+<p>答案：</p>
+<p>输入</p>
+<p><code>python vol.py -f E:\百度网盘电子取证\HE_Company_Windows_RAM\memdump.mem windows.getservicesids.GetServiceSIDs</code></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112172813347.png" alt="image-20211112172813347"></p>
+<h3 id="54-分析何源的公司计算机内存镜像，以下哪个远程地址与本地地址建立过-TCP-连接？"><a href="#54-分析何源的公司计算机内存镜像，以下哪个远程地址与本地地址建立过-TCP-连接？" class="headerlink" title="54 分析何源的公司计算机内存镜像，以下哪个远程地址与本地地址建立过 TCP 连接？"></a>54 分析何源的公司计算机内存镜像，以下哪个远程地址与本地地址建立过 TCP 连接？</h3><p>A. 10.165.12.130 B. 10.165.12.126 C. 10.165.10.125 D. 10.165.10.130 E. 10.165.10.131 </p>
+<p><strong>答案：A</strong></p>
+<p><code>python vol.py -f E:\百度网盘电子取证\HE_Company_Windows_RAM\memdump.mem windows.netscan</code></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112171415940.png" alt="image-20211112171415940"></p>
+<h3 id="55-接上题，在上述-TCP-连接里，远程地址的端口号是多少？"><a href="#55-接上题，在上述-TCP-连接里，远程地址的端口号是多少？" class="headerlink" title="55 接上题，在上述 TCP 连接里，远程地址的端口号是多少？"></a>55 接上题，在上述 TCP 连接里，远程地址的端口号是多少？</h3><p>A. 80 B. 443 C. 445 D. 22 E. 3389 </p>
+<p><strong>答案：C</strong></p>
+<h3 id="56-分析何源的公司计算机内存镜像，注册表“-SystemRoot-System32-Config-SAM”在内存镜像中的虚拟地址-（Virtual-Address）是多少？"><a href="#56-分析何源的公司计算机内存镜像，注册表“-SystemRoot-System32-Config-SAM”在内存镜像中的虚拟地址-（Virtual-Address）是多少？" class="headerlink" title="56 分析何源的公司计算机内存镜像，注册表“\SystemRoot\System32\Config\SAM”在内存镜像中的虚拟地址 （Virtual Address）是多少？"></a>56 分析何源的公司计算机内存镜像，注册表“\SystemRoot\System32\Config\SAM”在内存镜像中的虚拟地址 （Virtual Address）是多少？</h3><p>A. Offset: 0x97b5e5d8 </p>
+<p>B. Offset: 0x9a5689c8 </p>
+<p>C. Offset: 0x8c6b49c8 </p>
+<p>D. Offset: 0x8bc1a1c0 </p>
+<p>E. Offset: 0x9bc1a1c0 </p>
+<p><strong>答案：B</strong></p>
+<p>输入<code>python vol.py -f E:\百度网盘电子取证\HE_Company_Windows_RAM\memdump.mem windows.registry.hivelist</code></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112173919632.png" alt="image-20211112173919632"></p>
+<h3 id="57-分析何源的公司计算机内存镜像，用户“Yuan-He”登入密码的-NTLM-hash-是多少？"><a href="#57-分析何源的公司计算机内存镜像，用户“Yuan-He”登入密码的-NTLM-hash-是多少？" class="headerlink" title="57 分析何源的公司计算机内存镜像，用户“Yuan He”登入密码的 NTLM hash 是多少？"></a>57 分析何源的公司计算机内存镜像，用户“Yuan He”登入密码的 NTLM hash 是多少？</h3><p>A. bf12857078039ff604bf8e1fb4308643 </p>
+<p>B. 31d6cfe0d16ae931b73c59d7e0c089c0 </p>
+<p>C. bf12857078039ff604bf8e1fb430a7d4 </p>
+<p>D. a53452d6cd5e2d72423cd3eac8b05607 </p>
+<p>E. 99e74d973f8f852432f6d5a59659ed88 </p>
+<p><strong>答案：E</strong></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112174433563.png" alt="image-20211112174433563"></p>
+<h3 id="58-分析何源的公司计算机内存镜像，盘符“E：”上的文件“Personal-Information-xlsx”何时被访问过？"><a href="#58-分析何源的公司计算机内存镜像，盘符“E：”上的文件“Personal-Information-xlsx”何时被访问过？" class="headerlink" title="58 分析何源的公司计算机内存镜像，盘符“E：”上的文件“Personal Information.xlsx”何时被访问过？"></a>58 分析何源的公司计算机内存镜像，盘符“E：”上的文件“Personal Information.xlsx”何时被访问过？</h3><p>A. 2019-10-31 07:58:45 </p>
+<p>B. 2019-10-31 10:33:42 </p>
+<p>C. 2019-10-31 06:59:45 </p>
+<p>D. 2019-10-31 09:31:42 </p>
+<p>E. 2019-10-31 08:32:42 </p>
+<p>答案：C</p>
+<p>放到取证大师里找一找，注意需要进行深度恢复</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112181653353.png" alt="image-20211112181653353"></p>
+<p>发现时间相差了八小时，盲猜是UTC +8的缘故</p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112181502671.png" alt="image-20211112181502671"></p>
+<h3 id="59-分析何源的公司计算机内存镜像，以下哪个是文件“Personal-Information-xlsx”的正确路径？"><a href="#59-分析何源的公司计算机内存镜像，以下哪个是文件“Personal-Information-xlsx”的正确路径？" class="headerlink" title="59 分析何源的公司计算机内存镜像，以下哪个是文件“Personal Information.xlsx”的正确路径？"></a>59 分析何源的公司计算机内存镜像，以下哪个是文件“Personal Information.xlsx”的正确路径？</h3><p>A. Users\YuanHe\Desktop\Confidential\Personal Information.xlsx </p>
+<p>B. Users\YuanHe\Desktop\Personal Information.xlsx </p>
+<p>C. Users\TMP_User\Desktop\Confidential\Personal Information.xlsx </p>
+<p>D. Users\TMP_User\Desktop\Personal Information.xlsx </p>
+<p>E. Users\Administrator\Desktop\Confidential\Personal Information.xlsx </p>
+<p><strong>答案：B</strong></p>
+<p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211112181908392.png" alt="image-20211112181908392"></p>
+<h3 id="60-分析何源的公司计算机内存镜像，可以发现以下哪些文件夹曾被访问过？"><a href="#60-分析何源的公司计算机内存镜像，可以发现以下哪些文件夹曾被访问过？" class="headerlink" title="60 分析何源的公司计算机内存镜像，可以发现以下哪些文件夹曾被访问过？"></a>60 分析何源的公司计算机内存镜像，可以发现以下哪些文件夹曾被访问过？</h3><p>1 …\Company_Files\Jonathan Norton </p>
+<p>2 …\Company_Files\Stephen Chow </p>
+<p>3 …\Company_Files\John Wick </p>
+<p>4 …\ Company_Files\Logan Chen </p>
+<p>5 …\Company_Files\Colleen Johnson </p>
+<p>A 2,3,5 B 2,4,6 C 1,3,5 D 3,4,5 E 1,4,5</p>
+<p>由于没有找到volatality中的MFT所以不会做，哭哭了</p>
+<blockquote>
+<h3 id="61-分析何源的公司计算机内存镜像，以下那一项有关这台计算机的资料是正确？"><a href="#61-分析何源的公司计算机内存镜像，以下那一项有关这台计算机的资料是正确？" class="headerlink" title="61 分析何源的公司计算机内存镜像，以下那一项有关这台计算机的资料是正确？"></a>61 分析何源的公司计算机内存镜像，以下那一项有关这台计算机的资料是正确？</h3><p>A. 这台计算机安装 Window 的时间是 2019-10-31 11:56:23 UTC + 0 </p>
+<p>B. 这台计算机的名称是 WIN-VUAL29E4P0K </p>
+<p>C. 公开资料显示这台计算机 TCPIP 的最后更新时间是 2019-10-31 04:59:00 UTC + 0 </p>
+<p>D. A 及 C 都是正确 </p>
+<p>E. B 及 C 都是正确 </p>
+<h3 id="62-分析何源的公司计算机内存镜像，以下那一项关于这台计算机连接-USB-装置的描述是正确？"><a href="#62-分析何源的公司计算机内存镜像，以下那一项关于这台计算机连接-USB-装置的描述是正确？" class="headerlink" title="62 分析何源的公司计算机内存镜像，以下那一项关于这台计算机连接 USB 装置的描述是正确？"></a>62 分析何源的公司计算机内存镜像，以下那一项关于这台计算机连接 USB 装置的描述是正确？</h3><p>A. 没有，因为透析资料找不到 </p>
+<p>B. 没有，因为内存容量没有取得完整的注册表资料 </p>
+<p>C. 有，而且装置的牌子应该是 HUAWEI </p>
+<p>D. 有，而且装置的 GUID 是 4d36e967-e325-11ce-afc1-832210318 </p>
+<p>E. 有，而且装置的首次插入时间 HEX 值是 40 43 30 b9 b8 8f d5 01</p>
+</blockquote>
+<p>61和62题比较难，就不做啦（困）</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">萌新QAQ</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://jszmwq.github.io/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/">https://jszmwq.github.io/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://jszmwq.github.io" target="_blank">j52nnw9的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81/">电子数据取证</a></div><div class="post_share"><div class="social-share" data-image="/img/Animation/2.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/"><img class="next-cover" src="/img/Animation/9.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">美亚杯团体赛2020例题笔记</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/10/13/RAID%E9%87%8D%E7%BB%84/" title="RAID重组"><img class="cover" src="/img/Animation/6.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-13</div><div class="title">RAID重组</div></div></a></div><div><a href="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/" title="2021长安杯做题总结"><img class="cover" src="/img/Animation/8.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-26</div><div class="title">2021长安杯做题总结</div></div></a></div><div><a href="/2021/10/16/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%96%E8%AF%81/" title="linux服务器取证"><img class="cover" src="/img/Animation/3.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-16</div><div class="title">linux服务器取证</div></div></a></div><div><a href="/2021/10/12/%E6%95%B0%E5%AD%97%E5%8F%96%E8%AF%81/" title="数字取证"><img class="cover" src="/img/Animation/7.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-12</div><div class="title">数字取证</div></div></a></div><div><a href="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/" title="美亚杯团体赛2020例题笔记"><img class="cover" src="/img/Animation/9.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-03</div><div class="title">美亚杯团体赛2020例题笔记</div></div></a></div><div><a href="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/" title="长安杯2020例题笔记"><img class="cover" src="/img/Animation/4.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-18</div><div class="title">长安杯2020例题笔记</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/image.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">萌新QAQ</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%A0%BC%E8%B5%9B-%E6%A1%88%E6%83%85%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">资格赛 - 案情介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E3%80%81%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E7%9B%98%E5%B7%B2%E6%88%90%E5%8A%9F%E8%A2%AB%E5%8F%96%E8%AF%81%E5%B9%B6%E5%88%B6%E4%BD%9C%E6%88%90%E9%95%9C%E5%83%8F%EF%BC%88Forensic-Image%EF%BC%89%EF%BC%8C%E4%B8%8B%E5%88%97%E5%93%AA%E4%B8%AA%E6%98%AF%E9%95%9C%E5%83%8F%E7%9A%84-SHA1-%E5%93%88%E5%B8%8C%E5%80%BC%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">1 、何源的个人计算机硬盘已成功被取证并制作成镜像（Forensic Image），下列哪个是镜像的 SHA1 哈希值？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E3%80%81%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E7%A1%AC%E7%9B%98%E4%B8%AD%E5%8C%85%E5%90%AB%E5%93%AA%E4%B8%AA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88Operating-System%EF%BC%89%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">2 、在何源的个人计算机中，硬盘中包含哪个操作系统（Operating System）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E3%80%81%E4%BD%95%E6%BA%90%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F-File-System-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">3 、何源个人计算机的文件系统(File System)是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E4%BD%A0%E8%83%BD%E6%89%BE%E5%88%B0%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%88%86%E5%8C%BA%E7%9A%84%E6%80%BB%E5%AE%B9%E9%87%8F%E5%90%97-%E5%8D%95%E4%BD%8D%EF%BC%9A%E5%AD%97%E8%8A%82-byte-%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">4 在何源的个人计算机中，你能找到操作系统分区的总容量吗 (单位：字节 byte)？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%88%86%E5%8C%BA%E7%9A%84-Bitmap-%E7%9A%84%E8%B5%B7%E5%A7%8B%E7%89%A9%E7%90%86%E6%89%87%E5%8C%BA%E4%BD%8D%E7%BD%AE-Physical-Sector-Number-%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="toc-number">1.5.</span> <span class="toc-text">5 在何源的个人计算机中，操作系统分区的$Bitmap 的起始物理扇区位置(Physical Sector Number)是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E8%AF%B7%E9%97%AE%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%89%E8%A3%85%E6%97%A5%E6%9C%9F%E6%98%AF%EF%BC%9F-%EF%BC%88%E7%AD%94%E6%A1%88%E6%A0%BC%E5%BC%8F-%EF%BC%8D%E2%80%9C%E4%B8%96%E7%95%8C%E5%8D%8F%E8%B0%83%E6%97%B6%E9%97%B4%EF%BC%82%EF%BC%9AYYYY-MM-DD-HH-MM-UTC%EF%BC%89"><span class="toc-number">1.6.</span> <span class="toc-text">6 在何源的个人计算机中，请问操作系统的安装日期是？ （答案格式 －“世界协调时间＂：YYYY-MM-DD HH:MM UTC）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E6%AF%8F%E4%B8%AA%E6%89%87%E5%8C%BA-Sector-%E5%8C%85%E5%90%AB%E5%A4%9A%E5%B0%91%E4%B8%AA%E5%AD%97%E8%8A%82%EF%BC%9F%EF%BC%88%E5%8D%95%E4%BD%8D-byte%EF%BC%89"><span class="toc-number">1.7.</span> <span class="toc-text">7 在何源的个人计算机中，每个扇区(Sector)包含多少个字节？（单位: byte）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%97%B6%E5%8C%BA%E6%98%AF%E5%93%AA%E4%B8%AA%E6%97%B6%E5%8C%BA%EF%BC%9F"><span class="toc-number">1.8.</span> <span class="toc-text">8 在何源的个人计算机中，操作系统的时区是哪个时区？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E5%9C%A8%E4%BD%95%E6%BA%90%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%EF%BC%8C%E4%B8%8B%E5%88%97%E5%93%AA%E4%B8%AA%E6%98%AF%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E4%B8%BB%E6%9C%BA%E5%90%8D"><span class="toc-number">1.9.</span> <span class="toc-text">9 在何源个人计算机的操作系统中，下列哪个是计算机的主机名?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%80%E4%B8%AA%E6%98%AF%E7%94%A8%E6%88%B7%E2%80%9CHe-Yuan%E2%80%9D%E7%9A%84-SID%EF%BC%9F"><span class="toc-number">1.10.</span> <span class="toc-text">10 在何源的个人计算机中，以下哪一个是用户“He Yuan”的 SID？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E4%B8%8B%E5%88%97%E5%93%AA%E4%B8%AA-USB-%E7%A7%BB%E5%8A%A8%E5%82%A8%E5%AD%98%E8%A3%85%E7%BD%AE-U-%E7%9B%98-%E6%9B%BE%E8%A2%AB%E5%88%86%E9%85%8D%E4%B8%BA%E2%80%98E%E2%80%99%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%E4%BB%A3%E5%8F%B7-Drive-Letter"><span class="toc-number">1.11.</span> <span class="toc-text">11 在何源的个人计算机中，下列哪个 USB 移动储存装置 (U 盘)曾被分配为‘E’磁盘分区代号(Drive Letter) ?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E7%94%A8%E6%88%B7%E2%80%9CHe-Yuan%E2%80%9D%E6%9B%BE%E7%BB%8F%E5%9C%A8%E6%8C%82%E8%BD%BD%E4%B8%BA%E2%80%9CE%E2%80%9D%E7%9B%98%E7%9A%84-USB-%E7%A7%BB%E5%8A%A8%E5%82%A8%E5%AD%98%E8%A3%85%E7%BD%AE%E4%B8%AD%E8%AE%BF%E9%97%AE%E8%BF%87%E4%B8%80%E4%BA%9B%E6%96%87%E4%BB%B6-%E6%96%87%E4%BB%B6-%E5%A4%B9%EF%BC%8C%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%80%E4%B8%AA%E4%B8%8D%E6%98%AF%EF%BC%9F"><span class="toc-number">1.12.</span> <span class="toc-text">12 在何源的个人计算机中，用户“He Yuan”曾经在挂载为“E”盘的 USB 移动储存装置中访问过一些文件&#x2F;文件 夹，以下哪一个不是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E7%94%A8%E6%88%B7%E2%80%9CHe-Yuan%E2%80%9D%E6%9C%80%E8%BF%91%E5%9C%A8%E6%9C%AC%E6%9C%BA%E4%B8%8A%E8%AE%BF%E9%97%AE%E8%BF%87%E4%B8%80%E4%BA%9B%E6%96%87%E4%BB%B6%EF%BC%8C%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%80%E4%B8%AA%E4%B8%8D%E6%98%AF%EF%BC%9F"><span class="toc-number">1.13.</span> <span class="toc-text">13 在何源的个人计算机中，用户“He Yuan”最近在本机上访问过一些文件，以下哪一个不是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%80%E4%B8%AA%E6%98%AF%E7%A8%8B%E5%BA%8F%E2%80%9CVERACRYPT-EXE%E2%80%9D%E7%9A%84%E8%BF%90%E8%A1%8C%E6%AC%A1%E6%95%B0%EF%BC%9F"><span class="toc-number">1.14.</span> <span class="toc-text">14 在何源的个人计算机中，以下哪一个是程序“VERACRYPT.EXE”的运行次数？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E5%9C%A8%E7%A8%8B%E5%BA%8F%E2%80%9CVERACRYPT-EXE%E2%80%9D%E8%BF%90%E8%A1%8C%E6%97%B6%EF%BC%8C%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%AA-dll-%E6%96%87%E4%BB%B6%E5%B9%B6%E6%B2%A1%E6%9C%89%E5%90%8C%E6%97%B6%E8%A2%AB%E5%8A%A0%E8%BD%BD%EF%BC%9F"><span class="toc-number">1.15.</span> <span class="toc-text">15 在何源的个人计算机中，在程序“VERACRYPT.EXE”运行时，以下哪个 dll 文件并没有同时被加载？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E7%94%A8%E6%88%B7%E2%80%9CHe-Yuan%E2%80%9D%E7%9A%84%E6%A1%8C%E9%9D%A2%E5%A2%99%E7%BA%B8%EF%BC%88Wall-paper%EF%BC%89%E8%83%8C%E6%99%AF%E6%98%AF%E4%BB%80%E4%B9%88%E9%A2%9C%E8%89%B2%EF%BC%9F"><span class="toc-number">1.16.</span> <span class="toc-text">16 在何源的个人计算机中，用户“He Yuan”的桌面墙纸（Wall paper）背景是什么颜色？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%AA%E6%96%87%E4%BB%B6%E5%9C%A8%E7%94%B5%E8%84%91-power-off-%E7%9A%84%E6%97%B6%E5%80%99%E4%BB%8D%E7%84%B6%E6%8B%A5%E6%9C%89%E5%86%85%E5%AD%98%E7%9A%84%E5%86%85%E5%AE%B9-%E6%AD%A4%E6%96%87%E4%BB%B6%E5%85%B7%E6%9C%89%E4%B8%8E%E7%94%B5%E8%84%91%E5%86%85%E5%AD%98-%EF%BC%88RAM%EF%BC%89%E7%9B%B8%E4%BC%BC%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%B9%B6%E4%BF%9D%E5%AD%98%E5%9C%A8%E6%A0%B9%E7%9B%AE%E5%BD%95%E3%80%82"><span class="toc-number">1.17.</span> <span class="toc-text">17 在何源的个人计算机中，以下哪个文件在电脑 power off 的时候仍然拥有内存的内容? 此文件具有与电脑内存 （RAM）相似的大小并保存在根目录。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%AA-database-%E6%96%87%E4%BB%B6%E5%AD%98%E6%9C%89%E6%AD%A4%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84-timeline-%E7%97%95%E8%BF%B9%EF%BC%9F"><span class="toc-number">1.18.</span> <span class="toc-text">18 在何源的个人计算机中，以下哪个 database 文件存有此操作系统的 timeline 痕迹？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E6%9B%BE%E8%A2%AB%E5%88%86%E9%85%8D%E8%BF%87%E7%9A%84-ip-%E5%9C%B0%E5%9D%80%E6%98%AF%EF%BC%9F"><span class="toc-number">1.19.</span> <span class="toc-text">19 在何源的个人计算机中，曾被分配过的 ip 地址是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E7%94%A8%E6%88%B7%E2%80%9DAdministrator%E2%80%9D%E7%9A%84-Internet-Explorer-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84-start-page-%E6%98%AF%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%AA%EF%BC%9F"><span class="toc-number">1.20.</span> <span class="toc-text">20 在何源的个人计算机中，用户”Administrator”的 Internet Explorer 浏览器的 start page 是以下哪个？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E4%BD%A0%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E6%89%BE%E5%88%B0%E4%BD%95%E6%BA%90-iPhone-%E6%89%8B%E6%9C%BA%E7%9A%84%E7%BA%BF%E7%B4%A2%E3%80%82%E5%85%B3%E4%BA%8E%E4%BB%96%E7%9A%84%E6%89%8B%E6%9C%BA%EF%BC%8C%E4%BB%A5%E4%B8%8B%E5%93%AA%E6%9D%A1%E4%BF%A1%E6%81%AF%E4%B8%8D%E6%AD%A3%E7%A1%AE%EF%BC%9F"><span class="toc-number">1.21.</span> <span class="toc-text">21 在何源的个人计算机中，你是否可以找到何源 iPhone 手机的线索。关于他的手机，以下哪条信息不正确？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-%E7%94%A8%E6%88%B7%E2%80%9CHe-Yuan%E2%80%9D%E5%9C%A8-WhatsApp-%E4%B8%8A%E4%B8%8E%E8%B0%81%E8%BF%9B%E8%A1%8C%E4%BA%86%E5%AF%B9%E8%AF%9D%EF%BC%9F"><span class="toc-number">1.22.</span> <span class="toc-text">22 用户“He Yuan”在 WhatsApp 上与谁进行了对话？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-%E5%9C%A8%E6%89%8B%E6%9C%BA%E8%81%94%E7%B3%BB%E4%BA%BA%E4%B8%AD%EF%BC%8CAnthony-Chung-%E7%9A%84%E6%89%8B%E6%9C%BA%E5%8F%B7%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="toc-number">1.23.</span> <span class="toc-text">23 在手机联系人中，Anthony Chung 的手机号是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#24-He-Yuan-%E5%9C%A8-iPhone-%E8%87%AA%E5%B8%A6%E7%9A%84-Safari-%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E6%90%9C%E7%B4%A2%E8%BF%87%E4%B8%80%E4%BA%9B%E5%85%B3%E9%94%AE%E8%AF%8D%EF%BC%8C%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%80%E4%B8%AA%E4%B8%8D%E6%98%AF%EF%BC%9F"><span class="toc-number">1.24.</span> <span class="toc-text">24 He Yuan 在 iPhone 自带的 Safari 浏览器中搜索过一些关键词，以下哪一个不是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#25-%E7%94%A8%E6%88%B7%E2%80%9CHe-Yuan%E2%80%9D%E7%9A%84-WeChat-ID-%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="toc-number">1.25.</span> <span class="toc-text">25 用户“He Yuan”的 WeChat ID 是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-%E5%9C%A8-WeChat-%E7%9A%84%E5%A4%9A%E4%B8%AA%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95%E4%B8%AD%EF%BC%8C%E7%94%A8%E6%88%B7%E2%80%9CHe-Yuan%E2%80%9D%E6%B2%A1%E6%9C%89%E8%81%8A%E5%88%B0%E8%BF%87%E5%93%AA%E4%B8%AA%E8%AF%9D%E9%A2%98%EF%BC%9F"><span class="toc-number">1.26.</span> <span class="toc-text">26 在 WeChat 的多个聊天记录中，用户“He Yuan”没有聊到过哪个话题？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#27-%E4%BB%8E-WeChat-%E4%B8%AD%E7%9A%84%E4%B8%80%E4%B8%AA%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95%E4%B8%AD%E5%8F%AF%E7%9F%A5%EF%BC%8C%E7%94%A8%E6%88%B7%E2%80%9CHe-Yuan%E2%80%9D%E6%8C%81%E6%9C%89%E5%A4%9A%E5%B0%91%E4%BA%BA%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%9F"><span class="toc-number">1.27.</span> <span class="toc-text">27 从 WeChat 中的一个聊天记录中可知，用户“He Yuan”持有多少人的数据？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#28-%E6%8E%A5%E4%B8%8A%E9%A2%98%EF%BC%8CHacker-%E6%9C%80%E5%90%8E%E8%A6%81%E6%94%AF%E4%BB%98%E5%A4%9A%E5%B0%91-Bitcoin-%E7%BB%99-He-Yuan"><span class="toc-number">1.28.</span> <span class="toc-text">28 接上题，Hacker 最后要支付多少 Bitcoin 给 He Yuan?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#29-%E6%8E%A5%E4%B8%8A%E9%A2%98%EF%BC%8CHe-Yuan-%E7%9A%84-Bitcoin-%E6%94%B6%E6%AC%BE%E5%9C%B0%E5%9D%80%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="toc-number">1.29.</span> <span class="toc-text">29 接上题，He Yuan 的 Bitcoin 收款地址是多少？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95%EF%BC%88%E9%9D%9E%E5%B8%B8%E9%87%8D%E8%A6%81%EF%BC%89%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">问题解决办法（非常重要）：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#30-%E6%8E%A5%E4%B8%8A%E9%A2%98%EF%BC%8CHe-Yuan-%E5%88%86%E4%BA%AB%E7%BB%99-Hacker-%E7%9A%84%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E9%93%BE%E6%8E%A5%E6%98%AF%E5%A4%9A%E5%B0%91"><span class="toc-number">2.1.</span> <span class="toc-text">30 接上题，He Yuan 分享给 Hacker 的百度网盘链接是多少?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#31-%E6%8E%A5%E4%B8%8A%E9%A2%98%EF%BC%8CHe-Yuan-%E6%8F%90%E5%88%B0%E7%9A%84%E8%A7%A3%E5%8E%8B%E5%AF%86%E7%A0%81%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="toc-number">2.2.</span> <span class="toc-text">31 接上题，He Yuan 提到的解压密码是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#32-%E6%8E%A5%E4%B8%8A%E9%A2%98%EF%BC%8CHe-Yuan-%E6%94%B6%E5%88%B0%E4%BA%86%E6%9D%A5%E8%87%AA%E5%93%AA%E4%BD%8D-hacker-%E7%9A%84%E8%BD%AC%E8%B4%A6%EF%BC%9F-hacker-%E7%9A%84-wechat-ID-%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="toc-number">2.3.</span> <span class="toc-text">32 接上题，He Yuan 收到了来自哪位 hacker 的转账？ hacker 的 wechat ID 是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#33-%E6%A0%B9%E6%8D%AE-Wechat-%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95%EF%BC%8CHe-Yuan-%E5%9C%A8-2019-10-26-%E5%8F%B7%EF%BC%88UTC-8%EF%BC%89%E6%99%9A%E4%B8%8A%E8%B7%9F%E5%93%AA%E4%BD%8D%E6%9C%8B%E5%8F%8B%E5%87%BA%E5%8E%BB%E5%90%83%E6%99%9A%E9%A5%AD%E4%BA%86%EF%BC%9F%E6%9C%8B%E5%8F%8B%E7%9A%84-Wechat-ID-%E6%98%AF%E5%A4%9A%E5%B0%91"><span class="toc-number">2.4.</span> <span class="toc-text">33 根据 Wechat 聊天记录，He Yuan 在 2019-10-26 号（UTC+8）晚上跟哪位朋友出去吃晚饭了？朋友的 Wechat ID 是多少?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#34-%E5%9C%A82019-10-31-UTC-8-%EF%BC%8C%E4%BD%95%E6%BA%90%E7%94%A8iPhone%E6%89%8B%E6%9C%BA%E5%9C%A8%E8%BD%A6%E5%BA%93%E6%8B%8D%E4%BA%86%E4%B8%80%E4%BA%9B%E8%BD%A6%E7%9A%84%E7%85%A7%E7%89%87-%E8%AF%B7%E9%97%AE%E6%9C%80%E6%97%A9%E7%9A%84%E9%82%A3%E5%BC%A0%E8%BD%A6%E7%85%A7%E7%89%87%E6%98%AF%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E6%8B%8D%E7%9A%84%EF%BC%9F"><span class="toc-number">2.5.</span> <span class="toc-text">34 在2019-10-31(UTC+8)，何源用iPhone手机在车库拍了一些车的照片,请问最早的那张车照片是什么时候拍的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#35-%E6%8E%A5%E4%B8%8A%E9%A2%98%EF%BC%8C%E8%AF%B7%E9%97%AE%E7%85%A7%E7%89%87%E2%80%9DIMG-0075-HEIC%E2%80%9D%E6%8B%8D%E6%91%84%E5%9C%B0-GPS-%E5%9D%90%E6%A0%87%E6%98%AF%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%80%E4%B8%AA%EF%BC%9F"><span class="toc-number">2.6.</span> <span class="toc-text">35 接上题，请问照片”IMG_0075.HEIC”拍摄地 GPS 坐标是以下哪一个？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#36-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E4%BD%A0%E8%83%BD%E6%89%BE%E5%88%B0%E4%B8%80%E4%B8%AA-Veracrypt-%E5%8A%A0%E5%AF%86%E5%AE%B9%E5%99%A8%E6%96%87%E4%BB%B6%E5%90%97%EF%BC%9F%E5%AE%83%E7%9A%84%E5%8E%9F%E5%A7%8B%E6%96%87%E4%BB%B6%E5%90%8D%E6%98%AF%EF%BC%9F"><span class="toc-number">2.7.</span> <span class="toc-text">36 在何源的个人计算机中，你能找到一个 Veracrypt 加密容器文件吗？它的原始文件名是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#37-%E6%8E%A5%E4%B8%8A%E9%A2%98%EF%BC%8C%E6%AD%A4-Veracrypt-%E5%8A%A0%E5%AF%86%E5%AE%B9%E5%99%A8%E6%96%87%E4%BB%B6%E4%B9%8B%E5%89%8D%E5%8F%AF%E8%83%BD%E8%A2%AB%E6%8C%82%E8%BD%BD%E4%B8%BA%E5%93%AA%E4%B8%80%E4%B8%AA%E7%9B%98%E7%AC%A6-drive-letter"><span class="toc-number">2.8.</span> <span class="toc-text">37 接上题，此 Veracrypt 加密容器文件之前可能被挂载为哪一个盘符(drive letter) ?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#38-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E4%BD%95%E6%BA%90%E6%9B%BE%E5%9C%A8%E7%94%B5%E8%84%91%E4%B8%8A%E7%99%BB%E9%99%86%E8%BF%87%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%99%BE%E5%BA%A6%E4%BA%91%E7%9B%98%EF%BC%8C%E8%AF%B7%E9%97%AE%E4%BB%96%E7%9A%84-Baidu-%E8%B4%A6%E5%8F%B7%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="toc-number">2.9.</span> <span class="toc-text">38 在何源的个人计算机中，何源曾在电脑上登陆过客户端百度云盘，请问他的 Baidu 账号是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#39-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E4%BD%95%E6%BA%90%E5%88%A9%E7%94%A8%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E4%B8%8A%E4%BC%A0%E8%BF%87%E4%B8%80%E4%BA%9B%E6%96%87%E4%BB%B6%EF%BC%8C%E8%AF%B7%E9%97%AE%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%80%E4%B8%AA%E6%98%AF%EF%BC%9F"><span class="toc-number">2.10.</span> <span class="toc-text">39 在何源的个人计算机中，何源利用客户端百度网盘上传过一些文件，请问以下哪一个是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#40-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E4%BD%95%E6%BA%90-iPhone-%E6%89%8B%E6%9C%BA%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9B%BE%E7%89%87%E6%9B%BE%E8%A2%AB%E5%90%8C%E6%AD%A5%E5%88%B0%E4%BB%96%E7%9A%84%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E4%B8%AD%EF%BC%8C%E8%AF%B7%E9%97%AE%E5%9B%BE%E7%89%87%E2%80%9C2019-06-21-113537-jpg%E2%80%9D%E7%9A%84-MD5-hash-%E5%80%BC%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="toc-number">2.11.</span> <span class="toc-text">40 在何源的个人计算机中，何源 iPhone 手机中的一些图片曾被同步到他的百度网盘中，请问图片“2019-06-21  113537.jpg”的 MD5 hash 值是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#41-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E4%BD%95%E6%BA%90%E7%94%A8%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E2%80%9C-%E7%BE%8E%E5%9B%BD%E6%81%90%E6%80%96%E6%95%85%E4%BA%8B-%E7%BE%8E%E5%9B%BD%E6%81%90%E6%80%96%E6%95%85%E4%BA%8B-01-mp4%E2%80%9D%E7%9A%84%E8%B5%B7%E5%A7%8B%E6%97%B6%E9%97%B4%E6%98%AF%EF%BC%9F-%EF%BC%88%E6%A0%BC%E5%BC%8F%EF%BC%9AUNIX-Timestamp-UTC-8%EF%BC%89"><span class="toc-number">2.12.</span> <span class="toc-text">41 在何源的个人计算机中，何源用百度网盘上传文件“&#x2F;美国恐怖故事&#x2F;美国恐怖故事 01.mp4”的起始时间是？ （格式：UNIX Timestamp UTC+8）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#42-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%8F%91%E7%8E%B0%E6%9C%89%E5%A4%9A%E5%B0%91%E6%96%87%E4%BB%B6-%E6%96%87%E4%BB%B6%E5%A4%B9%E5%AD%98%E5%9C%A8%E4%BA%8E%E4%BD%95%E6%BA%90%E7%9A%84%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E4%B8%AD%EF%BC%9F"><span class="toc-number">2.13.</span> <span class="toc-text">42 在何源的个人计算机中，可以发现有多少文件,文件夹存在于何源的百度网盘中？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#43-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E7%94%A8%E6%88%B7%E2%80%9CHe-Yuan%E2%80%9D%E6%9B%BE%E7%94%A8-Microsoft-Edge-%E6%B5%8F%E8%A7%88%E5%99%A8-google-%E6%90%9C%E7%B4%A2%E8%BF%87%E4%B8%80%E4%BA%9B%E4%BF%A1%E6%81%AF%EF%BC%8C%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%AA%E4%B8%8D%E6%98%AF-%E6%90%9C%E7%B4%A2%E7%9A%84%E5%85%B3%E9%94%AE%E8%AF%8D%EF%BC%9F"><span class="toc-number">2.14.</span> <span class="toc-text">43 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器 google 搜索过一些信息，以下哪个不是 搜索的关键词？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#44-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E7%94%A8%E6%88%B7%E2%80%9CHe-Yuan%E2%80%9D%E6%9B%BE%E7%94%A8-Microsoft-Edge-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B3%A8%E5%86%8C%E8%BF%87%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84-Gmail-account-%E8%AF%B7%E4%BB%8E%E7%BD%91%E9%A1%B5%E6%A0%87%E9%A2%98%E7%97%95%E8%BF%B9%E4%B8%AD%E6%89%BE%E5%87%BA%E6%AD%A4%E8%B4%A6%E5%8F%B7%E3%80%82"><span class="toc-number">2.15.</span> <span class="toc-text">44 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器注册过一个新的 Gmail account,请从网页标题痕迹中找出此账号。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#45-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E7%94%A8%E6%88%B7%E2%80%9CHe-Yuan%E2%80%9D%E6%9B%BE%E7%94%A8-Microsoft-Edge-%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8B%E8%BD%BD%E8%BF%87%E4%B8%80%E4%BA%9B%E6%96%87%E4%BB%B6%EF%BC%8C%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%80%E4%B8%AA%E4%B8%8D%E6%98%AF%EF%BC%9F"><span class="toc-number">2.16.</span> <span class="toc-text">45 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器下载过一些文件，以下哪一个不是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#46-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E7%94%A8%E6%88%B7%E2%80%9CHe-Yuan%E2%80%9D%E6%9B%BE%E7%94%A8%E4%BB%A5%E4%B8%8B%E5%93%AA%E6%AC%BE%E7%BD%91%E9%A1%B5%E6%B5%8F%E8%A7%88%E5%99%A8%E7%99%BB%E9%99%86%E8%BF%87%E7%BD%91%E9%A1%B5%E7%89%88%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%EF%BC%9F"><span class="toc-number">2.17.</span> <span class="toc-text">46 在何源的个人计算机中，用户“He Yuan”曾用以下哪款网页浏览器登陆过网页版百度网盘？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#47-%E5%9C%A8%E4%BD%95%E6%BA%90%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%EF%BC%8C%E7%94%A8%E6%88%B7%E2%80%9CHe-Yuan%E2%80%9D%E6%9B%BE%E7%94%A8-Tor-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BF%E9%97%AE%E8%BF%87%E4%B8%80%E4%BA%9B%E7%BD%91%E7%AB%99%EF%BC%8C%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%80%E4%B8%AA%E4%B8%8D%E6%98%AF%EF%BC%9F"><span class="toc-number">2.18.</span> <span class="toc-text">47 在何源的个人计算机中，用户“He Yuan”曾用 Tor 浏览器访问过一些网站，以下哪一个不是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#48-%E6%8E%A5%E4%B8%8A%E9%A2%98%EF%BC%8C%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%AA-URL-%E6%98%AF%E7%94%B1%E7%94%A8%E6%88%B7%E6%89%8B%E5%8A%A8%E8%BE%93%E5%85%A5%E5%88%B0-Tor-%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%9A%84%EF%BC%9F"><span class="toc-number">2.19.</span> <span class="toc-text">48 接上题，以下哪个 URL 是由用户手动输入到 Tor 浏览器中的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#49-%E6%8E%A5%E4%B8%8A%E9%A2%98%EF%BC%8C%E5%85%B3%E4%BA%8E%E7%BD%91%E9%A1%B5%E2%80%9Dhttp-rso4hutlefirefqp-onion%E2%80%9D%EF%BC%8C%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%80%E4%B8%AA%E6%8F%8F%E8%BF%B0%E6%98%AF%E6%AD%A3%E7%A1%AE%E7%9A%84%EF%BC%9F"><span class="toc-number">2.20.</span> <span class="toc-text">49 接上题，关于网页”http:&#x2F;&#x2F;rso4hutlefirefqp.onion”，以下哪一个描述是正确的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#50-%E6%8E%A5%E4%B8%8A%E9%A2%98%EF%BC%8C%E5%93%AA%E4%B8%AA%E7%BD%91%E9%A1%B5%E5%BC%95%E5%AF%BC%E7%94%A8%E6%88%B7%E5%88%B0%E4%BA%86%E7%BD%91%E9%A1%B5%E2%80%9D-http-vfqnd6mieccqyiit-onion%E2%80%9D"><span class="toc-number">2.21.</span> <span class="toc-text">50 接上题，哪个网页引导用户到了网页” http:&#x2F;&#x2F;vfqnd6mieccqyiit.onion”?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#51-%E5%88%86%E6%9E%90%E4%BD%95%E6%BA%90%E7%9A%84%E5%85%AC%E5%8F%B8%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%86%85%E5%AD%98%E9%95%9C%E5%83%8F%EF%BC%8C%E4%BD%95%E6%BA%90%E7%9A%84%E5%85%AC%E5%8F%B8%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BB%A5%E5%8F%8A%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">2.22.</span> <span class="toc-text">51 分析何源的公司计算机内存镜像，何源的公司计算机操作系统以及硬件架构是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#52-%E5%88%86%E6%9E%90%E4%BD%95%E6%BA%90%E7%9A%84%E5%85%AC%E5%8F%B8%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%86%85%E5%AD%98%E9%95%9C%E5%83%8F%EF%BC%8C%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%80%E4%B8%AA%E6%98%AF%E8%BF%9B%E7%A8%8B%E2%80%9Cexplorer-exe%E2%80%9D%E7%9A%84-PID"><span class="toc-number">2.23.</span> <span class="toc-text">52 分析何源的公司计算机内存镜像，以下哪一个是进程“explorer.exe”的 PID?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0-windows-cmdline-CmdLine"><span class="toc-number">2.23.1.</span> <span class="toc-text">进程命令行参数(windows.cmdline.CmdLine)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%88%97%E8%A1%A8-windows-pstree"><span class="toc-number">2.23.2.</span> <span class="toc-text">进程列表(windows.pstree)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%BA%93%E5%88%97%E8%A1%A8-windows-dlllist"><span class="toc-number">2.23.3.</span> <span class="toc-text">动态库列表(windows.dlllist)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B4%A6%E6%88%B7%E4%BF%A1%E6%81%AF%EF%BC%88windows-hashdump%EF%BC%89"><span class="toc-number">2.23.4.</span> <span class="toc-text">账户信息（windows.hashdump）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E8%A1%A8%E6%95%B0%E6%8D%AE-windows-registry-hivelist"><span class="toc-number">2.23.5.</span> <span class="toc-text">注册表数据(windows.registry.hivelist)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81-windows-netscan-NetScan"><span class="toc-number">2.23.6.</span> <span class="toc-text">网络连接状态(windows.netscan.NetScan)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81-windows-svcscan"><span class="toc-number">2.23.7.</span> <span class="toc-text">服务运行状态(windows.svcscan)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-windows-envars"><span class="toc-number">2.23.8.</span> <span class="toc-text">进程环境变量(windows.envars)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%BC%93%E5%AD%98%E7%9A%84%E6%96%87%E4%BB%B6-windows-dumpfiles"><span class="toc-number">2.23.9.</span> <span class="toc-text">进程缓存的文件(windows.dumpfiles)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#53-%E5%88%86%E6%9E%90%E4%BD%95%E6%BA%90%E7%9A%84%E5%85%AC%E5%8F%B8%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%86%85%E5%AD%98%E9%95%9C%E5%83%8F%EF%BC%8C%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%80%E4%B8%AA%E6%98%AF%E6%AD%A3%E7%A1%AE%E7%9A%84%E7%94%A8%E6%88%B7-SID-%EF%BC%9F"><span class="toc-number">2.24.</span> <span class="toc-text">53 分析何源的公司计算机内存镜像，以下哪一个是正确的用户 SID ？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#54-%E5%88%86%E6%9E%90%E4%BD%95%E6%BA%90%E7%9A%84%E5%85%AC%E5%8F%B8%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%86%85%E5%AD%98%E9%95%9C%E5%83%8F%EF%BC%8C%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%AA%E8%BF%9C%E7%A8%8B%E5%9C%B0%E5%9D%80%E4%B8%8E%E6%9C%AC%E5%9C%B0%E5%9C%B0%E5%9D%80%E5%BB%BA%E7%AB%8B%E8%BF%87-TCP-%E8%BF%9E%E6%8E%A5%EF%BC%9F"><span class="toc-number">2.25.</span> <span class="toc-text">54 分析何源的公司计算机内存镜像，以下哪个远程地址与本地地址建立过 TCP 连接？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#55-%E6%8E%A5%E4%B8%8A%E9%A2%98%EF%BC%8C%E5%9C%A8%E4%B8%8A%E8%BF%B0-TCP-%E8%BF%9E%E6%8E%A5%E9%87%8C%EF%BC%8C%E8%BF%9C%E7%A8%8B%E5%9C%B0%E5%9D%80%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%8F%B7%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="toc-number">2.26.</span> <span class="toc-text">55 接上题，在上述 TCP 连接里，远程地址的端口号是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#56-%E5%88%86%E6%9E%90%E4%BD%95%E6%BA%90%E7%9A%84%E5%85%AC%E5%8F%B8%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%86%85%E5%AD%98%E9%95%9C%E5%83%8F%EF%BC%8C%E6%B3%A8%E5%86%8C%E8%A1%A8%E2%80%9C-SystemRoot-System32-Config-SAM%E2%80%9D%E5%9C%A8%E5%86%85%E5%AD%98%E9%95%9C%E5%83%8F%E4%B8%AD%E7%9A%84%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80-%EF%BC%88Virtual-Address%EF%BC%89%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="toc-number">2.27.</span> <span class="toc-text">56 分析何源的公司计算机内存镜像，注册表“\SystemRoot\System32\Config\SAM”在内存镜像中的虚拟地址 （Virtual Address）是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#57-%E5%88%86%E6%9E%90%E4%BD%95%E6%BA%90%E7%9A%84%E5%85%AC%E5%8F%B8%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%86%85%E5%AD%98%E9%95%9C%E5%83%8F%EF%BC%8C%E7%94%A8%E6%88%B7%E2%80%9CYuan-He%E2%80%9D%E7%99%BB%E5%85%A5%E5%AF%86%E7%A0%81%E7%9A%84-NTLM-hash-%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="toc-number">2.28.</span> <span class="toc-text">57 分析何源的公司计算机内存镜像，用户“Yuan He”登入密码的 NTLM hash 是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#58-%E5%88%86%E6%9E%90%E4%BD%95%E6%BA%90%E7%9A%84%E5%85%AC%E5%8F%B8%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%86%85%E5%AD%98%E9%95%9C%E5%83%8F%EF%BC%8C%E7%9B%98%E7%AC%A6%E2%80%9CE%EF%BC%9A%E2%80%9D%E4%B8%8A%E7%9A%84%E6%96%87%E4%BB%B6%E2%80%9CPersonal-Information-xlsx%E2%80%9D%E4%BD%95%E6%97%B6%E8%A2%AB%E8%AE%BF%E9%97%AE%E8%BF%87%EF%BC%9F"><span class="toc-number">2.29.</span> <span class="toc-text">58 分析何源的公司计算机内存镜像，盘符“E：”上的文件“Personal Information.xlsx”何时被访问过？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#59-%E5%88%86%E6%9E%90%E4%BD%95%E6%BA%90%E7%9A%84%E5%85%AC%E5%8F%B8%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%86%85%E5%AD%98%E9%95%9C%E5%83%8F%EF%BC%8C%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%AA%E6%98%AF%E6%96%87%E4%BB%B6%E2%80%9CPersonal-Information-xlsx%E2%80%9D%E7%9A%84%E6%AD%A3%E7%A1%AE%E8%B7%AF%E5%BE%84%EF%BC%9F"><span class="toc-number">2.30.</span> <span class="toc-text">59 分析何源的公司计算机内存镜像，以下哪个是文件“Personal Information.xlsx”的正确路径？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#60-%E5%88%86%E6%9E%90%E4%BD%95%E6%BA%90%E7%9A%84%E5%85%AC%E5%8F%B8%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%86%85%E5%AD%98%E9%95%9C%E5%83%8F%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%8F%91%E7%8E%B0%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%BA%9B%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9B%BE%E8%A2%AB%E8%AE%BF%E9%97%AE%E8%BF%87%EF%BC%9F"><span class="toc-number">2.31.</span> <span class="toc-text">60 分析何源的公司计算机内存镜像，可以发现以下哪些文件夹曾被访问过？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#61-%E5%88%86%E6%9E%90%E4%BD%95%E6%BA%90%E7%9A%84%E5%85%AC%E5%8F%B8%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%86%85%E5%AD%98%E9%95%9C%E5%83%8F%EF%BC%8C%E4%BB%A5%E4%B8%8B%E9%82%A3%E4%B8%80%E9%A1%B9%E6%9C%89%E5%85%B3%E8%BF%99%E5%8F%B0%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E8%B5%84%E6%96%99%E6%98%AF%E6%AD%A3%E7%A1%AE%EF%BC%9F"><span class="toc-number">2.32.</span> <span class="toc-text">61 分析何源的公司计算机内存镜像，以下那一项有关这台计算机的资料是正确？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#62-%E5%88%86%E6%9E%90%E4%BD%95%E6%BA%90%E7%9A%84%E5%85%AC%E5%8F%B8%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%86%85%E5%AD%98%E9%95%9C%E5%83%8F%EF%BC%8C%E4%BB%A5%E4%B8%8B%E9%82%A3%E4%B8%80%E9%A1%B9%E5%85%B3%E4%BA%8E%E8%BF%99%E5%8F%B0%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%BF%9E%E6%8E%A5-USB-%E8%A3%85%E7%BD%AE%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%98%AF%E6%AD%A3%E7%A1%AE%EF%BC%9F"><span class="toc-number">2.33.</span> <span class="toc-text">62 分析何源的公司计算机内存镜像，以下那一项关于这台计算机连接 USB 装置的描述是正确？</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/" title="美亚杯个人赛2019例题笔记"><img src="/img/Animation/2.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="美亚杯个人赛2019例题笔记"/></a><div class="content"><a class="title" href="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/" title="美亚杯个人赛2019例题笔记">美亚杯个人赛2019例题笔记</a><time datetime="2021-11-10T15:26:57.000Z" title="发表于 2021-11-10 23:26:57">2021-11-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/" title="美亚杯团体赛2020例题笔记"><img src="/img/Animation/9.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="美亚杯团体赛2020例题笔记"/></a><div class="content"><a class="title" href="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/" title="美亚杯团体赛2020例题笔记">美亚杯团体赛2020例题笔记</a><time datetime="2021-11-03T12:51:14.000Z" title="发表于 2021-11-03 20:51:14">2021-11-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/28/Hackergame-EasyRSA/" title="Hackergame_EasyRSA"><img src="/img/Animation/3.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hackergame_EasyRSA"/></a><div class="content"><a class="title" href="/2021/10/28/Hackergame-EasyRSA/" title="Hackergame_EasyRSA">Hackergame_EasyRSA</a><time datetime="2021-10-28T15:36:37.000Z" title="发表于 2021-10-28 23:36:37">2021-10-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/27/%E5%9B%BE%E8%A7%A3%E5%AF%86%E7%A0%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="图解密码技术笔记"><img src="/img/Animation/1.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="图解密码技术笔记"/></a><div class="content"><a class="title" href="/2021/10/27/%E5%9B%BE%E8%A7%A3%E5%AF%86%E7%A0%81%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" title="图解密码技术笔记">图解密码技术笔记</a><time datetime="2021-10-26T16:34:00.000Z" title="发表于 2021-10-27 00:34:00">2021-10-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/" title="2021长安杯做题总结"><img src="/img/Animation/8.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021长安杯做题总结"/></a><div class="content"><a class="title" href="/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/" title="2021长安杯做题总结">2021长安杯做题总结</a><time datetime="2021-10-26T15:55:39.000Z" title="发表于 2021-10-26 23:55:39">2021-10-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 萌新QAQ</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
