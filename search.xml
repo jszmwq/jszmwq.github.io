@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hackergame_EasyRSA</title>
+    <url>/2021/10/28/Hackergame-EasyRSA/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本来以为这是一道很简单的题，但是我太菜了犯了几个十分低级的错误（快哭了），感谢dbt给我指点迷津，膜拜大佬。</p>
+<h1 id="题目代码"><a href="#题目代码" class="headerlink" title="题目代码"></a>题目代码</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> sympy</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_p</span>():</span></span><br><span class="line">    x = <span class="number">11124440021748127159092076861405454814981575144744508857178576572929321435002942998531420985771090167262256877805902135304112271641074498386662361391760451</span></span><br><span class="line">    y = <span class="number">11124440021748127159092076861405454814981575144744508857178576572929321435002942998531420985771090167262256877805902135304112271641074498386662361391661439</span></span><br><span class="line">    value_p = sympy.nextprime((math.factorial(y)) % x)  <span class="comment"># Hint：这里直接计算会溢出，请你仔细观察 x 和 y 的特征</span></span><br><span class="line">    <span class="keyword">return</span> value_p</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_q</span>():</span></span><br><span class="line">    value = [getPrime(<span class="number">256</span>)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">10</span>):</span><br><span class="line">        value.append(sympy.nextprime(value[i - <span class="number">1</span>]))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;value[-1] = &quot;</span>, value[-<span class="number">1</span>])</span><br><span class="line">    <span class="comment"># value[-1] = 80096058210213458444437404275177554701604739094679033012396452382975889905967</span></span><br><span class="line">    n = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">        n = n * value[i]</span><br><span class="line">    q = getPrime(<span class="number">512</span>)</span><br><span class="line">    value_q = <span class="built_in">pow</span>(q, e, n)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;value_q = &quot;</span>, value_q)</span><br><span class="line">    <span class="comment"># value_q = 5591130088089053683141520294620171646179623062803708281023766040254675625012293743465254007970358536660934858789388093688621793201658889399155357407224541324547522479617669812322262372851929223461622559971534394847970366311206823328200747893961649255426063204482192349202005330622561575868946656570678176047822163692259375233925446556338917358118222905050574458037965803154233167594946713038301249145097770337253930655681648299249481985768272321820718607757023350742647019762122572886601905212830744868048802864679734428398229280780215896045509020793530842541217790352661324630048261329493088812057300480085895399922301827190211956061083460036781018660201163819104150988531352228650991733072010425499238731811243310625701946882701082178190402011133439065106720309788819</span></span><br><span class="line">    <span class="keyword">return</span> sympy.nextprime(q)</span><br><span class="line"><span class="comment"># this destroyes the rsa cryptosystem</span></span><br><span class="line">p = get_p()</span><br><span class="line">q = get_q()</span><br><span class="line">m = <span class="built_in">int</span>.from_bytes(<span class="built_in">open</span>(<span class="string">&quot;flag.txt&quot;</span>, <span class="string">&quot;rb&quot;</span>).read(), <span class="string">&quot;big&quot;</span>)</span><br><span class="line">c = <span class="built_in">pow</span>(m, e, p * q)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;c = &quot;</span>, c)</span><br><span class="line"><span class="comment"># c = 110644875422336073350488613774418819991169603750711465190260581119043921549811353108399064284589038384540018965816137286856268590507418636799746759551009749004176545414118128330198437101472882906564195341277423007542422286760940374859966152871273887950174522820162832774361714668826122465471705166574184367478</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>对于这道题，在已知p和q的情况下其实不难，所以解题中心放在对p和q的求解上。</p>
+<h2 id="阶乘求模（威尔逊定理的应用）"><a href="#阶乘求模（威尔逊定理的应用）" class="headerlink" title="阶乘求模（威尔逊定理的应用）"></a>阶乘求模（威尔逊定理的应用）</h2><p>在对p的求取过程中，遇到了一个棘手的问题，就是y的阶乘模上x，其中x和y都是非常大的数，但是有一个比较重要的细节就是x-y=99012，不妨可以试着逆推求模，这里用到了一个定理</p>
+<blockquote>
+<p>威尔逊定理：当<strong>P</strong> 为质数的时候，**( P − 2 ) ! = 1(modp)**  即 <strong>(p−1)！≡−1(modp)</strong></p>
+</blockquote>
+<p><img src="/2021/10/28/Hackergame-EasyRSA/image-20211029003443721.png" alt="image-20211029003443721"></p>
+<p>我们可以想到将阶乘运算转化成余数的运算，由于y与x的大小十分接近，故可以从 <code>(x-1)! ≡ x-1 (modx)</code>往前逆推，</p>
+<p>由于 x-1可以写成-1，x-2可以写成-2，以此类推，我们所求的y！的余数即为<code>(-1)*(-2)*...*(-99011)</code>即为 -(99011)!。于是我们可以得到 <code>-99011 * K ≡ x-1 (modx)</code> 用拓展欧几里得定理很容易求出我们所需要的K。</p>
+<h2 id="对nextPrime的逆推"><a href="#对nextPrime的逆推" class="headerlink" title="对nextPrime的逆推"></a>对nextPrime的逆推</h2><p>已知一个素数L，求其及其前九个素数。本来我一开始的思路是定义一个num从1递增，一直循环到L-num用for循环十次nextPrime得到素数L停止，乍看感觉没什么问题，但是我忽视了所求到的     L-num并不能保证一定为素数，况且这样计算的时间复杂度很高，遇到很大的数时计算很麻烦。</p>
+<blockquote>
+<p>质数分布密度：素数分布越来越稀疏，但1e18内任意两个质数的差不会很大，好像有个人证明了不会超过246。</p>
+</blockquote>
+<p>DBT告诉我可以定义一个起始量L-10000（更精确具体的话可以设置为L-2460），在L-10000到L内肯定含有超过10个素数，只需要将其添加进列表中，只取后10个即可，想法比我的要好得多。</p>
+<h1 id="解题代码"><a href="#解题代码" class="headerlink" title="解题代码"></a>解题代码</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> sympy</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line">c = <span class="number">110644875422336073350488613774418819991169603750711465190260581119043921549811353108399064284589038384540018965816137286856268590507418636799746759551009749004176545414118128330198437101472882906564195341277423007542422286760940374859966152871273887950174522820162832774361714668826122465471705166574184367478</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line"><span class="built_in">list</span> = []</span><br><span class="line">value_q = <span class="number">5591130088089053683141520294620171646179623062803708281023766040254675625012293743465254007970358536660934858789388093688621793201658889399155357407224541324547522479617669812322262372851929223461622559971534394847970366311206823328200747893961649255426063204482192349202005330622561575868946656570678176047822163692259375233925446556338917358118222905050574458037965803154233167594946713038301249145097770337253930655681648299249481985768272321820718607757023350742647019762122572886601905212830744868048802864679734428398229280780215896045509020793530842541217790352661324630048261329493088812057300480085895399922301827190211956061083460036781018660201163819104150988531352228650991733072010425499238731811243310625701946882701082178190402011133439065106720309788819</span></span><br><span class="line">a = <span class="number">80096058210213458444437404275177554701604739094679033012396452382975889905967</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(a-<span class="number">2460</span>,a+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">if</span> sympy.isprime(i):</span><br><span class="line">        <span class="built_in">list</span>.append(i)</span><br><span class="line">n_q = <span class="number">1</span></span><br><span class="line">phi_q = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">    n_q = n_q * <span class="built_in">list</span>[-i]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">    phi_q = phi_q * (<span class="built_in">list</span>[-i] - <span class="number">1</span>)</span><br><span class="line">q = <span class="built_in">pow</span>(value_q, gmpy2.invert(e, phi_q), n_q)</span><br><span class="line">q = sympy.nextprime(q)</span><br><span class="line">x = <span class="number">11124440021748127159092076861405454814981575144744508857178576572929321435002942998531420985771090167262256877805902135304112271641074498386662361391760451</span></span><br><span class="line">y = <span class="number">11124440021748127159092076861405454814981575144744508857178576572929321435002942998531420985771090167262256877805902135304112271641074498386662361391661439</span></span><br><span class="line">ooo = (-<span class="number">1</span> * math.factorial(<span class="number">99011</span>)) % x</span><br><span class="line">p = sympy.nextprime((gmpy2.invert(ooo, x) * (x-<span class="number">1</span>) ) % x)</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">pow</span>(c, gmpy2.invert(e, (p-<span class="number">1</span>)*(q-<span class="number">1</span>)), p*q)))</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="题目答案"><a href="#题目答案" class="headerlink" title="题目答案"></a>题目答案</h1><p>b’flag{CRYPT0_1s_Interesting!}’</p>
+]]></content>
+      <tags>
+        <tag>crypto</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2021长安杯做题总结</title>
     <url>/2021/10/26/2021%E9%95%BF%E5%AE%89%E6%9D%AF%E5%81%9A%E9%A2%98%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>鼠鼠参加了长安杯，没想到连第七题的密码都没找出来，属实是太菜，哭哭了。硬生生的干坐了三个小时，最可笑的是做对的题竟然还没有蒙对的题多，想要技术过关，还需要继续学习！（WP暂时还不想写，最近的事比较多，期中考试，密码学习，美亚杯，各种各样的事情都需要去花时间去做，奈何时间不够又想要偷懒摸鱼，至少先一步一步来吧:（    ）</p>
@@ -251,35 +280,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hackergame_EasyRSA</title>
-    <url>/2021/10/28/Hackergame-EasyRSA/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本来以为这是一道很简单的题，但是我太菜了犯了几个十分低级的错误（快哭了），感谢dbt给我指点迷津，膜拜大佬。</p>
-<h1 id="题目代码"><a href="#题目代码" class="headerlink" title="题目代码"></a>题目代码</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> sympy</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_p</span>():</span></span><br><span class="line">    x = <span class="number">11124440021748127159092076861405454814981575144744508857178576572929321435002942998531420985771090167262256877805902135304112271641074498386662361391760451</span></span><br><span class="line">    y = <span class="number">11124440021748127159092076861405454814981575144744508857178576572929321435002942998531420985771090167262256877805902135304112271641074498386662361391661439</span></span><br><span class="line">    value_p = sympy.nextprime((math.factorial(y)) % x)  <span class="comment"># Hint：这里直接计算会溢出，请你仔细观察 x 和 y 的特征</span></span><br><span class="line">    <span class="keyword">return</span> value_p</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_q</span>():</span></span><br><span class="line">    value = [getPrime(<span class="number">256</span>)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">10</span>):</span><br><span class="line">        value.append(sympy.nextprime(value[i - <span class="number">1</span>]))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;value[-1] = &quot;</span>, value[-<span class="number">1</span>])</span><br><span class="line">    <span class="comment"># value[-1] = 80096058210213458444437404275177554701604739094679033012396452382975889905967</span></span><br><span class="line">    n = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">        n = n * value[i]</span><br><span class="line">    q = getPrime(<span class="number">512</span>)</span><br><span class="line">    value_q = <span class="built_in">pow</span>(q, e, n)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;value_q = &quot;</span>, value_q)</span><br><span class="line">    <span class="comment"># value_q = 5591130088089053683141520294620171646179623062803708281023766040254675625012293743465254007970358536660934858789388093688621793201658889399155357407224541324547522479617669812322262372851929223461622559971534394847970366311206823328200747893961649255426063204482192349202005330622561575868946656570678176047822163692259375233925446556338917358118222905050574458037965803154233167594946713038301249145097770337253930655681648299249481985768272321820718607757023350742647019762122572886601905212830744868048802864679734428398229280780215896045509020793530842541217790352661324630048261329493088812057300480085895399922301827190211956061083460036781018660201163819104150988531352228650991733072010425499238731811243310625701946882701082178190402011133439065106720309788819</span></span><br><span class="line">    <span class="keyword">return</span> sympy.nextprime(q)</span><br><span class="line"><span class="comment"># this destroyes the rsa cryptosystem</span></span><br><span class="line">p = get_p()</span><br><span class="line">q = get_q()</span><br><span class="line">m = <span class="built_in">int</span>.from_bytes(<span class="built_in">open</span>(<span class="string">&quot;flag.txt&quot;</span>, <span class="string">&quot;rb&quot;</span>).read(), <span class="string">&quot;big&quot;</span>)</span><br><span class="line">c = <span class="built_in">pow</span>(m, e, p * q)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;c = &quot;</span>, c)</span><br><span class="line"><span class="comment"># c = 110644875422336073350488613774418819991169603750711465190260581119043921549811353108399064284589038384540018965816137286856268590507418636799746759551009749004176545414118128330198437101472882906564195341277423007542422286760940374859966152871273887950174522820162832774361714668826122465471705166574184367478</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>对于这道题，在已知p和q的情况下其实不难，所以解题中心放在对p和q的求解上。</p>
-<h2 id="阶乘求模（威尔逊定理的应用）"><a href="#阶乘求模（威尔逊定理的应用）" class="headerlink" title="阶乘求模（威尔逊定理的应用）"></a>阶乘求模（威尔逊定理的应用）</h2><p>在对p的求取过程中，遇到了一个棘手的问题，就是y的阶乘模上x，其中x和y都是非常大的数，但是有一个比较重要的细节就是x-y=99012，不妨可以试着逆推求模，这里用到了一个定理</p>
-<blockquote>
-<p>威尔逊定理：当<strong>P</strong> 为质数的时候，**( P − 2 ) ! = 1(modp)**  即 <strong>(p−1)！≡−1(modp)</strong></p>
-</blockquote>
-<p><img src="/2021/10/28/Hackergame-EasyRSA/image-20211029003443721.png" alt="image-20211029003443721"></p>
-<p>我们可以想到将阶乘运算转化成余数的运算，由于y与x的大小十分接近，故可以从 <code>(x-1)! ≡ x-1 (modx)</code>往前逆推，</p>
-<p>由于 x-1可以写成-1，x-2可以写成-2，以此类推，我们所求的y！的余数即为<code>(-1)*(-2)*...*(-99011)</code>即为 -(99011)!。于是我们可以得到 <code>-99011 * K ≡ x-1 (modx)</code> 用拓展欧几里得定理很容易求出我们所需要的K。</p>
-<h2 id="对nextPrime的逆推"><a href="#对nextPrime的逆推" class="headerlink" title="对nextPrime的逆推"></a>对nextPrime的逆推</h2><p>已知一个素数L，求其及其前九个素数。本来我一开始的思路是定义一个num从1递增，一直循环到L-num用for循环十次nextPrime得到素数L停止，乍看感觉没什么问题，但是我忽视了所求到的     L-num并不能保证一定为素数，况且这样计算的时间复杂度很高，遇到很大的数时计算很麻烦。</p>
-<blockquote>
-<p>质数分布密度：素数分布越来越稀疏，但1e18内任意两个质数的差不会很大，好像有个人证明了不会超过246。</p>
-</blockquote>
-<p>DBT告诉我可以定义一个起始量L-10000（更精确具体的话可以设置为L-2460），在L-10000到L内肯定含有超过10个素数，只需要将其添加进列表中，只取后10个即可，想法比我的要好得多。</p>
-<h1 id="解题代码"><a href="#解题代码" class="headerlink" title="解题代码"></a>解题代码</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> sympy</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line">c = <span class="number">110644875422336073350488613774418819991169603750711465190260581119043921549811353108399064284589038384540018965816137286856268590507418636799746759551009749004176545414118128330198437101472882906564195341277423007542422286760940374859966152871273887950174522820162832774361714668826122465471705166574184367478</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line"><span class="built_in">list</span> = []</span><br><span class="line">value_q = <span class="number">5591130088089053683141520294620171646179623062803708281023766040254675625012293743465254007970358536660934858789388093688621793201658889399155357407224541324547522479617669812322262372851929223461622559971534394847970366311206823328200747893961649255426063204482192349202005330622561575868946656570678176047822163692259375233925446556338917358118222905050574458037965803154233167594946713038301249145097770337253930655681648299249481985768272321820718607757023350742647019762122572886601905212830744868048802864679734428398229280780215896045509020793530842541217790352661324630048261329493088812057300480085895399922301827190211956061083460036781018660201163819104150988531352228650991733072010425499238731811243310625701946882701082178190402011133439065106720309788819</span></span><br><span class="line">a = <span class="number">80096058210213458444437404275177554701604739094679033012396452382975889905967</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(a-<span class="number">2460</span>,a+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">if</span> sympy.isprime(i):</span><br><span class="line">        <span class="built_in">list</span>.append(i)</span><br><span class="line">n_q = <span class="number">1</span></span><br><span class="line">phi_q = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">    n_q = n_q * <span class="built_in">list</span>[-i]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">    phi_q = phi_q * (<span class="built_in">list</span>[-i] - <span class="number">1</span>)</span><br><span class="line">q = <span class="built_in">pow</span>(value_q, gmpy2.invert(e, phi_q), n_q)</span><br><span class="line">q = sympy.nextprime(q)</span><br><span class="line">x = <span class="number">11124440021748127159092076861405454814981575144744508857178576572929321435002942998531420985771090167262256877805902135304112271641074498386662361391760451</span></span><br><span class="line">y = <span class="number">11124440021748127159092076861405454814981575144744508857178576572929321435002942998531420985771090167262256877805902135304112271641074498386662361391661439</span></span><br><span class="line">ooo = (-<span class="number">1</span> * math.factorial(<span class="number">99011</span>)) % x</span><br><span class="line">p = sympy.nextprime((gmpy2.invert(ooo, x) * (x-<span class="number">1</span>) ) % x)</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">pow</span>(c, gmpy2.invert(e, (p-<span class="number">1</span>)*(q-<span class="number">1</span>)), p*q)))</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="题目答案"><a href="#题目答案" class="headerlink" title="题目答案"></a>题目答案</h1><p>b’flag{CRYPT0_1s_Interesting!}’</p>
-]]></content>
-      <tags>
-        <tag>crypto</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>babeRCE</title>
     <url>/2021/10/01/babeRCE/</url>
     <content><![CDATA[<h2 id="babeRCE"><a href="#babeRCE" class="headerlink" title="babeRCE"></a>babeRCE</h2><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p><img src="/2021/10/01/babeRCE/image-20211001235119791.png" alt="image-20211001235119791"></p>
@@ -293,36 +293,6 @@
 ]]></content>
       <tags>
         <tag>web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RAID重组</title>
-    <url>/2021/10/13/RAID%E9%87%8D%E7%BB%84/</url>
-    <content><![CDATA[<h3 id="修改root密码"><a href="#修改root密码" class="headerlink" title="修改root密码"></a>修改root密码</h3><h4 id="方案一："><a href="#方案一：" class="headerlink" title="方案一："></a>方案一：</h4><p>添加grub启动参数 rw init=/bin/sh 或者 sysroot/bin/sh</p>
-<p>chroot &amp; passwd</p>
-<h5 id="虚拟机方面"><a href="#虚拟机方面" class="headerlink" title="虚拟机方面"></a>虚拟机方面</h5><p>使用取证大师挂载到本地，然后在添加设备中添加RAID硬盘组本地磁盘进行重组</p>
-<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013002605156.png" alt="image-20211013002605156"></p>
-<p>导入虚拟机时注意使用转化好的虚拟磁盘（需要全部导入，并且一般选取其中最大的可能包含操作系统的放在首位导入）</p>
-<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013002917659.png" alt="image-20211013002917659"></p>
-<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013003021252.png" alt="image-20211013003021252"></p>
-<p>对其中 ro进行改写为 rw init=sysroot\bin\sh, 即可绕过密码进入系统</p>
-<p>后输入chroot sysroot/ 更换根目录</p>
-<p>之后就可以用passwd来设置新密码</p>
-<p>输入exit后reboot来重启</p>
-<h4 id="方案二："><a href="#方案二：" class="headerlink" title="方案二："></a>方案二：</h4><p>挂在可启动的系统上</p>
-<p>Chroot &amp; passwd</p>
-<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013004758124.png" alt="image-20211013004758124"></p>
-<h3 id="一些命令"><a href="#一些命令" class="headerlink" title="一些命令"></a>一些命令</h3><p>ls -lh</p>
-<p>cat ect/hostname</p>
-<p>fdisk -l 可以查看挂载那些硬盘</p>
-<p>fdisk -l 1 less 可以查看有哪些设备</p>
-<p>mdadm –help 获取帮助</p>
-<p>mdadm –detail /dev/md5</p>
-<p>lvm 下 lvdisplay</p>
-<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211113174147589.png" alt="image-20211113174147589"></p>
-]]></content>
-      <tags>
-        <tag>电子数据取证</tag>
       </tags>
   </entry>
   <entry>
@@ -366,6 +336,36 @@
 ]]></content>
       <tags>
         <tag>crypto</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RAID重组</title>
+    <url>/2021/10/13/RAID%E9%87%8D%E7%BB%84/</url>
+    <content><![CDATA[<h3 id="修改root密码"><a href="#修改root密码" class="headerlink" title="修改root密码"></a>修改root密码</h3><h4 id="方案一："><a href="#方案一：" class="headerlink" title="方案一："></a>方案一：</h4><p>添加grub启动参数 rw init=/bin/sh 或者 sysroot/bin/sh</p>
+<p>chroot &amp; passwd</p>
+<h5 id="虚拟机方面"><a href="#虚拟机方面" class="headerlink" title="虚拟机方面"></a>虚拟机方面</h5><p>使用取证大师挂载到本地，然后在添加设备中添加RAID硬盘组本地磁盘进行重组</p>
+<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013002605156.png" alt="image-20211013002605156"></p>
+<p>导入虚拟机时注意使用转化好的虚拟磁盘（需要全部导入，并且一般选取其中最大的可能包含操作系统的放在首位导入）</p>
+<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013002917659.png" alt="image-20211013002917659"></p>
+<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013003021252.png" alt="image-20211013003021252"></p>
+<p>对其中 ro进行改写为 rw init=sysroot\bin\sh, 即可绕过密码进入系统</p>
+<p>后输入chroot sysroot/ 更换根目录</p>
+<p>之后就可以用passwd来设置新密码</p>
+<p>输入exit后reboot来重启</p>
+<h4 id="方案二："><a href="#方案二：" class="headerlink" title="方案二："></a>方案二：</h4><p>挂在可启动的系统上</p>
+<p>Chroot &amp; passwd</p>
+<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013004758124.png" alt="image-20211013004758124"></p>
+<h3 id="一些命令"><a href="#一些命令" class="headerlink" title="一些命令"></a>一些命令</h3><p>ls -lh</p>
+<p>cat ect/hostname</p>
+<p>fdisk -l 可以查看挂载那些硬盘</p>
+<p>fdisk -l 1 less 可以查看有哪些设备</p>
+<p>mdadm –help 获取帮助</p>
+<p>mdadm –detail /dev/md5</p>
+<p>lvm 下 lvdisplay</p>
+<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211113174147589.png" alt="image-20211113174147589"></p>
+]]></content>
+      <tags>
+        <tag>电子数据取证</tag>
       </tags>
   </entry>
   <entry>
@@ -553,6 +553,122 @@
       </tags>
   </entry>
   <entry>
+    <title>几道web题</title>
+    <url>/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="2048"><a href="#2048" class="headerlink" title="2048"></a>2048</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001191433709.png" alt="image-20211001191433709"></p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001191507747.png" alt="image-20211001191507747"></p>
+<p>打开网页后是一个如图所示的小游戏，几番折腾后游戏结束</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001191642280.png" alt="image-20211001191642280"></p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001191653895.png" alt="image-20211001191653895"></p>
+<p>我们按F12查看源码，搜索flag和score相关关键词，发现了一个函数，即为解体的关键</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001194930314.png" alt="image-20211001194930314"></p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001191908626.png" alt="image-20211001191908626"></p>
+<p>当游戏失败时，调用obj.getFlag，并对其中obj.score的数值进行判断，仅当score&gt;50001时才给出flag</p>
+<h4 id="解法一："><a href="#解法一：" class="headerlink" title="解法一："></a>解法一：</h4><p>在F12的控制台中输入</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001195606298.png" alt="image-20211001195606298"></p>
+<h4 id="解法二："><a href="#解法二：" class="headerlink" title="解法二："></a>解法二：</h4><p>打开网址47.93.215.154:5001/flag.php?score=50001即可得到flag</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001195557547.png" alt="image-20211001195557547"></p>
+<h2 id="Web-Inc"><a href="#Web-Inc" class="headerlink" title="Web_Inc"></a>Web_Inc</h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001195843736.png" alt="image-20211001195843736"></p>
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>变量a通过get传参，变量b通过post传参</p>
+<p>题中对a和b的值和MD5进行比较，当且仅当值不等且MD5相等时给出flag</p>
+<h4 id="相关知识点："><a href="#相关知识点：" class="headerlink" title="相关知识点："></a>相关知识点：</h4><h5 id="等号的数量问题："><a href="#等号的数量问题：" class="headerlink" title="等号的数量问题："></a>等号的数量问题：</h5><p>三个等号 为 类型相等 并且 值相等</p>
+<p>两个等号 仅仅为 值相等</p>
+<p><strong>(若字符串以数字开头，则取开头数字作为转换结果，若无则输出0)</strong></p>
+<p>“abc” == 0  值为 True</p>
+<h5 id="MD5碰撞及绕过："><a href="#MD5碰撞及绕过：" class="headerlink" title="MD5碰撞及绕过："></a>MD5碰撞及绕过：</h5><h6 id="1、构造数组"><a href="#1、构造数组" class="headerlink" title="1、构造数组"></a>1、构造数组</h6><p>在 PHP5 和 PHP7 中，当两个 md5 进行比较时，若参数是不同的数组，那么 <code>==</code> 和 <code>===</code> 比较的结果均为 True</p>
+<p>$a = $GET[“a”]; $b = $GET[“b”];时可以构造<strong>a[]=1&amp;&amp;b[]=1</strong></p>
+<h6 id="2、构造0E（仅适用于”-“）"><a href="#2、构造0E（仅适用于”-“）" class="headerlink" title="2、构造0E（仅适用于”==“）"></a>2、构造0E（仅适用于”==“）</h6><p>如果md5的值是以0e开头的，那么就与其他的0e开头的Md5值是相等的</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001211508144.png" alt="image-20211001211508144"></p>
+<p>得到FLAG</p>
+<h2 id="ezinclude（我们仍未知道那天所解的题的解法）"><a href="#ezinclude（我们仍未知道那天所解的题的解法）" class="headerlink" title="ezinclude（我们仍未知道那天所解的题的解法）"></a>ezinclude<em><strong>（我们仍未知道那天所解的题的解法）</strong></em></h2><h3 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h3><p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001225145844.png" alt="image-20211001225145844"></p>
+<h3 id="题解（尚未知晓原理，以后补充）"><a href="#题解（尚未知晓原理，以后补充）" class="headerlink" title="题解（尚未知晓原理，以后补充）"></a>题解（尚未知晓原理，以后补充）</h3><p><em><strong>47.98.215.112:5000/?file=php://filter/convert.base64-encode/resource=flag.php</strong></em></p>
+<p>得到PD8kZmxhZz0ibW9lY3Rme3hkc2VjNmFzZGdhczdhaGZzZmF4Y3pjfSI7Pz4=</p>
+<p>利用base64解码得到<?$flag="moectf{xdsec6asdgas7ahfsfaxczc}";?></p>
+<h2 id="Do-you-know-HTTP"><a href="#Do-you-know-HTTP" class="headerlink" title="Do you know HTTP?"></a>Do you know HTTP?</h2><p>打开网页几个大字赫然在目</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211002110958776.png" alt="image-20211002110958776"></p>
+<p>借鉴之前小饼干的经验，该题应该是想要让我们伪造请求方式和各种的请求头来解题</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211002112048169.png" alt="image-20211002112048169"></p>
+<p>伪造请求头 X-Forwarded-For： 简称XFF头，它代表客户端，也就是HTTP的请求端真实的IP。</p>
+<p> 请求头格式：X-Forwarded-For: client, proxy1, proxy2 client</p>
+<p>即客户端真实 ip，后两项是代理 ip，可缺省，最终在服务端接收前都会被补齐。</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211002112323207.png" alt="image-20211002112323207"></p>
+<p>伪造请求头Referer可以伪造来源地址</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211002112704997.png" alt="image-20211002112704997"></p>
+<p>User-Agent代表的是浏览服务器，只需要把值更改为LT即可</p>
+<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211002113354175.png" alt="image-20211002113354175"></p>
+]]></content>
+      <tags>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客更新流程</title>
+    <url>/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<h1 id="第一次更新"><a href="#第一次更新" class="headerlink" title="第一次更新"></a>第一次更新</h1><h2 id="博客流程"><a href="#博客流程" class="headerlink" title="博客流程"></a>博客流程</h2><h3 id="1、写博客"><a href="#1、写博客" class="headerlink" title="1、写博客"></a>1、写博客</h3><p>执行 hexo new “名字”，hexo 创建该 md 文件，使用 typora 编辑并保存</p>
+<h3 id="2、清缓存-amp-更新渲染"><a href="#2、清缓存-amp-更新渲染" class="headerlink" title="2、清缓存&amp;更新渲染"></a>2、清缓存&amp;更新渲染</h3><p>执行hexo clean清除缓存，</p>
+<p>随后执行hexo g重新渲染静态页面</p>
+<h3 id="3、推送到码云"><a href="#3、推送到码云" class="headerlink" title="3、推送到码云"></a>3、推送到码云</h3><p>执行hexo d</p>
+<h3 id="5-预览本地静态界面"><a href="#5-预览本地静态界面" class="headerlink" title="5.预览本地静态界面"></a>5.预览本地静态界面</h3><p>执行hexo s</p>
+<h3 id="6、更新码云的静态页面"><a href="#6、更新码云的静态页面" class="headerlink" title="6、更新码云的静态页面"></a>6、更新码云的静态页面</h3><p><img src="/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/alpha.png"></p>
+<h3 id="7、重新访问网站"><a href="#7、重新访问网站" class="headerlink" title="7、重新访问网站"></a>7、重新访问网站</h3><p>如果遇到多次刷新无效果的情况。可以试试按F12在网络项下刷新</p>
+<p>=-=-=-=-=-=-=-=-=-=-=-=–=-=-=-=-=-=-=-=-=-=-=-=-=-手打的分割线=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-</p>
+<hr>
+<h1 id="第二次更新"><a href="#第二次更新" class="headerlink" title="第二次更新"></a>第二次更新</h1><p>关于butterfly主题，只是刚刚入门，对于自定义方面尚未搞明白</p>
+<h2 id="避雷"><a href="#避雷" class="headerlink" title="避雷"></a>避雷</h2><p><img src="/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/image-20211124112611676.png" alt="image-20211124112611676"></p>
+<p>这个字数统计目前还是不要打开为好，经过反复测试发现如果enable值为true时会报错，博客无法正常加载，太菜了所以不知道原因。。。</p>
+<h2 id="添加博客标签图片"><a href="#添加博客标签图片" class="headerlink" title="添加博客标签图片"></a>添加博客标签图片</h2><p><img src="/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/image-20211124112741755.png" alt="image-20211124112741755"></p>
+<p>在default_cover下照着这样添加图片即可，随机配图，比较省事，感觉效果还可以，如果有时间的话还可以试试自定义配置封面图片</p>
+]]></content>
+      <tags>
+        <tag>博客入门</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>反序列化</title>
+    <url>/2021/10/02/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="eeeeeeeeeeezunserialize"><a href="#eeeeeeeeeeezunserialize" class="headerlink" title="eeeeeeeeeeezunserialize"></a>eeeeeeeeeeezunserialize</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><img src="/2021/10/02/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20211002114245428.png" alt="image-20211002114245428"></p>
+<h3 id="相关知识点"><a href="#相关知识点" class="headerlink" title="相关知识点"></a>相关知识点</h3><h4 id="魔术函数"><a href="#魔术函数" class="headerlink" title="魔术函数"></a>魔术函数</h4><h5 id="1-constuct-构造函数"><a href="#1-constuct-构造函数" class="headerlink" title="1.constuct()构造函数"></a>1.constuct()构造函数</h5><p>通常实例化完一个对象之后，都要对该对象的属性进行初始化！在实例化一个对象的时候，PHP系统会自动的调用一个名字叫作construct()的方法，我们把这个方法叫作“构造方法”！</p>
+<p>其中，构造方法可以没有参数！</p>
+<h5 id="2-destruct-析构方法"><a href="#2-destruct-析构方法" class="headerlink" title="2.destruct()析构方法"></a>2.destruct()析构方法</h5><p>与构造方法是一对，构造方法是在一个对象“出生”的时候由系统自动调用的，而析构方法是在一个对象“消失”的时候由系统自动调用的！</p>
+<p>析构方法的名字叫destruct()；注意里面不能有任何的参数！</p>
+<h5 id="3-clone-克隆"><a href="#3-clone-克隆" class="headerlink" title="3.clone()克隆"></a>3.clone()克隆</h5><p>触发时机：是在克隆一个对象的时候，对新对象进行初始化的工作</p>
+<h5 id="4-autoload-自动加载类"><a href="#4-autoload-自动加载类" class="headerlink" title="4.autoload()自动加载类"></a>4.autoload()自动加载类</h5><p>当调用不存在的类的时候自动调用！</p>
+<h5 id="5-tostring"><a href="#5-tostring" class="headerlink" title="5.tostring()"></a>5.tostring()</h5><p>当将对象当成字符串使用的时候自动调用</p>
+<h5 id="6-invoke"><a href="#6-invoke" class="headerlink" title="6.invoke()"></a>6.invoke()</h5><p>当将对象当成函数使用的时候自动调用</p>
+<h5 id="7-set"><a href="#7-set" class="headerlink" title="7,set()"></a>7,set()</h5><p>当对无法访问的属性赋值时自动调用（比如：类外调用私有属性）</p>
+<h5 id="8-get"><a href="#8-get" class="headerlink" title="8.get()"></a>8.get()</h5><p>当对获取无法访问的属性值的时候自动调用</p>
+<h5 id="9-unset"><a href="#9-unset" class="headerlink" title="9.unset()"></a>9.unset()</h5><p>当销毁无法访问的属性的时候自动调用</p>
+<h5 id="10-isset"><a href="#10-isset" class="headerlink" title="10.isset()"></a>10.isset()</h5><p>当判断无法访问的属性是否存在的时候自动调用</p>
+<h5 id="11-call"><a href="#11-call" class="headerlink" title="11.call()"></a>11.call()</h5><p>当调用无法访问的普通方法时自动触发</p>
+<h5 id="12-callststic"><a href="#12-callststic" class="headerlink" title="12.callststic()"></a>12.callststic()</h5><p>当无法通过静态方法访问时自动触发</p>
+<h5 id="13-sleep"><a href="#13-sleep" class="headerlink" title="13.__sleep()"></a>13.__sleep()</h5><p>执行serialize()时，先会调用这个函数</p>
+<h5 id="14-wakeup"><a href="#14-wakeup" class="headerlink" title="14.__wakeup()"></a>14.__wakeup()</h5><p>执行unserialize()时，先会调用这个函数</p>
+<h4 id="POP链"><a href="#POP链" class="headerlink" title="POP链"></a>POP链</h4><p>在二进制利用时，ROP 链构造中是寻找当前系统环境中或者内存环境里已经存在的、具有固定地址且带有返回操作的指令集，而 POP 链的构造则是寻找程序当前环境中已经定义了或者能够动态加载的对象中的属性（函数方法），将一些可能的调用组合在一起形成一个完整的、具有目的性的操作。二进制中通常是由于内存溢出控制了指令执行流程，而反序列化过程就是控制代码执行流程的方法之一，当然进行反序列化的数据能够被用户输入所控制。</p>
+]]></content>
+      <tags>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>快速排序</title>
+    <url>/2021/11/26/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>之前一直习惯于冒泡排序，无奈到了大二竟然算法和数据结构还是啥也不会。还是一步一步来吧。</p>
+<h2 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quick_sort</span><span class="params">(<span class="keyword">int</span> s[], <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &lt; r) <span class="comment">//加上这步，防止陷入死循环</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//Swap(s[l], s[(l + r) / 2]); //将中间的这个数和第一个数交换 参见注1</span></span><br><span class="line">        <span class="keyword">int</span> i = l, j = r;</span><br><span class="line">        <span class="keyword">int</span> x = s[l]; <span class="comment">//x作为基准</span></span><br><span class="line">        <span class="keyword">while</span> (i &lt; j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(i &lt; j &amp;&amp; s[j] &gt;= x) <span class="comment">// 从右向左找第一个小于x的数</span></span><br><span class="line">                j--;  </span><br><span class="line">            <span class="keyword">if</span>(i &lt; j) </span><br><span class="line">                s[i++] = s[j];</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span>(i &lt; j &amp;&amp; s[i] &lt; x) <span class="comment">// 从左向右找第一个大于等于x的数</span></span><br><span class="line">                i++;  </span><br><span class="line">            <span class="keyword">if</span>(i &lt; j) </span><br><span class="line">                s[j--] = s[i];</span><br><span class="line">        &#125;</span><br><span class="line">        s[i] = x;</span><br><span class="line">        quick_sort(s, l, i - <span class="number">1</span>); <span class="comment">// 递归调用 </span></span><br><span class="line">        quick_sort(s, i + <span class="number">1</span>, r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>算法与数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数字取证</title>
+    <url>/2021/10/12/%E6%95%B0%E5%AD%97%E5%8F%96%E8%AF%81/</url>
+    <content><![CDATA[<h1 id="取证"><a href="#取证" class="headerlink" title="取证"></a>取证</h1><h2 id="电子数据取证"><a href="#电子数据取证" class="headerlink" title="电子数据取证"></a>电子数据取证</h2><h3 id="活取证："><a href="#活取证：" class="headerlink" title="活取证："></a>活取证：</h3><h4 id="抓取文件metadata-访问记录-、创建时间线、命令历史、日志文件、哈希摘要、内存等等"><a href="#抓取文件metadata-访问记录-、创建时间线、命令历史、日志文件、哈希摘要、内存等等" class="headerlink" title="抓取文件metadata(访问记录)、创建时间线、命令历史、日志文件、哈希摘要、内存等等"></a>抓取文件metadata(访问记录)、创建时间线、命令历史、日志文件、哈希摘要、内存等等</h4><h4 id="采用未受感染的程序进行取证"><a href="#采用未受感染的程序进行取证" class="headerlink" title="采用未受感染的程序进行取证"></a>采用未受感染的程序进行取证</h4><h4 id="U盘、网络-收集证据"><a href="#U盘、网络-收集证据" class="headerlink" title="U盘、网络 收集证据"></a>U盘、网络 收集证据</h4><h3 id="死取证："><a href="#死取证：" class="headerlink" title="死取证："></a>死取证：</h3><h4 id="关机后对硬盘进行镜像操作"><a href="#关机后对硬盘进行镜像操作" class="headerlink" title="关机后对硬盘进行镜像操作"></a>关机后对硬盘进行镜像操作</h4><h2 id="电子取证比赛考察范围"><a href="#电子取证比赛考察范围" class="headerlink" title="电子取证比赛考察范围"></a>电子取证比赛考察范围</h2><h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><h4 id="macOS"><a href="#macOS" class="headerlink" title="macOS"></a>macOS</h4><h4 id="UNIX-Linux"><a href="#UNIX-Linux" class="headerlink" title="UNIX/Linux"></a>UNIX/Linux</h4><h4 id="移动终端"><a href="#移动终端" class="headerlink" title="移动终端"></a>移动终端</h4><h4 id="网络数据取证-等等"><a href="#网络数据取证-等等" class="headerlink" title="网络数据取证 等等"></a>网络数据取证 等等</h4>]]></content>
+      <tags>
+        <tag>电子数据取证</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>全错位排列模型</title>
     <url>/2021/12/14/%E5%85%A8%E9%94%99%E4%BD%8D%E6%8E%92%E5%88%97%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<h1 id="错位全排列的概率"><a href="#错位全排列的概率" class="headerlink" title="错位全排列的概率"></a><strong>错位全排列的概率</strong></h1><h2 id="摘要："><a href="#摘要：" class="headerlink" title="摘要："></a><strong>摘要：</strong></h2><p>  本文针对错位全排列的概率进行探究，先从基本的问题进行考虑，并拓展到N=n的情况，应用所学的容斥原理对其公式进行推导及证明，并对公式进行近似处理，得到估计公式。</p>
@@ -657,100 +773,11 @@
       </tags>
   </entry>
   <entry>
-    <title>几道web题</title>
-    <url>/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="2048"><a href="#2048" class="headerlink" title="2048"></a>2048</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001191433709.png" alt="image-20211001191433709"></p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001191507747.png" alt="image-20211001191507747"></p>
-<p>打开网页后是一个如图所示的小游戏，几番折腾后游戏结束</p>
-<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001191642280.png" alt="image-20211001191642280"></p>
-<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001191653895.png" alt="image-20211001191653895"></p>
-<p>我们按F12查看源码，搜索flag和score相关关键词，发现了一个函数，即为解体的关键</p>
-<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001194930314.png" alt="image-20211001194930314"></p>
-<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001191908626.png" alt="image-20211001191908626"></p>
-<p>当游戏失败时，调用obj.getFlag，并对其中obj.score的数值进行判断，仅当score&gt;50001时才给出flag</p>
-<h4 id="解法一："><a href="#解法一：" class="headerlink" title="解法一："></a>解法一：</h4><p>在F12的控制台中输入</p>
-<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001195606298.png" alt="image-20211001195606298"></p>
-<h4 id="解法二："><a href="#解法二：" class="headerlink" title="解法二："></a>解法二：</h4><p>打开网址47.93.215.154:5001/flag.php?score=50001即可得到flag</p>
-<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001195557547.png" alt="image-20211001195557547"></p>
-<h2 id="Web-Inc"><a href="#Web-Inc" class="headerlink" title="Web_Inc"></a>Web_Inc</h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001195843736.png" alt="image-20211001195843736"></p>
-<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>变量a通过get传参，变量b通过post传参</p>
-<p>题中对a和b的值和MD5进行比较，当且仅当值不等且MD5相等时给出flag</p>
-<h4 id="相关知识点："><a href="#相关知识点：" class="headerlink" title="相关知识点："></a>相关知识点：</h4><h5 id="等号的数量问题："><a href="#等号的数量问题：" class="headerlink" title="等号的数量问题："></a>等号的数量问题：</h5><p>三个等号 为 类型相等 并且 值相等</p>
-<p>两个等号 仅仅为 值相等</p>
-<p><strong>(若字符串以数字开头，则取开头数字作为转换结果，若无则输出0)</strong></p>
-<p>“abc” == 0  值为 True</p>
-<h5 id="MD5碰撞及绕过："><a href="#MD5碰撞及绕过：" class="headerlink" title="MD5碰撞及绕过："></a>MD5碰撞及绕过：</h5><h6 id="1、构造数组"><a href="#1、构造数组" class="headerlink" title="1、构造数组"></a>1、构造数组</h6><p>在 PHP5 和 PHP7 中，当两个 md5 进行比较时，若参数是不同的数组，那么 <code>==</code> 和 <code>===</code> 比较的结果均为 True</p>
-<p>$a = $GET[“a”]; $b = $GET[“b”];时可以构造<strong>a[]=1&amp;&amp;b[]=1</strong></p>
-<h6 id="2、构造0E（仅适用于”-“）"><a href="#2、构造0E（仅适用于”-“）" class="headerlink" title="2、构造0E（仅适用于”==“）"></a>2、构造0E（仅适用于”==“）</h6><p>如果md5的值是以0e开头的，那么就与其他的0e开头的Md5值是相等的</p>
-<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001211508144.png" alt="image-20211001211508144"></p>
-<p>得到FLAG</p>
-<h2 id="ezinclude（我们仍未知道那天所解的题的解法）"><a href="#ezinclude（我们仍未知道那天所解的题的解法）" class="headerlink" title="ezinclude（我们仍未知道那天所解的题的解法）"></a>ezinclude<em><strong>（我们仍未知道那天所解的题的解法）</strong></em></h2><h3 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h3><p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211001225145844.png" alt="image-20211001225145844"></p>
-<h3 id="题解（尚未知晓原理，以后补充）"><a href="#题解（尚未知晓原理，以后补充）" class="headerlink" title="题解（尚未知晓原理，以后补充）"></a>题解（尚未知晓原理，以后补充）</h3><p><em><strong>47.98.215.112:5000/?file=php://filter/convert.base64-encode/resource=flag.php</strong></em></p>
-<p>得到PD8kZmxhZz0ibW9lY3Rme3hkc2VjNmFzZGdhczdhaGZzZmF4Y3pjfSI7Pz4=</p>
-<p>利用base64解码得到<?$flag="moectf{xdsec6asdgas7ahfsfaxczc}";?></p>
-<h2 id="Do-you-know-HTTP"><a href="#Do-you-know-HTTP" class="headerlink" title="Do you know HTTP?"></a>Do you know HTTP?</h2><p>打开网页几个大字赫然在目</p>
-<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211002110958776.png" alt="image-20211002110958776"></p>
-<p>借鉴之前小饼干的经验，该题应该是想要让我们伪造请求方式和各种的请求头来解题</p>
-<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211002112048169.png" alt="image-20211002112048169"></p>
-<p>伪造请求头 X-Forwarded-For： 简称XFF头，它代表客户端，也就是HTTP的请求端真实的IP。</p>
-<p> 请求头格式：X-Forwarded-For: client, proxy1, proxy2 client</p>
-<p>即客户端真实 ip，后两项是代理 ip，可缺省，最终在服务端接收前都会被补齐。</p>
-<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211002112323207.png" alt="image-20211002112323207"></p>
-<p>伪造请求头Referer可以伪造来源地址</p>
-<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211002112704997.png" alt="image-20211002112704997"></p>
-<p>User-Agent代表的是浏览服务器，只需要把值更改为LT即可</p>
-<p><img src="/2021/10/01/%E5%87%A0%E9%81%93web%E9%A2%98/image-20211002113354175.png" alt="image-20211002113354175"></p>
-]]></content>
+    <title>方程的建立与方程的一般概念</title>
+    <url>/2022/01/12/%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BB%BA%E7%AB%8B%E4%B8%8E%E6%96%B9%E7%A8%8B%E7%9A%84%E4%B8%80%E8%88%AC%E6%A6%82%E5%BF%B5/</url>
+    <content><![CDATA[]]></content>
       <tags>
-        <tag>web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博客更新流程</title>
-    <url>/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<h1 id="第一次更新"><a href="#第一次更新" class="headerlink" title="第一次更新"></a>第一次更新</h1><h2 id="博客流程"><a href="#博客流程" class="headerlink" title="博客流程"></a>博客流程</h2><h3 id="1、写博客"><a href="#1、写博客" class="headerlink" title="1、写博客"></a>1、写博客</h3><p>执行 hexo new “名字”，hexo 创建该 md 文件，使用 typora 编辑并保存</p>
-<h3 id="2、清缓存-amp-更新渲染"><a href="#2、清缓存-amp-更新渲染" class="headerlink" title="2、清缓存&amp;更新渲染"></a>2、清缓存&amp;更新渲染</h3><p>执行hexo clean清除缓存，</p>
-<p>随后执行hexo g重新渲染静态页面</p>
-<h3 id="3、推送到码云"><a href="#3、推送到码云" class="headerlink" title="3、推送到码云"></a>3、推送到码云</h3><p>执行hexo d</p>
-<h3 id="5-预览本地静态界面"><a href="#5-预览本地静态界面" class="headerlink" title="5.预览本地静态界面"></a>5.预览本地静态界面</h3><p>执行hexo s</p>
-<h3 id="6、更新码云的静态页面"><a href="#6、更新码云的静态页面" class="headerlink" title="6、更新码云的静态页面"></a>6、更新码云的静态页面</h3><p><img src="/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/alpha.png"></p>
-<h3 id="7、重新访问网站"><a href="#7、重新访问网站" class="headerlink" title="7、重新访问网站"></a>7、重新访问网站</h3><p>如果遇到多次刷新无效果的情况。可以试试按F12在网络项下刷新</p>
-<p>=-=-=-=-=-=-=-=-=-=-=-=–=-=-=-=-=-=-=-=-=-=-=-=-=-手打的分割线=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-</p>
-<hr>
-<h1 id="第二次更新"><a href="#第二次更新" class="headerlink" title="第二次更新"></a>第二次更新</h1><p>关于butterfly主题，只是刚刚入门，对于自定义方面尚未搞明白</p>
-<h2 id="避雷"><a href="#避雷" class="headerlink" title="避雷"></a>避雷</h2><p><img src="/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/image-20211124112611676.png" alt="image-20211124112611676"></p>
-<p>这个字数统计目前还是不要打开为好，经过反复测试发现如果enable值为true时会报错，博客无法正常加载，太菜了所以不知道原因。。。</p>
-<h2 id="添加博客标签图片"><a href="#添加博客标签图片" class="headerlink" title="添加博客标签图片"></a>添加博客标签图片</h2><p><img src="/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/image-20211124112741755.png" alt="image-20211124112741755"></p>
-<p>在default_cover下照着这样添加图片即可，随机配图，比较省事，感觉效果还可以，如果有时间的话还可以试试自定义配置封面图片</p>
-]]></content>
-      <tags>
-        <tag>博客入门</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>反序列化</title>
-    <url>/2021/10/02/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</url>
-    <content><![CDATA[<h2 id="eeeeeeeeeeezunserialize"><a href="#eeeeeeeeeeezunserialize" class="headerlink" title="eeeeeeeeeeezunserialize"></a>eeeeeeeeeeezunserialize</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><img src="/2021/10/02/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20211002114245428.png" alt="image-20211002114245428"></p>
-<h3 id="相关知识点"><a href="#相关知识点" class="headerlink" title="相关知识点"></a>相关知识点</h3><h4 id="魔术函数"><a href="#魔术函数" class="headerlink" title="魔术函数"></a>魔术函数</h4><h5 id="1-constuct-构造函数"><a href="#1-constuct-构造函数" class="headerlink" title="1.constuct()构造函数"></a>1.constuct()构造函数</h5><p>通常实例化完一个对象之后，都要对该对象的属性进行初始化！在实例化一个对象的时候，PHP系统会自动的调用一个名字叫作construct()的方法，我们把这个方法叫作“构造方法”！</p>
-<p>其中，构造方法可以没有参数！</p>
-<h5 id="2-destruct-析构方法"><a href="#2-destruct-析构方法" class="headerlink" title="2.destruct()析构方法"></a>2.destruct()析构方法</h5><p>与构造方法是一对，构造方法是在一个对象“出生”的时候由系统自动调用的，而析构方法是在一个对象“消失”的时候由系统自动调用的！</p>
-<p>析构方法的名字叫destruct()；注意里面不能有任何的参数！</p>
-<h5 id="3-clone-克隆"><a href="#3-clone-克隆" class="headerlink" title="3.clone()克隆"></a>3.clone()克隆</h5><p>触发时机：是在克隆一个对象的时候，对新对象进行初始化的工作</p>
-<h5 id="4-autoload-自动加载类"><a href="#4-autoload-自动加载类" class="headerlink" title="4.autoload()自动加载类"></a>4.autoload()自动加载类</h5><p>当调用不存在的类的时候自动调用！</p>
-<h5 id="5-tostring"><a href="#5-tostring" class="headerlink" title="5.tostring()"></a>5.tostring()</h5><p>当将对象当成字符串使用的时候自动调用</p>
-<h5 id="6-invoke"><a href="#6-invoke" class="headerlink" title="6.invoke()"></a>6.invoke()</h5><p>当将对象当成函数使用的时候自动调用</p>
-<h5 id="7-set"><a href="#7-set" class="headerlink" title="7,set()"></a>7,set()</h5><p>当对无法访问的属性赋值时自动调用（比如：类外调用私有属性）</p>
-<h5 id="8-get"><a href="#8-get" class="headerlink" title="8.get()"></a>8.get()</h5><p>当对获取无法访问的属性值的时候自动调用</p>
-<h5 id="9-unset"><a href="#9-unset" class="headerlink" title="9.unset()"></a>9.unset()</h5><p>当销毁无法访问的属性的时候自动调用</p>
-<h5 id="10-isset"><a href="#10-isset" class="headerlink" title="10.isset()"></a>10.isset()</h5><p>当判断无法访问的属性是否存在的时候自动调用</p>
-<h5 id="11-call"><a href="#11-call" class="headerlink" title="11.call()"></a>11.call()</h5><p>当调用无法访问的普通方法时自动触发</p>
-<h5 id="12-callststic"><a href="#12-callststic" class="headerlink" title="12.callststic()"></a>12.callststic()</h5><p>当无法通过静态方法访问时自动触发</p>
-<h5 id="13-sleep"><a href="#13-sleep" class="headerlink" title="13.__sleep()"></a>13.__sleep()</h5><p>执行serialize()时，先会调用这个函数</p>
-<h5 id="14-wakeup"><a href="#14-wakeup" class="headerlink" title="14.__wakeup()"></a>14.__wakeup()</h5><p>执行unserialize()时，先会调用这个函数</p>
-<h4 id="POP链"><a href="#POP链" class="headerlink" title="POP链"></a>POP链</h4><p>在二进制利用时，ROP 链构造中是寻找当前系统环境中或者内存环境里已经存在的、具有固定地址且带有返回操作的指令集，而 POP 链的构造则是寻找程序当前环境中已经定义了或者能够动态加载的对象中的属性（函数方法），将一些可能的调用组合在一起形成一个完整的、具有目的性的操作。二进制中通常是由于内存溢出控制了指令执行流程，而反序列化过程就是控制代码执行流程的方法之一，当然进行反序列化的数据能够被用户输入所控制。</p>
-]]></content>
-      <tags>
-        <tag>web</tag>
+        <tag>数理方程</tag>
       </tags>
   </entry>
   <entry>
@@ -982,25 +1009,6 @@
       </tags>
   </entry>
   <entry>
-    <title>快速排序</title>
-    <url>/2021/11/26/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>之前一直习惯于冒泡排序，无奈到了大二竟然算法和数据结构还是啥也不会。还是一步一步来吧。</p>
-<h2 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quick_sort</span><span class="params">(<span class="keyword">int</span> s[], <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &lt; r) <span class="comment">//加上这步，防止陷入死循环</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//Swap(s[l], s[(l + r) / 2]); //将中间的这个数和第一个数交换 参见注1</span></span><br><span class="line">        <span class="keyword">int</span> i = l, j = r;</span><br><span class="line">        <span class="keyword">int</span> x = s[l]; <span class="comment">//x作为基准</span></span><br><span class="line">        <span class="keyword">while</span> (i &lt; j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(i &lt; j &amp;&amp; s[j] &gt;= x) <span class="comment">// 从右向左找第一个小于x的数</span></span><br><span class="line">                j--;  </span><br><span class="line">            <span class="keyword">if</span>(i &lt; j) </span><br><span class="line">                s[i++] = s[j];</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span>(i &lt; j &amp;&amp; s[i] &lt; x) <span class="comment">// 从左向右找第一个大于等于x的数</span></span><br><span class="line">                i++;  </span><br><span class="line">            <span class="keyword">if</span>(i &lt; j) </span><br><span class="line">                s[j--] = s[i];</span><br><span class="line">        &#125;</span><br><span class="line">        s[i] = x;</span><br><span class="line">        quick_sort(s, l, i - <span class="number">1</span>); <span class="comment">// 递归调用 </span></span><br><span class="line">        quick_sort(s, i + <span class="number">1</span>, r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>算法与数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数字取证</title>
-    <url>/2021/10/12/%E6%95%B0%E5%AD%97%E5%8F%96%E8%AF%81/</url>
-    <content><![CDATA[<h1 id="取证"><a href="#取证" class="headerlink" title="取证"></a>取证</h1><h2 id="电子数据取证"><a href="#电子数据取证" class="headerlink" title="电子数据取证"></a>电子数据取证</h2><h3 id="活取证："><a href="#活取证：" class="headerlink" title="活取证："></a>活取证：</h3><h4 id="抓取文件metadata-访问记录-、创建时间线、命令历史、日志文件、哈希摘要、内存等等"><a href="#抓取文件metadata-访问记录-、创建时间线、命令历史、日志文件、哈希摘要、内存等等" class="headerlink" title="抓取文件metadata(访问记录)、创建时间线、命令历史、日志文件、哈希摘要、内存等等"></a>抓取文件metadata(访问记录)、创建时间线、命令历史、日志文件、哈希摘要、内存等等</h4><h4 id="采用未受感染的程序进行取证"><a href="#采用未受感染的程序进行取证" class="headerlink" title="采用未受感染的程序进行取证"></a>采用未受感染的程序进行取证</h4><h4 id="U盘、网络-收集证据"><a href="#U盘、网络-收集证据" class="headerlink" title="U盘、网络 收集证据"></a>U盘、网络 收集证据</h4><h3 id="死取证："><a href="#死取证：" class="headerlink" title="死取证："></a>死取证：</h3><h4 id="关机后对硬盘进行镜像操作"><a href="#关机后对硬盘进行镜像操作" class="headerlink" title="关机后对硬盘进行镜像操作"></a>关机后对硬盘进行镜像操作</h4><h2 id="电子取证比赛考察范围"><a href="#电子取证比赛考察范围" class="headerlink" title="电子取证比赛考察范围"></a>电子取证比赛考察范围</h2><h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><h4 id="macOS"><a href="#macOS" class="headerlink" title="macOS"></a>macOS</h4><h4 id="UNIX-Linux"><a href="#UNIX-Linux" class="headerlink" title="UNIX/Linux"></a>UNIX/Linux</h4><h4 id="移动终端"><a href="#移动终端" class="headerlink" title="移动终端"></a>移动终端</h4><h4 id="网络数据取证-等等"><a href="#网络数据取证-等等" class="headerlink" title="网络数据取证 等等"></a>网络数据取证 等等</h4>]]></content>
-      <tags>
-        <tag>电子数据取证</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>线性链表</title>
     <url>/2021/11/30/%E7%BA%BF%E6%80%A7%E9%93%BE%E8%A1%A8/</url>
     <content><![CDATA[<p>0</p>
@@ -1009,6 +1017,86 @@
 ]]></content>
       <tags>
         <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机组成与结构体系</title>
+    <url>/2022/01/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E7%BB%93%E6%9E%84%E4%BD%93%E7%B3%BB/</url>
+    <content><![CDATA[<h1 id="计算机组成与结构体系"><a href="#计算机组成与结构体系" class="headerlink" title="计算机组成与结构体系"></a>计算机组成与结构体系</h1><h2 id="第一次课"><a href="#第一次课" class="headerlink" title="第一次课"></a>第一次课</h2><h3 id="教学大纲"><a href="#教学大纲" class="headerlink" title="教学大纲"></a>教学大纲</h3><p>本课程为计算机专业的专业基础课。课程主要讲述计算机系统主要部件的基本组成及其结构，通过指令的执行过程来掌握计算机系统的工作原理，内容包括：<strong>数据的编码表示、运算方法和运算器组成、指令系统、存储体系、控制器基本原理、系统总线及输入输出系统</strong>。</p>
+<h3 id="教学目录"><a href="#教学目录" class="headerlink" title="教学目录"></a>教学目录</h3><p><img src="/2022/01/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E7%BB%93%E6%9E%84%E4%BD%93%E7%B3%BB/image-20220113011814891.png" alt="image-20220113011814891"></p>
+<p>从1946年计算机诞生以来,大约每隔五年运算速度提高10倍,可靠性提高10倍,成本降低10倍,体积缩小10倍。</p>
+<h4 id="数字计算机的组成"><a href="#数字计算机的组成" class="headerlink" title="数字计算机的组成"></a>数字计算机的组成</h4><p><img src="/2022/01/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E7%BB%93%E6%9E%84%E4%BD%93%E7%B3%BB/image-20220113012552446.png" alt="image-20220113012552446"></p>
+<h5 id="运算器"><a href="#运算器" class="headerlink" title="运算器"></a>运算器</h5><p>主要功能是进行加、减、乘、除等算术运算,还可进行逻辑运算。</p>
+<p>在运算中，当数的位数越多时，计算的精度就越高。理论上讲，数的位数可以任意多。但是位数越多,所需的电子器件也越多</p>
+<h5 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h5><blockquote>
+<p>磁盘存储器和光盘存储器，称为外存储器。相对而言，半导体存储器称为内存储器，简称内存。</p>
+</blockquote>
+<p>一个半导体触发器由于有0和1两个状态，可以记忆一个二进制代码。</p>
+<p>一个数假定用16位二进制代码表示,那么就需要有16个触发器来保存这些代码。</p>
+<p>通常，在存储器中保存一个数的16个触发器，称为<strong>一个存储单元</strong>。存储器是由许多存储单元组成。</p>
+<p>每个存储单元的编号，称为<strong>地址</strong>。向存储器中存数或者从存储器中取数，都要按给定的地址来寻找所选的存储单元。</p>
+<p>存储器<strong>所有存储单元的总数</strong>成为存储器的存储容量。通常用单位“KB、MB”表示。</p>
+<h5 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h5><p>控制器的任务是从内存中取出解题步骤加以分析，然后执行某种操作。</p>
+<p>运算器只能完成加、减、乘、除四则运算及其他一些辅助操作。对于比较复杂的算题，计算机在运算前必须化成一步一步简单的加、减、乘、除等基本操作来做。</p>
+<p>每一个基本操作就叫做<strong>一条指令</strong>，而解算某一问题的一串指令序列，叫做该问题的<strong>计算程序</strong>，简称为程序。</p>
+<h5 id="输入输出设备"><a href="#输入输出设备" class="headerlink" title="输入输出设备"></a>输入输出设备</h5><p>计算机的输入/输出设备通常称为<strong>外围设备</strong>。</p>
+<p>这些外围设备有高速的也有低速的，有机电结构的，也有全电子式的。由于种类繁多且速度各异,因而它们不是直接地同高速工作的主机相连接,而是通过<strong>适配器部件</strong>与主机相连接。</p>
+<p>适配器的作用相当与一个转换器。它可以保证外围设备用计算机系统特性所要求的形式发送或接受信息。 </p>
+<h4 id="典型PC机构成"><a href="#典型PC机构成" class="headerlink" title="典型PC机构成"></a>典型PC机构成</h4><p><img src="/2022/01/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E7%BB%93%E6%9E%84%E4%BD%93%E7%B3%BB/image-20220113013814708.png" alt="image-20220113013814708"></p>
+<h4 id="冯-诺依曼计算机"><a href="#冯-诺依曼计算机" class="headerlink" title="冯.诺依曼计算机"></a>冯.诺依曼计算机</h4><h5 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h5><p>将计算机要处理的问题用指令编成程序，并将程序存放在存储器中，在控制器的控制下，从存储器中逐条取出指令并执行，通过执行程序最终解决计算机问题。</p>
+<h5 id="基本特点"><a href="#基本特点" class="headerlink" title="基本特点"></a>基本特点</h5><ul>
+<li>计算机组成：运算器、存储器、控制器、输入设备和输出设备</li>
+<li>指令和数据以二进制形式表示，按地址访问存储</li>
+<li>指令=操作码+地址码</li>
+<li>指令编成程序</li>
+<li>在控制器控制下，指令被逐条（顺序）从存储器中取出来执行，产生控制流，在控制流驱动下完成指令的功能</li>
+<li>可由跳转或者设定的条件改变程序中指令的执行顺序</li>
+<li>以运算器为中心，输入输出设备通过运算器与存储器传送数据</li>
+</ul>
+<h5 id="硬件结构发展"><a href="#硬件结构发展" class="headerlink" title="硬件结构发展"></a>硬件结构发展</h5><ul>
+<li>不断扩充硬件及功能</li>
+<li>存储器分层</li>
+<li>总线结构</li>
+</ul>
+<h4 id="计算机软件"><a href="#计算机软件" class="headerlink" title="计算机软件"></a>计算机软件</h4><h5 id="系统软件"><a href="#系统软件" class="headerlink" title="系统软件"></a>系统软件</h5><p>系统软件用来<strong>简化程序设计</strong>，简化使用方法，<strong>提高计算机的使用效率</strong>，发挥和扩大计算机的功能及用途。</p>
+<ul>
+<li>各种服务性程序,如诊断程序排错程序练习程序等</li>
+<li>语言程序,如汇编程序编译程序解释程序</li>
+<li>操作系统</li>
+<li>通用程序及数据库管理系统</li>
+</ul>
+<h5 id="应用软件"><a href="#应用软件" class="headerlink" title="应用软件"></a>应用软件</h5><p>应用软件是用户利用计算机来<strong>解决某些问题所编制的程序</strong>,如工程设计程序、数据处理程序、自动控制程序、企业管理程序、情报检索程序、科学计算程序等等。随着计算机的广泛应用,这类程序的种类越来越多。</p>
+<h4 id="指令集体系结构（ISA）"><a href="#指令集体系结构（ISA）" class="headerlink" title="指令集体系结构（ISA）"></a>指令集体系结构（ISA）</h4><p>处理器支持的指令和指令的字节级编码称为指令集体系结构（Instruction-Set Architecture，ISA），是软件和硬件的分界面.</p>
+<h5 id="涵盖的方面"><a href="#涵盖的方面" class="headerlink" title="涵盖的方面"></a>涵盖的方面</h5><ul>
+<li>指令集<ul>
+<li>指令格式、操作种类以及对应的操作数规定</li>
+<li>数据类型</li>
+<li>寻址方式</li>
+</ul>
+</li>
+<li>软件可见的处理器状态<ul>
+<li>寄存器属性</li>
+<li>指令执行过程的控制方式</li>
+</ul>
+</li>
+<li>存储模型<ul>
+<li>主存组织</li>
+<li>字节次序</li>
+<li>存储保护</li>
+<li>虚拟存储器的管理方式</li>
+<li>输入输出接口的访问与管理</li>
+</ul>
+</li>
+<li>系统模型<ul>
+<li>处理器状态</li>
+<li>特权级别</li>
+<li>中断和异常的处理方式</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>计科课程</tag>
       </tags>
   </entry>
   <entry>
@@ -1142,7 +1230,7 @@
 <p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111164918421.png" alt="image-20211111164918421"></p>
 <h3 id="21-在何源的个人计算机中，你是否可以找到何源-iPhone-手机的线索。关于他的手机，以下哪条信息不正确？"><a href="#21-在何源的个人计算机中，你是否可以找到何源-iPhone-手机的线索。关于他的手机，以下哪条信息不正确？" class="headerlink" title="21 在何源的个人计算机中，你是否可以找到何源 iPhone 手机的线索。关于他的手机，以下哪条信息不正确？"></a>21 在何源的个人计算机中，你是否可以找到何源 iPhone 手机的线索。关于他的手机，以下哪条信息不正确？</h3><p>A. IMEI：359461082062689 </p>
 <p>B. Serial Number：F17V1L6EHG70 </p>
-<p>C. Apple ID ：<a href="mailto:&#104;&#101;&#121;&#x75;&#97;&#x6e;&#x35;&#x31;&#54;&#64;&#105;&#x63;&#108;&#111;&#x75;&#100;&#46;&#99;&#x6f;&#109;">&#104;&#101;&#121;&#x75;&#97;&#x6e;&#x35;&#x31;&#54;&#64;&#105;&#x63;&#108;&#111;&#x75;&#100;&#46;&#99;&#x6f;&#109;</a> </p>
+<p>C. Apple ID ：<a href="mailto:&#x68;&#x65;&#x79;&#117;&#97;&#x6e;&#53;&#x31;&#54;&#64;&#105;&#99;&#x6c;&#x6f;&#117;&#100;&#x2e;&#x63;&#x6f;&#109;">&#x68;&#x65;&#x79;&#117;&#97;&#x6e;&#53;&#x31;&#54;&#64;&#105;&#99;&#x6c;&#x6f;&#117;&#100;&#x2e;&#x63;&#x6f;&#109;</a> </p>
 <p>D. MSISDN: 85259114189 </p>
 <p>E. 无 </p>
 <p><strong>答案：C</strong></p>
@@ -1306,11 +1394,11 @@
 <p><strong>答案：D</strong></p>
 <p>翻一翻，找一找</p>
 <p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111201032223.png" alt="image-20211111201032223"></p>
-<h3 id="44-在何源的个人计算机中，用户“He-Yuan”曾用-Microsoft-Edge-浏览器注册过一个新的-Gmail-account-请从网页标题痕迹中找出此账号。"><a href="#44-在何源的个人计算机中，用户“He-Yuan”曾用-Microsoft-Edge-浏览器注册过一个新的-Gmail-account-请从网页标题痕迹中找出此账号。" class="headerlink" title="44 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器注册过一个新的 Gmail account,请从网页标题痕迹中找出此账号。"></a>44 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器注册过一个新的 Gmail account,请从网页标题痕迹中找出此账号。</h3><p>A. <a href="mailto:&#x6a;&#x61;&#99;&#x6b;&#x68;&#x65;&#54;&#x36;&#54;&#64;&#x67;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#x6a;&#x61;&#99;&#x6b;&#x68;&#x65;&#54;&#x36;&#54;&#64;&#x67;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;</a> </p>
-<p>B. <a href="mailto:&#x6a;&#111;&#104;&#x6e;&#x68;&#x65;&#x37;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#x6a;&#111;&#104;&#x6e;&#x68;&#x65;&#x37;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;</a> </p>
-<p>C. <a href="mailto:&#x6a;&#x61;&#x63;&#107;&#x73;&#x6f;&#110;&#x68;&#x65;&#56;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#109;">&#x6a;&#x61;&#x63;&#107;&#x73;&#x6f;&#110;&#x68;&#x65;&#56;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#109;</a> </p>
-<p>D. <a href="mailto:&#106;&#111;&#x72;&#107;&#x65;&#x72;&#104;&#x65;&#x38;&#56;&#x38;&#x40;&#x67;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;">&#106;&#111;&#x72;&#107;&#x65;&#x72;&#104;&#x65;&#x38;&#56;&#x38;&#x40;&#x67;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;</a> </p>
-<p>E. <a href="mailto:&#121;&#117;&#x61;&#110;&#x68;&#x65;&#x36;&#54;&#x36;&#64;&#x67;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#121;&#117;&#x61;&#110;&#x68;&#x65;&#x36;&#54;&#x36;&#64;&#x67;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;</a> </p>
+<h3 id="44-在何源的个人计算机中，用户“He-Yuan”曾用-Microsoft-Edge-浏览器注册过一个新的-Gmail-account-请从网页标题痕迹中找出此账号。"><a href="#44-在何源的个人计算机中，用户“He-Yuan”曾用-Microsoft-Edge-浏览器注册过一个新的-Gmail-account-请从网页标题痕迹中找出此账号。" class="headerlink" title="44 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器注册过一个新的 Gmail account,请从网页标题痕迹中找出此账号。"></a>44 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器注册过一个新的 Gmail account,请从网页标题痕迹中找出此账号。</h3><p>A. <a href="mailto:&#x6a;&#x61;&#99;&#x6b;&#104;&#x65;&#54;&#x36;&#x36;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#x6a;&#x61;&#99;&#x6b;&#104;&#x65;&#54;&#x36;&#x36;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a> </p>
+<p>B. <a href="mailto:&#x6a;&#x6f;&#x68;&#110;&#x68;&#101;&#x37;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#x6d;">&#x6a;&#x6f;&#x68;&#110;&#x68;&#101;&#x37;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#x6d;</a> </p>
+<p>C. <a href="mailto:&#106;&#x61;&#x63;&#x6b;&#115;&#x6f;&#110;&#x68;&#101;&#56;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;">&#106;&#x61;&#x63;&#x6b;&#115;&#x6f;&#110;&#x68;&#101;&#56;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;</a> </p>
+<p>D. <a href="mailto:&#106;&#x6f;&#114;&#x6b;&#x65;&#x72;&#104;&#101;&#x38;&#x38;&#x38;&#64;&#103;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#109;">&#106;&#x6f;&#114;&#x6b;&#x65;&#x72;&#104;&#101;&#x38;&#x38;&#x38;&#64;&#103;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#109;</a> </p>
+<p>E. <a href="mailto:&#x79;&#117;&#x61;&#110;&#104;&#101;&#54;&#x36;&#54;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#111;&#x6d;">&#x79;&#117;&#x61;&#110;&#104;&#101;&#54;&#x36;&#54;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#111;&#x6d;</a> </p>
 <p><strong>答案：C</strong></p>
 <p>通过对题目中各个选项进行搜索，发现只能选C</p>
 <h3 id="45-在何源的个人计算机中，用户“He-Yuan”曾用-Microsoft-Edge-浏览器下载过一些文件，以下哪一个不是？"><a href="#45-在何源的个人计算机中，用户“He-Yuan”曾用-Microsoft-Edge-浏览器下载过一些文件，以下哪一个不是？" class="headerlink" title="45 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器下载过一些文件，以下哪一个不是？"></a>45 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器下载过一些文件，以下哪一个不是？</h3><p>A. WeChat_C1018.exe </p>
@@ -1795,10 +1883,10 @@
 <p>D:File List\User File List\Applications/Group/group.net.WhatsApp.shared/ChatStorage.sqlite Table:ZWAMESSAGE(ZCHATSESSION:4) </p>
 <p>E: List\Temp File List\Applications/Chat/group.net.WhatsApp.share/ChatStorage.sqlite Table:SESSION:4) </p>
 <p>答案：</p>
-<h3 id="47、Bob的iPhone的苹果ID是甚么？"><a href="#47、Bob的iPhone的苹果ID是甚么？" class="headerlink" title="47、Bob的iPhone的苹果ID是甚么？"></a>47、Bob的iPhone的苹果ID是甚么？</h3><p>A:<a href="mailto:&#x62;&#111;&#x62;&#99;&#104;&#101;&#x75;&#110;&#x67;&#49;&#x32;&#51;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#111;&#x6d;">&#x62;&#111;&#x62;&#99;&#104;&#101;&#x75;&#110;&#x67;&#49;&#x32;&#51;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#111;&#x6d;</a> </p>
-<p>B:<a href="mailto:&#98;&#x6f;&#98;&#x63;&#x68;&#x65;&#x75;&#x6e;&#x67;&#64;&#x79;&#x61;&#x68;&#x6f;&#111;&#x2e;&#99;&#111;&#x6d;">&#98;&#x6f;&#98;&#x63;&#x68;&#x65;&#x75;&#x6e;&#x67;&#64;&#x79;&#x61;&#x68;&#x6f;&#111;&#x2e;&#99;&#111;&#x6d;</a> </p>
-<p>C:<a href="mailto:&#98;&#111;&#98;&#x63;&#x68;&#101;&#x75;&#x6e;&#x67;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#111;&#109;">&#98;&#111;&#98;&#x63;&#x68;&#101;&#x75;&#x6e;&#x67;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#111;&#109;</a> </p>
-<p>D:<a href="mailto:&#98;&#x6f;&#98;&#x32;&#x33;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#98;&#x6f;&#98;&#x32;&#x33;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a> </p>
+<h3 id="47、Bob的iPhone的苹果ID是甚么？"><a href="#47、Bob的iPhone的苹果ID是甚么？" class="headerlink" title="47、Bob的iPhone的苹果ID是甚么？"></a>47、Bob的iPhone的苹果ID是甚么？</h3><p>A:<a href="mailto:&#x62;&#111;&#x62;&#x63;&#104;&#101;&#x75;&#110;&#103;&#x31;&#50;&#51;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#x62;&#111;&#x62;&#x63;&#104;&#101;&#x75;&#110;&#103;&#x31;&#50;&#51;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;</a> </p>
+<p>B:<a href="mailto:&#x62;&#111;&#98;&#99;&#x68;&#x65;&#117;&#110;&#103;&#x40;&#x79;&#x61;&#104;&#111;&#111;&#x2e;&#x63;&#x6f;&#109;">&#x62;&#111;&#98;&#99;&#x68;&#x65;&#117;&#110;&#103;&#x40;&#x79;&#x61;&#104;&#111;&#111;&#x2e;&#x63;&#x6f;&#109;</a> </p>
+<p>C:<a href="mailto:&#98;&#x6f;&#x62;&#x63;&#104;&#x65;&#117;&#110;&#103;&#64;&#x67;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;">&#98;&#x6f;&#x62;&#x63;&#104;&#x65;&#117;&#110;&#103;&#64;&#x67;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;</a> </p>
+<p>D:<a href="mailto:&#98;&#111;&#98;&#x32;&#x33;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#98;&#111;&#98;&#x32;&#x33;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;</a> </p>
 <p>E:bobcheung123@hotmaillcom </p>
 <p>答案：</p>
 <h3 id="48、Bob的iPhone的IMEI是甚么？"><a href="#48、Bob的iPhone的IMEI是甚么？" class="headerlink" title="48、Bob的iPhone的IMEI是甚么？"></a>48、Bob的iPhone的IMEI是甚么？</h3><p>A:13421004458835    B:23421224458835    C:144410044508835    D:934218004458888    E:23421084450035 </p>
@@ -1806,13 +1894,13 @@
 <h3 id="49、Bob-iPhone的时区设置是甚么？"><a href="#49、Bob-iPhone的时区设置是甚么？" class="headerlink" title="49、Bob iPhone的时区设置是甚么？"></a>49、Bob iPhone的时区设置是甚么？</h3><p>A:UTC +8    B:UTC +0    C:UTC -8    D:UTC -10    E:UTC + 6 </p>
 <p>答案：</p>
 <h3 id="50、文件“-VIP-txt”的完整路径是甚么？"><a href="#50、文件“-VIP-txt”的完整路径是甚么？" class="headerlink" title="50、文件“ VIP.txt”的完整路径是甚么？"></a>50、文件“ VIP.txt”的完整路径是甚么？</h3><p>A:Bob/mobile/DCIM/Shared/AppGroup/group.whatsapp.WhatsApp.shared /Message/Media//5/c56255d0-a407-4341-afef-7bf5accc52f0.txt </p>
-<p>B:Bob/Phone/Containers/Shared/AppGroup/group.net.whatsapps.WhatsApp.sha red /Message/Media/<a href="mailto:&#x38;&#53;&#50;&#54;&#x32;&#x35;&#x34;&#x37;&#57;&#x33;&#55;&#45;&#x31;&#54;&#48;&#48;&#x33;&#57;&#x32;&#x38;&#55;&#56;&#64;&#103;&#46;&#x75;&#x73;">&#x38;&#53;&#50;&#54;&#x32;&#x35;&#x34;&#x37;&#57;&#x33;&#55;&#45;&#x31;&#54;&#48;&#48;&#x33;&#57;&#x32;&#x38;&#55;&#56;&#64;&#103;&#46;&#x75;&#x73;</a>/c/5/1230.txt </p>
-<p>C:Bob/Data/Containers/Shared/AppGroup/group.net.whatsapp.WhatsApps.shar ed /Message/Media/<a href="mailto:&#56;&#53;&#x32;&#54;&#50;&#53;&#52;&#x37;&#x39;&#51;&#x37;&#x2d;&#49;&#x36;&#48;&#48;&#x33;&#57;&#x32;&#x38;&#55;&#x38;&#x40;&#103;&#x2e;&#117;&#x73;">&#56;&#53;&#x32;&#54;&#50;&#53;&#52;&#x37;&#x39;&#51;&#x37;&#x2d;&#49;&#x36;&#48;&#48;&#x33;&#57;&#x32;&#x38;&#55;&#x38;&#x40;&#103;&#x2e;&#117;&#x73;</a>/c/5/c56255d0-a407-4341-afef7bf5accc52f0.txt </p>
-<p>D:Bob/Text/Containers/Shared/AppGroup/group.net.whatsapp.WhatsApp.share d /Messages/Media/<a href="mailto:&#x38;&#x35;&#50;&#x36;&#50;&#53;&#52;&#x37;&#x39;&#51;&#55;&#45;&#49;&#x36;&#48;&#48;&#x33;&#57;&#50;&#56;&#55;&#x38;&#64;&#x67;&#46;&#117;&#115;">&#x38;&#x35;&#50;&#x36;&#50;&#53;&#52;&#x37;&#x39;&#51;&#55;&#45;&#49;&#x36;&#48;&#48;&#x33;&#57;&#50;&#56;&#55;&#x38;&#64;&#x67;&#46;&#117;&#115;</a>/c/5/c56255d0-a407-4341- afef-7bf5accc5000.txt E:Bob/mobile/Containers/Shared/AppGroup/group.net.whatsapp.WhatsApp.sha red /Message/Media/<a href="mailto:&#56;&#53;&#x32;&#x36;&#x32;&#x35;&#x34;&#55;&#57;&#x33;&#x37;&#x2d;&#49;&#x36;&#x30;&#48;&#x33;&#x39;&#50;&#x38;&#x37;&#x38;&#x40;&#103;&#46;&#117;&#115;">&#56;&#53;&#x32;&#x36;&#x32;&#x35;&#x34;&#55;&#57;&#x33;&#x37;&#x2d;&#49;&#x36;&#x30;&#48;&#x33;&#x39;&#50;&#x38;&#x37;&#x38;&#x40;&#103;&#46;&#117;&#115;</a>/c/5/c56255d0-a407-4341-afef7bf5accc52f0.txt </p>
+<p>B:Bob/Phone/Containers/Shared/AppGroup/group.net.whatsapps.WhatsApp.sha red /Message/Media/<a href="mailto:&#56;&#x35;&#50;&#54;&#50;&#53;&#x34;&#55;&#x39;&#x33;&#x37;&#45;&#x31;&#54;&#48;&#48;&#x33;&#57;&#x32;&#x38;&#55;&#56;&#64;&#x67;&#46;&#x75;&#x73;">&#56;&#x35;&#50;&#54;&#50;&#53;&#x34;&#55;&#x39;&#x33;&#x37;&#45;&#x31;&#54;&#48;&#48;&#x33;&#57;&#x32;&#x38;&#55;&#56;&#64;&#x67;&#46;&#x75;&#x73;</a>/c/5/1230.txt </p>
+<p>C:Bob/Data/Containers/Shared/AppGroup/group.net.whatsapp.WhatsApps.shar ed /Message/Media/<a href="mailto:&#56;&#53;&#x32;&#54;&#50;&#53;&#x34;&#55;&#57;&#51;&#55;&#45;&#49;&#54;&#x30;&#48;&#x33;&#57;&#x32;&#56;&#x37;&#56;&#64;&#103;&#46;&#117;&#115;">&#56;&#53;&#x32;&#54;&#50;&#53;&#x34;&#55;&#57;&#51;&#55;&#45;&#49;&#54;&#x30;&#48;&#x33;&#57;&#x32;&#56;&#x37;&#56;&#64;&#103;&#46;&#117;&#115;</a>/c/5/c56255d0-a407-4341-afef7bf5accc52f0.txt </p>
+<p>D:Bob/Text/Containers/Shared/AppGroup/group.net.whatsapp.WhatsApp.share d /Messages/Media/<a href="mailto:&#56;&#x35;&#x32;&#x36;&#x32;&#53;&#x34;&#x37;&#x39;&#51;&#x37;&#x2d;&#49;&#54;&#48;&#48;&#x33;&#x39;&#x32;&#56;&#x37;&#56;&#64;&#103;&#46;&#x75;&#115;">&#56;&#x35;&#x32;&#x36;&#x32;&#53;&#x34;&#x37;&#x39;&#51;&#x37;&#x2d;&#49;&#54;&#48;&#48;&#x33;&#x39;&#x32;&#56;&#x37;&#56;&#64;&#103;&#46;&#x75;&#115;</a>/c/5/c56255d0-a407-4341- afef-7bf5accc5000.txt E:Bob/mobile/Containers/Shared/AppGroup/group.net.whatsapp.WhatsApp.sha red /Message/Media/<a href="mailto:&#56;&#x35;&#x32;&#x36;&#x32;&#x35;&#x34;&#55;&#x39;&#x33;&#55;&#x2d;&#x31;&#x36;&#48;&#x30;&#x33;&#57;&#x32;&#56;&#x37;&#56;&#64;&#103;&#x2e;&#117;&#115;">&#56;&#x35;&#x32;&#x36;&#x32;&#x35;&#x34;&#55;&#x39;&#x33;&#55;&#x2d;&#x31;&#x36;&#48;&#x30;&#x33;&#57;&#x32;&#56;&#x37;&#56;&#64;&#103;&#x2e;&#117;&#115;</a>/c/5/c56255d0-a407-4341-afef7bf5accc52f0.txt </p>
 <p>答案：</p>
-<h3 id="51、在Bob-iphone-谁是“-85262547937-x31-54-x30-48-51-57-50-56-x37-x38-64-x67-x2e-x75-115-”的聊天群组中的管理员？"><a href="#51、在Bob-iphone-谁是“-85262547937-x31-54-x30-48-51-57-50-56-x37-x38-64-x67-x2e-x75-115-”的聊天群组中的管理员？" class="headerlink" title="51、在Bob iphone, 谁是“ 85262547937- &#x31;&#54;&#x30;&#48;&#51;&#57;&#50;&#56;&#x37;&#x38;&#64;&#x67;&#x2e;&#x75;&#115;”的聊天群组中的管理员？"></a>51、在Bob iphone, 谁是“ 85262547937- <a href="mailto:&#x31;&#54;&#x30;&#48;&#51;&#57;&#50;&#56;&#x37;&#x38;&#64;&#x67;&#x2e;&#x75;&#115;">&#x31;&#54;&#x30;&#48;&#51;&#57;&#50;&#56;&#x37;&#x38;&#64;&#x67;&#x2e;&#x75;&#115;</a>”的聊天群组中的管理员？</h3><p>A:Bob    B:Cole    C:Alice    D:Alice 及 Bob    E:Bob 及 Cole </p>
+<h3 id="51、在Bob-iphone-谁是“-85262547937-x31-54-48-48-x33-57-50-x38-x37-56-x40-103-x2e-117-115-”的聊天群组中的管理员？"><a href="#51、在Bob-iphone-谁是“-85262547937-x31-54-48-48-x33-57-50-x38-x37-56-x40-103-x2e-117-115-”的聊天群组中的管理员？" class="headerlink" title="51、在Bob iphone, 谁是“ 85262547937- &#x31;&#54;&#48;&#48;&#x33;&#57;&#50;&#x38;&#x37;&#56;&#x40;&#103;&#x2e;&#117;&#115;”的聊天群组中的管理员？"></a>51、在Bob iphone, 谁是“ 85262547937- <a href="mailto:&#x31;&#54;&#48;&#48;&#x33;&#57;&#50;&#x38;&#x37;&#56;&#x40;&#103;&#x2e;&#117;&#115;">&#x31;&#54;&#48;&#48;&#x33;&#57;&#50;&#x38;&#x37;&#56;&#x40;&#103;&#x2e;&#117;&#115;</a>”的聊天群组中的管理员？</h3><p>A:Bob    B:Cole    C:Alice    D:Alice 及 Bob    E:Bob 及 Cole </p>
 <p>答案：</p>
-<h3 id="52、“-x38-x35-x32-x36-x32-x35-52-x37-57-x33-55-45-x31-x36-48-x30-x33-x39-x32-x38-x37-56-64-103-x2e-x75-115-”聊天-群组中有多少个附件？"><a href="#52、“-x38-x35-x32-x36-x32-x35-52-x37-57-x33-55-45-x31-x36-48-x30-x33-x39-x32-x38-x37-56-64-103-x2e-x75-115-”聊天-群组中有多少个附件？" class="headerlink" title="52、“ &#x38;&#x35;&#x32;&#x36;&#x32;&#x35;&#52;&#x37;&#57;&#x33;&#55;&#45;&#x31;&#x36;&#48;&#x30;&#x33;&#x39;&#x32;&#x38;&#x37;&#56;&#64;&#103;&#x2e;&#x75;&#115;”聊天 群组中有多少个附件？"></a>52、“ <a href="mailto:&#x38;&#x35;&#x32;&#x36;&#x32;&#x35;&#52;&#x37;&#57;&#x33;&#55;&#45;&#x31;&#x36;&#48;&#x30;&#x33;&#x39;&#x32;&#x38;&#x37;&#56;&#64;&#103;&#x2e;&#x75;&#115;">&#x38;&#x35;&#x32;&#x36;&#x32;&#x35;&#52;&#x37;&#57;&#x33;&#55;&#45;&#x31;&#x36;&#48;&#x30;&#x33;&#x39;&#x32;&#x38;&#x37;&#56;&#64;&#103;&#x2e;&#x75;&#115;</a>”聊天 群组中有多少个附件？</h3><p>A:6    B:4    C:2    D:3    E:6</p>
+<h3 id="52、“-x38-53-50-54-x32-x35-x34-55-57-51-x37-x2d-49-x36-48-x30-x33-x39-x32-x38-55-56-x40-103-x2e-117-115-”聊天-群组中有多少个附件？"><a href="#52、“-x38-53-50-54-x32-x35-x34-55-57-51-x37-x2d-49-x36-48-x30-x33-x39-x32-x38-55-56-x40-103-x2e-117-115-”聊天-群组中有多少个附件？" class="headerlink" title="52、“ &#x38;&#53;&#50;&#54;&#x32;&#x35;&#x34;&#55;&#57;&#51;&#x37;&#x2d;&#49;&#x36;&#48;&#x30;&#x33;&#x39;&#x32;&#x38;&#55;&#56;&#x40;&#103;&#x2e;&#117;&#115;”聊天 群组中有多少个附件？"></a>52、“ <a href="mailto:&#x38;&#53;&#50;&#54;&#x32;&#x35;&#x34;&#55;&#57;&#51;&#x37;&#x2d;&#49;&#x36;&#48;&#x30;&#x33;&#x39;&#x32;&#x38;&#55;&#56;&#x40;&#103;&#x2e;&#117;&#115;">&#x38;&#53;&#50;&#54;&#x32;&#x35;&#x34;&#55;&#57;&#51;&#x37;&#x2d;&#49;&#x36;&#48;&#x30;&#x33;&#x39;&#x32;&#x38;&#55;&#56;&#x40;&#103;&#x2e;&#117;&#115;</a>”聊天 群组中有多少个附件？</h3><p>A:6    B:4    C:2    D:3    E:6</p>
 <p>答案： </p>
 <h3 id="53、Bob-iPhone的Airdrop-ID是甚么？"><a href="#53、Bob-iPhone的Airdrop-ID是甚么？" class="headerlink" title="53、Bob iPhone的Airdrop ID是甚么？"></a>53、Bob iPhone的Airdrop ID是甚么？</h3><p>A:66E7BBDE9F69    B:Bob-airdrop-28455    C:67E7BBDE9F69-BOB    D:Air-Bob-66E7BBDE9F69    E:Bob-iP-66E7BBDE9F69 </p>
 <p>答案：</p>
@@ -2099,22 +2187,22 @@
 <p>D:2020/09/15 16:51 </p>
 <p>E:2020/09/15 17:57. </p>
 <p>答案：</p>
-<h3 id="在Cole手机-的用户个人资料是甚么？"><a href="#在Cole手机-的用户个人资料是甚么？" class="headerlink" title="在Cole手机, 的用户个人资料是甚么？"></a>在Cole手机, 的用户个人资料是甚么？</h3><p>A:<a href="mailto:&#99;&#111;&#x6c;&#x65;&#x66;&#x75;&#110;&#103;&#x40;&#x67;&#x6d;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;">&#99;&#111;&#x6c;&#x65;&#x66;&#x75;&#110;&#103;&#x40;&#x67;&#x6d;&#97;&#x69;&#108;&#46;&#x63;&#111;&#109;</a> </p>
-<p>B:<a href="mailto:&#99;&#x6f;&#108;&#101;&#102;&#x75;&#110;&#103;&#57;&#57;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#109;">&#99;&#x6f;&#108;&#101;&#102;&#x75;&#110;&#103;&#57;&#57;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#109;</a> </p>
-<p>C:<a href="mailto:&#x63;&#x6f;&#108;&#x65;&#57;&#x30;&#x39;&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#99;&#111;&#x6d;">&#x63;&#x6f;&#108;&#x65;&#57;&#x30;&#x39;&#64;&#x67;&#109;&#97;&#x69;&#108;&#46;&#99;&#111;&#x6d;</a> </p>
-<p>D:<a href="mailto:&#x63;&#111;&#x6c;&#x65;&#102;&#117;&#110;&#x67;&#57;&#48;&#57;&#64;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#99;&#x6f;&#x6d;">&#x63;&#111;&#x6c;&#x65;&#102;&#117;&#110;&#x67;&#57;&#48;&#57;&#64;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#99;&#x6f;&#x6d;</a> </p>
-<p>E:<a href="mailto:&#99;&#111;&#108;&#x65;&#x66;&#x75;&#x6e;&#x67;&#x39;&#x39;&#x39;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#99;&#111;&#108;&#x65;&#x66;&#x75;&#x6e;&#x67;&#x39;&#x39;&#x39;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;</a>. </p>
+<h3 id="在Cole手机-的用户个人资料是甚么？"><a href="#在Cole手机-的用户个人资料是甚么？" class="headerlink" title="在Cole手机, 的用户个人资料是甚么？"></a>在Cole手机, 的用户个人资料是甚么？</h3><p>A:<a href="mailto:&#x63;&#x6f;&#x6c;&#101;&#102;&#117;&#110;&#x67;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;">&#x63;&#x6f;&#x6c;&#101;&#102;&#117;&#110;&#x67;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;</a> </p>
+<p>B:<a href="mailto:&#99;&#111;&#x6c;&#x65;&#102;&#x75;&#110;&#x67;&#57;&#x39;&#x40;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;">&#99;&#111;&#x6c;&#x65;&#102;&#x75;&#110;&#x67;&#57;&#x39;&#x40;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;</a> </p>
+<p>C:<a href="mailto:&#x63;&#111;&#108;&#x65;&#57;&#x30;&#57;&#64;&#103;&#x6d;&#97;&#105;&#108;&#46;&#99;&#x6f;&#x6d;">&#x63;&#111;&#108;&#x65;&#57;&#x30;&#57;&#64;&#103;&#x6d;&#97;&#105;&#108;&#46;&#99;&#x6f;&#x6d;</a> </p>
+<p>D:<a href="mailto:&#x63;&#x6f;&#108;&#101;&#x66;&#117;&#110;&#103;&#57;&#48;&#x39;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#x63;&#x6f;&#108;&#101;&#x66;&#117;&#110;&#103;&#57;&#48;&#x39;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a> </p>
+<p>E:<a href="mailto:&#99;&#111;&#x6c;&#101;&#x66;&#117;&#110;&#x67;&#57;&#57;&#x39;&#x40;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#99;&#111;&#x6c;&#101;&#x66;&#117;&#110;&#x67;&#57;&#57;&#x39;&#x40;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a>. </p>
 <p>答案：</p>
-<h3 id="Cole的手机上有社交媒体帐户吗？如有，那是甚么？"><a href="#Cole的手机上有社交媒体帐户吗？如有，那是甚么？" class="headerlink" title="Cole的手机上有社交媒体帐户吗？如有，那是甚么？"></a>Cole的手机上有社交媒体帐户吗？如有，那是甚么？</h3><p>A:<a href="mailto:&#x36;&#51;&#x37;&#x36;&#54;&#x34;&#x36;&#53;&#x40;&#115;&#x2e;&#119;&#x68;&#x61;&#x74;&#x73;&#x61;&#x70;&#112;&#x2e;&#110;&#101;&#x74;">&#x36;&#51;&#x37;&#x36;&#54;&#x34;&#x36;&#53;&#x40;&#115;&#x2e;&#119;&#x68;&#x61;&#x74;&#x73;&#x61;&#x70;&#112;&#x2e;&#110;&#101;&#x74;</a> </p>
-<p>B:<a href="mailto:&#56;&#53;&#x32;&#x36;&#x33;&#55;&#x36;&#x36;&#52;&#54;&#x35;&#64;&#115;&#46;&#x77;&#104;&#x61;&#116;&#115;&#x61;&#112;&#112;&#x2e;&#110;&#101;&#116;">&#56;&#53;&#x32;&#x36;&#x33;&#55;&#x36;&#x36;&#52;&#54;&#x35;&#64;&#115;&#46;&#x77;&#104;&#x61;&#116;&#115;&#x61;&#112;&#112;&#x2e;&#110;&#101;&#116;</a> </p>
-<p>C:<a href="mailto:&#56;&#x35;&#x32;&#45;&#x36;&#50;&#55;&#54;&#x36;&#x34;&#x36;&#53;&#64;&#115;&#46;&#119;&#x68;&#x61;&#116;&#115;&#97;&#112;&#112;&#x2e;&#110;&#x65;&#x74;">&#56;&#x35;&#x32;&#45;&#x36;&#50;&#55;&#54;&#x36;&#x34;&#x36;&#53;&#64;&#115;&#46;&#119;&#x68;&#x61;&#116;&#115;&#97;&#112;&#112;&#x2e;&#110;&#x65;&#x74;</a> </p>
-<p>D:<a href="mailto:&#67;&#x38;&#53;&#x32;&#54;&#x33;&#55;&#54;&#54;&#52;&#x36;&#x35;&#x40;&#115;&#46;&#119;&#x68;&#97;&#x74;&#115;&#97;&#112;&#112;&#x2e;&#110;&#101;&#x74;">&#67;&#x38;&#53;&#x32;&#54;&#x33;&#55;&#54;&#54;&#52;&#x36;&#x35;&#x40;&#115;&#46;&#119;&#x68;&#97;&#x74;&#115;&#97;&#112;&#112;&#x2e;&#110;&#101;&#x74;</a> </p>
-<p>E:<a href="mailto:&#x43;&#x4f;&#76;&#69;&#x2d;&#x36;&#51;&#55;&#54;&#54;&#x34;&#54;&#x35;&#64;&#x73;&#46;&#x77;&#104;&#97;&#116;&#115;&#97;&#x70;&#x70;&#x2e;&#x6e;&#x65;&#x74;">&#x43;&#x4f;&#76;&#69;&#x2d;&#x36;&#51;&#55;&#54;&#54;&#x34;&#54;&#x35;&#64;&#x73;&#46;&#x77;&#104;&#97;&#116;&#115;&#97;&#x70;&#x70;&#x2e;&#x6e;&#x65;&#x74;</a>. </p>
+<h3 id="Cole的手机上有社交媒体帐户吗？如有，那是甚么？"><a href="#Cole的手机上有社交媒体帐户吗？如有，那是甚么？" class="headerlink" title="Cole的手机上有社交媒体帐户吗？如有，那是甚么？"></a>Cole的手机上有社交媒体帐户吗？如有，那是甚么？</h3><p>A:<a href="mailto:&#54;&#x33;&#x37;&#54;&#54;&#x34;&#54;&#x35;&#64;&#x73;&#x2e;&#x77;&#104;&#x61;&#x74;&#115;&#97;&#x70;&#x70;&#x2e;&#x6e;&#x65;&#x74;">&#54;&#x33;&#x37;&#54;&#54;&#x34;&#54;&#x35;&#64;&#x73;&#x2e;&#x77;&#104;&#x61;&#x74;&#115;&#97;&#x70;&#x70;&#x2e;&#x6e;&#x65;&#x74;</a> </p>
+<p>B:<a href="mailto:&#56;&#53;&#50;&#x36;&#51;&#x37;&#54;&#54;&#52;&#54;&#x35;&#64;&#115;&#46;&#x77;&#x68;&#x61;&#116;&#x73;&#97;&#x70;&#x70;&#x2e;&#x6e;&#101;&#x74;">&#56;&#53;&#50;&#x36;&#51;&#x37;&#54;&#54;&#52;&#54;&#x35;&#64;&#115;&#46;&#x77;&#x68;&#x61;&#116;&#x73;&#97;&#x70;&#x70;&#x2e;&#x6e;&#101;&#x74;</a> </p>
+<p>C:<a href="mailto:&#x38;&#x35;&#50;&#45;&#x36;&#50;&#x37;&#x36;&#x36;&#52;&#54;&#x35;&#64;&#x73;&#46;&#x77;&#x68;&#x61;&#x74;&#x73;&#97;&#x70;&#112;&#x2e;&#x6e;&#x65;&#116;">&#x38;&#x35;&#50;&#45;&#x36;&#50;&#x37;&#x36;&#x36;&#52;&#54;&#x35;&#64;&#x73;&#46;&#x77;&#x68;&#x61;&#x74;&#x73;&#97;&#x70;&#112;&#x2e;&#x6e;&#x65;&#116;</a> </p>
+<p>D:<a href="mailto:&#x43;&#56;&#x35;&#x32;&#x36;&#x33;&#x37;&#x36;&#54;&#x34;&#x36;&#53;&#x40;&#x73;&#x2e;&#x77;&#x68;&#97;&#x74;&#x73;&#x61;&#x70;&#x70;&#x2e;&#x6e;&#101;&#116;">&#x43;&#56;&#x35;&#x32;&#x36;&#x33;&#x37;&#x36;&#54;&#x34;&#x36;&#53;&#x40;&#x73;&#x2e;&#x77;&#x68;&#97;&#x74;&#x73;&#x61;&#x70;&#x70;&#x2e;&#x6e;&#101;&#116;</a> </p>
+<p>E:<a href="mailto:&#x43;&#x4f;&#x4c;&#x45;&#x2d;&#54;&#51;&#55;&#x36;&#x36;&#52;&#x36;&#53;&#x40;&#115;&#x2e;&#x77;&#x68;&#x61;&#116;&#115;&#x61;&#x70;&#x70;&#x2e;&#110;&#x65;&#x74;">&#x43;&#x4f;&#x4c;&#x45;&#x2d;&#54;&#51;&#55;&#x36;&#x36;&#52;&#x36;&#53;&#x40;&#115;&#x2e;&#x77;&#x68;&#x61;&#116;&#115;&#x61;&#x70;&#x70;&#x2e;&#110;&#x65;&#x74;</a>. </p>
 <p>答案：</p>
-<h3 id="Cole与Bob和Alice在同一个小组中进行过交流吗？它是甚么？"><a href="#Cole与Bob和Alice在同一个小组中进行过交流吗？它是甚么？" class="headerlink" title="Cole与Bob和Alice在同一个小组中进行过交流吗？它是甚么？"></a>Cole与Bob和Alice在同一个小组中进行过交流吗？它是甚么？</h3><p>A:是的，在whatsapp组ID中的群聊消息：<a href="mailto:&#56;&#x35;&#50;&#x36;&#x32;&#x35;&#52;&#x37;&#x39;&#x33;&#x37;&#45;&#49;&#54;&#x30;&#48;&#x33;&#x39;&#50;&#56;&#x37;&#56;&#64;&#x67;&#x2e;&#117;&#x73;">&#56;&#x35;&#50;&#x36;&#x32;&#x35;&#52;&#x37;&#x39;&#x33;&#x37;&#45;&#49;&#54;&#x30;&#48;&#x33;&#x39;&#50;&#56;&#x37;&#56;&#64;&#x67;&#x2e;&#117;&#x73;</a> </p>
-<p>B:是的，在whatsapp组ID中的群聊消息：<a href="mailto:&#x38;&#53;&#x32;&#x36;&#x32;&#x35;&#x34;&#x37;&#x39;&#x33;&#x37;&#45;&#49;&#54;&#48;&#48;&#x33;&#x39;&#x32;&#x38;&#55;&#x38;&#x40;&#x67;&#46;&#104;&#x6b;">&#x38;&#53;&#x32;&#x36;&#x32;&#x35;&#x34;&#x37;&#x39;&#x33;&#x37;&#45;&#49;&#54;&#48;&#48;&#x33;&#x39;&#x32;&#x38;&#55;&#x38;&#x40;&#x67;&#46;&#104;&#x6b;</a> </p>
+<h3 id="Cole与Bob和Alice在同一个小组中进行过交流吗？它是甚么？"><a href="#Cole与Bob和Alice在同一个小组中进行过交流吗？它是甚么？" class="headerlink" title="Cole与Bob和Alice在同一个小组中进行过交流吗？它是甚么？"></a>Cole与Bob和Alice在同一个小组中进行过交流吗？它是甚么？</h3><p>A:是的，在whatsapp组ID中的群聊消息：<a href="mailto:&#56;&#x35;&#50;&#54;&#50;&#x35;&#x34;&#55;&#57;&#51;&#55;&#x2d;&#49;&#54;&#48;&#x30;&#x33;&#57;&#50;&#x38;&#x37;&#x38;&#x40;&#103;&#46;&#x75;&#115;">&#56;&#x35;&#50;&#54;&#50;&#x35;&#x34;&#55;&#57;&#51;&#55;&#x2d;&#49;&#54;&#48;&#x30;&#x33;&#57;&#50;&#x38;&#x37;&#x38;&#x40;&#103;&#46;&#x75;&#115;</a> </p>
+<p>B:是的，在whatsapp组ID中的群聊消息：<a href="mailto:&#x38;&#53;&#50;&#x36;&#x32;&#x35;&#52;&#55;&#x39;&#51;&#x37;&#45;&#x31;&#x36;&#48;&#48;&#51;&#x39;&#50;&#56;&#x37;&#56;&#64;&#x67;&#46;&#104;&#107;">&#x38;&#53;&#50;&#x36;&#x32;&#x35;&#52;&#55;&#x39;&#51;&#x37;&#45;&#x31;&#x36;&#48;&#48;&#51;&#x39;&#50;&#56;&#x37;&#56;&#64;&#x67;&#46;&#104;&#107;</a> </p>
 <p>C:是的，在whatsapp组ID中的群聊消息：85252547937-1600392878@.us </p>
-<p>D:是的，在whatsapp组ID中的群聊消息：<a href="mailto:&#54;&#x32;&#x35;&#x34;&#x37;&#x39;&#x33;&#x37;&#x2d;&#x31;&#x36;&#48;&#x30;&#x33;&#x39;&#x32;&#x38;&#55;&#56;&#x40;&#103;&#x2e;&#x75;&#115;">&#54;&#x32;&#x35;&#x34;&#x37;&#x39;&#x33;&#x37;&#x2d;&#x31;&#x36;&#48;&#x30;&#x33;&#x39;&#x32;&#x38;&#55;&#56;&#x40;&#103;&#x2e;&#x75;&#115;</a> </p>
+<p>D:是的，在whatsapp组ID中的群聊消息：<a href="mailto:&#54;&#x32;&#53;&#52;&#55;&#x39;&#x33;&#55;&#x2d;&#49;&#x36;&#48;&#x30;&#x33;&#57;&#50;&#x38;&#x37;&#56;&#x40;&#x67;&#46;&#117;&#x73;">&#54;&#x32;&#53;&#52;&#55;&#x39;&#x33;&#55;&#x2d;&#49;&#x36;&#48;&#x30;&#x33;&#57;&#50;&#x38;&#x37;&#56;&#x40;&#x67;&#46;&#117;&#x73;</a> </p>
 <p>E:不，他们在Cole的设备中找不到公共聊天组. </p>
 <p>答案：</p>
 <h3 id="Cole手机的Android-ID是甚么？"><a href="#Cole手机的Android-ID是甚么？" class="headerlink" title="Cole手机的Android ID是甚么？"></a>Cole手机的Android ID是甚么？</h3><p>A:a626a98cb2bb965ec </p>
@@ -2151,18 +2239,18 @@
 <p>答案：B</p>
 <p>在取证大师中，可以看到分区二有WINDOWS文件夹，故其为操作系统盘</p>
 <p><img src="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211107000729686.png" alt="image-20211107000729686"></p>
-<h3 id="在桌上计算器机中找到Daniel的电子邮件地址是-甚么？"><a href="#在桌上计算器机中找到Daniel的电子邮件地址是-甚么？" class="headerlink" title="在桌上计算器机中找到Daniel的电子邮件地址是 甚么？"></a>在桌上计算器机中找到Daniel的电子邮件地址是 甚么？</h3><p>A:<a href="mailto:&#x64;&#x61;&#x6e;&#105;&#x65;&#108;&#52;&#x33;&#x33;&#x34;&#x36;&#64;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#109;">&#x64;&#x61;&#x6e;&#105;&#x65;&#108;&#52;&#x33;&#x33;&#x34;&#x36;&#64;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#109;</a> </p>
-<p>B:<a href="mailto:&#100;&#97;&#x6e;&#105;&#x65;&#x6c;&#108;&#97;&#119;&#x34;&#51;&#51;&#x34;&#x36;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#109;">&#100;&#97;&#x6e;&#105;&#x65;&#x6c;&#108;&#97;&#119;&#x34;&#51;&#51;&#x34;&#x36;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#109;</a> </p>
-<p>C:<a href="mailto:&#100;&#x61;&#x6e;&#105;&#x65;&#x6c;&#x6c;&#x61;&#119;&#x34;&#x33;&#51;&#x34;&#x36;&#x40;&#x79;&#97;&#x68;&#x6f;&#x6f;&#x2e;&#x63;&#111;&#x6d;">&#100;&#x61;&#x6e;&#105;&#x65;&#x6c;&#x6c;&#x61;&#119;&#x34;&#x33;&#51;&#x34;&#x36;&#x40;&#x79;&#97;&#x68;&#x6f;&#x6f;&#x2e;&#x63;&#111;&#x6d;</a> </p>
-<p>D:<a href="mailto:&#100;&#97;&#x6e;&#x69;&#x65;&#108;&#108;&#x61;&#x77;&#52;&#51;&#x33;&#52;&#54;&#64;&#x79;&#97;&#104;&#111;&#111;&#x2e;&#x63;&#111;&#x6d;&#x2e;&#104;&#x6b;">&#100;&#97;&#x6e;&#x69;&#x65;&#108;&#108;&#x61;&#x77;&#52;&#51;&#x33;&#52;&#54;&#64;&#x79;&#97;&#104;&#111;&#111;&#x2e;&#x63;&#111;&#x6d;&#x2e;&#104;&#x6b;</a> </p>
-<p>E:<a href="mailto:&#100;&#97;&#110;&#105;&#x65;&#x6c;&#108;&#97;&#119;&#52;&#x33;&#51;&#x34;&#x36;&#x40;&#x79;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#100;&#97;&#110;&#105;&#x65;&#x6c;&#108;&#97;&#119;&#52;&#x33;&#51;&#x34;&#x36;&#x40;&#x79;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a>. </p>
+<h3 id="在桌上计算器机中找到Daniel的电子邮件地址是-甚么？"><a href="#在桌上计算器机中找到Daniel的电子邮件地址是-甚么？" class="headerlink" title="在桌上计算器机中找到Daniel的电子邮件地址是 甚么？"></a>在桌上计算器机中找到Daniel的电子邮件地址是 甚么？</h3><p>A:<a href="mailto:&#x64;&#97;&#x6e;&#x69;&#x65;&#108;&#52;&#x33;&#51;&#x34;&#x36;&#x40;&#103;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;">&#x64;&#97;&#x6e;&#x69;&#x65;&#108;&#52;&#x33;&#51;&#x34;&#x36;&#x40;&#103;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;</a> </p>
+<p>B:<a href="mailto:&#100;&#x61;&#110;&#105;&#x65;&#108;&#108;&#97;&#x77;&#x34;&#x33;&#x33;&#52;&#54;&#x40;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;">&#100;&#x61;&#110;&#105;&#x65;&#108;&#108;&#97;&#x77;&#x34;&#x33;&#x33;&#52;&#54;&#x40;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;</a> </p>
+<p>C:<a href="mailto:&#100;&#97;&#110;&#x69;&#101;&#108;&#108;&#97;&#119;&#52;&#x33;&#51;&#52;&#54;&#x40;&#121;&#97;&#104;&#x6f;&#x6f;&#x2e;&#99;&#111;&#109;">&#100;&#97;&#110;&#x69;&#101;&#108;&#108;&#97;&#119;&#52;&#x33;&#51;&#52;&#54;&#x40;&#121;&#97;&#104;&#x6f;&#x6f;&#x2e;&#99;&#111;&#109;</a> </p>
+<p>D:<a href="mailto:&#100;&#97;&#x6e;&#x69;&#x65;&#108;&#x6c;&#97;&#119;&#x34;&#51;&#51;&#52;&#54;&#x40;&#121;&#97;&#104;&#111;&#x6f;&#46;&#99;&#111;&#x6d;&#46;&#x68;&#107;">&#100;&#97;&#x6e;&#x69;&#x65;&#108;&#x6c;&#97;&#119;&#x34;&#51;&#51;&#52;&#54;&#x40;&#121;&#97;&#104;&#111;&#x6f;&#46;&#99;&#111;&#x6d;&#46;&#x68;&#107;</a> </p>
+<p>E:<a href="mailto:&#x64;&#x61;&#x6e;&#x69;&#101;&#x6c;&#108;&#x61;&#119;&#x34;&#51;&#x33;&#x34;&#54;&#64;&#121;&#109;&#x61;&#105;&#108;&#46;&#99;&#111;&#x6d;">&#x64;&#x61;&#x6e;&#x69;&#101;&#x6c;&#108;&#x61;&#119;&#x34;&#51;&#x33;&#x34;&#54;&#64;&#121;&#109;&#x61;&#105;&#108;&#46;&#99;&#111;&#x6d;</a>. </p>
 <p><strong>答案：A</strong></p>
 <p><img src="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211104221341849.png" alt="image-20211104221341849"></p>
-<h3 id="该恶意软件感染源是甚么？"><a href="#该恶意软件感染源是甚么？" class="headerlink" title="该恶意软件感染源是甚么？"></a>该恶意软件感染源是甚么？</h3><p>A:”<a href="mailto:&#x64;&#x61;&#x6e;&#105;&#x65;&#x6c;&#x6c;&#97;&#119;&#x34;&#x33;&#51;&#x34;&#54;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#109;">&#x64;&#x61;&#x6e;&#105;&#x65;&#x6c;&#x6c;&#97;&#119;&#x34;&#x33;&#51;&#x34;&#54;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#109;</a> - Daniel_Gmail.pst, Paypal updated:New Account update needs to be noticed” </p>
-<p>B:”<a href="mailto:&#100;&#97;&#x6e;&#105;&#101;&#108;&#108;&#x61;&#119;&#52;&#x33;&#51;&#52;&#54;&#x40;&#x67;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#x6d;">&#100;&#97;&#x6e;&#105;&#101;&#108;&#108;&#x61;&#119;&#52;&#x33;&#51;&#52;&#54;&#x40;&#x67;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#x6d;</a> - Daniel_Gmails.pst, Paypal updated:New Account update needs to be noticed” </p>
-<p>C:”<a href="mailto:&#100;&#97;&#x6e;&#x69;&#x65;&#x6c;&#108;&#97;&#119;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;">&#100;&#97;&#x6e;&#x69;&#x65;&#x6c;&#108;&#97;&#119;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;</a> - Daniel_Gmail.pst, Paypal updated:New Account update needs to be noticed” </p>
-<p>D:”<a href="mailto:&#x64;&#x61;&#110;&#105;&#101;&#108;&#x61;&#x77;&#52;&#x33;&#51;&#x34;&#54;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#109;">&#x64;&#x61;&#110;&#105;&#101;&#108;&#x61;&#x77;&#52;&#x33;&#51;&#x34;&#54;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#109;</a> - Daniel_Gmail.pst, Paypal updated:New Account update needs to be noticed” </p>
-<p>E:”<a href="mailto:&#x64;&#x61;&#x6e;&#x69;&#101;&#x6c;&#x6c;&#x61;&#x77;&#52;&#x33;&#x33;&#x34;&#54;&#64;&#121;&#97;&#x68;&#111;&#x6f;&#46;&#99;&#111;&#x6d;">&#x64;&#x61;&#x6e;&#x69;&#101;&#x6c;&#x6c;&#x61;&#x77;&#52;&#x33;&#x33;&#x34;&#54;&#64;&#121;&#97;&#x68;&#111;&#x6f;&#46;&#99;&#111;&#x6d;</a> - Daniel_Gmail.pst, Paypal updated:New Account update needs to be noticed”.</p>
+<h3 id="该恶意软件感染源是甚么？"><a href="#该恶意软件感染源是甚么？" class="headerlink" title="该恶意软件感染源是甚么？"></a>该恶意软件感染源是甚么？</h3><p>A:”<a href="mailto:&#x64;&#x61;&#x6e;&#105;&#101;&#x6c;&#108;&#x61;&#119;&#x34;&#x33;&#x33;&#52;&#54;&#x40;&#103;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#109;">&#x64;&#x61;&#x6e;&#105;&#101;&#x6c;&#108;&#x61;&#119;&#x34;&#x33;&#x33;&#52;&#54;&#x40;&#103;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#109;</a> - Daniel_Gmail.pst, Paypal updated:New Account update needs to be noticed” </p>
+<p>B:”<a href="mailto:&#x64;&#97;&#110;&#105;&#101;&#x6c;&#x6c;&#97;&#119;&#x34;&#x33;&#51;&#x34;&#x36;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#x64;&#97;&#110;&#105;&#101;&#x6c;&#x6c;&#97;&#119;&#x34;&#x33;&#51;&#x34;&#x36;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a> - Daniel_Gmails.pst, Paypal updated:New Account update needs to be noticed” </p>
+<p>C:”<a href="mailto:&#100;&#x61;&#x6e;&#105;&#101;&#108;&#108;&#97;&#119;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#109;">&#100;&#x61;&#x6e;&#105;&#101;&#108;&#108;&#97;&#119;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#109;</a> - Daniel_Gmail.pst, Paypal updated:New Account update needs to be noticed” </p>
+<p>D:”<a href="mailto:&#x64;&#x61;&#110;&#x69;&#x65;&#x6c;&#x61;&#x77;&#52;&#x33;&#51;&#52;&#54;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;">&#x64;&#x61;&#110;&#x69;&#x65;&#x6c;&#x61;&#x77;&#52;&#x33;&#51;&#52;&#54;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;</a> - Daniel_Gmail.pst, Paypal updated:New Account update needs to be noticed” </p>
+<p>E:”<a href="mailto:&#x64;&#x61;&#110;&#x69;&#x65;&#108;&#108;&#97;&#119;&#52;&#x33;&#x33;&#x34;&#x36;&#64;&#121;&#97;&#x68;&#111;&#x6f;&#46;&#99;&#x6f;&#109;">&#x64;&#x61;&#110;&#x69;&#x65;&#108;&#108;&#97;&#119;&#52;&#x33;&#x33;&#x34;&#x36;&#64;&#121;&#97;&#x68;&#111;&#x6f;&#46;&#99;&#x6f;&#109;</a> - Daniel_Gmail.pst, Paypal updated:New Account update needs to be noticed”.</p>
 <p>答案：</p>
 <h3 id="在Daniel的桌面上发现了甚么恶意软件？-某些-字符被刻意用-遮盖"><a href="#在Daniel的桌面上发现了甚么恶意软件？-某些-字符被刻意用-遮盖" class="headerlink" title="在Daniel的桌面上发现了甚么恶意软件？(某些 字符被刻意用*遮盖)"></a>在Daniel的桌面上发现了甚么恶意软件？(某些 字符被刻意用*遮盖)</h3><p><code>A:wi**ows.bat </code></p>
 <p><code>B:ootd-4.0.**2.0.exe </code></p>
