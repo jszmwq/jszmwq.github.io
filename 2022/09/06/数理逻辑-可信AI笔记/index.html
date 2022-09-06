@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>数理逻辑-可信AI笔记 | j52nnw9的博客</title><meta name="keywords" content="计科课程"><meta name="author" content="萌新QAQ"><meta name="copyright" content="萌新QAQ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="可信AI总结报告论文来源ACM与IEEE双Fellow、华人女计算机科学家周以真：可信 AI，未来可期 | 雷峰网 (leiphone.com) 一、可信AI的发展历程  人工智能并不是一个新的概念，从1950年的图灵之问开始，到今天产业的蓬勃发展。人工智能系统已经在我们的生活中有着广泛的应用。比如，物体识别可以帮助汽车识别道路；语音识别则有助于个性化语音助手交流。人工智能系统的表现甚至超过了人类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数理逻辑-可信AI笔记">
+<meta property="og:url" content="https://jszmwq.github.io/2022/09/06/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91-%E5%8F%AF%E4%BF%A1AI%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="j52nnw9的博客">
+<meta property="og:description" content="可信AI总结报告论文来源ACM与IEEE双Fellow、华人女计算机科学家周以真：可信 AI，未来可期 | 雷峰网 (leiphone.com) 一、可信AI的发展历程  人工智能并不是一个新的概念，从1950年的图灵之问开始，到今天产业的蓬勃发展。人工智能系统已经在我们的生活中有着广泛的应用。比如，物体识别可以帮助汽车识别道路；语音识别则有助于个性化语音助手交流。人工智能系统的表现甚至超过了人类">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jszmwq.github.io/img/Animation/2.webp">
+<meta property="article:published_time" content="2022-09-06T09:24:45.000Z">
+<meta property="article:modified_time" content="2022-09-06T09:28:29.201Z">
+<meta property="article:author" content="萌新QAQ">
+<meta property="article:tag" content="计科课程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jszmwq.github.io/img/Animation/2.webp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jszmwq.github.io/2022/09/06/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91-%E5%8F%AF%E4%BF%A1AI%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '数理逻辑-可信AI笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-06 17:28:29'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/image.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/Animation/2.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">j52nnw9的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">数理逻辑-可信AI笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-09-06T09:24:45.000Z" title="发表于 2022-09-06 17:24:45">2022-09-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-06T09:28:29.201Z" title="更新于 2022-09-06 17:28:29">2022-09-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="数理逻辑-可信AI笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="可信AI总结报告"><a href="#可信AI总结报告" class="headerlink" title="可信AI总结报告"></a><strong>可信AI总结报告</strong></h2><p><strong>论文来源<a target="_blank" rel="noopener" href="https://www.leiphone.com/category/academic/6fM6dmp1owBUfO5F.html">ACM与IEEE双Fellow、华人女计算机科学家周以真：可信 AI，未来可期 | 雷峰网 (leiphone.com)</a></strong></p>
+<h3 id="一、可信AI的发展历程"><a href="#一、可信AI的发展历程" class="headerlink" title="一、可信AI的发展历程"></a>一、可信AI的发展历程</h3><p>  人工智能并不是一个新的概念，从1950年的图灵之问开始，到今天产业的蓬勃发展。人工智能系统已经在我们的生活中有着广泛的应用。比如，物体识别可以帮助汽车识别道路；语音识别则有助于个性化语音助手交流。人工智能系统的表现甚至超过了人类，AlphaGo 就是第一个击败世界最强围棋选手的计算机程序。除此之外，OpenAI公司提出了包含1750亿参数的GPT究极进化版模型GPT-3，GPT-3 在许多 NLP 数据集上均具有出色的性能，包括翻译、问答和文本填空任务，这还包括一些需要即时推理或领域适应的任务，例如给一句话中的单词替换成同义词，或执行 3 位数的数学运算。人工智能的前景之广阔，属于人工智能的时代仿佛就此到来。</p>
+<p>  但是随着人工智能广泛的产业落地，带来的诸多问题也同样不能忽视。AI面临越来越多的可信挑战，人工智能系统可能是不堪一击且不公正的。包含涂鸦的停车标志，良性皮肤病图像上的噪声，这些都有可能成为混淆欺骗分类器的存在。另外一些风险评估、价值评判人工智能系统甚至会出现种族歧视与性别歧视的情况。AI系统的不确定性导致潜在的安全问题，可解释性的缺乏，AI系统如何在使用数据的同时保护用户隐私等，这些种种都成为了对AI更广泛的应用与赋能的限制。</p>
+<p>  构筑可信AI已成为全球共识，2016年欧盟颁布了《通用数据保护条例（GDPR）》；2017年12月，IEEE提出了《人工智能的伦理设计准则》，之后澳洲、美国、新加坡等都提出了相关的政策、指南或白皮书。国内，何积丰院士于2017年11月香山科学会议上首次提出了“可信人工智能”的概念。2017年12月，工业和信息化部发布了《促进新一代人工智能产业发展三年行动计划》。在此之后，中国的科技公司纷纷提出了可信人工智能发展规划。2019年10月，京东集团就首次在乌镇世界互联网大会上提出京东践行“可信赖AI”的六大维度；京东探索研究院在2021年4月已将“可信人工智能”正式列为主要研究方向之一，并于同年7月联合中国信通院完成撰写、发布国内首本《可信人工智能白皮书》。由上可见，可信AI有着光明的前景。</p>
+<h3 id="二、可信AI需要满足的属性"><a href="#二、可信AI需要满足的属性" class="headerlink" title="二、可信AI需要满足的属性"></a>二、可信AI需要满足的属性</h3><p>  我们可以把可信AI的属性归结到五大方面中：稳定性、可解释性、隐私保护、公平性以及相关的责任划分。以下是文章中给出的几个特性</p>
+<h4 id="（1）可靠性：系统做正确的事情吗？"><a href="#（1）可靠性：系统做正确的事情吗？" class="headerlink" title="（1）可靠性：系统做正确的事情吗？"></a>（1）可靠性：系统做正确的事情吗？</h4><h5 id="（2）安全性：系统没有危害吗？"><a href="#（2）安全性：系统没有危害吗？" class="headerlink" title="（2）安全性：系统没有危害吗？"></a>（2）安全性：系统没有危害吗？</h5><h5 id="（3）保密性：系统是否容易受到攻击？"><a href="#（3）保密性：系统是否容易受到攻击？" class="headerlink" title="（3）保密性：系统是否容易受到攻击？"></a>（3）保密性：系统是否容易受到攻击？</h5><h5 id="（4）隐私性：系统是否保护个人的身份和数据"><a href="#（4）隐私性：系统是否保护个人的身份和数据" class="headerlink" title="（4）隐私性：系统是否保护个人的身份和数据?"></a>（4）隐私性：系统是否保护个人的身份和数据?</h5><h5 id="（5）可用性：当人类需要访问系统时，系统是正常的吗？"><a href="#（5）可用性：当人类需要访问系统时，系统是正常的吗？" class="headerlink" title="（5）可用性：当人类需要访问系统时，系统是正常的吗？"></a>（5）可用性：当人类需要访问系统时，系统是正常的吗？</h5><h5 id="（6）实用性：人类可以轻松使用它吗"><a href="#（6）实用性：人类可以轻松使用它吗" class="headerlink" title="（6）实用性：人类可以轻松使用它吗?"></a>（6）实用性：人类可以轻松使用它吗?</h5><h5 id="（7）准确性：与训练和测试过的数据相比，人工智能系统在新的（不可见的）数据上表现如何"><a href="#（7）准确性：与训练和测试过的数据相比，人工智能系统在新的（不可见的）数据上表现如何" class="headerlink" title="（7）准确性：与训练和测试过的数据相比，人工智能系统在新的（不可见的）数据上表现如何?"></a>（7）准确性：与训练和测试过的数据相比，人工智能系统在新的（不可见的）数据上表现如何?</h5><h5 id="（8）鲁棒性：系统的结果对输入的变化有多敏感"><a href="#（8）鲁棒性：系统的结果对输入的变化有多敏感" class="headerlink" title="（8）鲁棒性：系统的结果对输入的变化有多敏感?"></a>（8）鲁棒性：系统的结果对输入的变化有多敏感?</h5><h5 id="（9）公平性：系统的结果是否公正"><a href="#（9）公平性：系统的结果是否公正" class="headerlink" title="（9）公平性：系统的结果是否公正?"></a>（9）公平性：系统的结果是否公正?</h5><h5 id="（10）问责制：什么人或什么物对系统的结果负责"><a href="#（10）问责制：什么人或什么物对系统的结果负责" class="headerlink" title="（10）问责制：什么人或什么物对系统的结果负责?"></a>（10）问责制：什么人或什么物对系统的结果负责?</h5><h5 id="（11）透明度：外部观察员是否清楚系统的结果是如何产生的"><a href="#（11）透明度：外部观察员是否清楚系统的结果是如何产生的" class="headerlink" title="（11）透明度：外部观察员是否清楚系统的结果是如何产生的?"></a>（11）透明度：外部观察员是否清楚系统的结果是如何产生的?</h5><h5 id="（12）可理解性-可解释性：系统的结果是否可以通过人类可以理解和-或对最终用户有意义的解释来证明？"><a href="#（12）可理解性-可解释性：系统的结果是否可以通过人类可以理解和-或对最终用户有意义的解释来证明？" class="headerlink" title="（12）可理解性/可解释性：系统的结果是否可以通过人类可以理解和/或对最终用户有意义的解释来证明？"></a>（12）可理解性/可解释性：系统的结果是否可以通过人类可以理解和/或对最终用户有意义的解释来证明？</h5><p>  我们希望这些属性能够存在于硬件和软件等计算系统中，以及存在于这些与人类和物理世界交互的系统中。在过去的几十年里，学术界和产业界在可信计算方面取得了巨大的进步。然而，随着技术的进步，人工智能变得越来越复杂，可信计算仍然是一个艰难的梦想。</p>
+<p>  <strong>在一方面，人工智能所需满足的属性复杂难以统一</strong>。准确性在机器学习中被认为是一个至关重要的属性，但是其他属性如公平性的满足可能要以牺牲准确性为代价。并且这些特性往往是概念性的或者是模糊的，无法或是难以用统一的标准来衡量。</p>
+<p>  <strong>在另一方面，人工智能训练出的模型是不确定的，即具有概率性质</strong>。传统的软件和硬件系统由于其规模和组件之间的交互数量而变得复杂。在大多数情况下，我们可以根据离散逻辑和确定性状态机来定义它们的行为。但对于今天的人工智能系统，尤其是那些使用深度神经网络的系统，给传统的计算机系统增加了一个复杂的维度。这种复杂性是由于它们固有的概率性质。通过概率，人工智能系统对人类行为和物理世界的不确定性进行建模。更多机器学习的最新进展依赖于大数据，这增加了它们的概率性质，因为来自现实世界的数据只是概率空间中的点。因此，可信AI必然会将我们的注意力从传统计算系统的主要确定性本质转向人工智能系统的概率本质。</p>
+<h3 id="三、如何信任人工智能——形式验证"><a href="#三、如何信任人工智能——形式验证" class="headerlink" title="三、如何信任人工智能——形式验证"></a>三、如何信任人工智能——形式验证</h3><p>  当下，机器学习模型大多仍然是“黑盒模型”，即缺乏足够的“可解释性”。何凤翔认为，如果我们不太了解算法背后的机制，就很难预测人工智能的风险从哪里来、风险机制怎么样、尺度如何。“我们不太能管理风险，这样AI算法就很难被用在关键领域中，包括医疗诊断、自动驾驶这种人命关天的行业。所以打破AI技术现今固有的黑盒模式，算法方面的突破是关键。我们需要深刻理解算法，然后在此基础上设计出可以被信赖的算法，才能够更好应对应用风险。”</p>
+<p>  由于人工智能系统的概率性本质，面对人工智能的种种不确定性，我们很难保证自动驾驶汽车在遇见复杂的路况时能够做出最准确的判断。对于上述的问题，我们该如何设计、执行和部署人工智能系统，使其值得信赖?</p>
+<p>  在计算系统中建立最终用户信任的一种卓尔有效的方法是形式验证。形式验证的优点是无需逐一测试单个输入值或行为，是一种提供可证保证的方式，从而增加人们对系统将按预期运行的信任。</p>
+<p>  在传统的形式方法中，我们想要证明一个模型M满足一个属性P。</p>
+<p><img src="/2022/09/06/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91-%E5%8F%AF%E4%BF%A1AI%E7%AC%94%E8%AE%B0/clip_image002.png" alt="img"></p>
+<p>  其中，M时要验证的对象，这个对象可以是一个程序，也可以是一个复杂系统的抽象模型。P是用某种离散逻辑表示的正确性属性。为了验证这个M满足P的属性，需要使用形式化的数学逻辑。</p>
+<p>  特别的，当M是一个并发的、分布式或反应式的系统时，在传统的形式方法中，我们常常为模型M添加上明确的环境 E:</p>
+<p><img src="/2022/09/06/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91-%E5%8F%AF%E4%BF%A1AI%E7%AC%94%E8%AE%B0/clip_image004.png" alt="img"></p>
+<p>  <strong>与传统方法相比，我们对验证人工智能系统提出了更多的要求。</strong>为了验证ML模型，我们重新解释了M和P，其中M代表机器学习模型。P代表可信的属性，例如安全性、稳健性、隐私性或公平性。我们需要考虑研究机器学习模型固有的概率性质与怎样才能最大化利用数据。</p>
+<p>  <strong>对于M和P固有的概率性质，需要使用概率推理的方法来处理。</strong>但是与传统方法不同，模型M本身在语义和结构上就与典型的计算机程序不同，具有内在的概率性。从现实中获取到的输入，通过数学建模成随机过程，并且产生概率性的输出。这种结构导致模型M本身可能并不能被人类所理解，并且人类也很难编写出这种语句。比如，在深度神经网络框架DNN中，产生这个由if-then-else语句组成的复杂结构，并且在对程序分析的过程中开辟了新的研究方向。</p>
+<p>  人工智能系统的验证将仅限于可以形式化的内容，比如公平性特性，我们可以通过关于相对于实数的损失函数的期望来表示。而对于社会中的透明度和道德感，由于尚未形式化或无法形式化，就需要将模型放置在一个具体的环境中进行分析。</p>
+<p>  <strong>数据对于探寻满足模型的基本属性有着十分重要的价值。</strong>数据可以被分为可用数据和不可见数据，我们可以使用可用数据对M进行培训和测试，而不可见数据是M需要在之前没有见过的情况下对其进行操作的数据。即构建出来的模型M可以根据已有的数据对从来没有见过的情况进行判断，并且这个预测在某一程度上是准确的。</p>
+<p>  这两个关键的区别——M的固有概率性质和数据D的作用——为形式方法社区提供了研究机会，以推进人工智能系统的规范和验证技术。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">萌新QAQ</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://jszmwq.github.io/2022/09/06/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91-%E5%8F%AF%E4%BF%A1AI%E7%AC%94%E8%AE%B0/">https://jszmwq.github.io/2022/09/06/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91-%E5%8F%AF%E4%BF%A1AI%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://jszmwq.github.io" target="_blank">j52nnw9的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%A7%91%E8%AF%BE%E7%A8%8B/">计科课程</a></div><div class="post_share"><div class="social-share" data-image="/img/Animation/2.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/09/06/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><img class="next-cover" src="/img/Animation/3.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">神经网络学习笔记</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/01/13/%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E4%B8%8E%E7%BD%91%E7%BB%9C/" title="数据通信与网络"><img class="cover" src="/img/Animation/9.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-13</div><div class="title">数据通信与网络</div></div></a></div><div><a href="/2022/09/06/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="神经网络学习笔记"><img class="cover" src="/img/Animation/3.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-06</div><div class="title">神经网络学习笔记</div></div></a></div><div><a href="/2022/05/10/%E7%A7%91%E6%8A%80%E8%8B%B1%E8%AF%AD%E7%BB%83%E4%B9%A0/" title="科技英语联系"><img class="cover" src="/img/Animation/4.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-10</div><div class="title">科技英语联系</div></div></a></div><div><a href="/2022/01/13/%E7%A7%91%E6%8A%80%E8%8B%B1%E8%AF%AD%E7%BF%BB%E8%AF%91/" title="科技英语翻译"><img class="cover" src="/img/Animation/5.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-13</div><div class="title">科技英语翻译</div></div></a></div><div><a href="/2022/05/04/%E7%A7%91%E6%8A%80%E8%8B%B1%E8%AF%AD%E8%AF%8D%E6%B1%87%E8%A1%A8/" title="科技英语词汇表"><img class="cover" src="/img/Animation/7.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-04</div><div class="title">科技英语词汇表</div></div></a></div><div><a href="/2022/01/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" title="计算机组成与结构体系"><img class="cover" src="/img/Animation/2.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-13</div><div class="title">计算机组成与结构体系</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/image.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">萌新QAQ</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E4%BF%A1AI%E6%80%BB%E7%BB%93%E6%8A%A5%E5%91%8A"><span class="toc-number">1.</span> <span class="toc-text">可信AI总结报告</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8F%AF%E4%BF%A1AI%E7%9A%84%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">一、可信AI的发展历程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%8F%AF%E4%BF%A1AI%E9%9C%80%E8%A6%81%E6%BB%A1%E8%B6%B3%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text">二、可信AI需要满足的属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%8F%AF%E9%9D%A0%E6%80%A7%EF%BC%9A%E7%B3%BB%E7%BB%9F%E5%81%9A%E6%AD%A3%E7%A1%AE%E7%9A%84%E4%BA%8B%E6%83%85%E5%90%97%EF%BC%9F"><span class="toc-number">1.2.1.</span> <span class="toc-text">（1）可靠性：系统做正确的事情吗？</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%9A%E7%B3%BB%E7%BB%9F%E6%B2%A1%E6%9C%89%E5%8D%B1%E5%AE%B3%E5%90%97%EF%BC%9F"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">（2）安全性：系统没有危害吗？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E4%BF%9D%E5%AF%86%E6%80%A7%EF%BC%9A%E7%B3%BB%E7%BB%9F%E6%98%AF%E5%90%A6%E5%AE%B9%E6%98%93%E5%8F%97%E5%88%B0%E6%94%BB%E5%87%BB%EF%BC%9F"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">（3）保密性：系统是否容易受到攻击？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E9%9A%90%E7%A7%81%E6%80%A7%EF%BC%9A%E7%B3%BB%E7%BB%9F%E6%98%AF%E5%90%A6%E4%BF%9D%E6%8A%A4%E4%B8%AA%E4%BA%BA%E7%9A%84%E8%BA%AB%E4%BB%BD%E5%92%8C%E6%95%B0%E6%8D%AE"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">（4）隐私性：系统是否保护个人的身份和数据?</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%EF%BC%885%EF%BC%89%E5%8F%AF%E7%94%A8%E6%80%A7%EF%BC%9A%E5%BD%93%E4%BA%BA%E7%B1%BB%E9%9C%80%E8%A6%81%E8%AE%BF%E9%97%AE%E7%B3%BB%E7%BB%9F%E6%97%B6%EF%BC%8C%E7%B3%BB%E7%BB%9F%E6%98%AF%E6%AD%A3%E5%B8%B8%E7%9A%84%E5%90%97%EF%BC%9F"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">（5）可用性：当人类需要访问系统时，系统是正常的吗？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%EF%BC%886%EF%BC%89%E5%AE%9E%E7%94%A8%E6%80%A7%EF%BC%9A%E4%BA%BA%E7%B1%BB%E5%8F%AF%E4%BB%A5%E8%BD%BB%E6%9D%BE%E4%BD%BF%E7%94%A8%E5%AE%83%E5%90%97"><span class="toc-number">1.2.1.5.</span> <span class="toc-text">（6）实用性：人类可以轻松使用它吗?</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%EF%BC%887%EF%BC%89%E5%87%86%E7%A1%AE%E6%80%A7%EF%BC%9A%E4%B8%8E%E8%AE%AD%E7%BB%83%E5%92%8C%E6%B5%8B%E8%AF%95%E8%BF%87%E7%9A%84%E6%95%B0%E6%8D%AE%E7%9B%B8%E6%AF%94%EF%BC%8C%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%B3%BB%E7%BB%9F%E5%9C%A8%E6%96%B0%E7%9A%84%EF%BC%88%E4%B8%8D%E5%8F%AF%E8%A7%81%E7%9A%84%EF%BC%89%E6%95%B0%E6%8D%AE%E4%B8%8A%E8%A1%A8%E7%8E%B0%E5%A6%82%E4%BD%95"><span class="toc-number">1.2.1.6.</span> <span class="toc-text">（7）准确性：与训练和测试过的数据相比，人工智能系统在新的（不可见的）数据上表现如何?</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%EF%BC%888%EF%BC%89%E9%B2%81%E6%A3%92%E6%80%A7%EF%BC%9A%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%93%E6%9E%9C%E5%AF%B9%E8%BE%93%E5%85%A5%E7%9A%84%E5%8F%98%E5%8C%96%E6%9C%89%E5%A4%9A%E6%95%8F%E6%84%9F"><span class="toc-number">1.2.1.7.</span> <span class="toc-text">（8）鲁棒性：系统的结果对输入的变化有多敏感?</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%EF%BC%889%EF%BC%89%E5%85%AC%E5%B9%B3%E6%80%A7%EF%BC%9A%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%93%E6%9E%9C%E6%98%AF%E5%90%A6%E5%85%AC%E6%AD%A3"><span class="toc-number">1.2.1.8.</span> <span class="toc-text">（9）公平性：系统的结果是否公正?</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%EF%BC%8810%EF%BC%89%E9%97%AE%E8%B4%A3%E5%88%B6%EF%BC%9A%E4%BB%80%E4%B9%88%E4%BA%BA%E6%88%96%E4%BB%80%E4%B9%88%E7%89%A9%E5%AF%B9%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%93%E6%9E%9C%E8%B4%9F%E8%B4%A3"><span class="toc-number">1.2.1.9.</span> <span class="toc-text">（10）问责制：什么人或什么物对系统的结果负责?</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%EF%BC%8811%EF%BC%89%E9%80%8F%E6%98%8E%E5%BA%A6%EF%BC%9A%E5%A4%96%E9%83%A8%E8%A7%82%E5%AF%9F%E5%91%98%E6%98%AF%E5%90%A6%E6%B8%85%E6%A5%9A%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%93%E6%9E%9C%E6%98%AF%E5%A6%82%E4%BD%95%E4%BA%A7%E7%94%9F%E7%9A%84"><span class="toc-number">1.2.1.10.</span> <span class="toc-text">（11）透明度：外部观察员是否清楚系统的结果是如何产生的?</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%EF%BC%8812%EF%BC%89%E5%8F%AF%E7%90%86%E8%A7%A3%E6%80%A7-%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%80%A7%EF%BC%9A%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%93%E6%9E%9C%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E4%BA%BA%E7%B1%BB%E5%8F%AF%E4%BB%A5%E7%90%86%E8%A7%A3%E5%92%8C-%E6%88%96%E5%AF%B9%E6%9C%80%E7%BB%88%E7%94%A8%E6%88%B7%E6%9C%89%E6%84%8F%E4%B9%89%E7%9A%84%E8%A7%A3%E9%87%8A%E6%9D%A5%E8%AF%81%E6%98%8E%EF%BC%9F"><span class="toc-number">1.2.1.11.</span> <span class="toc-text">（12）可理解性&#x2F;可解释性：系统的结果是否可以通过人类可以理解和&#x2F;或对最终用户有意义的解释来证明？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%A6%82%E4%BD%95%E4%BF%A1%E4%BB%BB%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E2%80%94%E2%80%94%E5%BD%A2%E5%BC%8F%E9%AA%8C%E8%AF%81"><span class="toc-number">1.3.</span> <span class="toc-text">三、如何信任人工智能——形式验证</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/09/06/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="神经网络学习笔记"><img src="/img/Animation/3.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="神经网络学习笔记"/></a><div class="content"><a class="title" href="/2022/09/06/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="神经网络学习笔记">神经网络学习笔记</a><time datetime="2022-09-06T10:09:15.431Z" title="更新于 2022-09-06 18:09:15">2022-09-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/06/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91-%E5%8F%AF%E4%BF%A1AI%E7%AC%94%E8%AE%B0/" title="数理逻辑-可信AI笔记"><img src="/img/Animation/2.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数理逻辑-可信AI笔记"/></a><div class="content"><a class="title" href="/2022/09/06/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91-%E5%8F%AF%E4%BF%A1AI%E7%AC%94%E8%AE%B0/" title="数理逻辑-可信AI笔记">数理逻辑-可信AI笔记</a><time datetime="2022-09-06T09:28:29.201Z" title="更新于 2022-09-06 17:28:29">2022-09-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/05/%E9%AB%98%E6%95%B0%E5%85%B8%E5%9E%8B%E9%A2%98/" title="高数典型题"><img src="/img/Animation/7.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="高数典型题"/></a><div class="content"><a class="title" href="/2022/09/05/%E9%AB%98%E6%95%B0%E5%85%B8%E5%9E%8B%E9%A2%98/" title="高数典型题">高数典型题</a><time datetime="2022-09-05T15:59:06.835Z" title="更新于 2022-09-05 23:59:06">2022-09-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/14/ardupilot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="ardupilot学习笔记"><img src="/img/Animation/7.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ardupilot学习笔记"/></a><div class="content"><a class="title" href="/2022/08/14/ardupilot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="ardupilot学习笔记">ardupilot学习笔记</a><time datetime="2022-09-04T17:06:19.467Z" title="更新于 2022-09-05 01:06:19">2022-09-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/16/%E5%AE%89%E7%9E%B3%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%84%E4%BC%9A/" title="安瞳第一次组会"><img src="/img/Animation/7.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安瞳第一次组会"/></a><div class="content"><a class="title" href="/2022/07/16/%E5%AE%89%E7%9E%B3%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%84%E4%BC%9A/" title="安瞳第一次组会">安瞳第一次组会</a><time datetime="2022-07-16T13:57:16.786Z" title="更新于 2022-07-16 21:57:16">2022-07-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 萌新QAQ</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/hideMobileSidebar.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
