@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>同构网络可分任务调度问题 | j52nnw9的博客</title><meta name="keywords" content="计科课程"><meta name="author" content="萌新QAQ"><meta name="copyright" content="萌新QAQ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="同构网络可分任务调度问题 姓名：石振宁 学号：20079100015 一、问题描述 设有N+1台处理机通过星型网络互连，如图1所示，其中$P_{0}$为主处理机，其余为从处理机，主处理机只负责数据的切分和传输，从处理机负责数据的处理。$l_{i}$是链接$P_{0}$和$P_{i}$的通信链路,其中$0 &lt; i \leq N$。由于该网络为同构网络，所以从处理机的能力一样，即每个从处理机之间">
+<meta property="og:type" content="article">
+<meta property="og:title" content="同构网络可分任务调度问题">
+<meta property="og:url" content="https://jszmwq.github.io/2022/12/02/%E5%90%8C%E6%9E%84%E7%BD%91%E7%BB%9C%E5%8F%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="j52nnw9的博客">
+<meta property="og:description" content="同构网络可分任务调度问题 姓名：石振宁 学号：20079100015 一、问题描述 设有N+1台处理机通过星型网络互连，如图1所示，其中$P_{0}$为主处理机，其余为从处理机，主处理机只负责数据的切分和传输，从处理机负责数据的处理。$l_{i}$是链接$P_{0}$和$P_{i}$的通信链路,其中$0 &lt; i \leq N$。由于该网络为同构网络，所以从处理机的能力一样，即每个从处理机之间">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jszmwq.github.io/img/Animation/1.webp">
+<meta property="article:published_time" content="2022-12-02T03:41:07.000Z">
+<meta property="article:modified_time" content="2023-04-23T09:52:52.214Z">
+<meta property="article:author" content="萌新QAQ">
+<meta property="article:tag" content="计科课程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jszmwq.github.io/img/Animation/1.webp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jszmwq.github.io/2022/12/02/%E5%90%8C%E6%9E%84%E7%BD%91%E7%BB%9C%E5%8F%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '同构网络可分任务调度问题',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-04-23 17:52:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/image.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">51</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/Animation/1.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">j52nnw9的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">同构网络可分任务调度问题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-02T03:41:07.000Z" title="发表于 2022-12-02 11:41:07">2022-12-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-23T09:52:52.214Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="同构网络可分任务调度问题"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>同构网络可分任务调度问题</p>
+<p>姓名：石振宁 学号：20079100015</p>
+<p><strong>一、问题描述</strong></p>
+<p>设有N+1台处理机通过星型网络互连，如图1所示，其中$P_{0}$为主处理机，其余为从处理机，主处理机只负责数据的切分和传输，从处理机负责数据的处理。$l_{i}$是链接$P_{0}$和$P_{i}$的通信链路,其中$0 &lt; i \leq N$。由于该网络为同构网络，所以从处理机的能力一样，即每个从处理机之间数据传输速度与处理速度相等。</p>
+<p><img src="/2022/12/02/%E5%90%8C%E6%9E%84%E7%BD%91%E7%BB%9C%E5%8F%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/clip_image002-1669952649759-50.png" alt="img"></p>
+<p>主处理机$P_{0}$将大小为$W_{total}$的任务数据切分为n个子数据块,大小为$\alpha_{1},\alpha_{2},\ldots,\alpha_{n}$，并且均为正，有$1 \leq n \leq N$，满足$\sum_{i = 1}^{n}\alpha_{i} = W_{total}$。依次传输给n个相同的按照任意顺序排列的从处理机$P_{1},P_{2},\ldots,P_{n}$,主处理机$P_{0}$同一时刻只能给一个从处理机$P_{i}$传输任务,$\ P_{i}$只有在完全接收子任务后才开始处理该任务。并不要求所有的处理机都必须参与处理任务。</p>
+<p>令z表示从主处理机$P_{0}$传输单位数据到$P_{i}$所需要的时间，则传输大小为$\alpha_{i}$的数据所需的时间为${z\alpha}<em>{i}$。又因为从处理机传输数据存在启动开销e，所以子任务的传输时间为$e + {z\alpha}</em>{i}$。</p>
+<p>令w表示从处理机$P_{i}$处理单位数据的时间，则处理数据$\alpha_{i}$的时间为${w\alpha}<em>{i}$。又因为从处理机处理数据存在启动开销f，所以子任务的处理时间为：$f + {w\alpha}</em>{i}$。</p>
+<p>设从处理机$P_{i}$的释放时间为$r_{i}$,即从开始到时刻$r_{i}$,从处理机$P_{i}$是非空闲的。从处理机从时刻$r_{i}$开始空闲，可以给其安排任务。记从处理机$P_{i}$开始接受任务的时刻为$s_{i}$，根据数据的传输顺序，从处理机$P_{1}$最先开始接受传输任务。所以对于处理机$P_{1}$,由于其在时刻$r_{1}$时开始空闲，故对于从处理机$P_{1}$有$s_{1} = r_{1}$。当$2 \leq i \leq n时，$从处理机$P_{i}$的开始时间$s_{i}$由上一从处理机$P_{i - 1}$传输的完成时间以及该处理机的空闲时间决定，在两者之间取最大值。前一个处理机$P_{i - 1}$的开始时间$s_{i - 1}$加上接受子任务$\alpha_{i - 1}$的传输时间$e + {z\alpha}<em>{i}$，为$s</em>{i - 1} + e + {z\alpha}<em>{i}$;从处理机$P</em>{i}$的空闲时间为$r_{i}$，所以从处理机$P_{i}$接收数据的开始时间为$s_{i} = max{ s_{i - 1} + e + {z\alpha}<em>{i},r</em>{i}}$</p>
+<p>从处理机$P_{i}$完成数据处理的时间为$s_{i} + e + {z\alpha}<em>{i} + f + {w\alpha}</em>{i}$，当且仅当每个从处理机都处理完数据时整个同构网络可分任务才算完成，则最终完成数据处理的时间为$\max_{1 \leq i \leq n}\left{ s_{i} + e + {z\alpha}<em>{i} + f + {w\alpha}</em>{i} \right}$。由于对于从处理机的排列顺序也会影响到最终数据处理的完成时间，所以在若干种可能的排列顺序中选择最优解作为我们的调度方案，即有$\min_{P_{1},P_{2},\ldots,P_{n}}{\max_{1 \leq i \leq n}\left{ s_{i} + e + {z\alpha}<em>{i} + f + {w\alpha}</em>{i} \right}}$。</p>
+<p>对上面的条件进行整理有</p>
+<p>$$\left{ \begin{matrix}<br>\begin{matrix}<br>\min_{P_{1},P_{2},\ldots,P_{n}}\left{ \max_{1 \leq i \leq n}\left{ s_{i} + e + {z\alpha}<em>{i} + f + {w\alpha}</em>{i} \right} \right} \<br>s.t.\ \ \ \ 1 \leq n \leq N \<br>\sum_{i = 1}^{n}\alpha_{i} = W_{total}\  \<br>0 \leq \alpha_{i} \leq W_{total},1 \leq i \leq n \<br>s_{i} = \left{ \begin{matrix}<br>r_{1}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i = 1 \<br>\max\left{ s_{i - 1} + e + {z\alpha}<em>{i},r</em>{i} \right}\ \ 2 \leq i \leq n \<br>\end{matrix} \right.\  \<br>\end{matrix} \<br>e,f,z,w &gt; \ \ 0 \<br>\end{matrix} \right.\ $$</p>
+<p><strong>二、问题建模优化</strong></p>
+<p><strong>1.从处理机的执行顺序优化</strong></p>
+<p>对于给出的若干个从处理机，由于各个处理机之间的性能相同，所以为了尽可能减少任务调度所花的时间，就需要尽可能让空闲时刻早的先进行传输处理数据任务。如果从处理机按照乱序排列，必然存在一种情况，使得释放时间$r_{i} &gt; r_{i + 1}$，导致尽管后面的处理机已经释放处于空闲状态，但是任务却因等待当前处理机进入空闲状态而不进行任何操作，浪费了大量的等待时间。所以不妨对从处理机根据释放时间进行从早到晚的排序，让早释放的处理机先执行任务使得所花等待释放时间最小，有$P_{1},P_{2},\ldots,P_{n}$满足$r_{1} \leq r_{2} \leq \ldots \leq r_{n}$。</p>
+<p><strong>2.参与处理任务的从处理机数目优化</strong></p>
+<p>星型同构网络上共有N个从处理机，现在我们需要对启用的处理机数量n进行讨论。如果不考虑从处理机的释放时间，在原则上，当启用了尽可能多的从处理机时，每个从处理机所分配到的任务被均摊，使得最后处理所花费的时间更少。但是由于存在从处理机的传输和处理任务的启动开销，当启动开销大于均摊任务所需要的时间时，增加处理机的数量得到的收益为负。同理可知，当从处理机需要考虑释放时间时，增加处理机所需要花费的时间包括启动开销以及可能的等待空闲开销。我们需要在解决问题模型时需要考虑确定一个临界值使得从处理机工作的效率最大化。</p>
+<p><strong>3.处理任务的结束时间优化</strong></p>
+<p>根据上文，从处理机最终完成数据处理的时间为$\max_{1 \leq i \leq n}\left{ s_{i} + e + {z\alpha}<em>{i} + f + {w\alpha}</em>{i} \right}$，并且只有当所有处理机同时完成计算时任务所需要的完成时间最短。否则可以调度尚未完成计算任务的处理机，将部分任务分配给先完成计算的处理机上执行。于是我们根据上文知$s_{i - 1} + e + {z\alpha}<em>{i - 1} + f + {w\alpha}</em>{i - 1} = \ s_{i} + e + {z\alpha}<em>{i} + f + {w\alpha}</em>{i}$，整理后得到</p>
+<p>$s_{i - 1} + {z\alpha}<em>{i - 1} + {w\alpha}</em>{i - 1} = \ s_{i} + {z\alpha}<em>{i} + {w\alpha}</em>{i}，2 \leq i \leq n$ （1）</p>
+<p><strong>4．子任务的分配方案优化</strong></p>
+<p>根据上文，从处理机$P_{i}$开始接受任务的时刻为$s_{i} = \left{ \begin{matrix}<br>r_{1}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i = 1 \<br>\max\left{ s_{i - 1} + e + {z\alpha}<em>{i},r</em>{i} \right}\ \ 2 \leq i \leq n \<br>\end{matrix} \right.\ $，不妨进行讨论。</p>
+<p><strong>(1)若上一个子任务的分配完成时间均在释放时间之后，定为约束条件1</strong></p>
+<p>即有</p>
+<p>$s_{i} = s_{i - 1} + e + {z\alpha}_{i}\ \ ，2 \leq i \leq n$ （2）</p>
+<p>将（1）式与（2）式整理得</p>
+<p>$$\alpha_{i} = \frac{w}{z + w}\alpha_{i - 1} - \frac{e}{z + w},2 \leq i \leq n$$</p>
+<p><strong>(2) 若上一个子任务的分配完成时间均在释放时间之前，定为约束条件2</strong></p>
+<p>即有</p>
+<p>$s_{i} = r_{i},1 \leq i \leq n$ (3)</p>
+<p>将（1）式与（3）式整理得</p>
+<p>$$\alpha_{i} = \alpha_{i - 1} - \frac{r_{i} - r_{i - 1}}{z + w},1 \leq i \leq n$$</p>
+<p>累加后可得</p>
+<p>$$\alpha_{i} = \alpha_{1} + \frac{r_{1} - r_{i}}{z + w},1 \leq i \leq n$$</p>
+<p><strong>（3）混合时序约束</strong></p>
+<p>我们不妨对混合时序约束进行讨论.任意两个相邻的从处理机之间可能满足约束条件(1),也可能满足约束条件(2).若有n台处理机参与计算,所有可能的情况有$2^{n - 1}$种。设定混合时序约束为C=(c2,c3,…,cn)。</p>
+<p>对于给定的某一种时序约束，可以得到相邻处理机开始时间之间的关系:</p>
+<p>$\left{ \begin{matrix}<br>s_{1} = r_{1}, \<br>s_{2} = s_{1} + e + z\alpha_{1}, \<br>\ldots \<br>s_{k} = s_{k - 1} + e + z\alpha_{k - 1}, \<br>s_{k + 1} = r_{k + 1}, \<br>s_{k + 2} = r_{k + 2}, \<br>\ldots \<br>s_{k + m} = r_{k + m}, \<br>s_{k + m + 1} = s_{k + m} + e + z\alpha_{k + m}, \<br>\ldots \<br>s_{n} = s_{n - 1} + e + z\alpha_{n - 1} \<br>\end{matrix} \right.\ $ (4)</p>
+<p>将式(4)带入式(1),可得每台处理机分配的任务$\alpha_{i}$:</p>
+<p>$\left{ \begin{matrix}<br>\alpha_{2} = \frac{w}{z + w}\alpha_{1} - \frac{e}{z + w}, \<br>\ldots \<br>\ldots \<br>\ldots \<br>\alpha_{k} = \frac{w}{z + w}\alpha_{k - 1} - \frac{e}{z + w}, \<br>\alpha_{k + 1} = \alpha_{1} + \frac{r_{1} - r_{i}}{z + w}, \<br>\alpha_{k + 2} = \alpha_{1} + \frac{r_{1} - r_{i}}{z + w}, \<br>\ldots \<br>\ldots \<br>\ldots \<br>\alpha_{k + m} = \alpha_{1} + \frac{r_{1} - r_{i}}{z + w}, \<br>\alpha_{k + m + 1} = \frac{w}{z + w}\alpha_{k + m} - \frac{e}{z + w}, \<br>\ldots \<br>\ldots \<br>\ldots \<br>\alpha_{n} = \frac{w}{z + w}\alpha_{n - 1} - \frac{e}{z + w}. \<br>\end{matrix} \right.\ $ (5)</p>
+<p>将式(5)中的n-1个等式同$\sum_{i = 1}^{n}\alpha_{i} = W_{total}$共n个等式表示成标准形式,即</p>
+<p>$$A \bullet \alpha = b$$</p>
+<p>其中α表示的是待求的n×1维解变量(α1,α2,…,αn)，A是n×n的系数矩阵，b是n×1维的向量。 <img src="/2022/12/02/%E5%90%8C%E6%9E%84%E7%BD%91%E7%BB%9C%E5%8F%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/image-20221202114439020.png" alt="image-20221202114439020"></p>
+<p>$$b = \lbrack - \frac{e}{z + w},\ldots, - \frac{e}{z + w},\frac{r_{1} - r_{i}}{z + w},\frac{r_{1} - r_{i}}{z + w},\ldots,\frac{r_{1} - r_{i}}{z + w}, - \frac{e}{z + w},\ldots, - \frac{e}{z + w},W_{total}\rbrack$$</p>
+<p>即可求出任务分配方案α的解.下面给出考虑释放时间的可分任务调度模型:</p>
+<p>$$\min_{n,C}(T) = \min\left( r_{1} + e + f + (z + w)\alpha_{1} \right)$$</p>
+<p>$$s.t.\left{ \begin{matrix}<br>1 \leq n \leq N \<br>0 \leq \alpha_{i} \leq W_{total},1 \leq i \leq n \<br>\sum_{i = 1}^{n}\alpha_{i} = W_{total} \<br>s_{i - 1} + {z\alpha}<em>{i - 1} + {w\alpha}</em>{i - 1} = \ s_{i} + {z\alpha}<em>{i} + {w\alpha}</em>{i}，2 \leq i \leq n \<br>C = (c2,c3,\ldots,cn) \<br>s_{i} = \left{ \begin{matrix}<br>r_{1}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i = 1 \<br>\max\left{ s_{i - 1} + e + {z\alpha}<em>{i},r</em>{i} \right}\ \ 2 \leq i \leq n \<br>\end{matrix} \right.\  \<br>\end{matrix} \right.\ $$</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">萌新QAQ</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://jszmwq.github.io/2022/12/02/%E5%90%8C%E6%9E%84%E7%BD%91%E7%BB%9C%E5%8F%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/">https://jszmwq.github.io/2022/12/02/%E5%90%8C%E6%9E%84%E7%BD%91%E7%BB%9C%E5%8F%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://jszmwq.github.io" target="_blank">j52nnw9的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%A7%91%E8%AF%BE%E7%A8%8B/">计科课程</a></div><div class="post_share"><div class="social-share" data-image="/img/Animation/1.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/"><img class="prev-cover" src="/img/Animation/2.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">怎样使用ARENA系统</div></div></a></div><div class="next-post pull-right"><a href="/2022/12/02/CrossCBR%E9%97%AE%E9%A2%98%E8%A7%A3%E6%9E%90/"><img class="next-cover" src="/img/Animation/9.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CrossCBR问题解析</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/12/31/ChatGPT%E5%AF%B9%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8%E7%9A%84%E5%BD%B1%E5%93%8D/" title="ChatGPT对网络空间安全的影响"><img class="cover" src="/img/Animation/1.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-31</div><div class="title">ChatGPT对网络空间安全的影响</div></div></a></div><div><a href="/2022/12/21/pintos%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C/" title="pintos操作系统实验"><img class="cover" src="/img/Animation/4.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-21</div><div class="title">pintos操作系统实验</div></div></a></div><div><a href="/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="大数据优化建模与算法笔记"><img class="cover" src="/img/Animation/5.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-22</div><div class="title">大数据优化建模与算法笔记</div></div></a></div><div><a href="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/" title="形式语言与自动机"><img class="cover" src="/img/Animation/9.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-23</div><div class="title">形式语言与自动机</div></div></a></div><div><a href="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/" title="怎样使用ARENA系统"><img class="cover" src="/img/Animation/2.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-14</div><div class="title">怎样使用ARENA系统</div></div></a></div><div><a href="/2022/12/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A/" title="操作系统课程设计大作业"><img class="cover" src="/img/Animation/3.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-31</div><div class="title">操作系统课程设计大作业</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/image.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">萌新QAQ</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">51</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E5%9B%9B/" title="操作系统上机实验四"><img src="/img/Animation/4.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="操作系统上机实验四"/></a><div class="content"><a class="title" href="/2022/06/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E5%9B%9B/" title="操作系统上机实验四">操作系统上机实验四</a><time datetime="2023-04-23T09:53:46.388Z" title="更新于 2023-04-23 17:53:46">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/31/%E8%87%AA%E9%80%82%E5%BA%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" title="自适应遗传算法"><img src="/img/Animation/3.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自适应遗传算法"/></a><div class="content"><a class="title" href="/2022/12/31/%E8%87%AA%E9%80%82%E5%BA%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" title="自适应遗传算法">自适应遗传算法</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E4%B8%8A%E6%9C%BA%E9%A2%98%E7%9B%AE/" title="计算机图形学上机题目"><img src="/img/Animation/4.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机图形学上机题目"/></a><div class="content"><a class="title" href="/2023/01/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E4%B8%8A%E6%9C%BA%E9%A2%98%E7%9B%AE/" title="计算机图形学上机题目">计算机图形学上机题目</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" title="计算机图形学"><img src="/img/Animation/5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机图形学"/></a><div class="content"><a class="title" href="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" title="计算机图形学">计算机图形学</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/22/%E8%AE%A1%E7%BB%84%E8%AF%BE%E8%AE%BE/" title="计组课设"><img src="/img/Animation/2.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计组课设"/></a><div class="content"><a class="title" href="/2022/12/22/%E8%AE%A1%E7%BB%84%E8%AF%BE%E8%AE%BE/" title="计组课设">计组课设</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 萌新QAQ</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/hideMobileSidebar.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

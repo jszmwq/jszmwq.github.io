@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>操作系统课程设计大作业 | j52nnw9的博客</title><meta name="keywords" content="计科课程"><meta name="author" content="萌新QAQ"><meta name="copyright" content="萌新QAQ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、Pintos和我想象中的操作系统有何不同？为什么还称它为操作系统？   Pintos是一个基于80x86架构的简单操作系统框架，它支持内核线程、加载和运行用户程序以及文件系统。一般常见的操作系统使用windows架构，更注重的是用户的使用体验，具有图形化的操作界面。并且在内核模式之上，提供了支持运行服务和系统进程、应用程序、子系统进程的用户模式，包含了一系列必要的库函数与系统DLL。而Pint">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统课程设计大作业">
+<meta property="og:url" content="https://jszmwq.github.io/2022/12/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A/index.html">
+<meta property="og:site_name" content="j52nnw9的博客">
+<meta property="og:description" content="一、Pintos和我想象中的操作系统有何不同？为什么还称它为操作系统？   Pintos是一个基于80x86架构的简单操作系统框架，它支持内核线程、加载和运行用户程序以及文件系统。一般常见的操作系统使用windows架构，更注重的是用户的使用体验，具有图形化的操作界面。并且在内核模式之上，提供了支持运行服务和系统进程、应用程序、子系统进程的用户模式，包含了一系列必要的库函数与系统DLL。而Pint">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jszmwq.github.io/img/Animation/3.webp">
+<meta property="article:published_time" content="2022-12-31T13:53:57.000Z">
+<meta property="article:modified_time" content="2023-04-23T09:52:52.214Z">
+<meta property="article:author" content="萌新QAQ">
+<meta property="article:tag" content="计科课程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jszmwq.github.io/img/Animation/3.webp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jszmwq.github.io/2022/12/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '操作系统课程设计大作业',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-04-23 17:52:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/image.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">51</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/Animation/3.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">j52nnw9的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">操作系统课程设计大作业</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-31T13:53:57.000Z" title="发表于 2022-12-31 21:53:57">2022-12-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-23T09:52:52.214Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="操作系统课程设计大作业"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><strong>一、Pintos和我想象中的操作系统有何不同？为什么还称它为操作系统？</strong></p>
+<p>  Pintos是一个基于80x86架构的简单操作系统框架，它支持内核线程、加载和运行用户程序以及文件系统。一般常见的操作系统使用windows架构，更注重的是用户的使用体验，具有图形化的操作界面。并且在内核模式之上，提供了支持运行服务和系统进程、应用程序、子系统进程的用户模式，包含了一系列必要的库函数与系统DLL。而Pintos与我想象中的操作系统不同，其代码十分简洁凝练，只保留了操作系统运行所必要的结构。Pintos注重操作系统最基本结构的设计，并且给学生留有很大的设计空间，便于学生在调整改进的实施过程中学习，帮助学生了解操作系统的底层原理。Pintos通常搭建在如Bochs、QEMU等可以仿真80x86 CPU及其外设的系统仿真器上运行，即使模拟出的Pintos操作系统崩溃，也不会对主机操作系统产生影响。有利于学生进行调试仿真等操作。</p>
+<p>  操作系统管理各种计算机硬件，为应用程序提供基础，并充当计算机硬件和用户的中介，其具有并发、共享、虚拟和异步四种特征。Pintos操作系统可以根据命令行的操作，对用户的命令进行响应，并且操作计算机硬件计算并反馈结果。典型的操作系统由四部分构成：进程管理，I/O设备管理，存储器管理和文件管理，这些在头歌平台上关于Pintos的实验中略有涉及，而仔细看Pintos操作系统的源代码，发现这些功能都已经在代码中实现了。在Pintos系统源码的src源文件夹下，threads文件夹内含有内核线程操作相关的源文件，userprog文件夹内含有用户进程和系统调用相关的源文件，filesys文件夹下含有文件系统相关源文件，devices文件夹下含有输入输出设备接口相关的源文件。由此可见，Pintos麻雀虽小但是五脏俱全，能够实现一些基本操作系统的功能。</p>
+<p><strong>二、你完成了哪些实验？在完成实验的过程中最大的困难是什么？最大的收获是什么</strong></p>
+<p>  我在头歌平台中完成了Pintos系统实验的热身：基础练习、实验一 Threads和实验三 File Systems。各个实验由浅入深，层层递进，有一定的挑战性。在刚接手的时候，由于对整个Pintos操作系统的了解还过于浅薄，没能够搞清楚各个文件各个函数之间的关系，导致编写代码无从下手。后来在仔细地阅读Pintos源代码后，掌握了各个函数的作用意义，懂得了函数之间跳转的逻辑关系；通过阅读测试代码，梳理了当前操作系统存在的问题，明确了实现目标的需求，从而按图索骥带着问题去编写新的代码改进原有的不足。</p>
+<p>  通过完成实验一 Thread，我巩固了之前在操作系统课程上学到的关于线程方面的知识，加深了优先级抢占调度方法的理解，尽管在完成优先级捐赠实验时曾遇到困难，不理解具体的代码应该怎么修改，不过在翻阅操作系统相关资料后茅塞顿开。</p>
+<p>  在进行实验的过程中，虽然经常在编译检查的时候出现报错，但是我能够根据报错反馈的信息去定位错误，并且寻找出现错误的原因，从而完善我的代码。我认为这样的一个过程能够培养我修改BUG的能力，学得了出错是为了以后能够不再出现类似的错误。</p>
+<p><strong>三、实验完成后你对操作系统是否有了新的认识或理解？请具体阐述一下。</strong></p>
+<p>  Pintos系统就是一个微型版的操作系统，从中能够了解到很多有用的认识。通过学习实验三 文件系统，我了解了文件系统在磁盘里的表示格式，以及每个字节所代表的含义，学会了使用相关指令创建磁盘删除文件，并且能够使用二进制编辑工具恢复之前删除的文件。在这个学习的过程中，我了解到了所谓的删除并不是真正的从磁盘中把所要删除的文件每个位清理干净，而是将该文件所在扇区设置为“未使用”状态，同时将可用空间大小恢复到没有该文件存在的状态。而那些磁盘中残留的数据会在下一次对所在扇区读写时被替换掉，从而减少磁盘IO的读写的次数，提高了系统工作的效率。</p>
+<p><strong>四、如果让你设计一个操作系统，你觉得最大的挑战是什么？请讲讲原因。</strong></p>
+<p>  在看见Pintos时，相比于Windows系统文件夹动辄10多G的大小，我惊讶于其短小精炼，却依然能够实现一个操作系统最基本的功能。在我看来，操作系统的设计过程分为三个部分：功能设计、算法设计和结构设计。首先我们要明确这个系统所要实现的目标，并且针对该系统提出使用的要求，在此基础上完成功能设计；而算法设计是针对所要实现的功能而设计出来的算法策略，体现的是一个操作系统的时间空间效率，一个好的算法能够大大节省计算所需花费的时间和空间开销，从而大大提升该操作系统的速度。最后是结构设计，正如Pintos操作系统所设计的那样，根据不同的功能将相应的函数模块放在不同的文件夹中，使得操作系统结构清晰简明，适应性强，便于后续读者针对某一功能对代码进行阅读与修改。我认为实现这三个方面算是一个很大的挑战，对这三方面实现的好坏的评估决定着该操作系统是否能够很好的运行下去，以及后续对其进行完善补充时是锦上添花还是大动干戈。除此之外，还要注意一个高质量的操作系统在并发、共享、虚拟和异步的过程中，要能够高效的协调各个资源之间利用效率，可靠的指挥处理器实现各条指令之间的交替运行，并且能够保证其安全性。</p>
+<p><strong>五、你对本课程的内容设计、授课方式、实验平台等有何建议？</strong></p>
+<p>  该课程内容设计足量合理，课程之间难度分布均匀，过关的机制激励学生深入思考，理解代码的含义。授课方式上老师讲解认真负责，还在QQ群内开设了学生答疑，欢迎学生积极踊跃提出问题解答困惑。在实验平台进行实践的过程，能够加深对于操作系统的理解，让学生收益良多。这学期因为疫情原因无法线下上课，虽然只能与老师线上相见，但是实际线上体验要比在线下上课感觉高效的多。对于这门课程，最重要的是学生自主学习的过程，一周完成一个小实验，任务并不是很重，学生可以自主分配时间，在充分理解掌握的基础之上继续下一章节的学习。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">萌新QAQ</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://jszmwq.github.io/2022/12/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A/">https://jszmwq.github.io/2022/12/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://jszmwq.github.io" target="_blank">j52nnw9的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%A7%91%E8%AF%BE%E7%A8%8B/">计科课程</a></div><div class="post_share"><div class="social-share" data-image="/img/Animation/3.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/12/31/ChatGPT%E5%AF%B9%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8%E7%9A%84%E5%BD%B1%E5%93%8D/"><img class="prev-cover" src="/img/Animation/1.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ChatGPT对网络空间安全的影响</div></div></a></div><div class="next-post pull-right"><a href="/2022/12/31/%E8%87%AA%E9%80%82%E5%BA%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/"><img class="next-cover" src="/img/Animation/3.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">自适应遗传算法</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/12/31/ChatGPT%E5%AF%B9%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8%E7%9A%84%E5%BD%B1%E5%93%8D/" title="ChatGPT对网络空间安全的影响"><img class="cover" src="/img/Animation/1.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-31</div><div class="title">ChatGPT对网络空间安全的影响</div></div></a></div><div><a href="/2022/12/21/pintos%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C/" title="pintos操作系统实验"><img class="cover" src="/img/Animation/4.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-21</div><div class="title">pintos操作系统实验</div></div></a></div><div><a href="/2022/12/02/%E5%90%8C%E6%9E%84%E7%BD%91%E7%BB%9C%E5%8F%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/" title="同构网络可分任务调度问题"><img class="cover" src="/img/Animation/1.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-02</div><div class="title">同构网络可分任务调度问题</div></div></a></div><div><a href="/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="大数据优化建模与算法笔记"><img class="cover" src="/img/Animation/5.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-22</div><div class="title">大数据优化建模与算法笔记</div></div></a></div><div><a href="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/" title="形式语言与自动机"><img class="cover" src="/img/Animation/9.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-23</div><div class="title">形式语言与自动机</div></div></a></div><div><a href="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/" title="怎样使用ARENA系统"><img class="cover" src="/img/Animation/2.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-14</div><div class="title">怎样使用ARENA系统</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/image.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">萌新QAQ</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">51</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E5%9B%9B/" title="操作系统上机实验四"><img src="/img/Animation/4.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="操作系统上机实验四"/></a><div class="content"><a class="title" href="/2022/06/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E5%9B%9B/" title="操作系统上机实验四">操作系统上机实验四</a><time datetime="2023-04-23T09:53:46.388Z" title="更新于 2023-04-23 17:53:46">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/31/%E8%87%AA%E9%80%82%E5%BA%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" title="自适应遗传算法"><img src="/img/Animation/3.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自适应遗传算法"/></a><div class="content"><a class="title" href="/2022/12/31/%E8%87%AA%E9%80%82%E5%BA%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" title="自适应遗传算法">自适应遗传算法</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E4%B8%8A%E6%9C%BA%E9%A2%98%E7%9B%AE/" title="计算机图形学上机题目"><img src="/img/Animation/4.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机图形学上机题目"/></a><div class="content"><a class="title" href="/2023/01/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E4%B8%8A%E6%9C%BA%E9%A2%98%E7%9B%AE/" title="计算机图形学上机题目">计算机图形学上机题目</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" title="计算机图形学"><img src="/img/Animation/5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机图形学"/></a><div class="content"><a class="title" href="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" title="计算机图形学">计算机图形学</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/22/%E8%AE%A1%E7%BB%84%E8%AF%BE%E8%AE%BE/" title="计组课设"><img src="/img/Animation/2.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计组课设"/></a><div class="content"><a class="title" href="/2022/12/22/%E8%AE%A1%E7%BB%84%E8%AF%BE%E8%AE%BE/" title="计组课设">计组课设</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 萌新QAQ</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/hideMobileSidebar.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

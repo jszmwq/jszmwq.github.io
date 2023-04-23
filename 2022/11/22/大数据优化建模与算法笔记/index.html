@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>大数据优化建模与算法笔记 | j52nnw9的博客</title><meta name="keywords" content="计科课程"><meta name="author" content="萌新QAQ"><meta name="copyright" content="萌新QAQ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第一章1.1 运输问题与方程组求解的优化建模问题1.运输问题生产一种产品，有m个产地，n个销售地，从第i个产地运输单位产品到第j个销售地的运费为$c_{𝑖𝑗}$，第i个产地产量为$a_i$，第j个销售地的需要量是$b_j$。假设产销平衡（生产多少，销售多少），从第i个产地运到第j个销售地的运量为$x_{ij}$，问怎么制定运输方案，才能使运费最少？  目标函数为 约束条件为 整体模型为 课外作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数据优化建模与算法笔记">
+<meta property="og:url" content="https://jszmwq.github.io/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="j52nnw9的博客">
+<meta property="og:description" content="第一章1.1 运输问题与方程组求解的优化建模问题1.运输问题生产一种产品，有m个产地，n个销售地，从第i个产地运输单位产品到第j个销售地的运费为$c_{𝑖𝑗}$，第i个产地产量为$a_i$，第j个销售地的需要量是$b_j$。假设产销平衡（生产多少，销售多少），从第i个产地运到第j个销售地的运量为$x_{ij}$，问怎么制定运输方案，才能使运费最少？  目标函数为 约束条件为 整体模型为 课外作">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jszmwq.github.io/img/Animation/5.png">
+<meta property="article:published_time" content="2022-11-22T15:12:00.000Z">
+<meta property="article:modified_time" content="2023-04-23T09:52:52.066Z">
+<meta property="article:author" content="萌新QAQ">
+<meta property="article:tag" content="计科课程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jszmwq.github.io/img/Animation/5.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jszmwq.github.io/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '大数据优化建模与算法笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-23 17:52:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/image.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">51</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/Animation/5.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">j52nnw9的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">大数据优化建模与算法笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-22T15:12:00.000Z" title="发表于 2022-11-22 23:12:00">2022-11-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-23T09:52:52.066Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="大数据优化建模与算法笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><h3 id="1-1-运输问题与方程组求解的优化建模"><a href="#1-1-运输问题与方程组求解的优化建模" class="headerlink" title="1.1 运输问题与方程组求解的优化建模"></a>1.1 运输问题与方程组求解的优化建模</h3><h4 id="问题1-运输问题"><a href="#问题1-运输问题" class="headerlink" title="问题1.运输问题"></a>问题1.运输问题</h4><p>生产一种产品，有m个产地，n个销售地，从第i个产地运输单位产品到第j个销售地的运费为$c_{𝑖𝑗}$，第i个产地产量为$a_i$，第j个销售地的需要量是$b_j$。假设产销平衡（生产多少，销售多少），从第i个产地运到第j个销售地的运量为$x_{ij}$，问怎么制定运输方案，才能使运费最少？</p>
+<p><img src="/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/image-20221122234710549.png" alt="image-20221122234710549"></p>
+<h4 id="目标函数为"><a href="#目标函数为" class="headerlink" title="目标函数为"></a>目标函数为</h4><p><img src="/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/image-20221122234806426.png" alt="image-20221122234806426"></p>
+<h4 id="约束条件为"><a href="#约束条件为" class="headerlink" title="约束条件为"></a>约束条件为</h4><p><img src="/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/image-20221122234838531.png" alt="image-20221122234838531"></p>
+<h4 id="整体模型为"><a href="#整体模型为" class="headerlink" title="整体模型为"></a>整体模型为</h4><p><img src="/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/image-20221122234959175.png" alt="image-20221122234959175"></p>
+<h4 id="课外作业"><a href="#课外作业" class="headerlink" title="课外作业"></a>课外作业</h4><p><img src="/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/image-20221123004255869.png" alt="image-20221123004255869"></p>
+<p><img src="/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/image-20221123004304219.png" alt="image-20221123004304219"></p>
+<h3 id="1-2-同构网络可分任务调度问题的优化建模"><a href="#1-2-同构网络可分任务调度问题的优化建模" class="headerlink" title="1.2 同构网络可分任务调度问题的优化建模"></a>1.2 同构网络可分任务调度问题的优化建模</h3><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>设有<em>N+1</em>台处理机通过星型网络互连，如图1所示，其中$P_0$为主处理机，其余为从处理机，主处理机只负责数据的切分和传输，从处理机负责数据的处理。$l_i$是链接$P_0$和$P_i$的通信链路。从处理机的能力一样，称为同构网络。不妨记 $P_1,P_2,…,P_N$为主处理机给从处理机传输数据的调度顺序。</p>
+<p>$P_0$将大小为$W_{total}$的数据切分为<em>N</em>个子块（任务）并传输给$P_1,P_2,…,P_N$，$P_0$同一时刻只能给一个从处理机$P_i$传输任务,$P_i$只有在完全接收子任务后才开始处理该任务。并不要求所有的处理机都必须参与处理任务。</p>
+<p>令<em>z</em>表示从$P_0$传输单位数据到$P_i$所需要的时间，则传输大小为$α_i$的数据所需的时间为$zα_i$；令<em>w</em>表示处理机$P_i$处理单位数据的时间，则处理$α_i$的时间为$wα_i$。由于考虑启动开销，所以子任务$α_i$的传输时间和处理时间分别为：$e+zα_i$和$f+wα_i$，其中<em>e</em>和<em>f</em>分别表示传输启动开销和处理启动开销。</p>
+<p>优化目标：</p>
+<p>1）确定参与处理数据的从处理机最优数目</p>
+<p>2）最优的任务分配方案使得处理完所有任务所用时间最短最短。</p>
+<p><img src="/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/image-20221123003540012.png" alt="image-20221123003540012"></p>
+<p>记处理机$P_i$开始接受任务的时刻为$s_i$，所以对于处理机$P_1$有$s_1=0$。处理机$P_i$的开始时间$s_i$与前一个处理机$P_{i-1}$的开始时间$s_{i-1}$以及$P_{i-1}$接受子任务$α_{i-1}$的传输时间$e+zα_{i-1}$有关：$s_i=s_{i-1}+e+zα_{i-1}$，处理完所有任务所需时间为：</p>
+<p><img src="/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/image-20221123004039074.png" alt="image-20221123004039074"></p>
+<p>则最短时间为</p>
+<p><img src="/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/image-20221123004057472.png" alt="image-20221123004057472"></p>
+<p>已有研究证明了只有当所有处理机同时完成处理任务时，任务的完成时间最短，否则完全可以将后完成任务的处理机上的部分数据分配给先完成任务的处理机上执行。由所有处理机同时完成计算可以得到下面的等式：</p>
+<p><img src="/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/image-20221123004341660.png" alt="image-20221123004341660"></p>
+<p><img src="/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/image-20221123004622592.png" alt="image-20221123004622592"></p>
+<p><img src="/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/image-20221123004704994.png" alt="image-20221123004704994"></p>
+<p><img src="/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/image-20221123004722939.png" alt="image-20221123004722939"></p>
+<h3 id="1-3-异构网络可分任务调度问题的优化建模"><a href="#1-3-异构网络可分任务调度问题的优化建模" class="headerlink" title="1.3 异构网络可分任务调度问题的优化建模"></a>1.3 异构网络可分任务调度问题的优化建模</h3><h3 id="1-4-弹性光网络资源和任务调度的优化建模"><a href="#1-4-弹性光网络资源和任务调度的优化建模" class="headerlink" title="1.4 弹性光网络资源和任务调度的优化建模"></a>1.4 弹性光网络资源和任务调度的优化建模</h3><h3 id="1-5-弹性光网络中选路与频谱分配问题的优化建模"><a href="#1-5-弹性光网络中选路与频谱分配问题的优化建模" class="headerlink" title="1.5 弹性光网络中选路与频谱分配问题的优化建模"></a>1.5 弹性光网络中选路与频谱分配问题的优化建模</h3><h3 id="1-6-聚类问题的优化建模方法"><a href="#1-6-聚类问题的优化建模方法" class="headerlink" title="1.6 聚类问题的优化建模方法"></a>1.6 聚类问题的优化建模方法</h3><h3 id="1-7-多元线性回归问题的优化建模方法"><a href="#1-7-多元线性回归问题的优化建模方法" class="headerlink" title="1.7 多元线性回归问题的优化建模方法"></a>1.7 多元线性回归问题的优化建模方法</h3><h3 id="1-8-旅行商问题的优化建模方法"><a href="#1-8-旅行商问题的优化建模方法" class="headerlink" title="1.8 旅行商问题的优化建模方法"></a>1.8 旅行商问题的优化建模方法</h3><h3 id="1-9-最可靠路径问题的优化建模方法"><a href="#1-9-最可靠路径问题的优化建模方法" class="headerlink" title="1.9 最可靠路径问题的优化建模方法"></a>1.9 最可靠路径问题的优化建模方法</h3><h3 id="1-10-主成分分析的降维问题的优化建模"><a href="#1-10-主成分分析的降维问题的优化建模" class="headerlink" title="1.10 主成分分析的降维问题的优化建模"></a>1.10 主成分分析的降维问题的优化建模</h3><h3 id="1-11-二分类问题的优化建模"><a href="#1-11-二分类问题的优化建模" class="headerlink" title="1.11 二分类问题的优化建模"></a>1.11 二分类问题的优化建模</h3><h3 id="1-12-最优化问题的基本概念"><a href="#1-12-最优化问题的基本概念" class="headerlink" title="1.12 最优化问题的基本概念"></a>1.12 最优化问题的基本概念</h3></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">萌新QAQ</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://jszmwq.github.io/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">https://jszmwq.github.io/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://jszmwq.github.io" target="_blank">j52nnw9的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%A7%91%E8%AF%BE%E7%A8%8B/">计科课程</a></div><div class="post_share"><div class="social-share" data-image="/img/Animation/5.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/12/02/CrossCBR%E9%97%AE%E9%A2%98%E8%A7%A3%E6%9E%90/"><img class="prev-cover" src="/img/Animation/9.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CrossCBR问题解析</div></div></a></div><div class="next-post pull-right"><a href="/2022/11/01/%E5%AE%89%E5%8D%93%E5%AD%90%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/"><img class="next-cover" src="/img/Animation/2.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">安卓子系统相关笔记</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/12/31/ChatGPT%E5%AF%B9%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8%E7%9A%84%E5%BD%B1%E5%93%8D/" title="ChatGPT对网络空间安全的影响"><img class="cover" src="/img/Animation/1.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-31</div><div class="title">ChatGPT对网络空间安全的影响</div></div></a></div><div><a href="/2022/12/21/pintos%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C/" title="pintos操作系统实验"><img class="cover" src="/img/Animation/4.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-21</div><div class="title">pintos操作系统实验</div></div></a></div><div><a href="/2022/12/02/%E5%90%8C%E6%9E%84%E7%BD%91%E7%BB%9C%E5%8F%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/" title="同构网络可分任务调度问题"><img class="cover" src="/img/Animation/1.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-02</div><div class="title">同构网络可分任务调度问题</div></div></a></div><div><a href="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/" title="形式语言与自动机"><img class="cover" src="/img/Animation/9.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-23</div><div class="title">形式语言与自动机</div></div></a></div><div><a href="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/" title="怎样使用ARENA系统"><img class="cover" src="/img/Animation/2.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-14</div><div class="title">怎样使用ARENA系统</div></div></a></div><div><a href="/2022/12/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A/" title="操作系统课程设计大作业"><img class="cover" src="/img/Animation/3.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-31</div><div class="title">操作系统课程设计大作业</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/image.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">萌新QAQ</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">51</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">第一章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E8%BF%90%E8%BE%93%E9%97%AE%E9%A2%98%E4%B8%8E%E6%96%B9%E7%A8%8B%E7%BB%84%E6%B1%82%E8%A7%A3%E7%9A%84%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 运输问题与方程组求解的优化建模</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AE%E9%A2%981-%E8%BF%90%E8%BE%93%E9%97%AE%E9%A2%98"><span class="toc-number">1.1.1.</span> <span class="toc-text">问题1.运输问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0%E4%B8%BA"><span class="toc-number">1.1.2.</span> <span class="toc-text">目标函数为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%A6%E6%9D%9F%E6%9D%A1%E4%BB%B6%E4%B8%BA"><span class="toc-number">1.1.3.</span> <span class="toc-text">约束条件为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%A8%A1%E5%9E%8B%E4%B8%BA"><span class="toc-number">1.1.4.</span> <span class="toc-text">整体模型为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BE%E5%A4%96%E4%BD%9C%E4%B8%9A"><span class="toc-number">1.1.5.</span> <span class="toc-text">课外作业</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%90%8C%E6%9E%84%E7%BD%91%E7%BB%9C%E5%8F%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98%E7%9A%84%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 同构网络可分任务调度问题的优化建模</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.2.1.</span> <span class="toc-text">问题描述</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%BC%82%E6%9E%84%E7%BD%91%E7%BB%9C%E5%8F%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98%E7%9A%84%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 异构网络可分任务调度问题的优化建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E5%BC%B9%E6%80%A7%E5%85%89%E7%BD%91%E7%BB%9C%E8%B5%84%E6%BA%90%E5%92%8C%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E7%9A%84%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 弹性光网络资源和任务调度的优化建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E5%BC%B9%E6%80%A7%E5%85%89%E7%BD%91%E7%BB%9C%E4%B8%AD%E9%80%89%E8%B7%AF%E4%B8%8E%E9%A2%91%E8%B0%B1%E5%88%86%E9%85%8D%E9%97%AE%E9%A2%98%E7%9A%84%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 弹性光网络中选路与频谱分配问题的优化建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-%E8%81%9A%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E6%96%B9%E6%B3%95"><span class="toc-number">1.6.</span> <span class="toc-text">1.6 聚类问题的优化建模方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98%E7%9A%84%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E6%96%B9%E6%B3%95"><span class="toc-number">1.7.</span> <span class="toc-text">1.7 多元线性回归问题的优化建模方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98%E7%9A%84%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E6%96%B9%E6%B3%95"><span class="toc-number">1.8.</span> <span class="toc-text">1.8 旅行商问题的优化建模方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-9-%E6%9C%80%E5%8F%AF%E9%9D%A0%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98%E7%9A%84%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E6%96%B9%E6%B3%95"><span class="toc-number">1.9.</span> <span class="toc-text">1.9 最可靠路径问题的优化建模方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-10-%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90%E7%9A%84%E9%99%8D%E7%BB%B4%E9%97%AE%E9%A2%98%E7%9A%84%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1"><span class="toc-number">1.10.</span> <span class="toc-text">1.10 主成分分析的降维问题的优化建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-11-%E4%BA%8C%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E7%9A%84%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1"><span class="toc-number">1.11.</span> <span class="toc-text">1.11 二分类问题的优化建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-12-%E6%9C%80%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.12.</span> <span class="toc-text">1.12 最优化问题的基本概念</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E5%9B%9B/" title="操作系统上机实验四"><img src="/img/Animation/4.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="操作系统上机实验四"/></a><div class="content"><a class="title" href="/2022/06/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E5%9B%9B/" title="操作系统上机实验四">操作系统上机实验四</a><time datetime="2023-04-23T09:53:46.388Z" title="更新于 2023-04-23 17:53:46">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/31/%E8%87%AA%E9%80%82%E5%BA%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" title="自适应遗传算法"><img src="/img/Animation/3.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自适应遗传算法"/></a><div class="content"><a class="title" href="/2022/12/31/%E8%87%AA%E9%80%82%E5%BA%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" title="自适应遗传算法">自适应遗传算法</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E4%B8%8A%E6%9C%BA%E9%A2%98%E7%9B%AE/" title="计算机图形学上机题目"><img src="/img/Animation/4.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机图形学上机题目"/></a><div class="content"><a class="title" href="/2023/01/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E4%B8%8A%E6%9C%BA%E9%A2%98%E7%9B%AE/" title="计算机图形学上机题目">计算机图形学上机题目</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" title="计算机图形学"><img src="/img/Animation/5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机图形学"/></a><div class="content"><a class="title" href="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" title="计算机图形学">计算机图形学</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/22/%E8%AE%A1%E7%BB%84%E8%AF%BE%E8%AE%BE/" title="计组课设"><img src="/img/Animation/2.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计组课设"/></a><div class="content"><a class="title" href="/2022/12/22/%E8%AE%A1%E7%BB%84%E8%AF%BE%E8%AE%BE/" title="计组课设">计组课设</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 萌新QAQ</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/hideMobileSidebar.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

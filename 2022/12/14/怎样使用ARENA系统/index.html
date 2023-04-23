@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>怎样使用ARENA系统 | j52nnw9的博客</title><meta name="keywords" content="计科课程"><meta name="author" content="萌新QAQ"><meta name="copyright" content="萌新QAQ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="表访问方式table scan（表扫描）对表中数据从头到尾一行一行进行扫描，判断是否满足where条件 index scan（索引扫描）索引和按索引组织的表 (oracle.com) 索引的必要性索引在某些情况下可以加快对表行的访问速度，减少磁盘I&#x2F;O操作，但SQL 引擎必须继续维护针对表定义的所有索引，而不管查询是否使用它们，所以需要对索引的必要性进行考虑。 通常，在以下任一情况下，请考虑在列上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="怎样使用ARENA系统">
+<meta property="og:url" content="https://jszmwq.github.io/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="j52nnw9的博客">
+<meta property="og:description" content="表访问方式table scan（表扫描）对表中数据从头到尾一行一行进行扫描，判断是否满足where条件 index scan（索引扫描）索引和按索引组织的表 (oracle.com) 索引的必要性索引在某些情况下可以加快对表行的访问速度，减少磁盘I&#x2F;O操作，但SQL 引擎必须继续维护针对表定义的所有索引，而不管查询是否使用它们，所以需要对索引的必要性进行考虑。 通常，在以下任一情况下，请考虑在列上">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jszmwq.github.io/img/Animation/2.webp">
+<meta property="article:published_time" content="2022-12-13T16:46:37.000Z">
+<meta property="article:modified_time" content="2023-04-23T09:52:52.211Z">
+<meta property="article:author" content="萌新QAQ">
+<meta property="article:tag" content="计科课程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jszmwq.github.io/img/Animation/2.webp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jszmwq.github.io/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '怎样使用ARENA系统',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-23 17:52:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/image.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">51</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/Animation/2.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">j52nnw9的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">怎样使用ARENA系统</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-13T16:46:37.000Z" title="发表于 2022-12-14 00:46:37">2022-12-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-23T09:52:52.211Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="怎样使用ARENA系统"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="表访问方式"><a href="#表访问方式" class="headerlink" title="表访问方式"></a>表访问方式</h2><h3 id="table-scan（表扫描）"><a href="#table-scan（表扫描）" class="headerlink" title="table scan（表扫描）"></a>table scan（表扫描）</h3><p>对表中数据从头到尾一行一行进行扫描，判断是否满足where条件</p>
+<h3 id="index-scan（索引扫描）"><a href="#index-scan（索引扫描）" class="headerlink" title="index scan（索引扫描）"></a>index scan（索引扫描）</h3><p><a target="_blank" rel="noopener" href="https://docs.oracle.com/cd/E11882_01/server.112/e40540/indexiot.htm#CNCPT1895">索引和按索引组织的表 (oracle.com)</a></p>
+<h4 id="索引的必要性"><a href="#索引的必要性" class="headerlink" title="索引的必要性"></a>索引的必要性</h4><p>索引在某些情况下可以加快对表行的访问速度，减少磁盘I/O操作，但SQL 引擎必须继续维护针对表定义的所有索引，而不管查询是否使用它们，所以需要对索引的必要性进行考虑。</p>
+<p>通常，在以下任一情况下，请考虑在列上创建索引：</p>
+<ul>
+<li>索引列经常被查询，并返回表中总行数的一小部分。</li>
+<li>索引列上存在参照<a target="_blank" rel="noopener" href="https://docs.oracle.com/cd/E11882_01/server.112/e40540/glossary.htm#i432442"><strong>完整性约束</strong></a>。索引是避免全表锁定的一种方法，否则在更新父表<a target="_blank" rel="noopener" href="https://docs.oracle.com/cd/E11882_01/server.112/e40540/glossary.htm#i432585"><strong>主键</strong></a>、合并到父表或从父表中删除时，将需要全表<a target="_blank" rel="noopener" href="https://docs.oracle.com/cd/E11882_01/server.112/e40540/glossary.htm#CHDHFEFB"><strong>锁定</strong></a>。</li>
+<li>唯一键约束将放置在表上，并且您希望手动指定索引和所有索引选项。</li>
+</ul>
+<h4 id="B树索引"><a href="#B树索引" class="headerlink" title="B树索引"></a>B树索引</h4><p>B树索引有两种类型的块：用于搜索的分支块和存储值的叶块。</p>
+<p>B树指数是平衡的，因为所有叶块自动保持相同的深度。索引高度是从根块到叶块所需的块数，分支级别是高度减去1。下图中索引高度为3，分支级别为2。如果数据库扫描索引以查找值，则它将在n个I/O中找到此值，其中n是B树索引的高度。</p>
+<p>叶块包含每个索引数据值和用于查找实际行的相应rowid，每个条目按（键、rowid）排序。在叶块中，键和rowid链接到其左右同级条目。叶块本身也是双重连接的，在下图中，最左边的叶块链接到第二个叶块。</p>
+<p><img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214012030991.png" alt="image-20221214012030991"></p>
+<h5 id="仅索引扫描（index-only-scan）"><a href="#仅索引扫描（index-only-scan）" class="headerlink" title="仅索引扫描（index only scan）"></a>仅索引扫描（index only scan）</h5><p>这与索引扫描非常相似，但数据直接来自索引，并且专门处理可见性检查，因此可以完全避免查看表数据。仅索引扫描速度更快，但并不总是可作为常规<a target="_blank" rel="noopener" href="https://www.postgresql.org/docs/current/indexes-index-only-scans.html">索引扫描</a>的替代方法。</p>
+<p>它有两个限制：</p>
+<ul>
+<li>索引类型必须支持仅索引扫描（常见的 btree 索引类型始终支持），</li>
+<li>查询必须仅投影索引中包含的列。</li>
+</ul>
+<p>如果您有 SELECT * 查询，但实际上并不需要所有列，则只需更改列列表即可使用仅索引扫描。</p>
+<h5 id="全索引扫描"><a href="#全索引扫描" class="headerlink" title="全索引扫描"></a>全索引扫描</h5><p>完整索引扫描中，数据库按顺序读取整个索引。如果 SQL 语句中的谓词（where子句）引用索引列，或某些未指定任何谓词的情况，则使用完整的索引扫描可以消除排序，因为数据本身就是基于索引键排序。</p>
+<h5 id="快速全索引扫描"><a href="#快速全索引扫描" class="headerlink" title="快速全索引扫描"></a>快速全索引扫描</h5><p>快速全索引扫描是一种全索引扫描，数据库仅访问索引本身中的数据，而无需访问表，数据库并不按特定的顺序读取索引块。</p>
+<p>当下面的条件同时满足时，快速完全索引扫描可以替代全表扫描</p>
+<ul>
+<li>索引必须包含查询所需要的所有列</li>
+<li>查询结果不会集中出现全是 NULL 的行，要想保证这一点，至少有一个索引列列符合下面的条件之一：<ul>
+<li>NOT NULL 约束</li>
+<li>应用到该列的谓词阻止 NULL 值作为结果集</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214015621298.png" alt="image-20221214015621298"></p>
+<h4 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h4><p>由于HASH的唯一（几乎100%的唯一）及类似键值对的形式，很适合作为索引。</p>
+<p>HASH索引可以一次定位，不需要像树形索引那样逐层查找,因此具有极高的效率。但是，这种高效是有条件的，即只在“=”和“in”条件下高效，对于范围查询、排序及组合索引仍然效率不高。</p>
+<h3 id="filter方法（筛选）"><a href="#filter方法（筛选）" class="headerlink" title="filter方法（筛选）"></a>filter方法（筛选）</h3><p>django的filter方法是从数据库的取得匹配的结果，返回一个对象列表，如果记录不存在的话，它会返回[]。</p>
+<h3 id="Spool方法"><a href="#Spool方法" class="headerlink" title="Spool方法"></a>Spool方法</h3><p>在生产中常会遇到需要将数量比较大的表值导入到本地文本文件中. 方法有很多种,比较常用的就是spool命令:</p>
+<h3 id="2-sql"><a href="#2-sql" class="headerlink" title="2.sql"></a>2.sql</h3><p><img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214170350315.png" alt="image-20221214170350315"></p>
+<p>id 0</p>
+<img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214125745955.png" alt="image-20221214125745955" style="zoom: 67%;">
+
+<p>与id 4、5、6、8比较，发现连接两表的顺序会影响最终的时间花费</p>
+<img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214125901945.png" alt="image-20221214125901945" style="zoom: 67%;">
+
+<p>与id 1、2、3、7比较，发现恰当的使用索引扫描和索引连接可以有效地减少时间花费</p>
+<center class="half">
+    <img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214130207598.png" alt="image-20221214130207598" style="zoom:67%;">
+    <img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214125951142.png" alt="image-20221214125951142" style="zoom:67%;">
+</center>
+
+<h3 id="3-sql"><a href="#3-sql" class="headerlink" title="3.sql"></a>3.sql</h3><p><img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214170406303.png" alt="image-20221214170406303"></p>
+<p>id 0</p>
+<img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214132026887.png" alt="image-20221214132026887" style="zoom: 67%;">
+
+<p>与id 5、8比较，区别在于takes表的扫描方式为IndexScan和IndexOnlyScan，时间花费影响不是很大。</p>
+<img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214132142266.png" alt="image-20221214132142266" style="zoom:67%;">
+
+<p>与id 4、6比较，区别为InnerHashJoin的顺序，影响最终的时间花费</p>
+<center class="half">
+    <img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214132548076.png" alt="image-20221214132548076.png" style="zoom:67%;">
+    <img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214132637299.png" alt="image-20221214132637299.png" style="zoom:67%;">
+</center>
+
+<p>与id 2、7比较，使用索引扫描和索引链接</p>
+<center class="half"> 
+     <img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214135810604.png" alt="image-20221214135810604.png" style="zoom:67%;">
+    <img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214135835135.png" alt="image-20221214135835135.png" style="zoom:67%;">
+</center>
+
+<p>与id 1、3比较，使用了MotionGather</p>
+<center class="half"> 
+     <img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214140347337.png" alt="image-20221214140347337.png" style="zoom:67%;">
+    <img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214140405672.png" alt="image-20221214140405672.png" style="zoom:67%;">
+</center>
+
+<h3 id="4-sql"><a href="#4-sql" class="headerlink" title="4.sql"></a>4.sql</h3><p><img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214170436164.png" alt="image-20221214170436164"></p>
+<p>id 0</p>
+<img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214162933746.png" alt="image-20221214162933746" style="zoom:67%;">
+
+<p>与id 8比较，使用IndexOnlyScan。</p>
+<img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214163836556.png" alt="image-20221214163836556" style="zoom: 67%;">
+
+<p>与id 4比较，通过谓词下沉，减少连接的操作量</p>
+<img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214163002270.png" alt="image-20221214163002270" style="zoom:67%;">
+
+<p>与id 6比较，改变了两次连接的顺序</p>
+<img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214164628591.png" alt="image-20221214164628591" style="zoom:67%;">
+
+<p>与id 5比较，没有使用索引扫描</p>
+<img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214165020254.png" alt="image-20221214165020254" style="zoom:67%;">
+
+<p>与id 2、7 比较，由于2、7使用了嵌套循环连接，使得时间花费大大提高</p>
+<center class="half">
+    <img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214165256555.png" alt="image-20221214165256555" style="zoom:67%;">
+    <img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214165359183.png" alt="image-20221214165359183.png" style="zoom:67%;">
+</center>
+
+<p>与id 3比较</p>
+<img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214170143231.png" alt="image-20221214170143231.png" style="zoom:67%;">
+
+<p>与id 1比较</p>
+<img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214170034524.png" alt="image-20221214170034524.png" style="zoom:67%;">
+
+<h3 id="5-sql"><a href="#5-sql" class="headerlink" title="5.sql"></a>5.sql</h3><p>0、12、37、58、4、6</p>
+<p><img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214172118224.png" alt="image-20221214172118224"></p>
+<p>id 0</p>
+<img src="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/image-20221214172226581.png" alt="image-20221214172226581" style="zoom:67%;">
+
+<p>0与12对比体现索引扫描和索引连接的优点、哈希连接顺序的花费差异</p>
+<p>0与37对比体现索引扫描和索引连接的优点</p>
+<p>0与4对比体现哈希连接顺序的花费差异</p>
+<p>0与58对比体现连接索引连接的优点</p>
+<p>0与6对比体现连接索引连接的优点，哈希连接顺序的花费差异</p>
+<p>id 12价值最大，该案例结合了id 37中索引扫描和索引连接的优点与id 4中哈希连接顺序的花费差异。id 12在takes和course表的扫描上选择了全表扫描，在对谓词进行条件筛选后进行哈希连接，而id 0对takes表采用了索引扫描，并且在对takes与course表中的course_id连接时采用了索引连接，大大加快了对表行的访问速度，从而使得时间花费大大减小。除此之外，id 1、2还在最后course_takes与student表的哈希连接中调换了两表之间的顺序，会对时间开销有一定影响</p>
+<p>id 4价值最小，该案例体现哈希连接顺序影响的时间花费差异。而我们从其他几个案例可以发现，id 37与id 12对比，发现id 12调换了course_takes与student表的哈希连接顺序，间接体现了哈希连接顺序影响的时间花费差异；id 6与id 58对比，发现id 6调换了course与takes表之间的哈希连接顺序、student与course_takes表的哈希连接顺序，也能间接体现哈希连接顺序影响的时间花费差异。id 4例所说明的关系可由上述推算出来，故略显多余。</p>
+<h3 id="6-sql"><a href="#6-sql" class="headerlink" title="6.sql"></a>6.sql</h3><p>0、1、2、3、4、5、6、7、8</p>
+<p>0与1对比，在id 7的基础上，id 1对course表全表扫描后得到的数据进行Spool操作，再进行嵌套循环连接</p>
+<p>0与2对比，在id 7的基础上，id 0对teachers表的扫描中采用索引扫描，id 2对teachers表的扫描采用仅索引扫描。</p>
+<p>0与3对比，在id 7的基础上，id 3对instructor表筛选后得到的数据进行Spool操作，并调换instructor和course表进行嵌套循环连接的顺序。</p>
+<p>0与4对比</p>
+<p>0与5对比，id 0在对teachers表的扫描中采用索引扫描，id 5在对teachers表的扫描中采用全表扫描，并进行根据谓词进行筛选。</p>
+<p>0与6对比，在id 8的基础上，对teachers和instructor表的哈希连接、course和teachers_instructor表的哈希连接顺序进行了调换。</p>
+<p>0与7对比</p>
+<p>0与8对比，id 0对teachers表的扫描采用索引扫描，id 8对teachers表的扫描采用仅索引扫描。</p>
+<p>id 7的价值最大，因为id 1、2、3都是在id 7的基础上进行变化得到的。id 1在id 7的基础上，对course表全表扫描后得到的数据进行Spool操作，再进行嵌套循环连接。id 2在id 7的基础上，对teachers表的扫描采用仅索引扫描。id 3在id 7的基础上，对instructor表筛选后得到的数据进行Spool操作，并调换instructor和course表进行嵌套循环连接的顺序。id 7在此起到了承上启下的作用，如果去掉，则显得前面几个案例变化过大而起不到对比学习的作用。</p>
+<p>id 2的价值最小，因为根据id 8的例子可知，在当前数据库中，对表采用索引扫描和仅索引扫描所花费时间近乎相同，只在内容上有所区别。而id 2在id 0变化巨大的基础上，再一次的向我们说明这个道理，实属有些多余，故我认为其价值最小。 </p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">萌新QAQ</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://jszmwq.github.io/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/">https://jszmwq.github.io/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://jszmwq.github.io" target="_blank">j52nnw9的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%A7%91%E8%AF%BE%E7%A8%8B/">计科课程</a></div><div class="post_share"><div class="social-share" data-image="/img/Animation/2.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/12/21/pintos%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C/"><img class="prev-cover" src="/img/Animation/4.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">pintos操作系统实验</div></div></a></div><div class="next-post pull-right"><a href="/2022/12/02/%E5%90%8C%E6%9E%84%E7%BD%91%E7%BB%9C%E5%8F%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/"><img class="next-cover" src="/img/Animation/1.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">同构网络可分任务调度问题</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/12/31/ChatGPT%E5%AF%B9%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8%E7%9A%84%E5%BD%B1%E5%93%8D/" title="ChatGPT对网络空间安全的影响"><img class="cover" src="/img/Animation/1.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-31</div><div class="title">ChatGPT对网络空间安全的影响</div></div></a></div><div><a href="/2022/12/21/pintos%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C/" title="pintos操作系统实验"><img class="cover" src="/img/Animation/4.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-21</div><div class="title">pintos操作系统实验</div></div></a></div><div><a href="/2022/12/02/%E5%90%8C%E6%9E%84%E7%BD%91%E7%BB%9C%E5%8F%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/" title="同构网络可分任务调度问题"><img class="cover" src="/img/Animation/1.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-02</div><div class="title">同构网络可分任务调度问题</div></div></a></div><div><a href="/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="大数据优化建模与算法笔记"><img class="cover" src="/img/Animation/5.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-22</div><div class="title">大数据优化建模与算法笔记</div></div></a></div><div><a href="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/" title="形式语言与自动机"><img class="cover" src="/img/Animation/9.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-23</div><div class="title">形式语言与自动机</div></div></a></div><div><a href="/2022/12/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A/" title="操作系统课程设计大作业"><img class="cover" src="/img/Animation/3.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-31</div><div class="title">操作系统课程设计大作业</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/image.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">萌新QAQ</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">51</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E8%AE%BF%E9%97%AE%E6%96%B9%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">表访问方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#table-scan%EF%BC%88%E8%A1%A8%E6%89%AB%E6%8F%8F%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">table scan（表扫描）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#index-scan%EF%BC%88%E7%B4%A2%E5%BC%95%E6%89%AB%E6%8F%8F%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">index scan（索引扫描）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E5%BF%85%E8%A6%81%E6%80%A7"><span class="toc-number">1.2.1.</span> <span class="toc-text">索引的必要性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B%E6%A0%91%E7%B4%A2%E5%BC%95"><span class="toc-number">1.2.2.</span> <span class="toc-text">B树索引</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%85%E7%B4%A2%E5%BC%95%E6%89%AB%E6%8F%8F%EF%BC%88index-only-scan%EF%BC%89"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">仅索引扫描（index only scan）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%A8%E7%B4%A2%E5%BC%95%E6%89%AB%E6%8F%8F"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">全索引扫描</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%85%A8%E7%B4%A2%E5%BC%95%E6%89%AB%E6%8F%8F"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">快速全索引扫描</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E7%B4%A2%E5%BC%95"><span class="toc-number">1.2.3.</span> <span class="toc-text">哈希索引</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#filter%E6%96%B9%E6%B3%95%EF%BC%88%E7%AD%9B%E9%80%89%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">filter方法（筛选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spool%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">Spool方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-sql"><span class="toc-number">1.5.</span> <span class="toc-text">2.sql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-sql"><span class="toc-number">1.6.</span> <span class="toc-text">3.sql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-sql"><span class="toc-number">1.7.</span> <span class="toc-text">4.sql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-sql"><span class="toc-number">1.8.</span> <span class="toc-text">5.sql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-sql"><span class="toc-number">1.9.</span> <span class="toc-text">6.sql</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E5%9B%9B/" title="操作系统上机实验四"><img src="/img/Animation/4.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="操作系统上机实验四"/></a><div class="content"><a class="title" href="/2022/06/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E5%9B%9B/" title="操作系统上机实验四">操作系统上机实验四</a><time datetime="2023-04-23T09:53:46.388Z" title="更新于 2023-04-23 17:53:46">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/31/%E8%87%AA%E9%80%82%E5%BA%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" title="自适应遗传算法"><img src="/img/Animation/3.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自适应遗传算法"/></a><div class="content"><a class="title" href="/2022/12/31/%E8%87%AA%E9%80%82%E5%BA%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" title="自适应遗传算法">自适应遗传算法</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E4%B8%8A%E6%9C%BA%E9%A2%98%E7%9B%AE/" title="计算机图形学上机题目"><img src="/img/Animation/4.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机图形学上机题目"/></a><div class="content"><a class="title" href="/2023/01/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E4%B8%8A%E6%9C%BA%E9%A2%98%E7%9B%AE/" title="计算机图形学上机题目">计算机图形学上机题目</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" title="计算机图形学"><img src="/img/Animation/5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机图形学"/></a><div class="content"><a class="title" href="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" title="计算机图形学">计算机图形学</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/22/%E8%AE%A1%E7%BB%84%E8%AF%BE%E8%AE%BE/" title="计组课设"><img src="/img/Animation/2.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计组课设"/></a><div class="content"><a class="title" href="/2022/12/22/%E8%AE%A1%E7%BB%84%E8%AF%BE%E8%AE%BE/" title="计组课设">计组课设</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 萌新QAQ</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/hideMobileSidebar.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

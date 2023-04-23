@@ -1,0 +1,416 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>形式语言与自动机 | j52nnw9的博客</title><meta name="keywords" content="计科课程"><meta name="author" content="萌新QAQ"><meta name="copyright" content="萌新QAQ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Induction 数学归纳法regular language 正则语言definition 定义在字母表集合Σ上的正则语言定义如下：  空集合Ø是正则语言 只包含一个空串的语言{ε}是正则语言 对所有a∈Σ，{a}是正则语言 若A, B是正则语言，则$A \cdot B$，$A \bigcup B$，$A^*$都是正则语言 除此之外都不是正则语言  regular expression 正则表达">
+<meta property="og:type" content="article">
+<meta property="og:title" content="形式语言与自动机">
+<meta property="og:url" content="https://jszmwq.github.io/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/index.html">
+<meta property="og:site_name" content="j52nnw9的博客">
+<meta property="og:description" content="Induction 数学归纳法regular language 正则语言definition 定义在字母表集合Σ上的正则语言定义如下：  空集合Ø是正则语言 只包含一个空串的语言{ε}是正则语言 对所有a∈Σ，{a}是正则语言 若A, B是正则语言，则$A \cdot B$，$A \bigcup B$，$A^*$都是正则语言 除此之外都不是正则语言  regular expression 正则表达">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jszmwq.github.io/img/Animation/9.jpeg">
+<meta property="article:published_time" content="2023-02-23T05:58:05.000Z">
+<meta property="article:modified_time" content="2023-04-23T09:52:52.070Z">
+<meta property="article:author" content="萌新QAQ">
+<meta property="article:tag" content="计科课程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jszmwq.github.io/img/Animation/9.jpeg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jszmwq.github.io/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '形式语言与自动机',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-23 17:52:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/image.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">51</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/Animation/9.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">j52nnw9的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">形式语言与自动机</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-23T05:58:05.000Z" title="发表于 2023-02-23 13:58:05">2023-02-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-23T09:52:52.070Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="形式语言与自动机"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="Induction-数学归纳法"><a href="#Induction-数学归纳法" class="headerlink" title="Induction 数学归纳法"></a>Induction 数学归纳法</h3><h4 id="regular-language-正则语言"><a href="#regular-language-正则语言" class="headerlink" title="regular language 正则语言"></a>regular language 正则语言</h4><h5 id="definition-定义"><a href="#definition-定义" class="headerlink" title="definition 定义"></a>definition 定义</h5><p>在字母表集合Σ上的正则语言定义如下：</p>
+<ul>
+<li>空集合Ø是正则语言</li>
+<li>只包含一个空串的语言{ε}是正则语言</li>
+<li>对所有a∈Σ，{a}是正则语言</li>
+<li>若<em>A</em>, <em>B</em>是正则语言，则$A \cdot B$，$A \bigcup B$，$A^*$都是正则语言</li>
+<li>除此之外都不是正则语言</li>
+</ul>
+<h4 id="regular-expression-正则表达式"><a href="#regular-expression-正则表达式" class="headerlink" title="regular expression 正则表达式"></a>regular expression 正则表达式</h4><p>regular expressions are a compact syntax for regular language</p>
+<p>正则表达式是正则语言的紧凑语法</p>
+<p>multiple regular expressions can denote the same language</p>
+<p>多个正则表达式可以表示同一种语言，例如0+0、01+0、0都可以表示empty Ø</p>
+<p>word over A={a,b} that have at least one a</p>
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230223141355615.png" alt="image-20230223141355615" style="zoom: 50%;">
+
+<p>其中${ a}\bigcup  { b}$不可以写成{a, b}，因为单例集是基本的构建块(singleton sets are the basic building blocks)。但是可以化简成</p>
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230223141928303.png" alt="image-20230223141928303" style="zoom:50%;">
+
+<h5 id="句法和语义的关系"><a href="#句法和语义的关系" class="headerlink" title="句法和语义的关系"></a>句法和语义的关系</h5><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230223142251827.png" alt="image-20230223142251827" style="zoom:80%;">
+
+<h5 id="正则表达式与正则语言关系及相互转化"><a href="#正则表达式与正则语言关系及相互转化" class="headerlink" title="正则表达式与正则语言关系及相互转化"></a>正则表达式与正则语言关系及相互转化</h5><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230223143217478.png" alt="image-20230223143217478" style="zoom: 50%;">
+
+<p>证明words starting with n a‘s and n b’s，$L={ a^nb^n|n∈N }$不是正则语言</p>
+<h3 id="Deterministic-finite-automata-确定有限状态自动机"><a href="#Deterministic-finite-automata-确定有限状态自动机" class="headerlink" title="Deterministic finite automata 确定有限状态自动机"></a>Deterministic finite automata 确定有限状态自动机</h3><h4 id="Definition-定义"><a href="#Definition-定义" class="headerlink" title="Definition 定义"></a>Definition 定义</h4><p>A DFA is a tuple$(Q,\delta,i,F)$</p>
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230223150057887.png" alt="image-20230223150057887" style="zoom: 80%;">
+
+<h4 id="DFA接受word"><a href="#DFA接受word" class="headerlink" title="DFA接受word"></a>DFA接受word</h4><p>a word $w∈A^*$ is accepted by a DFA$(Q,\delta,i,F)$ if $\delta ^*(i, w)=F$</p>
+<h4 id="DFA接受language"><a href="#DFA接受language" class="headerlink" title="DFA接受language"></a>DFA接受language</h4><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230223151330959.png" alt="image-20230223151330959" style="zoom: 50%;">
+
+<h5 id="通过DFA归纳语言例子"><a href="#通过DFA归纳语言例子" class="headerlink" title="通过DFA归纳语言例子"></a>通过DFA归纳语言例子</h5><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230223151754460.png" alt="image-20230223151754460" style="zoom: 50%;">
+
+<h4 id="DFA-are-not-the-most-efficient-data-structure-DFA-不是最高效的数据结构"><a href="#DFA-are-not-the-most-efficient-data-structure-DFA-不是最高效的数据结构" class="headerlink" title="DFA are not the most efficient data structure DFA 不是最高效的数据结构"></a>DFA are not the most efficient data structure DFA 不是最高效的数据结构</h4><p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230223151952434.png" alt="image-20230223151952434"></p>
+<p>Q1: is the language regular?</p>
+<p>yes</p>
+<p>Q2: if regular what is the regular expression?</p>
+<p>$(a+b)^*a(a+b)(a+b)(a+b)$</p>
+<p>Q3: How many states would one need for DFA?</p>
+<p>total 16 states</p>
+<h5 id="为什么DFA不能表示成下面的形式"><a href="#为什么DFA不能表示成下面的形式" class="headerlink" title="为什么DFA不能表示成下面的形式"></a>为什么DFA不能表示成下面的形式</h5><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230223183229478.png" alt="image-20230223183229478" style="zoom:67%;">
+
+<ol>
+<li>there are  two a transitions</li>
+<li>state 1 has zero transition</li>
+</ol>
+<h3 id="nondeterministic-finite-automata-非确定有限状态自动机"><a href="#nondeterministic-finite-automata-非确定有限状态自动机" class="headerlink" title="nondeterministic finite automata 非确定有限状态自动机"></a>nondeterministic finite automata 非确定有限状态自动机</h3><p>缘由：DFA的状态转移总数会基于状态数呈现指数级增长</p>
+<p>知识点：P(s) powerset of a set S S集合的幂集，是一个由S全部子集组成的集合，S={s1, s2}，则P(S)={Ø, {s1}, {s2}, {s1, s2}}</p>
+<h4 id="definition-定义："><a href="#definition-定义：" class="headerlink" title="definition 定义："></a>definition 定义：</h4><p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230223185012593.png" alt="image-20230223185012593"></p>
+<p>每个DFA也是一个NFA，根据定义{q}也是{q}的子集</p>
+<p>there is always a equivalent DFA given an NFA 给定一个 NFA，总有一个等价的 DFA</p>
+<h4 id="word-accepted-by-an-NFA"><a href="#word-accepted-by-an-NFA" class="headerlink" title="word accepted by an NFA"></a>word accepted by an NFA</h4><p>there must be at least one path that accept the word</p>
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230223222309431.png" alt="image-20230223222309431" style="zoom: 50%;">
+
+<p>a word $w∈A^*$ is accepted by an NFA$(Q, i, \delta, F)$ if and only if </p>
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230224180048816.png" alt="image-20230224180048816" style="zoom:50%;">
+
+<h4 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h4><p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230224180655301.png" alt="image-20230224180655301"></p>
+<h4 id="Language-accepted-by-an-NFA-NFA接受的语言"><a href="#Language-accepted-by-an-NFA-NFA接受的语言" class="headerlink" title="Language accepted by an NFA NFA接受的语言"></a>Language accepted by an NFA NFA接受的语言</h4><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230224180956189.png" alt="image-20230224180956189" style="zoom: 50%;">
+
+<h3 id="NFA-with-λ-transition"><a href="#NFA-with-λ-transition" class="headerlink" title="NFA with λ-transition"></a>NFA with λ-transition</h3><p>Goal: give NFAs the capability of selectiong a new state without reading a symbol.</p>
+<p>$\delta:Q\times(A\cup\lambda)\rightarrow P(Q)$</p>
+<h4 id="知识点：λ-closure-λ闭包"><a href="#知识点：λ-closure-λ闭包" class="headerlink" title="知识点：λ-closure λ闭包"></a>知识点：λ-closure λ闭包</h4><p>given a state q∈Q in an NFA returns the set of states one can reach using only λ.</p>
+<p>λ-closure(q) is the smallest subset of Q.</p>
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230224232141519.png" alt="image-20230224232141519" style="zoom:50%;">
+
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230224232514627.png" alt="image-20230224232514627" style="zoom: 50%;">
+
+<p>使用λ-NFA，我们现在可以轻松地为语言并集、顺序组合和星形$(+，\cdot，*)$构建自动机。</p>
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225001838547.png" alt="image-20230225001838547" style="zoom: 50%;">
+
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225002354839.png" alt="image-20230225002354839" style="zoom: 50%;">
+
+<h3 id="Regular-expression-gt-NFA-λ-gt-NFA-gt-DFA转化"><a href="#Regular-expression-gt-NFA-λ-gt-NFA-gt-DFA转化" class="headerlink" title="Regular expression -&gt; NFA-λ -&gt; NFA -&gt; DFA转化"></a>Regular expression -&gt; NFA-λ -&gt; NFA -&gt; DFA转化</h3><h4 id="goal-1-how-to-eliminate-lambda-transitions"><a href="#goal-1-how-to-eliminate-lambda-transitions" class="headerlink" title="goal 1: how to eliminate lambda transitions"></a>goal 1: how to eliminate lambda transitions</h4><p>rule 1: given a state q in the automata, the state is final if q was already final or <img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225114443802.png" alt="image-20230225114443802" style="zoom: 33%;">可以仅使用λ到达最终状态</p>
+<p> rule 2: <img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225115036071.png" alt="image-20230225115036071" style="zoom:50%;"></p>
+<h5 id="construction"><a href="#construction" class="headerlink" title="construction"></a>construction</h5><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225115547427.png" alt="image-20230225115547427" style="zoom: 50%;">
+
+<h5 id="可靠性定理证明"><a href="#可靠性定理证明" class="headerlink" title="可靠性定理证明"></a>可靠性定理证明</h5><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225120906642.png" alt="image-20230225120906642" style="zoom:50%;">
+
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225121512327.png" alt="image-20230225121512327" style="zoom:50%;">
+
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225121858140.png" alt="image-20230225121858140" style="zoom:50%;">
+
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225134337698.png" alt="image-20230225134337698" style="zoom:50%;">
+
+<p>NFA-λ和NFA有着同样的表现力 </p>
+<h4 id="goal-2-how-to-construct-an-equivalent-DFA-from-a-given-NFA"><a href="#goal-2-how-to-construct-an-equivalent-DFA-from-a-given-NFA" class="headerlink" title="goal 2: how to construct an equivalent DFA from a given NFA"></a>goal 2: how to construct an equivalent DFA from a given NFA</h4><h5 id="construction-1"><a href="#construction-1" class="headerlink" title="construction"></a>construction</h5><p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225140841028.png" alt="image-20230225140841028"></p>
+<h5 id="样例-1"><a href="#样例-1" class="headerlink" title="样例"></a>样例</h5><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225141644121.png" alt="image-20230225141644121" style="zoom:50%;">
+
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225141625762.png" alt="image-20230225141625762" style="zoom:50%;">
+
+<p>DFAs have $2^n$ states when building from NFAs but not all states are needed。因为不需要的状态无法从初始状态到达。对于一个有着n状态的NFA构建DFA，最坏情况是$|P(Q)|=2^n$</p>
+<p>从NFA映射到DFA的结构有两个名称：subset construction 子集构造，determinisation 确定性</p>
+<h5 id="可靠性证明"><a href="#可靠性证明" class="headerlink" title="可靠性证明"></a>可靠性证明</h5><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225142517138.png" alt="image-20230225142517138" style="zoom:50%;">
+
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225142656369.png" alt="image-20230225142656369" style="zoom:50%;">
+
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225142819613.png" alt="image-20230225142819613" style="zoom:50%;">
+
+<p>​    <img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225143221863.png" alt="image-20230225143221863" style="zoom:50%;"></p>
+<h4 id="chomsky-hierarchy-语言体系"><a href="#chomsky-hierarchy-语言体系" class="headerlink" title="chomsky hierarchy 语言体系"></a>chomsky hierarchy 语言体系</h4><p>finite language 有限语言</p>
+<p>regular language 正则语言</p>
+<p>context-free language 上下文无关文法</p>
+<p>context-concentive language 上下文相关文法</p>
+<p>tree 数</p>
+<p>DFA、NFA、NFA-lambda  有限状态自动机</p>
+<p>pushdown automata 下推自动机</p>
+<p>turing mechine 图灵机</p>
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225235653125.png" alt="image-20230225235653125" style="zoom:50%;">
+
+<h3 id="kleene’s-theorem"><a href="#kleene’s-theorem" class="headerlink" title="kleene’s theorem"></a>kleene’s theorem</h3><h4 id="How-to-use-kleene’s-theorem-to-show-that-a-language-is-not-regular"><a href="#How-to-use-kleene’s-theorem-to-show-that-a-language-is-not-regular" class="headerlink" title="How to use kleene’s theorem to show that a language is not regular"></a>How to use kleene’s theorem to show that a language is not regular</h4><p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225235949738.png" alt="image-20230225235949738"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226005623819.png" alt="image-20230226005623819"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226005732449.png" alt="image-20230226005732449"></p>
+<h4 id="proof-of-kleene’s-theorem"><a href="#proof-of-kleene’s-theorem" class="headerlink" title="proof of kleene’s theorem"></a>proof of kleene’s theorem</h4><h5 id="DFA-gt-R-exp-：state-elimination-algorithm-使用状态消解法"><a href="#DFA-gt-R-exp-：state-elimination-algorithm-使用状态消解法" class="headerlink" title="DFA -&gt; R.exp.：state-elimination algorithm 使用状态消解法"></a>DFA -&gt; R.exp.：state-elimination algorithm 使用状态消解法</h5><p>Take an automata with n states and delete state by state until having an automata with just two states.</p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226011305514.png" alt="image-20230226011305514"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226011851079.png" alt="image-20230226011851079"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226013126169.png" alt="image-20230226013126169"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226013320720.png" alt="image-20230226013320720"></p>
+<p> <img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226013449139.png" alt="image-20230226013449139"></p>
+<h5 id="R-exp-gt-DFA：Brzozowski-Derivative"><a href="#R-exp-gt-DFA：Brzozowski-Derivative" class="headerlink" title="R.exp.-&gt;DFA：Brzozowski Derivative"></a>R.exp.-&gt;DFA：Brzozowski Derivative</h5><p>可以使用下面的方法，但是另一种方法Brzozowski Derivative可以直接转换</p>
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226013850988.png" alt="image-20230226013850988" style="zoom:50%;">
+
+<p>solution to a Linear system 针对线性系统的方法</p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226020048743.png" alt="image-20230226020048743"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226020154915.png" alt="image-20230226020154915"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226020347681.png" alt="image-20230226020347681"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226020615306.png" alt="image-20230226020615306"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226020823331.png" alt="image-20230226020823331"></p>
+<h3 id="Plan-for-today"><a href="#Plan-for-today" class="headerlink" title="Plan for today"></a>Plan for today</h3><h4 id="closure-properties-of-regular-language-正则语言的闭包特性"><a href="#closure-properties-of-regular-language-正则语言的闭包特性" class="headerlink" title="closure properties of regular language 正则语言的闭包特性"></a>closure properties of regular language 正则语言的闭包特性</h4><h5 id="L-R-is-regular-given-L-regular"><a href="#L-R-is-regular-given-L-regular" class="headerlink" title="$L^R$ is regular given L regular"></a>$L^R$ is regular given L regular</h5><p>根据kleene’s theorem，只需证明Produce a DFA for $L^R$ given a DFA for L</p>
+<ul>
+<li>swap initial an final states</li>
+<li>reverse all arrows</li>
+</ul>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226133753692.png" alt="image-20230226133753692"></p>
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226133933502.png" alt="image-20230226133933502" style="zoom: 50%;">
+
+<h4 id="how-to-prove-that-a-language-is-not-regular-pumping-lemma"><a href="#how-to-prove-that-a-language-is-not-regular-pumping-lemma" class="headerlink" title="how to prove that a language is not regular: pumping lemma"></a>how to prove that a language is not regular: pumping lemma</h4><p>if length of a word is long enough the path in the automata needs to visit same state over and over again</p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226142725031.png" alt="image-20230226142725031"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226142756979.png" alt="image-20230226142756979"></p>
+<p>例题</p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226144335793.png" alt="image-20230226144335793"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226144639966.png" alt="image-20230226144639966"></p>
+<h3 id="context-free-language-上下文无关语言"><a href="#context-free-language-上下文无关语言" class="headerlink" title="context-free language 上下文无关语言"></a>context-free language 上下文无关语言</h3><p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226145749507.png" alt="image-20230226145749507"></p>
+<p>a  CFG is a tuple(V, $\Sigma$, P, S)</p>
+<p>V is a set  of sumbols which we call terminal</p>
+<p>$\Sigma$ is the alphabet(terminal symbols)</p>
+<p>P a final set of rules. a rule is A-&gt;w where a∈ V, $w∈(V∪\Sigma)^*$</p>
+<p>S∈V, starting symbol</p>
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230305155612084.png" alt="image-20230305155612084" style="zoom:50%;">
+
+<h4 id="words-generated-by-a-grammer"><a href="#words-generated-by-a-grammer" class="headerlink" title="words generated by a grammer"></a>words generated by a grammer</h4><p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230305155804963.png" alt="image-20230305155804963"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230305160921994.png" alt="image-20230305160921994"></p>
+<h4 id="language-accepted-generate-by-grammar"><a href="#language-accepted-generate-by-grammar" class="headerlink" title="language accepted/generate by grammar"></a>language accepted/generate by grammar</h4><p>given a grammar G=(V, $\Sigma$, P, S) the setof words or languages accepted by G:</p>
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230305161057921.png" alt="image-20230305161057921" style="zoom:50%;">
+
+<h5 id="goal-prove-a-nb-n-is-generated-by-G-for-any-n∈N"><a href="#goal-prove-a-nb-n-is-generated-by-G-for-any-n∈N" class="headerlink" title="goal: prove $a^nb^n$ is generated by G for any n∈N"></a>goal: prove $a^nb^n$ is generated by G for any n∈N</h5><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230305161228471.png" alt="image-20230305161228471" style="zoom:50%;">
+
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230305161414552.png" alt="image-20230305161414552"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230305163520718.png" alt="image-20230305163520718"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230305163549081.png" alt="image-20230305163549081"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230305163642194.png" alt="image-20230305163642194"></p>
+<h5 id="从语法生成words的不同策略（树结构）"><a href="#从语法生成words的不同策略（树结构）" class="headerlink" title="从语法生成words的不同策略（树结构）"></a>从语法生成words的不同策略（树结构）</h5><p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230305180920804.png" alt="image-20230305180920804"></p>
+<p>there are multiple left most derivations of the same word</p>
+<p>S-&gt;aS-&gt;aa和S-&gt;Sa-&gt;aa都可以表示aa</p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230305181659863.png" alt="image-20230305181659863"> </p>
+<h4 id="pushdown-automata-for-CFL"><a href="#pushdown-automata-for-CFL" class="headerlink" title="pushdown automata for CFL"></a>pushdown automata for CFL</h4><p>$L={a^nb^n|n∈N}$ is not regular, there is no finate ddeterministic automata accepting L, because we need to count a’s. We need automata with memory to count. Use stack.</p>
+<h5 id="defination"><a href="#defination" class="headerlink" title="defination"></a>defination</h5><p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230305182956766.png" alt="image-20230305182956766"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230305183327593.png" alt="image-20230305183327593"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230305183455452.png" alt="image-20230305183455452"> </p>
+<p>多个状态，多个堆栈</p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230305183615462.png" alt="image-20230305183615462"></p>
+<h5 id="example"><a href="#example" class="headerlink" title="example"></a>example</h5><p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230305184033824.png" alt="image-20230305184033824"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230305184401783.png" alt="image-20230305184401783"></p>
+<h5 id="language-accepted-by-a-pushdown-automata"><a href="#language-accepted-by-a-pushdown-automata" class="headerlink" title="language accepted by a pushdown automata"></a>language accepted by a pushdown automata</h5><p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230305185302424.png" alt="image-20230305185302424"></p>
+<p>state, word, stack = configuration of PDA</p>
+<p>state where reading w start, start with an empty stack</p>
+<p>acceptance by empty stack and final state</p>
+<h4 id="GOAL-Given-a-CFG-build-a-pushdown-automaton-accepting-the-same-language"><a href="#GOAL-Given-a-CFG-build-a-pushdown-automaton-accepting-the-same-language" class="headerlink" title="GOAL: Given a CFG build a pushdown automaton accepting the same language"></a>GOAL: Given a CFG build a pushdown automaton accepting the same language</h4><p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306135341240.png" alt="image-20230306135341240"></p>
+<p>转化图的定义不太正确</p>
+<p>第一个与过渡的类型有关，允许多个符号推送到堆栈是一个错误。只允许检查堆栈的顶部，并写一个符号。这个问题可以通过分解状态解决</p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306135643914.png" alt="image-20230306135643914"></p>
+<p>第二个问题是为所有非终端提供的所有生产规则都有终端。这些语法比较特殊</p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306140046651.png" alt="image-20230306140046651"></p>
+<p>​    </p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306140254190.png" alt="image-20230306140254190"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306141123997.png" alt="image-20230306141123997"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306141353722.png" alt="image-20230306141353722"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306141446519.png" alt="image-20230306141446519"></p>
+<h4 id="PDA-gt-CFG"><a href="#PDA-gt-CFG" class="headerlink" title="PDA-&gt;CFG"></a>PDA-&gt;CFG</h4><p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306181141371.png" alt="image-20230306181141371"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306181257588.png" alt="image-20230306181257588"></p>
+<h4 id="closure-properties-for-CFL"><a href="#closure-properties-for-CFL" class="headerlink" title="closure properties for CFL"></a>closure properties for CFL</h4><p>facts CFL are closed under union, concaleation, and kleene star</p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306181654149.png" alt="image-20230306181654149"></p>
+<p>facts CFL are not closed under intesection</p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306182038064.png" alt="image-20230306182038064"></p>
+<h4 id="pumping-lemma-for-CFL"><a href="#pumping-lemma-for-CFL" class="headerlink" title="pumping lemma for CFL"></a>pumping lemma for CFL</h4><p>在上下文无关语法中拥有的每一棵树都将具有最大深度，因此，我们不是像对常规语言那样查看字符串的长度，而是查看生成树的深度。</p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306182626112.png" alt="image-20230306182626112"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306182716236.png" alt="image-20230306182716236"></p>
+<h2 id="习题课"><a href="#习题课" class="headerlink" title="习题课"></a>习题课</h2><h4 id="DFA"><a href="#DFA" class="headerlink" title="DFA"></a>DFA</h4><h5 id="问题一：Design-a-DFA-that-accepts-the-language"><a href="#问题一：Design-a-DFA-that-accepts-the-language" class="headerlink" title="问题一：Design a DFA that accepts the language"></a>问题一：Design a DFA that accepts the language</h5><p>例一：</p>
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230223175421166.png" alt="image-20230223175421166" style="zoom: 67%;">
+
+<p>解答：</p>
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230223180451005.png" alt="image-20230223180451005" style="zoom: 50%;">
+
+<p>例二：</p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230223181044867.png" alt="image-20230223181044867"></p>
+<p>解答：</p>
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230223181454743.png" alt="image-20230223181454743" style="zoom:50%;">
+
+<p>例三：</p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230223182827209.png" alt="image-20230223182827209"></p>
+<h4 id="NFA"><a href="#NFA" class="headerlink" title="NFA"></a>NFA</h4><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225020337570.png" alt="image-20230225020337570" style="zoom: 50%;">
+
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225020405030.png" alt="image-20230225020405030" style="zoom: 50%;">
+
+<h4 id="nfa-λ"><a href="#nfa-λ" class="headerlink" title="nfa-λ"></a>nfa-λ</h4><p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225020549711.png" alt="image-20230225020549711"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225020845837.png" alt="image-20230225020845837"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225021119031.png" alt="image-20230225021119031"></p>
+<img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225021317984.png" alt="image-20230225021317984" style="zoom:50%;">
+
+<p>build $A(ab^*+a)$</p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225021630238.png" alt="image-20230225021630238"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225021734187.png" alt="image-20230225021734187"></p>
+<h4 id="DFA、NFA、NFA-λ相互转化"><a href="#DFA、NFA、NFA-λ相互转化" class="headerlink" title="DFA、NFA、NFA-λ相互转化"></a>DFA、NFA、NFA-λ相互转化</h4><p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225175254238.png" alt="image-20230225175254238"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225175505463.png" alt="image-20230225175505463"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225180124051.png" alt="image-20230225180124051"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225180823162.png" alt="image-20230225180823162"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225181543642.png" alt="image-20230225181543642"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230225182533520.png" alt="image-20230225182533520"></p>
+<h3 id="Kleene’s-theorem"><a href="#Kleene’s-theorem" class="headerlink" title="Kleene’s theorem"></a>Kleene’s theorem</h3><h4 id="Regular-expression-gt-NFA-λ-gt-NFA-gt-DFA转化-1"><a href="#Regular-expression-gt-NFA-λ-gt-NFA-gt-DFA转化-1" class="headerlink" title="Regular expression -&gt; NFA-λ -&gt; NFA -&gt; DFA转化"></a>Regular expression -&gt; NFA-λ -&gt; NFA -&gt; DFA转化</h4><p>fact(*): if u,L,w are languages, λ不属于L, then if u=Lu+w,  $u=L^ *w $</p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226115611104.png" alt="image-20230226115611104"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226115944801.png" alt="image-20230226115944801"></p>
+<p> 通过$aa^<em>c+c=(aa^</em>+1)c=a^*c$进行化简，对b同理</p>
+<p>$a(a^<em>c)+a(a^</em>b)(a^<em>b)^</em>(a^<em>c)=a((1+(a^</em>b)(a^<em>b)^</em>)(a^<em>c))=a(a^</em>b)^<em>a^</em>c$</p>
+<p>通过$(u^<em>L)^</em>u^*=(u+L)^*$进行化简得到$a(a+b)^*c$</p>
+<h4 id="R-exp-gt-DFA：Brzozowski-Derivative-1"><a href="#R-exp-gt-DFA：Brzozowski-Derivative-1" class="headerlink" title="R.exp.-&gt;DFA：Brzozowski Derivative"></a>R.exp.-&gt;DFA：Brzozowski Derivative</h4><h3 id="常规语言的闭包属性"><a href="#常规语言的闭包属性" class="headerlink" title="常规语言的闭包属性"></a>常规语言的闭包属性</h3><h4 id="Prove-A-L-is-a-regular-language"><a href="#Prove-A-L-is-a-regular-language" class="headerlink" title="Prove $A^*/L$ is a regular language"></a>Prove $A^*/L$ is a regular language</h4><p>Main tool for showing closure properties: Kleene’s theorem</p>
+<p>L is regular if L is recognized by a DFA</p>
+<p>知识点：$w∈L^C$ if and only if w不属于L，表示补集</p>
+<p>​    <img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226182139509.png" alt="image-20230226182139509" style="zoom: 50%;"></p>
+<p>$b^<em>a(a+bb^</em>a)^*=b^<em>a((1+bb^</em>)a)^*=b^<em>a(b^</em>a)^*=(b^<em>a)^</em>b^<em>a=(a+b)^</em>a$</p>
+<p>$[(a+b)^*]^c=?$</p>
+<p>Fact: if $L_1$ and $L_2$ are regular languages, $L_1∩L_2$ is also regular.</p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226184445696.png" alt="image-20230226184445696"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226184649175.png" alt="image-20230226184649175"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226185429086.png" alt="image-20230226185429086"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226190026855.png" alt="image-20230226190026855"></p>
+<h4 id="a-language-that-is-not-regular"><a href="#a-language-that-is-not-regular" class="headerlink" title="a language that is not regular"></a>a language that is not regular</h4><p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226190327021.png" alt="image-20230226190327021"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226190305159.png" alt="image-20230226190305159"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226194518152.png" alt="image-20230226194518152"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226195258865.png" alt="image-20230226195258865"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226200049343.png" alt="image-20230226200049343"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230226200132015.png" alt="image-20230226200132015"></p>
+<h3 id="context-free-grammar"><a href="#context-free-grammar" class="headerlink" title="context free grammar"></a>context free grammar</h3><p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306120812076.png" alt="image-20230306120812076"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306120915202.png" alt="image-20230306120915202"></p>
+<h5 id="what-language-is-generated-by-the-CFG-below"><a href="#what-language-is-generated-by-the-CFG-below" class="headerlink" title="what language is generated by the CFG below?"></a>what language is generated by the CFG below?</h5><p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306121613382.png" alt="image-20230306121613382"></p>
+<h5 id="Design-a-CFG-generating-L-0-n1-n-n-gt-0-∪-1-n0-n-n-gt-0"><a href="#Design-a-CFG-generating-L-0-n1-n-n-gt-0-∪-1-n0-n-n-gt-0" class="headerlink" title="Design a CFG generating $L={0^n1^n|n&gt;=0}∪{1^n0^n|n&gt;=0} $"></a>Design a CFG generating $L={0^n1^n|n&gt;=0}∪{1^n0^n|n&gt;=0} $</h5><center class="half">
+    <img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306123315432.png" alt="image-20230306123315432" style="zoom:40%;">
+    <img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306123300866.png" alt="image-20230306123300866" style="zoom:40%;">
+</center>
+
+<h4 id="pushdown-automata"><a href="#pushdown-automata" class="headerlink" title="pushdown automata"></a>pushdown automata</h4><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306124314591.png" alt="image-20230306124314591" style="zoom:50%;">
+
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306125051424.png" alt="image-20230306125051424"></p>
+<h3 id="another-pumping-lemma"><a href="#another-pumping-lemma" class="headerlink" title="another pumping lemma"></a>another pumping lemma</h3><p>正则语言抽水定理：如果我有无限的正则语言，并且在自动机中曾经识别过，应该能够找到并使用一些循环来pump</p>
+<p>上下文无关语言抽水定理：如果我有上下文无关语言，会在某一阶段多次将值推入堆栈上，并且在循环的稍后阶段将其多次弹出。</p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306183652495.png" alt="image-20230306183652495"></p>
+<p><img src="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/image-20230306183821135.png" alt="image-20230306183821135"></p>
+<p>附言：学习link</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42902997/article/details/120804292">编译原理学习之：正则表达式（regular expression）和非正则语言（non-regular languages）_暖仔会飞的博客-CSDN博客_编译原理正则表达式</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">萌新QAQ</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://jszmwq.github.io/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/">https://jszmwq.github.io/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://jszmwq.github.io" target="_blank">j52nnw9的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%A7%91%E8%AF%BE%E7%A8%8B/">计科课程</a></div><div class="post_share"><div class="social-share" data-image="/img/Animation/9.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/01/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E4%B8%8A%E6%9C%BA%E9%A2%98%E7%9B%AE/"><img class="next-cover" src="/img/Animation/4.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">计算机图形学上机题目</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/12/31/ChatGPT%E5%AF%B9%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8%E7%9A%84%E5%BD%B1%E5%93%8D/" title="ChatGPT对网络空间安全的影响"><img class="cover" src="/img/Animation/1.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-31</div><div class="title">ChatGPT对网络空间安全的影响</div></div></a></div><div><a href="/2022/12/21/pintos%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C/" title="pintos操作系统实验"><img class="cover" src="/img/Animation/4.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-21</div><div class="title">pintos操作系统实验</div></div></a></div><div><a href="/2022/12/02/%E5%90%8C%E6%9E%84%E7%BD%91%E7%BB%9C%E5%8F%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/" title="同构网络可分任务调度问题"><img class="cover" src="/img/Animation/1.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-02</div><div class="title">同构网络可分任务调度问题</div></div></a></div><div><a href="/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="大数据优化建模与算法笔记"><img class="cover" src="/img/Animation/5.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-22</div><div class="title">大数据优化建模与算法笔记</div></div></a></div><div><a href="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/" title="怎样使用ARENA系统"><img class="cover" src="/img/Animation/2.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-14</div><div class="title">怎样使用ARENA系统</div></div></a></div><div><a href="/2022/12/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%A4%A7%E4%BD%9C%E4%B8%9A/" title="操作系统课程设计大作业"><img class="cover" src="/img/Animation/3.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-31</div><div class="title">操作系统课程设计大作业</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/image.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">萌新QAQ</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">51</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Induction-%E6%95%B0%E5%AD%A6%E5%BD%92%E7%BA%B3%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">Induction 数学归纳法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#regular-language-%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">regular language 正则语言</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#definition-%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">definition 定义</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#regular-expression-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">regular expression 正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%A5%E6%B3%95%E5%92%8C%E8%AF%AD%E4%B9%89%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.2.1.</span> <span class="toc-text">句法和语义的关系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8E%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80%E5%85%B3%E7%B3%BB%E5%8F%8A%E7%9B%B8%E4%BA%92%E8%BD%AC%E5%8C%96"><span class="toc-number">1.2.2.</span> <span class="toc-text">正则表达式与正则语言关系及相互转化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deterministic-finite-automata-%E7%A1%AE%E5%AE%9A%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="toc-number">2.</span> <span class="toc-text">Deterministic finite automata 确定有限状态自动机</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Definition-%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.</span> <span class="toc-text">Definition 定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DFA%E6%8E%A5%E5%8F%97word"><span class="toc-number">2.2.</span> <span class="toc-text">DFA接受word</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DFA%E6%8E%A5%E5%8F%97language"><span class="toc-number">2.3.</span> <span class="toc-text">DFA接受language</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%9A%E8%BF%87DFA%E5%BD%92%E7%BA%B3%E8%AF%AD%E8%A8%80%E4%BE%8B%E5%AD%90"><span class="toc-number">2.3.1.</span> <span class="toc-text">通过DFA归纳语言例子</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DFA-are-not-the-most-efficient-data-structure-DFA-%E4%B8%8D%E6%98%AF%E6%9C%80%E9%AB%98%E6%95%88%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">2.4.</span> <span class="toc-text">DFA are not the most efficient data structure DFA 不是最高效的数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88DFA%E4%B8%8D%E8%83%BD%E8%A1%A8%E7%A4%BA%E6%88%90%E4%B8%8B%E9%9D%A2%E7%9A%84%E5%BD%A2%E5%BC%8F"><span class="toc-number">2.4.1.</span> <span class="toc-text">为什么DFA不能表示成下面的形式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nondeterministic-finite-automata-%E9%9D%9E%E7%A1%AE%E5%AE%9A%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="toc-number">3.</span> <span class="toc-text">nondeterministic finite automata 非确定有限状态自动机</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#definition-%E5%AE%9A%E4%B9%89%EF%BC%9A"><span class="toc-number">3.1.</span> <span class="toc-text">definition 定义：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#word-accepted-by-an-NFA"><span class="toc-number">3.2.</span> <span class="toc-text">word accepted by an NFA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B7%E4%BE%8B"><span class="toc-number">3.3.</span> <span class="toc-text">样例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Language-accepted-by-an-NFA-NFA%E6%8E%A5%E5%8F%97%E7%9A%84%E8%AF%AD%E8%A8%80"><span class="toc-number">3.4.</span> <span class="toc-text">Language accepted by an NFA NFA接受的语言</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NFA-with-%CE%BB-transition"><span class="toc-number">4.</span> <span class="toc-text">NFA with λ-transition</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A%CE%BB-closure-%CE%BB%E9%97%AD%E5%8C%85"><span class="toc-number">4.1.</span> <span class="toc-text">知识点：λ-closure λ闭包</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Regular-expression-gt-NFA-%CE%BB-gt-NFA-gt-DFA%E8%BD%AC%E5%8C%96"><span class="toc-number">5.</span> <span class="toc-text">Regular expression -&gt; NFA-λ -&gt; NFA -&gt; DFA转化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#goal-1-how-to-eliminate-lambda-transitions"><span class="toc-number">5.1.</span> <span class="toc-text">goal 1: how to eliminate lambda transitions</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#construction"><span class="toc-number">5.1.1.</span> <span class="toc-text">construction</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%AF%E9%9D%A0%E6%80%A7%E5%AE%9A%E7%90%86%E8%AF%81%E6%98%8E"><span class="toc-number">5.1.2.</span> <span class="toc-text">可靠性定理证明</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#goal-2-how-to-construct-an-equivalent-DFA-from-a-given-NFA"><span class="toc-number">5.2.</span> <span class="toc-text">goal 2: how to construct an equivalent DFA from a given NFA</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#construction-1"><span class="toc-number">5.2.1.</span> <span class="toc-text">construction</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A0%B7%E4%BE%8B-1"><span class="toc-number">5.2.2.</span> <span class="toc-text">样例</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%AF%E9%9D%A0%E6%80%A7%E8%AF%81%E6%98%8E"><span class="toc-number">5.2.3.</span> <span class="toc-text">可靠性证明</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#chomsky-hierarchy-%E8%AF%AD%E8%A8%80%E4%BD%93%E7%B3%BB"><span class="toc-number">5.3.</span> <span class="toc-text">chomsky hierarchy 语言体系</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kleene%E2%80%99s-theorem"><span class="toc-number">6.</span> <span class="toc-text">kleene’s theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#How-to-use-kleene%E2%80%99s-theorem-to-show-that-a-language-is-not-regular"><span class="toc-number">6.1.</span> <span class="toc-text">How to use kleene’s theorem to show that a language is not regular</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#proof-of-kleene%E2%80%99s-theorem"><span class="toc-number">6.2.</span> <span class="toc-text">proof of kleene’s theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DFA-gt-R-exp-%EF%BC%9Astate-elimination-algorithm-%E4%BD%BF%E7%94%A8%E7%8A%B6%E6%80%81%E6%B6%88%E8%A7%A3%E6%B3%95"><span class="toc-number">6.2.1.</span> <span class="toc-text">DFA -&gt; R.exp.：state-elimination algorithm 使用状态消解法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#R-exp-gt-DFA%EF%BC%9ABrzozowski-Derivative"><span class="toc-number">6.2.2.</span> <span class="toc-text">R.exp.-&gt;DFA：Brzozowski Derivative</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Plan-for-today"><span class="toc-number">7.</span> <span class="toc-text">Plan for today</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#closure-properties-of-regular-language-%E6%AD%A3%E5%88%99%E8%AF%AD%E8%A8%80%E7%9A%84%E9%97%AD%E5%8C%85%E7%89%B9%E6%80%A7"><span class="toc-number">7.1.</span> <span class="toc-text">closure properties of regular language 正则语言的闭包特性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#L-R-is-regular-given-L-regular"><span class="toc-number">7.1.1.</span> <span class="toc-text">$L^R$ is regular given L regular</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#how-to-prove-that-a-language-is-not-regular-pumping-lemma"><span class="toc-number">7.2.</span> <span class="toc-text">how to prove that a language is not regular: pumping lemma</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#context-free-language-%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E8%AF%AD%E8%A8%80"><span class="toc-number">8.</span> <span class="toc-text">context-free language 上下文无关语言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#words-generated-by-a-grammer"><span class="toc-number">8.1.</span> <span class="toc-text">words generated by a grammer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#language-accepted-generate-by-grammar"><span class="toc-number">8.2.</span> <span class="toc-text">language accepted&#x2F;generate by grammar</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#goal-prove-a-nb-n-is-generated-by-G-for-any-n%E2%88%88N"><span class="toc-number">8.2.1.</span> <span class="toc-text">goal: prove $a^nb^n$ is generated by G for any n∈N</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%8E%E8%AF%AD%E6%B3%95%E7%94%9F%E6%88%90words%E7%9A%84%E4%B8%8D%E5%90%8C%E7%AD%96%E7%95%A5%EF%BC%88%E6%A0%91%E7%BB%93%E6%9E%84%EF%BC%89"><span class="toc-number">8.2.2.</span> <span class="toc-text">从语法生成words的不同策略（树结构）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pushdown-automata-for-CFL"><span class="toc-number">8.3.</span> <span class="toc-text">pushdown automata for CFL</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#defination"><span class="toc-number">8.3.1.</span> <span class="toc-text">defination</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#example"><span class="toc-number">8.3.2.</span> <span class="toc-text">example</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#language-accepted-by-a-pushdown-automata"><span class="toc-number">8.3.3.</span> <span class="toc-text">language accepted by a pushdown automata</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GOAL-Given-a-CFG-build-a-pushdown-automaton-accepting-the-same-language"><span class="toc-number">8.4.</span> <span class="toc-text">GOAL: Given a CFG build a pushdown automaton accepting the same language</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PDA-gt-CFG"><span class="toc-number">8.5.</span> <span class="toc-text">PDA-&gt;CFG</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#closure-properties-for-CFL"><span class="toc-number">8.6.</span> <span class="toc-text">closure properties for CFL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pumping-lemma-for-CFL"><span class="toc-number">8.7.</span> <span class="toc-text">pumping lemma for CFL</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%E8%AF%BE"><span class="toc-number"></span> <span class="toc-text">习题课</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DFA"><span class="toc-number">0.1.</span> <span class="toc-text">DFA</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9ADesign-a-DFA-that-accepts-the-language"><span class="toc-number">0.1.1.</span> <span class="toc-text">问题一：Design a DFA that accepts the language</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NFA"><span class="toc-number">0.2.</span> <span class="toc-text">NFA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nfa-%CE%BB"><span class="toc-number">0.3.</span> <span class="toc-text">nfa-λ</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DFA%E3%80%81NFA%E3%80%81NFA-%CE%BB%E7%9B%B8%E4%BA%92%E8%BD%AC%E5%8C%96"><span class="toc-number">0.4.</span> <span class="toc-text">DFA、NFA、NFA-λ相互转化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kleene%E2%80%99s-theorem"><span class="toc-number">1.</span> <span class="toc-text">Kleene’s theorem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Regular-expression-gt-NFA-%CE%BB-gt-NFA-gt-DFA%E8%BD%AC%E5%8C%96-1"><span class="toc-number">1.1.</span> <span class="toc-text">Regular expression -&gt; NFA-λ -&gt; NFA -&gt; DFA转化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#R-exp-gt-DFA%EF%BC%9ABrzozowski-Derivative-1"><span class="toc-number">1.2.</span> <span class="toc-text">R.exp.-&gt;DFA：Brzozowski Derivative</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E8%AF%AD%E8%A8%80%E7%9A%84%E9%97%AD%E5%8C%85%E5%B1%9E%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">常规语言的闭包属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Prove-A-L-is-a-regular-language"><span class="toc-number">2.1.</span> <span class="toc-text">Prove $A^*&#x2F;L$ is a regular language</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#a-language-that-is-not-regular"><span class="toc-number">2.2.</span> <span class="toc-text">a language that is not regular</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#context-free-grammar"><span class="toc-number">3.</span> <span class="toc-text">context free grammar</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#what-language-is-generated-by-the-CFG-below"><span class="toc-number">3.0.1.</span> <span class="toc-text">what language is generated by the CFG below?</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Design-a-CFG-generating-L-0-n1-n-n-gt-0-%E2%88%AA-1-n0-n-n-gt-0"><span class="toc-number">3.0.2.</span> <span class="toc-text">Design a CFG generating $L&#x3D;{0^n1^n|n&gt;&#x3D;0}∪{1^n0^n|n&gt;&#x3D;0} $</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pushdown-automata"><span class="toc-number">3.1.</span> <span class="toc-text">pushdown automata</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#another-pumping-lemma"><span class="toc-number">4.</span> <span class="toc-text">another pumping lemma</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E5%9B%9B/" title="操作系统上机实验四"><img src="/img/Animation/4.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="操作系统上机实验四"/></a><div class="content"><a class="title" href="/2022/06/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E5%9B%9B/" title="操作系统上机实验四">操作系统上机实验四</a><time datetime="2023-04-23T09:53:46.388Z" title="更新于 2023-04-23 17:53:46">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/31/%E8%87%AA%E9%80%82%E5%BA%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" title="自适应遗传算法"><img src="/img/Animation/3.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自适应遗传算法"/></a><div class="content"><a class="title" href="/2022/12/31/%E8%87%AA%E9%80%82%E5%BA%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" title="自适应遗传算法">自适应遗传算法</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E4%B8%8A%E6%9C%BA%E9%A2%98%E7%9B%AE/" title="计算机图形学上机题目"><img src="/img/Animation/4.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机图形学上机题目"/></a><div class="content"><a class="title" href="/2023/01/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E4%B8%8A%E6%9C%BA%E9%A2%98%E7%9B%AE/" title="计算机图形学上机题目">计算机图形学上机题目</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" title="计算机图形学"><img src="/img/Animation/5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机图形学"/></a><div class="content"><a class="title" href="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" title="计算机图形学">计算机图形学</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/22/%E8%AE%A1%E7%BB%84%E8%AF%BE%E8%AE%BE/" title="计组课设"><img src="/img/Animation/2.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计组课设"/></a><div class="content"><a class="title" href="/2022/12/22/%E8%AE%A1%E7%BB%84%E8%AF%BE%E8%AE%BE/" title="计组课设">计组课设</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 萌新QAQ</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/hideMobileSidebar.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

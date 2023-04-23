@@ -1,0 +1,713 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计算机图形学 | j52nnw9的博客</title><meta name="keywords" content="计科课程"><meta name="author" content="萌新QAQ"><meta name="copyright" content="萌新QAQ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="计算机图形学概述计算机图形学（Computer Graphics,CG）是研究怎样用数字计算机生成、处理和显示图形的一门学科 图形：计算机图形学的研究对象 构成图形的要素  几何要素：刻画形状的点、线、面、体等几何要素  非几何要素：反映物体表面属性或材质的灰度颜色等非几何要素。   图形主要分为两类：  基于线条信息表示的，如工程图、等高线地图、曲面的线框图等  明暗图(Shading)，也就是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机图形学">
+<meta property="og:url" content="https://jszmwq.github.io/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/index.html">
+<meta property="og:site_name" content="j52nnw9的博客">
+<meta property="og:description" content="计算机图形学概述计算机图形学（Computer Graphics,CG）是研究怎样用数字计算机生成、处理和显示图形的一门学科 图形：计算机图形学的研究对象 构成图形的要素  几何要素：刻画形状的点、线、面、体等几何要素  非几何要素：反映物体表面属性或材质的灰度颜色等非几何要素。   图形主要分为两类：  基于线条信息表示的，如工程图、等高线地图、曲面的线框图等  明暗图(Shading)，也就是">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jszmwq.github.io/img/Animation/5.png">
+<meta property="article:published_time" content="2023-01-11T07:59:34.000Z">
+<meta property="article:modified_time" content="2023-04-23T09:52:52.278Z">
+<meta property="article:author" content="萌新QAQ">
+<meta property="article:tag" content="计科课程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jszmwq.github.io/img/Animation/5.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jszmwq.github.io/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计算机图形学',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-23 17:52:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/image.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">51</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/Animation/5.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">j52nnw9的博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计算机图形学</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-11T07:59:34.000Z" title="发表于 2023-01-11 15:59:34">2023-01-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计算机图形学"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="计算机图形学概述"><a href="#计算机图形学概述" class="headerlink" title="计算机图形学概述"></a>计算机图形学概述</h2><p>计算机图形学（Computer Graphics,CG）是研究怎样用数字计算机生成、处理和显示图形的一门学科</p>
+<p>图形：计算机图形学的研究对象</p>
+<p>构成图形的要素</p>
+<ul>
+<li><p>几何要素：刻画形状的点、线、面、体等几何要素</p>
+</li>
+<li><p>非几何要素：反映物体表面属性或材质的灰度颜色等非几何要素。</p>
+</li>
+</ul>
+<p>图形主要分为两类<strong>：</strong></p>
+<ul>
+<li><p>基于线条信息表示的，如工程图、等高线地图、曲面的线框图等</p>
+</li>
+<li><p>明暗图(Shading)，也就是通常所说的真实感图形。 </p>
+</li>
+</ul>
+<p>表示图形的方法</p>
+<ul>
+<li><p>点阵法：枚举出图形中所有的点来表示图形，强调图形由点构成，及其点的属性（颜色），这类图形称为像素图或图像。</p>
+</li>
+<li><p>参数法：由图形的形状参数和属性参数来表示图形，这类图形称为参数图或简称图形。</p>
+<ul>
+<li>形状参数：方程或分析表达式的系数，线段的端点坐标等。</li>
+<li>属性参数：颜色、线型等。</li>
+</ul>
+</li>
+</ul>
+<p>图像纯指计算机内以位图(Bitmap)形式存在的灰度信息</p>
+<p>图形含有几何属性，或者说更强调场景的几何表示，是由场景的几何模型和景物的物理属性共同组成的</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230111160901801.png" alt="image-20230111160901801" style="zoom:80%;">
+
+<p>计算机图形学的应用</p>
+<ul>
+<li>图形用户界面(GUI)</li>
+<li>计算机辅助设计与制造（CAD/CAM）</li>
+<li>科学计算可视化(Scientific Visualization)</li>
+<li>文化和艺术</li>
+<li>数字娱乐</li>
+<li>数字娱乐</li>
+</ul>
+<h2 id="二维图形的级别光栅图形学算法"><a href="#二维图形的级别光栅图形学算法" class="headerlink" title="二维图形的级别光栅图形学算法"></a>二维图形的级别光栅图形学算法</h2><h3 id="图形显示设备"><a href="#图形显示设备" class="headerlink" title="图形显示设备"></a>图形显示设备</h3><p>CRT显示器指基于阴极射线管（CRT Cathode－Ray Tube）的监视器。</p>
+<p>组成：包括电子枪、聚焦系统、加速结构、偏转系统、荧光屏</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230111171414480.png" alt="image-20230111171414480" style="zoom: 50%;">
+
+<ul>
+<li>电灯丝，阴极和控制栅组成。阴极由灯丝加热发出电子束。控制栅通过调节负电压高低来控制电子数量，即控制荧光屏上相应点的亮度。</li>
+<li>聚焦系统：保证电子束在轰击屏幕时，汇聚成很细的点。</li>
+<li>加速电极：加正的高压电（几万伏），使电子束高速运动。 </li>
+<li>偏转系统：控制电子束，静电场或磁场，产生偏转。电子束要到达屏幕的边缘时，偏转角度就会增大。到达屏幕最边缘的偏转角度被称为最大偏转角。最大偏转角是衡量系统性能的最重要的指标，显示器长短与此有关。CRT显示器屏幕越大整个显象管就越长。</li>
+<li>刷新频率：要保持荧光屏上有稳定的图象就必须不断地发射电子束。刷新一次指电子束从上到下将荧光屏扫描一次。只有刷新频率高到一定值后，图象才能稳定显示。60Hz人眼才能感觉到屏幕不闪烁，一般必须有85Hz以上的刷新频率才能使人眼觉得舒服。</li>
+</ul>
+<p>CRT固有的物理结构限制了它向更广的显示领域发展。</p>
+<ul>
+<li>屏幕的加大必然导致显象管的加长，显示器的体积必然要加大，在使用时候就会受到空间的限制。</li>
+<li>CRT显示器是利用电子枪发射电子束来产生图像，容易受电磁波干扰。</li>
+<li>长期电磁辐射会对人们健康产生不良影响。</li>
+</ul>
+<p>LCD（Liquid Crystal Display液晶显示器）是由六层薄板组成的平板式显示器。</p>
+<p>液晶是一种介于液体和固体之间的特殊物质，它具有液体的流态性质和固体的光学性质。当液晶受到电压的影响时，就会改变它的物理性质而发生形变，此时通过它的光的折射角度就会发生变化，而产生色彩。</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230111173559899.png" alt="image-20230111173559899" style="zoom:80%;">
+
+<p>LCD基本技术指标</p>
+<ul>
+<li>可视角度：视线与屏幕中心法向成一定角度时，人们就不能清晰地看到屏幕图象，而那个能看到清晰图象的最大角度被我们称为可视角度。一般所说的可视角度是指左右两边的最大角度相加。工业上有CR10（Contrast Ratio）、CR5两种标准来判断液晶显示器的可视角度。</li>
+<li>点距与分辨率：液晶屏幕的点距就是两个液晶颗粒（光点）之间的距离，一般0.28~0.32mm就能得到较好的显示效果。分辨率是指液晶显示器含有的液晶颗粒，比如1024×768的含义就是指该液晶显示器含有1024×768个液晶颗粒。</li>
+</ul>
+<p>LCD显示器优点</p>
+<ul>
+<li>外观小巧精致，厚度只有6.5~8cm左右 。</li>
+<li>由于液晶象素总是发光，只有加上不发光的电压时该点才变黑，所以不会产生CRT那样的因为刷新频率低而出现的闪烁现象。 </li>
+<li>工作电压低，功耗小，节约能源。</li>
+<li>没有电磁辐射，对人体健康没有任何影响</li>
+</ul>
+<h3 id="图元的扫描转换"><a href="#图元的扫描转换" class="headerlink" title="图元的扫描转换"></a>图元的扫描转换</h3><img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230118115204834.png" alt="image-20230118115204834" style="zoom: 80%;">
+
+<p>定义：直线的扫描转换是指在二维栅格上计算位于该直线上或充分靠近它的一串象素坐标(光栅化)，并以此像素集近似替代原连续直线段在屏幕上显示的过程。直线由两个端点坐标确定。</p>
+<p>要求</p>
+<ul>
+<li>观感好，象素分布均匀    </li>
+<li>误差小，象素尽可能接近数学理想坐标 </li>
+<li>速度快，避免乘除法和浮点数运算</li>
+</ul>
+<h4 id="基本增量算法DDA"><a href="#基本增量算法DDA" class="headerlink" title="基本增量算法DDA"></a>基本增量算法DDA</h4><p>最简单、最容易想到的策略，这种方法直观，但效率太低    ，因为每一步需要用浮点计算一次乘法、一次加法和一次取整运算。增量算法在此基础上进行改进。</p>
+<p>已知过端点P0 (x0, y0)，P1(x1, y1)的直线段L：$y=kx+B$</p>
+<ul>
+<li>计算直线斜率$k=\Delta y/\Delta x=(y_1-y_0)/(x_i-x_0)$</li>
+<li>从直线最左端点开始，x每次递增1个单位，对x计算$y_i=kx_i+B$</li>
+<li>显示坐标为$(x_i,floor(0.5+y_i))$的象素。</li>
+</ul>
+<p>增量算法：在一个迭代算法中，如果每一步的值是用前一步的值加上一个增量来获得，则称为增量算法。增量算法可以避免乘法运算。</p>
+<p>推导公式：$y_{i+1}=kx_{i+1}+B=k(x_i+\Delta x)+B=y_i+k\Delta x=y_i+k$</p>
+<p>算法描述</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DDA</span> <span class="params">(<span class="keyword">int</span> x0, <span class="keyword">int</span> y0, <span class="keyword">int</span> x1, <span class="keyword">int</span> y1， <span class="keyword">int</span> Color)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x;</span><br><span class="line">	<span class="keyword">double</span> dx,dy,y,k;</span><br><span class="line">	dx = x1-x0;</span><br><span class="line">	dy = y1-y0;</span><br><span class="line">	k = dy/dx;   </span><br><span class="line">	y = y0;</span><br><span class="line">   	<span class="keyword">for</span>(x = x0; x &lt; = x1; x++)</span><br><span class="line">   	&#123;</span><br><span class="line">       	WritePixel(x, (<span class="keyword">int</span>)(y + <span class="number">0.5</span>), Color);</span><br><span class="line">       	y += k;</span><br><span class="line">   	&#125;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是上述算法仅适用于$|k|&lt;= 1$的情况，否则会存在丢失像素坐标的情况。</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230118172312306.png" alt="image-20230118172312306" style="zoom: 67%;">
+
+<h5 id="习题：写出DDA算法，使之能扫描转换各种斜率的直线段，包括垂直和水平的线段。"><a href="#习题：写出DDA算法，使之能扫描转换各种斜率的直线段，包括垂直和水平的线段。" class="headerlink" title="习题：写出DDA算法，使之能扫描转换各种斜率的直线段，包括垂直和水平的线段。"></a><strong>习题：写出DDA算法，使之能扫描转换各种斜率的直线段，包括垂直和水平的线段。</strong></h5><h4 id="中点线算法（Midpoint）"><a href="#中点线算法（Midpoint）" class="headerlink" title="中点线算法（Midpoint）"></a>中点线算法（Midpoint）</h4><p>在DDA算法中，需要采用浮点加法，且每一步都必须对y进行舍入取整，不利于硬件实现。</p>
+<p>假定直线斜率0&lt;k&lt;1，且已确定点亮象素点$P(xp,yp)$,则下一个与直线最接近的像素可能是其右边的第一个像素E(称为东像素)，也可能是其右上方的第一个像素NE(称为东北像素) 。假设Q是直线与栅格线$x=x_p+1$的交点，M为E和NE的中点。</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230118191519385.png" alt="image-20230118191519385" style="zoom:80%;">
+
+<p>假设直线方程为：$F(x,y)=ax+by+c=0$，则$a=y_0-y_1$，$ b=x_1-x_0$，$c=x_0y_1-x_1y_0$</p>
+<p>当点在直线上时$F(x)=0$，点在直线上方时$F(x)&gt;0$，点在直线下方时$F(x)&lt;0$</p>
+<p>构造判别式$d=F(M)=F(x_p+1,y_p+0.5)=a(x_p+1)+b(y_p+0.5)+c$</p>
+<ul>
+<li>若$d&lt;0$，当M在Q的下方，NE离直线更近，取NE， 那么下一个像素的中点判别式为</li>
+</ul>
+<p>$d_1=F(x_p+2,y_p+1.5)=a(x_p+2)+b(y_p+1.5)+c=d+a+b$</p>
+<ul>
+<li>若$d&gt;=0$，当M在Q的上方，E离直线更近，取E，那么下一个像素的中点判别式为</li>
+</ul>
+<p>$d_1=F(x_p+2,y_p+0.5)=a(x_p+2)+b(y_p+0.5)+c=d+a$</p>
+<p>画线从$(x_0,y_0)$开始，d的初值$d_0=F(x_0+1, y_0+0.5)=a(x_0+1)+b(y_0 +0.5)+c=F(x_0,y_0)+a+0.5b=a+0.5b$ </p>
+<p>由于只用d的符号作判断，为了只包含整数运算，可以用2d代替d来摆脱小数，提高效率。同理，d1和d2的值也都被乘以2。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MidpointLine</span> <span class="params">(<span class="keyword">int</span> x0,<span class="keyword">int</span> y0,<span class="keyword">int</span> x1, <span class="keyword">int</span> y1,<span class="keyword">int</span> color)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = y0 - y1;</span><br><span class="line">    <span class="keyword">int</span> b = x1 - x0;</span><br><span class="line">    <span class="keyword">int</span> d = <span class="number">2</span> * a + b;</span><br><span class="line">    <span class="keyword">int</span> d1 = <span class="number">2</span> * a;</span><br><span class="line">    <span class="keyword">int</span> d2 = <span class="number">2</span> * (a + b);</span><br><span class="line">    <span class="keyword">int</span> x = x0;</span><br><span class="line">    <span class="keyword">int</span> y = y0;</span><br><span class="line">    <span class="built_in">WritePixel</span>(x, y, color);</span><br><span class="line">    <span class="keyword">while</span>(x &lt;= x1)&#123;</span><br><span class="line">        <span class="keyword">if</span>(d &lt; <span class="number">0</span>)&#123;</span><br><span class="line">            x++;</span><br><span class="line">            y++;</span><br><span class="line">            d += d2;</span><br><span class="line">        &#125;</span><br><span class="line">     	<span class="keyword">else</span>&#123;</span><br><span class="line">        	x++; </span><br><span class="line">            d += d1;</span><br><span class="line">     	&#125;</span><br><span class="line">     	<span class="built_in">WritePixel</span> (x, y, color);</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="习题：利用中点线算法，使之能扫描转换斜率-1-lt-k-lt-0的直线段。"><a href="#习题：利用中点线算法，使之能扫描转换斜率-1-lt-k-lt-0的直线段。" class="headerlink" title="习题：利用中点线算法，使之能扫描转换斜率-1&lt;k&lt;0的直线段。"></a><strong>习题：利用中点线算法，使之能扫描转换斜率-1&lt;k&lt;0的直线段。</strong></h5><h4 id="圆的扫描转换"><a href="#圆的扫描转换" class="headerlink" title="圆的扫描转换"></a>圆的扫描转换</h4><p>假设圆的方程为$X^2+Y^2=R^2$，那么可知Y点坐标$Y=\sqrt{R^2 - X^2}$</p>
+<p>当X取整数时，Y也须取整。</p>
+<p>缺点：浮点运算，开方，取整，不均匀。</p>
+<p>假设圆的方程为$x=Rcos\theta$，$y=Rsin\theta$</p>
+<p>画点$(Rcos\theta，Rsin\theta)$，$\theta$从0到90，再对称，可避免点分布不均。</p>
+<p>缺点：采用浮点运算、乘法运算、取整运算，效率不高。</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230119121904021.png" alt="image-20230119121904021" style="zoom: 80%;">
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CirclePoints</span> <span class="params">(<span class="keyword">float</span> x,<span class="keyword">float</span> y,<span class="keyword">int</span> color)</span></span></span><br><span class="line"><span class="function">     </span>&#123;</span><br><span class="line">	<span class="built_in">WritePixel</span> (x, y, color);</span><br><span class="line">	<span class="built_in">WritePixel</span> (y, x, color);</span><br><span class="line">	<span class="built_in">WritePixel</span> (y, -x, color);</span><br><span class="line">	<span class="built_in">WritePixel</span> (x, -y, color);</span><br><span class="line">	<span class="built_in">WritePixel</span> (-x, -y, color);</span><br><span class="line">	<span class="built_in">WritePixel</span> (-y, -x, color);</span><br><span class="line">	<span class="built_in">WritePixel</span> (-y, x, color);</span><br><span class="line">	<span class="built_in">WritePixel</span> (-x, y, color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>利用圆的对称性，只须讨论1/8圆。此处只考虑第二个8分圆。</p>
+<p><img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230119122442341.png" alt="image-20230119122442341"></p>
+<p>P为当前点亮象素，那么，下一个点亮的象素可能是$E(X_p+1, Y_p)$或$SE(X_p+1, Y_p-1)$。</p>
+<p>构造函数：$F(X, Y)=X^2+Y^2-R^2$ ；则</p>
+<p>设M为E、SE间的中点，则$M=(X_p+1, Y_p-0.5)$</p>
+<ul>
+<li>$F(X, Y)=0$，（X，Y）在圆上，取SE</li>
+<li>$F(X, Y)&lt;0$，（X，Y）在圆内，取E</li>
+<li>$F(X, Y)&gt;0$，（X，Y）在圆外，取SE</li>
+</ul>
+<p>若d&lt;0，则E为下一个象素，那么再下一个象素的判别式为，说明d的增量为$2x_p+3$</p>
+<p>$d1=F(x_p+2, y_p-0.5)=(x_p+2)^2+(y_p-0.5)^2-R^2=d+2x_p+3$</p>
+<p>若d&gt;=0，则SE为下一个象素，那么再下一个象素的判别式为，说明d的增量为$2(x_p-y_p)+5$</p>
+<p>$d2=F(x_p+2, y_p-1.5)=(x_p+2)^2+(y_p-1.5)^2-R^2=d+2x_p+3-2y_p+2=2(x_p-y_p)+5$</p>
+<p>画圆从(0, R)开始，d的初值$d0=F(1, R-0.5)=1+(R-0.5)^2-R^2=1.25-R$</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230119132306042.png" alt="image-20230119132306042" style="zoom: 80%;">
+
+<p>由于只用d 的符号作判断，为了只包含整数运算，可以用4d代替d来摆脱小数，提高效率。同理，d1和d2的值也都被乘以4。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">MidpointCircle2</span>(<span class="keyword">int</span> r, <span class="keyword">int</span> color)&#123;</span><br><span class="line">    <span class="keyword">int</span> x=<span class="number">0</span>; </span><br><span class="line">    <span class="keyword">int</span> y=r; </span><br><span class="line">	<span class="keyword">int</span> d=<span class="number">5</span><span class="number">-4</span>*r;</span><br><span class="line">    <span class="built_in">WritePixel</span>(x,y,color);</span><br><span class="line">    <span class="keyword">while</span>(x&lt;y)&#123;</span><br><span class="line">        <span class="keyword">if</span>(d&lt;<span class="number">0</span>)&#123;</span><br><span class="line">            d+=<span class="number">8</span>*x+<span class="number">12</span>;</span><br><span class="line">            x++; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            d+=<span class="number">8</span>*(x-y)+<span class="number">20</span>;</span><br><span class="line">            x++;</span><br><span class="line">            y--;</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="built_in">WritePixel</span>(x,y,color);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用e=d-0.25代替d，e0=1-R</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">MidpointCircle3</span>(<span class="keyword">int</span> r, <span class="keyword">int</span> color)&#123;</span><br><span class="line">    <span class="keyword">int</span> x=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> y=r; </span><br><span class="line">	<span class="keyword">int</span> d=<span class="number">1</span>-r;</span><br><span class="line">    <span class="built_in">WritePixel</span>(x,y,color);</span><br><span class="line">    <span class="keyword">while</span>(x&lt;y)&#123;</span><br><span class="line">        <span class="keyword">if</span>(d&lt;<span class="number">0</span>)&#123;</span><br><span class="line">            d+=<span class="number">2</span>*x+<span class="number">3</span>;</span><br><span class="line">            x++</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            d+=<span class="number">2</span>*(x-y)+<span class="number">5</span>;</span><br><span class="line">            x++;</span><br><span class="line">            y--;</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="built_in">WritePixel</span>(x,y,color);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>习题：请利用中点圆算法实现第一个八分圆的扫描转换。</strong> </p>
+<h3 id="矩形、多边形填充"><a href="#矩形、多边形填充" class="headerlink" title="矩形、多边形填充"></a>矩形、多边形填充</h3><p>共享边界如何处理？<br>原则：左闭右开，下闭上开，对单个多边形区域，它损失了中心落在右、上边界的像素。</p>
+<p>顶点表示：用多边形顶点的序列来刻划多边形。直观、几何意义强、占内存少；不能直接用于显示。</p>
+<p>点阵表示：用位于多边形内的象素的集合来刻划多边形。失去了许多重要的几何信息；但它是光栅显示系统显示时所需的表示形式，易于面着色。</p>
+<h4 id="逐点判断法"><a href="#逐点判断法" class="headerlink" title="逐点判断法"></a>逐点判断法</h4><p>算法原理：逐个判断绘图窗口内的像素，确定是否在多边形区域内，从而求出位于多边形区域内的像素集合。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FillPolygonPbyP</span><span class="params">(Polygon *P,<span class="keyword">int</span> color)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x,y;	</span><br><span class="line">    <span class="keyword">for</span>(y = ymin;y &lt;= ymax;y++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(x = xmin;x &lt;= xmax;x++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">IsInside</span>(P,x,y))</span><br><span class="line">                <span class="built_in">WritePixel</span>(x,y, color);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="如何判断点在多边形的内外关系？"><a href="#如何判断点在多边形的内外关系？" class="headerlink" title="如何判断点在多边形的内外关系？"></a>如何判断点在多边形的内外关系？</h5><p>射线法：</p>
+<ol>
+<li>从待判别点v发出射线</li>
+<li>求交点个数k</li>
+<li>k的奇偶性决定了点与多边形的内外关系</li>
+</ol>
+<p>累计角度法：</p>
+<ol>
+<li>从v点向多边形P顶点发出射线，形成有向角$\theta_i$</li>
+<li>计算有相角的和，得出结论</li>
+</ol>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230121180810495.png" alt="image-20230121180810495" style="zoom:80%;">
+
+<p>逐点判断的算法虽然程序简单，但不可取。原因是速度太慢，主要是由于该算法割断了各象素之间的联系，孤立地考察各象素与多边形的内外关系，使得几十万甚至几百万个象素都要一一判别，每次判别又要多次求交点，需要做大量的乘除运算，花费很多时间。</p>
+<h4 id="扫描线算法"><a href="#扫描线算法" class="headerlink" title="扫描线算法"></a>扫描线算法</h4><p>目标：利用相邻像素之间的连贯性，提高算法效率</p>
+<p>处理对象：非自交多边形（边与边之间除了顶点外无其它交点）</p>
+<p>算法原理：将多边形填充分解为一条条的扫描线填充，对任一条扫描线，确定该扫描线与多边形边的交点位置，自左向右存储，并对每对内部交点间的像素进行填充。</p>
+<p>规则1：X为小数，即交点落于扫描线上两个相邻像素之间</p>
+<ul>
+<li>交点位于左边之上，向右取整</li>
+<li>交点位于右边之上，向左取整</li>
+</ul>
+<p>规则2：边界上象素的取舍问题，避免填充扩大化。</p>
+<p>边界象素：规定落在右上边界的象素不予填充。具体实现时，只要对扫描线与多边形的相交区间左闭右开</p>
+<p>规则3：扫描线与多边形的顶点相交时，交点的取舍，保证交点正确配对。</p>
+<p>计算交点个数时，仅对边的ymin顶点计数，ymax顶点不计数。依然遵循下闭上开的原则。</p>
+<h5 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h5><ol>
+<li>求交：求扫描线与多边形各边交点</li>
+<li>排序：按 x 递增顺序对交点排序</li>
+<li>交点匹配：1－2，3－4，5－6等</li>
+<li>填充：填充每对交点间在多边形区域内部的象素。</li>
+</ol>
+<p>假定已经求解出扫描线y=e和多边形边的所有交点，需递推出扫描线y=d=e+1与多边形各边的交点，求解可分为两类：</p>
+<ul>
+<li>边既和y=e相交，又和y=d相交。若x为其中某条边与y=e的交点横坐标，k为该边的斜率，则此边与y=d的交点横坐标x’=x+1/k；</li>
+<li>边只与y=d相交，不与y=e相交，即新出现的边。此时，这些边的下端点就是交点，不用计算。</li>
+</ul>
+<h5 id="特殊情况处理"><a href="#特殊情况处理" class="headerlink" title="特殊情况处理"></a>特殊情况处理</h5><p>水平边在算法中不起作用，预处理阶段将其去掉。</p>
+<p>尖角填充区域狭窄，许多扫描线上按规则一个象素都不能画。进行反走样处理。</p>
+<h5 id="数据结构与算法"><a href="#数据结构与算法" class="headerlink" title="数据结构与算法"></a>数据结构与算法</h5><p>扫描线算法中采用了较灵活的数据结构，即边的分类表ET(Edge Table)和活动边表AET(Active Edge Table)，两个表结构中的基本元素都是边结构。边结构定义为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>  　&#123;</span></span><br><span class="line">   　<span class="keyword">int</span> ymax; <span class="comment">// 边的上端点的y值</span></span><br><span class="line">  　 <span class="keyword">float</span> x;　<span class="comment">// ET表中为边的下端点的x值；AET中为当前扫描线与边的交点的x值</span></span><br><span class="line">   　<span class="keyword">float</span> dx; <span class="comment">// 单位高度x方向偏移量（即边的斜率的倒数）</span></span><br><span class="line">   　E *nextEdge ;  <span class="comment">// 指向下一条边的指针</span></span><br><span class="line">&#125;E;</span><br></pre></td></tr></table></figure>
+
+<p>边表ET：边表ET是按边的下端点的y坐标对非水平边进行分类的,下端点y坐标值等于i的边属于第i类，绘图窗口中有多少条扫描线，ET就分为多少类，同一类中的边按其下端点的x值(x值相等的，按$\Delta$x值)增序排列。</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230121191333993.png" alt="image-20230121191333993" style="zoom:80%;">
+
+<p>活动边表AET：活动边表AET由与当前扫描线相交的边组成，它记录多边形的边和当前扫描线的所有交点的x坐标，并且随着扫描线的递增而不断变化。</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230121191752500.png" alt="image-20230121191752500" style="zoom:80%;">
+
+<p><img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230121191215894.png" alt="image-20230121191215894"></p>
+<p><strong>习题：已知下图多边形顶点坐标顺序为（1，1）（2，4）（4，1）（4，6）（0，6）。用扫描线算法对其实现填充时，边表ET和全部活动边表AET的内容。</strong> </p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230121192107598.png" alt="image-20230121192107598" style="zoom: 67%;">
+
+<p>增量算法，通过上一条扫描线得到的x交点坐标，计算下一点的x坐标，即$x_{i+1}=x_i+(y_{i+1}-y_i)*\frac{1}{k}=x_i+\Delta x$</p>
+<p>当边在ET表中出现时将其添加进AET表，当扫描线等于边的$y_{max}$时，将边从AET表中删除</p>
+<h3 id="直线段剪裁"><a href="#直线段剪裁" class="headerlink" title="直线段剪裁"></a>直线段剪裁</h3><h4 id="直接求交算法"><a href="#直接求交算法" class="headerlink" title="直接求交算法"></a>直接求交算法</h4><img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230123114146080.png" alt="image-20230123114146080" style="zoom: 67%;">
+
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230123114333274.png" alt="image-20230123114333274" style="zoom:80%;">
+
+<h4 id="Cohen-Sutherland裁剪"><a href="#Cohen-Sutherland裁剪" class="headerlink" title="Cohen-Sutherland裁剪"></a>Cohen-Sutherland裁剪</h4><p>基本思想：对于每条线段P1P2分为三种情况处理</p>
+<ul>
+<li>若P1P2完全在窗口内，则显示该线段P1P2。</li>
+<li>若P1P2明显在窗口外，则丢弃该线段。</li>
+<li>若线段不满足（1）或（2）的条件，则在交点处把线段分为两段。其中一段完全在窗口外，可弃之。然后对另一段重复上述处理。</li>
+</ul>
+<p>编码：平面被分为9个区域，每个区域内统一编码。任一个点P(x,y)用四位01编码$C_tC_bC_rC_l$表示。</p>
+<center class="half">
+    <img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230123114714120.png" alt="image-20230123114714120" style="zoom: 100%;">
+    <img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230123114818337.png" alt="image-20230123114818337" style="zoom:100%;">
+</center>
+
+<ul>
+<li>若P1P2完全在窗口内code1=0,且code2=0,则完全显示；</li>
+<li>若P1P2明显在窗口外code1&amp;code2≠0，则线段舍弃；</li>
+<li>在交点处把线段分为两段。其中一段完全在窗口外，可弃之。然后对另一段重复上述处理。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//该数据结构记录端点编码，</span></span><br><span class="line"><span class="comment">//all元素表示端点编码.</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">	<span class="keyword">unsigned</span> all;</span><br><span class="line">	<span class="keyword">unsigned</span> top,bottom, right,left;</span><br><span class="line">&#125;Code;</span><br><span class="line"><span class="comment">//矩形数据结构，表示裁剪窗口</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> xmin,xmax,ymin,ymax;</span><br><span class="line">&#125;Rectangle;</span><br><span class="line"><span class="comment">//计算点(x,y)的编码</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CompCode</span><span class="params">(<span class="keyword">float</span> x,<span class="keyword">float</span> y,Rectangle *rect,Code *code)</span></span>&#123;</span><br><span class="line">	code-&gt;all = <span class="number">0</span>; <span class="comment">//该值即为端点的4位编码CtCbCrCl</span></span><br><span class="line">	code-&gt;top = code-&gt;bottom = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(y&gt;(<span class="keyword">float</span>)rect-&gt;ymax)&#123;</span><br><span class="line">		code-&gt;top = <span class="number">1</span>;</span><br><span class="line">		code-&gt;all += <span class="number">8</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(y&lt;(<span class="keyword">float</span>)rect-&gt;ymin)&#123;</span><br><span class="line">		code-&gt;bottom = <span class="number">1</span>;</span><br><span class="line">		code-&gt;all += <span class="number">4</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	code-&gt;right = code-&gt;left = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(x&gt;(<span class="keyword">float</span>)rect-&gt;xmax)&#123;</span><br><span class="line">		code-&gt;right = <span class="number">1</span>;</span><br><span class="line">		code-&gt;all += <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(x&lt;(<span class="keyword">float</span>)rect-&gt;xmin)&#123;</span><br><span class="line">		code-&gt;left = <span class="number">1</span>;</span><br><span class="line">		code-&gt;all += <span class="number">1</span>;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;    </span><br><span class="line"><span class="comment">//Cohen-Sutherland裁剪函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CohenSutherlandLineClip</span><span class="params">(<span class="keyword">float</span> x0,<span class="keyword">float</span> y0,<span class="keyword">float</span> x1,<span class="keyword">float</span> y1,Rectangle *rect)</span></span>&#123;</span><br><span class="line">	<span class="keyword">bool</span> accept,done;   <span class="comment">//接受线段、拒绝线段</span></span><br><span class="line">	Code code0,code1; <span class="comment">//两个端点的编码</span></span><br><span class="line">	Code *outCode;    <span class="comment">//指向窗口外的端点</span></span><br><span class="line">	<span class="keyword">float</span> x,y;                <span class="comment">//线段与窗口边的交点坐标</span></span><br><span class="line">	accept = FALSE;</span><br><span class="line">	done = FALSE;</span><br><span class="line">	<span class="comment">//计算两端点编码</span></span><br><span class="line">	<span class="built_in">CompCode</span>(x0,y0,rect,&amp;code0);</span><br><span class="line">	<span class="built_in">CompCode</span>(x1,y1,rect,&amp;code1);</span><br><span class="line">	<span class="keyword">while</span>(!done)&#123;</span><br><span class="line">		<span class="keyword">if</span>(code0.all==<span class="number">0</span> &amp;&amp; code1.all==<span class="number">0</span>)&#123; <span class="comment">//完全可见，接受线段</span></span><br><span class="line">			accept = TRUE;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(code0.all &amp; code1.all!=<span class="number">0</span>)&#123;   <span class="comment">//显然不可见，拒绝线段</span></span><br><span class="line">			done = TRUE;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;    <span class="comment">//需要求交测试</span></span><br><span class="line">			<span class="keyword">if</span>(code0.all!=<span class="number">0</span>)   <span class="comment">//判断哪一点位于窗口之外</span></span><br><span class="line">				outCode = &amp;code0;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				outCode = &amp;code1;    </span><br><span class="line">			<span class="keyword">if</span>(outCode-&gt;top)&#123;     <span class="comment">//线段与窗口的上边求交</span></span><br><span class="line">				x = x0+(x1-x0)*(rect-&gt;ymax-y0)/(y1-y0);</span><br><span class="line">				y = (<span class="keyword">float</span>)rect-&gt;ymax;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(outCode-&gt;bottom)&#123;   <span class="comment">//线段与窗口的下边求交</span></span><br><span class="line">				x = x0+(x1-x0)*(rect-&gt;ymin-y0)/(y1-y0);</span><br><span class="line">				y = (<span class="keyword">float</span>)rect-&gt;ymin;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(outCode-&gt;right)&#123;   <span class="comment">//线段与窗口右边求交</span></span><br><span class="line">				x = (<span class="keyword">float</span>)rect-&gt;xmax;</span><br><span class="line">				y = y0+(y1-y0)*(rect-&gt;xmax-x0)/(x1-x0);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(outCode-&gt;left)&#123;    <span class="comment">//线段与窗口左边求交</span></span><br><span class="line">				x = (<span class="keyword">float</span>)rect-&gt;xmin;</span><br><span class="line">				y = y0+(y1-y0)*(rect-&gt;xmin-x0)/(x1-x0);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">//舍弃外端点和交点间的线段，将交点作为新端点继续循环</span></span><br><span class="line">			<span class="keyword">if</span>(outCode-&gt;all == code0.all)&#123;    <span class="comment">//交点作为新的p0点</span></span><br><span class="line">				x0 = x;</span><br><span class="line">				y0 = y;</span><br><span class="line">				<span class="built_in">CompCode</span>(x0,y0,rect,&amp;code0);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span>&#123;    <span class="comment">//交点作为新的p1点</span></span><br><span class="line">				x1 = x;</span><br><span class="line">				y1 = y;</span><br><span class="line">				<span class="built_in">CompCode</span>(x1,y1,rect,&amp;code1);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(accept)&#123;  <span class="comment">//显示线段的可见部分</span></span><br><span class="line">		<span class="built_in">Line</span>((<span class="keyword">int</span>)x0,(<span class="keyword">int</span>)y0,(<span class="keyword">int</span>)x1,(<span class="keyword">int</span>)y1);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>习题：CohenSutherland矩形裁剪直线段算法中，平面被划分成9个区域，可按照左上右下的顺序对各区域进行4位编码。</strong><br><strong>（1）请画图并在对应的子区域中标出该区域的编码值；</strong><br><strong>（2）对下图中所示的线段进行裁剪，假设求交时窗口的选择顺序为左边、上边、右边、下边，请给出裁剪步骤，并列出各端点编码。</strong></p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230123120504656.png" alt="image-20230123120504656" style="zoom:67%;">
+
+<h3 id="多边形剪裁"><a href="#多边形剪裁" class="headerlink" title="多边形剪裁"></a>多边形剪裁</h3><h4 id="Sutherland-Hodgman算法（逐边裁剪算法）"><a href="#Sutherland-Hodgman算法（逐边裁剪算法）" class="headerlink" title="Sutherland-Hodgman算法（逐边裁剪算法）"></a>Sutherland-Hodgman算法（逐边裁剪算法）</h4><p>分割处理策略：将多边形关于矩形窗口的裁剪分解为多边形关于窗口四边所在直线的裁剪。</p>
+<p>流水线过程(左上右下)：前边的结果是后边的输入。</p>
+<p>基本思想是一次用窗口的一条边裁剪多边形。</p>
+<p>考虑窗口的一条边以及延长线构成的裁剪线，该线把平面分成两个部分:内部；外部</p>
+<p>多边形的各条边的两端点S、P。它们与裁剪线的位置关系只有四种</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230123165550060.png" alt="image-20230123165550060" style="zoom:80%;">
+
+<p>针对每一条裁剪边，沿多边形的边从顶点vn移动到v0,再顺序移动回vn,每次移动，检测连续的两个顶点与裁剪边的相互关系。每步移动，对于裁剪后的多边形顶点序列，可能会增加0个、1个或2两个顶点。假定在上一次循环操作中已经处理了起始点S,则输出分四种情况：</p>
+<ol>
+<li>输出顶点P；</li>
+<li>输出线段SP与裁剪线的交点i；</li>
+<li>输出0个顶点；</li>
+<li>输出线段SP与裁剪线的交点i和终点P。</li>
+</ol>
+<p><img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230123165758684.png" alt="image-20230123165758684"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX 100</span></span><br><span class="line"><span class="comment">//点结构</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">	<span class="keyword">float</span> x,y;</span><br><span class="line">&#125;vertex;</span><br><span class="line">vertex clipBoundary[<span class="number">2</span>];         <span class="comment">//表示裁剪边顶点</span></span><br><span class="line">vertex inVertexArray[MAX];<span class="comment">//表示源多边形顶点序列</span></span><br><span class="line">vertex outVertexArray[MAX];<span class="comment">//表示输出裁剪多边形的顶点序列</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//判断顶点是否在裁剪边内侧，若在，返回TRUE</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Inside</span><span class="params">(vertex testVertex, vertex *clipBoundary)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(clipBoundary[<span class="number">1</span>].x&gt;clipBoundary[<span class="number">0</span>].x) <span class="comment">//下裁剪线</span></span><br><span class="line">		<span class="keyword">if</span>(testVertex.y&gt;=clipBoundary[<span class="number">0</span>].y) <span class="keyword">return</span> TRUE;</span><br><span class="line">	<span class="keyword">if</span>(clipBoundary[<span class="number">1</span>].x&lt;clipBoundary[<span class="number">0</span>].x) <span class="comment">//上裁剪线</span></span><br><span class="line">		<span class="keyword">if</span>(testVertex.y&lt;=clipBoundary[<span class="number">0</span>].y) <span class="keyword">return</span> TRUE;</span><br><span class="line">	<span class="keyword">if</span>(clipBoundary[<span class="number">1</span>].y&gt;clipBoundary[<span class="number">0</span>].y) <span class="comment">//右裁剪线</span></span><br><span class="line">		<span class="keyword">if</span>(testVertex.x&lt;=clipBoundary[<span class="number">0</span>].x) <span class="keyword">return</span> TRUE;</span><br><span class="line">	<span class="keyword">if</span>(clipBoundary[<span class="number">1</span>].y&lt;clipBoundary[<span class="number">0</span>].y) <span class="comment">//左裁剪线</span></span><br><span class="line">		<span class="keyword">if</span>(testVertex.x&gt;=clipBoundary[<span class="number">0</span>].x) <span class="keyword">return</span> TRUE;</span><br><span class="line">	<span class="keyword">return</span> FALSE;</span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">//添加一个新顶点到输出顶点数组outVertexArray中</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Output</span><span class="params">(vertex newVertex,<span class="keyword">int</span> *outLen,vertex *outVertexArray)</span></span>&#123;</span><br><span class="line">	(*outLen) ++;</span><br><span class="line">	outVertexArray[*outLen<span class="number">-1</span>].x = newVertex.x;</span><br><span class="line">	outVertexArray[*outLen<span class="number">-1</span>].y = newVertex.y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//计算多边形的一条边与一条裁剪边的交点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Intersect</span><span class="params">(vertex first,vertex second,vertex *clipBoundary,vertex *intersectPt)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(clipBoundary[<span class="number">0</span>].y==clipBoundary[<span class="number">1</span>].y)&#123;  <span class="comment">//水平裁剪边</span></span><br><span class="line">		intersectPt-&gt;y = clipBoundary[<span class="number">0</span>].y;</span><br><span class="line">		intersectPt-&gt;x = first.x + (clipBoundary[<span class="number">0</span>].y-first.y)*(second.x-first.x)/(second.y-first.y);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;  <span class="comment">//垂直裁剪边</span></span><br><span class="line">		intersectPt-&gt;x = clipBoundary[<span class="number">0</span>].x;</span><br><span class="line">		intersectPt-&gt;y = first.y +(clipBoundary[<span class="number">0</span>].x-first.x)*(second.y-first.y)/(second.x-first.x);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//sutherland-Hodgman多边形裁剪算法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SutherlandHodgmanPolygonClip</span><span class="params">(vertex *inVertexArray,vertex *outVertexArray,<span class="keyword">int</span> inLen, <span class="keyword">int</span> *outLen,vertex *clipBoundary)</span></span>&#123;</span><br><span class="line">	vertex s,p,i;</span><br><span class="line">	<span class="keyword">int</span> j;</span><br><span class="line">	*outLen = <span class="number">0</span>;</span><br><span class="line">	s = inVertexArray[inLen<span class="number">-1</span>]; <span class="comment">//从多边形最后一个顶点开始移动</span></span><br><span class="line">	<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;inLen;j++)&#123;</span><br><span class="line">		p = inVertexArray[j];</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">Inside</span>(p,clipBoundary))&#123; <span class="comment">// case1 和 case4</span></span><br><span class="line">			<span class="keyword">if</span>(<span class="built_in">Inside</span>(s,clipBoundary)) <span class="comment">//case 1</span></span><br><span class="line">				<span class="built_in">Output</span>(p,outLen,outVertexArray);</span><br><span class="line">			<span class="keyword">else</span>&#123;  <span class="comment">//case 4</span></span><br><span class="line">				<span class="built_in">Intersect</span>(s,p,clipBoundary,&amp;i);</span><br><span class="line">				<span class="built_in">Output</span>(i,outLen,outVertexArray);</span><br><span class="line">				<span class="built_in">Output</span>(p,outLen,outVertexArray);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">Inside</span>(s,clipBoundary))&#123; <span class="comment">//case 2</span></span><br><span class="line">			<span class="built_in">Intersect</span>(s,p,clipBoundary,&amp;i);</span><br><span class="line">			<span class="built_in">Output</span>(i,outLen,outVertexArray);</span><br><span class="line">		&#125;</span><br><span class="line">		s = p;  <span class="comment">//顶点继续移动</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>习题：按照左、上、右、下的裁剪顺序模拟Sutherland-Hodgman算法处理。</strong></p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230123170406785.png" alt="image-20230123170406785" style="zoom:50%;">
+
+<h3 id="反走样"><a href="#反走样" class="headerlink" title="反走样"></a>反走样</h3><p>用离散量表示连续量引起的失真现象称之为走样(aliasing) 。</p>
+<p>光栅图形的走样现象</p>
+<ul>
+<li>阶梯状边界；</li>
+<li>图形细节失真；</li>
+<li>狭小图形遗失：动画序列中时隐时现，产生闪烁。</li>
+</ul>
+<p>用于减少或消除走样现象的技术称为反走样(antialiasing)，常用的反走样方法有：</p>
+<h4 id="提高分辨率"><a href="#提高分辨率" class="headerlink" title="提高分辨率"></a>提高分辨率</h4><ul>
+<li><p>直线经过两倍的象素，锯齿也增加一倍，</p>
+</li>
+<li><p>但同时每个阶梯的宽度也减小了一倍，</p>
+</li>
+<li><p>所以显示出的直线段看起来就平直光滑了一些</p>
+</li>
+</ul>
+<p>方法简单，但代价非常大。显示器的水平、竖直分辩率各提高一倍，则显示器的点距减少一倍，帧缓存容量则增加到原来的4倍，而扫描转换同样大小的图元却要花4倍时间。<br>而且它也只能减轻而不能消除锯齿问题</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230123170624786.png" alt="image-20230123170624786" style="zoom:25%;">
+
+<h4 id="非加权区域采样"><a href="#非加权区域采样" class="headerlink" title="非加权区域采样"></a>非加权区域采样</h4><p>两点假设</p>
+<ol>
+<li>象素是数学上抽象的点，它的面积为0，它的亮度由覆盖该点的图形的亮度所决定；</li>
+<li>直线段是数学上抽象直线段，它的宽度为0。</li>
+</ol>
+<p>现实</p>
+<ol>
+<li>像素的面积不为0；</li>
+<li>直线段的宽度至少为1个像素；</li>
+</ol>
+<p>假设与现实的矛盾是导致走样出现的原因之一</p>
+<p>解决方法：改变直线段模型，由此产生算法</p>
+<p>方法步骤：</p>
+<ol>
+<li>将直线段看作具有一定宽度的狭长矩形；</li>
+<li>当直线段与某象素有交时，求出两者相交区域的面积；</li>
+<li>根据相交区域的面积，确定该象素的亮度值 </li>
+</ol>
+<h4 id="加权区域采样"><a href="#加权区域采样" class="headerlink" title="加权区域采样"></a>加权区域采样</h4><ol>
+<li>将屏幕象素分割成n个更小的子象素；</li>
+<li>计算中心点落在直线段内的子象素的个数，记为k，</li>
+<li>k/n为线段与象素相交区域面积的近似值 </li>
+</ol>
+<p>k/n是介于[0,1]之间的实数，用它乘以像素的最大灰度值，即可得到像素实际显示的灰度值。</p>
+<p>缺点：象素的亮度与相交区域的面积成正比，而与相交区域落在象素内的位置无关，这仍然会导致锯齿效应。</p>
+<p>加权区域采样对非加权区域采样进行了改进，使得相交区域对像素亮度的贡献依赖于该区域与像素中心的距离。对于相同面积的相交区域，当它距离像素中心近时，它对像素亮度的贡献大，反之则小。</p>
+<h2 id="图形变换"><a href="#图形变换" class="headerlink" title="图形变换"></a>图形变换</h2><p>图形变换是计算机图形学基础内容之一，是图形显示过程中必不可少的一个环节。<br>几何变换，视窗变换，投影变换</p>
+<p>作用：</p>
+<ul>
+<li>可由简单图形生成复杂图形；</li>
+<li>可由一个图形得到多个图形；</li>
+<li>静态图形快速变换，可实现图形的动态显示效果。</li>
+<li>把用户坐标系与设备坐标系联系起来；</li>
+<li>可用二维图形表示三维形体；</li>
+</ul>
+<h3 id="二维基本变换"><a href="#二维基本变换" class="headerlink" title="二维基本变换"></a>二维基本变换</h3><h4 id="平移变换"><a href="#平移变换" class="headerlink" title="平移变换"></a>平移变换</h4><img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230123182537344.png" alt="image-20230123182537344" style="zoom:80%;">
+
+<h4 id="放缩变换"><a href="#放缩变换" class="headerlink" title="放缩变换"></a>放缩变换</h4><p><img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230123182600660.png" alt="image-20230123182600660" style="zoom:80%;">1</p>
+<h4 id="旋转变换"><a href="#旋转变换" class="headerlink" title="旋转变换"></a>旋转变换</h4><img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230123182629422.png" alt="image-20230123182629422" style="zoom:80%;">
+
+<h4 id="对称变换"><a href="#对称变换" class="headerlink" title="对称变换"></a>对称变换</h4><img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230123183320807.png" alt="image-20230123183320807" style="zoom: 80%;">
+
+<h4 id="错切变换"><a href="#错切变换" class="headerlink" title="错切变换"></a>错切变换</h4><img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230123183548654.png" alt="image-20230123183548654" style="zoom:80%;">
+
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230123183626399.png" alt="image-20230123183626399" style="zoom:80%;">
+
+<h4 id="齐次坐标与复合变换"><a href="#齐次坐标与复合变换" class="headerlink" title="齐次坐标与复合变换"></a>齐次坐标与复合变换</h4><p>在实际绘图时，常要对图形对象连续做多个变换，如先旋转，再放缩，如果对图形上的每个点依次按照变换矩阵进行计算，计算量较大，如果先将两个变换合成一个复合变换，再进行一次性的矩阵与向量乘法即可。</p>
+<p>如果变换中再加入平移变换，变换就不易合成了，因为平移变换为矢量的加法，而其它变换为一个矩阵的乘法，为了使得各种变换的表示形式一致，从而使变换合成更容易，引入了齐次坐标的概念。</p>
+<p>所谓齐次坐标表示法就是由n+1维向量表示一个n维向量。如n维向量$(P_1,P_2, … ,P_n)$表示为$(hP_1,hP_2,…,hP_n,h)$，其中h称为哑坐标。</p>
+<ul>
+<li>h可以取不同的值，所以同一点的齐次坐标不是唯一的。如普通坐标系下的点（2,3）变换为齐次坐标可以是(1,1.5,0.5)(4,6,2)(6,9,3)等等。</li>
+<li>普通坐标与齐次坐标的关系为“一对多”<ul>
+<li>由普通坐标*h→齐次坐标</li>
+<li>由齐次坐标÷h→普通坐标</li>
+</ul>
+</li>
+<li>当h=1时产生的齐次坐标称为“规格化齐次坐标”，因为前n个坐标就是普通坐标系下的n维坐标。</li>
+</ul>
+<p>由于多对一的映射往往使运算复杂，所以一般齐次坐标指的都是规格化齐次坐标，即(x,y)的齐次坐标为(x,y,1)。</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230125212723500.png" alt="image-20230125212723500" style="zoom:80%;">
+
+<h5 id="对参考点-F-x-f-y-f-做旋转变换："><a href="#对参考点-F-x-f-y-f-做旋转变换：" class="headerlink" title="对参考点$F(x_f,y_f)$做旋转变换："></a>对参考点$F(x_f,y_f)$做旋转变换：</h5><p>1、把旋转中心F(xf,yf)平移至坐标原点，即X,Y分别平移（-xf,-yf），则</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230125214858717.png" alt="image-20230125214858717" style="zoom: 67%;">
+
+<p>2、进行旋转变换</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230125214907451.png" alt="image-20230125214907451" style="zoom:67%;">
+
+<p>3、将图形平移回原来的位置</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230125214916446.png" alt="image-20230125214916446" style="zoom:67%;">
+
+<p>因此变换矩阵：</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230125214924522.png" alt="image-20230125214924522" style="zoom:67%;">
+
+<h5 id="任一图形关于任意轴y-bx-a的对称变换"><a href="#任一图形关于任意轴y-bx-a的对称变换" class="headerlink" title="任一图形关于任意轴y=bx+a的对称变换"></a>任一图形关于任意轴y=bx+a的对称变换</h5><img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230125223351698.png" alt="image-20230125223351698" style="zoom: 67%;">
+
+<p>1.将任意轴平移到原点</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230125223419387.png" alt="image-20230125223419387" style="zoom: 67%;">
+
+<p>2.将任意轴（已平移后的直线）按顺时针方向旋转θ角，使之与x轴重合 </p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230125223442379.png" alt="image-20230125223442379" style="zoom:67%;">
+
+<p>3.图形关于x轴的对称变换 </p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230125223448449.png" alt="image-20230125223448449" style="zoom:67%;">
+
+<p>4.将任意轴逆时针旋转θ角</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230125223453854.png" alt="image-20230125223453854" style="zoom:67%;">
+
+<p>5.将任意轴移回原始位置</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230125225730909.png" alt="image-20230125225730909" style="zoom:67%;">
+
+<p>因此</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230125225757408.png" alt="image-20230125225757408" style="zoom:67%;">
+
+<p><strong>习题：已知三角形ABC各顶点坐标为 A(6,10), B(11,14), C(27,-7) ，试对其进行下列变换，写出变换矩阵，画出变换后的图形。</strong><br><strong>（1）沿x负向平移10，沿y正平移-15，</strong><br><strong>（2）再绕原点顺时针旋转90°。</strong></p>
+<h4 id="三维几何变换"><a href="#三维几何变换" class="headerlink" title="三维几何变换"></a>三维几何变换</h4><p><strong>关于任意参考点的放缩变换</strong> </p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230126000026124.png" alt="image-20230126000026124" style="zoom:67%;">
+
+<p>任意参考点平移到坐标原点－&gt;做关于原点的比例变换－&gt;在将参考点移动回原来的位置</p>
+<h5 id="绕任意轴的旋转变换"><a href="#绕任意轴的旋转变换" class="headerlink" title="绕任意轴的旋转变换"></a>绕任意轴的旋转变换</h5><img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230126010853737.png" alt="image-20230126010853737" style="zoom: 33%;">
+
+<p>1.将空间直线平移，使P1通过坐标原点: T(-x1, -y1, -z1)</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230126010932415.png" alt="image-20230126010932415" style="zoom:50%;">
+
+<p>2.绕x轴旋转〆角使之位于XOZ平面内: $R_x(α)$</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230126010940617.png" alt="image-20230126010940617" style="zoom:50%;">
+
+<p>3.绕y轴顺时针旋转ß角(使之与Z轴重合): $R_y (-\beta)$</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230126010946332.png" alt="image-20230126010946332" style="zoom:50%;">
+
+<p>4.绕z轴旋转θ角: $R_z(\theta)$</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230126011017192.png" alt="image-20230126011017192" style="zoom:50%;">
+
+<p>因此，加上逆过程后，绕任意轴旋转的合成变换为：             </p>
+<p>$M=T(x_1,y_1,z_1)R_x(-\alpha)R_y(\beta)R_z(\theta)R_y(-\beta)Rx(\alpha)T(-x1,-y1,-z1)$</p>
+<h2 id="曲线和曲面"><a href="#曲线和曲面" class="headerlink" title="曲线和曲面"></a>曲线和曲面</h2><h3 id="参数曲线基础"><a href="#参数曲线基础" class="headerlink" title="参数曲线基础"></a>参数曲线基础</h3><p>表示曲线和曲面的基本方法有两大类：非参数表示法（显式表示法、隐式表示法）和参数表示法。</p>
+<h4 id="非参数表示法"><a href="#非参数表示法" class="headerlink" title="非参数表示法"></a>非参数表示法</h4><p>非参数表示曲线存在的问题：</p>
+<ul>
+<li><p>无法表示斜率为无穷大的情况；</p>
+</li>
+<li><p>与坐标轴有关；</p>
+</li>
+</ul>
+<h5 id="显式表示法"><a href="#显式表示法" class="headerlink" title="显式表示法"></a>显式表示法</h5><p>$y=f(x)$</p>
+<p>一个x值与一个y值对应</p>
+<p>缺点：不能表示封闭曲线或多值曲线，如不能显式表示圆或椭圆。</p>
+<h5 id="隐式表示法"><a href="#隐式表示法" class="headerlink" title="隐式表示法"></a>隐式表示法</h5><p>$f(x,y)=0$</p>
+<p>给定x，无法准确的给出确切的y。能表示封闭曲线和多值曲线。</p>
+<p>优点：易于判断函数f(x，y)是否大于、小于、等于0，即易于判断点和曲线的相对位置关系。（画圆、画直线时都是这样）。</p>
+<h4 id="参数表示法"><a href="#参数表示法" class="headerlink" title="参数表示法"></a>参数表示法</h4><p>曲线上的任一点的坐标，表示成参数的函数</p>
+<p>假定用t表示参数，二维平面曲线上任一点P可表示为$P(t)=[x(t), y(t)]$</p>
+<p>空间曲线上任一三维点P可表示为$P(t)=[x(t), y(t), z(t)]$</p>
+<p>最简单的参数曲线是直线段，端点为P1、P2的直线段参数方程可表示为$P(t)=P1+(P2-P1)t,    t∈[0, 1]$</p>
+<h5 id="参数表示法的优越性："><a href="#参数表示法的优越性：" class="headerlink" title="参数表示法的优越性："></a>参数表示法的优越性：</h5><ol>
+<li><p>可以满足形式不变性的要求。    </p>
+</li>
+<li><p>有更大的自由度来控制曲线、曲面的形状。</p>
+<p>如一条二维三次曲线的显式表示为$y=ax^3+bx^2+cx+d$，只有四个系数控制曲线的形状</p>
+<p>写成参数表示形式为，有8个参数可用</p>
+<p><img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230127125831087.png" alt="image-20230127125831087"></p>
+</li>
+<li><p>对参数表示的曲线、曲面进行几何变换比较方便。</p>
+</li>
+<li><p>用切矢量代替了斜率，便于处理斜率为无穷大的情形。 即</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230127130126284.png" alt="image-20230127130126284" style="zoom:80%;"></li>
+<li><p>规格化的参数变量t∈[0, 1]，使其相应的几何分量是有界的，而不必用另外的参数去定义边界。</p>
+</li>
+</ol>
+<h3 id="三次参数曲线"><a href="#三次参数曲线" class="headerlink" title="三次参数曲线"></a>三次参数曲线</h3><p>工程上常用的曲线可以分为两类:</p>
+<h4 id="规则曲线"><a href="#规则曲线" class="headerlink" title="规则曲线"></a>规则曲线</h4><p>可以用函数或参数方程直接表示的曲线</p>
+<p>参数t在一定区间变化，可以求得曲线上不同的坐标点，连接这些坐标点就能在屏幕上画出曲线，t变化间隔越小，曲线画得越精细。</p>
+<h4 id="不规则曲线-拟合曲线"><a href="#不规则曲线-拟合曲线" class="headerlink" title="不规则曲线(拟合曲线)"></a>不规则曲线(拟合曲线)</h4><p>工程中除了用到前述的规则曲线外，还常常遇到这样的情况：已知一些计算值或测试数据，要构造一条光滑曲线，通过或贴近这些离散点数据，这样构造出来的曲线称为拟合曲线。</p>
+<p>拟合曲线通常采用二次或三次参数曲线的形式，我们一般采用三次拟合曲线。(原因低于3次，控制曲线形状不够灵活，高于3次，计算量太大，且可能增加不必要的摆动（即振荡））。</p>
+<p>主要三类拟合曲线：</p>
+<ul>
+<li>Hermite曲线</li>
+<li>Bezier曲线</li>
+<li>B样条曲线</li>
+</ul>
+<p>三次参数曲线的基本特征</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230127131450376.png" alt="image-20230127131450376" style="zoom:80%;">
+
+<p>如果曲线用{x=f(t),y=g(t)}的形式来表示:</p>
+<p>曲线1为${x=f_1(t),y=g_1(t)}$, 曲线2为${x=f_2(t),y=g_2(t)}$,</p>
+<p>几何连续$G^i$ 与参数连续$C^i$</p>
+<ul>
+<li>G0、C0连续：两条曲线段拼接成一条曲线。</li>
+<li>G1连续： 两条曲线段拼接点处切向量方向相同。C1则是方向、大小相等</li>
+<li>Gn连续：两条曲线段拼接点处切向量的n阶导数方向相同。Cn则是n阶导数相等</li>
+</ul>
+<p>${f_1(t_1)=f_2(t_2), g_1(t_1)=g_2(t_2)}$这是 C0 G0连续</p>
+<p>${f_1’(t_1)=f_2’(t_2), g_1’(t_1)=g_2’(t_2)}$这是 C1连续</p>
+<p>$f_1’(t_1)/g_1’(t_1) = f_2’(t_2)/g_2’(t_2)$这是G1连续</p>
+<p>${f_1”(t_1)=f_2”(t_2), g_1”(t_1)=g_2”(t_2)}$这是 C2连续</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230127135638495.png" alt="image-20230127135638495" style="zoom:80%;">
+
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230127183429217.png" alt="image-20230127183429217" style="zoom:80%;">
+
+<p>$f_1’’(t_1)=-12t_1+6,g_1’’(t1)=-6,f_2’’(t_2)=12t_2-6,g_2’’(t_2)=27t_2-6$</p>
+<p>令$f_1’’(t1)=f_2’’(t2),g_1’’(t_1)=g_2’’(t_2)$得$t_1=1,t_2=0$</p>
+<p>所以有$f_1’’(1)=f_2’’(0),g_1’’(1)=g_2’’(0)$，故两条三次曲线达到$C^2$连续</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230128171604699.png" alt="image-20230128171604699" style="zoom:80%;">
+
+<p>$f_1’(t_1)=2t_1-2,g_1’(t1)=3t^2-4t+1,f_2’(t_2)=2t,g_2’(t_2)=3t^2$</p>
+<p>令$f_1’(t1)=f_2’(t2),g_1’(t_1)=g_2’(t_2)$得$t_1=1,t_2=0$</p>
+<p>所以有$f_1’(1)=f_2’(0),g_1’(1)=g_2’(0)$，故两条三次曲线达到$C^1$连续</p>
+<p>又当$t_1=1,t_2=0$时，$f_1’(t_1)/g_1’(t_1)$或$f_2’(t_2)/g_2’(t_2)$不存在，故两条三次曲线没有$G^1$连续</p>
+<p>曲线段可以用端点、切向量和曲线段之间的连续性等约束条件来定义 </p>
+<ul>
+<li>两个端点和两端点处的切向量定义Hermite曲线； </li>
+<li>两个端点和另外两个控制端点切向量的点定义的Bezier曲线；</li>
+<li>由四个控制顶点定义的B样条曲线。</li>
+</ul>
+<p>$Q(t)=[x(t)\ y(t)\ z(t)]=T<em>C=T</em>M*G$</p>
+<p>M为基矩阵</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230128175528500.png" alt="image-20230128175528500" style="zoom: 67%;">
+
+<p>G为四个元素的几何约束行向量矩阵</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230128175537407.png" alt="image-20230128175537407" style="zoom: 67%;">
+
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230128175756068.png" alt="image-20230128175756068" style="zoom:80%;">
+
+<p>$x(t)=T<em>M</em>G$展开</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230128175804294.png" alt="image-20230128175804294" style="zoom:80%;">
+
+<h3 id="Hermite-曲线"><a href="#Hermite-曲线" class="headerlink" title="Hermite 曲线"></a>Hermite 曲线</h3><p>由端点P1、P4和端点处切向量R1、R4的约束确定 ，其几何矩阵为 </p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230128172406300.png" alt="image-20230128172406300" style="zoom:80%;">
+
+<p>仅讨论其x分量</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230128172423307.png" alt="image-20230128172423307" style="zoom:80%;">
+
+<p>$x(t)=a_xt^3+b_xt^2+c_xt+d_x=T<em>C_x=T</em>M_H*G_{Hx}=[t^3\ t^2\ t\ 1]<em>M_H</em>G_{Hx}$</p>
+<p>t=0、1带入，得到其$P_{1x}、P_{4x}$约束</p>
+<p>$x(0)=P_{1x}=[0\ 0\ 0\ 1]<em>M_H</em>G_{Hx}$</p>
+<p>$x(1)=P_{4x}=[1\ 1\ 1\ 1]<em>M_H</em>G_{Hx}$</p>
+<p>$x^`(t)=[3t^2\ 2t\ 1\ 0]<em>M_H</em>G_{Hx}$</p>
+<p>t=0、1带入，得到其$R_{1x}、R_{4x}$约束</p>
+<p>$x^`(0)=R_{1x}=[0\ 0\ 1\ 0]<em>M_H</em>G_{Hx}$</p>
+<p>$x^`(1)=R_{4x}=[3\ 2\ 1\ 0]<em>M_H</em>G_{Hx}$</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230128180350806.png" alt="image-20230128180350806" style="zoom: 67%;">
+
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230128180400414.png" alt="image-20230128180400414" style="zoom:80%;">
+
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230128180423807.png" alt="image-20230128180423807" style="zoom:80%;">
+
+<p>Hermite 曲线完全插值控制点（2个，P1、P4）。两段Hermite曲线连接，可以轻易实现光滑连续。 切向量对曲线的影响如图 </p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230128180617230.png" alt="image-20230128180617230" style="zoom: 67%;">
+
+<p><strong>习题：假定一条三次Hermite曲线的两个端点P1=&lt;0,1&gt;,P4=&lt;3,0&gt;,端点处切向量R1=&lt;0,1&gt;,R4=&lt;-3,0&gt;，请写出Hermite多项式形式，并绘出最后曲线，改变切向量，观察曲线形状变化。</strong> </p>
+<h3 id="Bezier曲线"><a href="#Bezier曲线" class="headerlink" title="Bezier曲线"></a>Bezier曲线</h3><p>对于三次Bezier曲线，给出4个型值点(控制点)，曲线的起点、终点（必须经过的点），另外两个型值点控制Bezier曲线在起点和终点之间的形状。</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230128181206198.png" alt="image-20230128181206198" style="zoom: 50%;">
+
+<p>通过给定两个不在曲线上的中间点来间接地确定端点切向量 </p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230128181115001.png" alt="image-20230128181115001" style="zoom:33%;">
+
+<p>可以导出Hermite几何向量与Bezier几何向量之间的关系：</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230128181138690.png" alt="image-20230128181138690" style="zoom: 67%;">
+
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230128181338040.png" alt="image-20230128181338040" style="zoom:67%;">
+
+<p><img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230128181359593.png" alt="image-20230128181359593"></p>
+<p>Bezier曲线的性质：</p>
+<ul>
+<li>R1和R4的大小及方向可以直接看出，便于控制曲线的形状。</li>
+<li>凸包(壳性：Bezier曲线一定在由P1P2P3P4四个端点确定的凸四边形(称为Bezier特征多边形）内（便于对曲线进行剪切）。</li>
+<li>对称性：n次Bezier曲线，如果端点不变，而将端点的次序颠倒，则曲线的走向相反，而形状保持不变。</li>
+<li>几何不变性：Bezier曲线的形状仅与Bezier特征多边形的各顶点的相对位置有关，而与坐标系的选择无关。</li>
+</ul>
+<p>P3，P4，P5三点互异且共线就能保证两段Bezier曲线段光滑连接（G1连续），即：$P_4-P_3=k(P_5-P_4) k&gt;0$。特别的，当k=1时，C1连续。</p>
+<p>n阶Bezier曲线有一个统一的表达式，可以写作：</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230202175555632.png" alt="image-20230202175555632" style="zoom: 50%;">
+
+<p><strong>练习：给定四个控制点P1(0,0,0)、P2(1, 1, 1)、P3(2,-1,-1)、P4(3,0,0)，构造Bezier曲线，并计算t = 0 , t = 1, t = 1/3，t= 2/3处的值。</strong> </p>
+<h3 id="B样条曲线"><a href="#B样条曲线" class="headerlink" title="B样条曲线"></a>B样条曲线</h3><p>Bezier曲线有很多优点，例如Bezier曲线具有凸包性，容易改变形状（便于控制），容易做到C1、G1连续（外观性和直观性好），但是：Bezier曲线不具备局部可修改性。Bi,n(t)在（0，1）开区间内都都不为0，改变某一个特征点对整条曲线形状都有影响。</p>
+<p>B样条通常用m +1个控制点，(P0、P1、…Pm)产生m-2个曲线段(Q3、Q4、…Qm)，m&gt;=3，B样条曲线一般不过控制点。</p>
+<p>若要产生封闭曲线，结尾处重复使用P0~P2。即P0  P1  P2…Pm  P0  P1  P2. </p>
+<h4 id="B样条曲线-1"><a href="#B样条曲线-1" class="headerlink" title="B样条曲线"></a>B样条曲线</h4><img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230202180124323.png" alt="image-20230202180124323" style="zoom:67%;">
+
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230202180129834.png" alt="image-20230202180129834" style="zoom:67%;">
+
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230202180138334.png" alt="image-20230202180138334" style="zoom:67%;">
+
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230202180135360.png" alt="image-20230202180135360" style="zoom:67%;">
+
+<h4 id="均匀B样条曲线"><a href="#均匀B样条曲线" class="headerlink" title="均匀B样条曲线"></a>均匀B样条曲线</h4><img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230202181320079.png" alt="image-20230202181320079" style="zoom: 80%;">
+
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230202181346204.png" alt="image-20230202181346204" style="zoom: 80%;">
+
+<p>四点加权求和，调和函数非负且和为1 ，具有凸壳特性。</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230202181331490.png" alt="image-20230202181331490" style="zoom: 67%;">
+
+<h4 id="B样条曲线的性质："><a href="#B样条曲线的性质：" class="headerlink" title="B样条曲线的性质："></a>B样条曲线的性质：</h4><p>端点性质：对于Pi-3、Pi-2、Pi-1、Pi，4个端点，可生成靠近Pi-2、Pi-1两个型值点的一段B样条，再增加1个型值点，可利用Pi-2、Pi-1、Pi、Pi＋1，4个端点再产生一段B样条，依次类推可以生成整个3次B样条。</p>
+<p><img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230202184714094.png" alt="image-20230202184714094"></p>
+<p>B样条在连接点处的连续性</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230202184759869.png" alt="image-20230202184759869" style="zoom:80%;">
+
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230202184810026.png" alt="image-20230202184810026" style="zoom:80%;">
+
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230202184819092.png" alt="image-20230202184819092" style="zoom:80%;">
+
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230202184859407.png" alt="image-20230202184859407" style="zoom:80%;">
+
+<p>局部性：每一段B样条由4个控制点的位置矢量组成，改变其中的一个控制点，最多影响4条B样条曲线的位置，因此可对B样条曲线进行局部修改。</p>
+<p>可扩展性：增加1个型值点（控制点），可再增加一段B样条，且新增加的B样条与原曲线在连接点处仍是C2连续。</p>
+<h3 id="三种曲线的比较与转换"><a href="#三种曲线的比较与转换" class="headerlink" title="三种曲线的比较与转换"></a>三种曲线的比较与转换</h3><p><img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230202185122591.png" alt="image-20230202185122591"></p>
+<p>在实际应用中，常常需要对三种曲线表示方法进行转换，而且这三种曲线表示方法之间也能够进行相互转换：</p>
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230202185219319.png" alt="image-20230202185219319" style="zoom: 67%;">
+
+<img src="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/image-20230202185224390.png" alt="image-20230202185224390" style="zoom: 50%;">
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">萌新QAQ</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://jszmwq.github.io/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/">https://jszmwq.github.io/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://jszmwq.github.io" target="_blank">j52nnw9的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%A7%91%E8%AF%BE%E7%A8%8B/">计科课程</a></div><div class="post_share"><div class="social-share" data-image="/img/Animation/5.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/01/11/python%E7%94%9F%E6%88%90%E7%9A%84exe%E6%96%87%E4%BB%B6%E5%8F%8D%E7%BC%96%E8%AF%91/"><img class="prev-cover" src="/img/Animation/3.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">python生成的exe文件反编译</div></div></a></div><div class="next-post pull-right"><a href="/2022/12/31/ChatGPT%E5%AF%B9%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8%E7%9A%84%E5%BD%B1%E5%93%8D/"><img class="next-cover" src="/img/Animation/1.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ChatGPT对网络空间安全的影响</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/12/31/ChatGPT%E5%AF%B9%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8%E7%9A%84%E5%BD%B1%E5%93%8D/" title="ChatGPT对网络空间安全的影响"><img class="cover" src="/img/Animation/1.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-31</div><div class="title">ChatGPT对网络空间安全的影响</div></div></a></div><div><a href="/2022/12/21/pintos%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C/" title="pintos操作系统实验"><img class="cover" src="/img/Animation/4.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-21</div><div class="title">pintos操作系统实验</div></div></a></div><div><a href="/2022/12/02/%E5%90%8C%E6%9E%84%E7%BD%91%E7%BB%9C%E5%8F%AF%E5%88%86%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E9%97%AE%E9%A2%98/" title="同构网络可分任务调度问题"><img class="cover" src="/img/Animation/1.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-02</div><div class="title">同构网络可分任务调度问题</div></div></a></div><div><a href="/2022/11/22/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" title="大数据优化建模与算法笔记"><img class="cover" src="/img/Animation/5.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-22</div><div class="title">大数据优化建模与算法笔记</div></div></a></div><div><a href="/2023/02/23/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/" title="形式语言与自动机"><img class="cover" src="/img/Animation/9.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-23</div><div class="title">形式语言与自动机</div></div></a></div><div><a href="/2022/12/14/%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8ARENA%E7%B3%BB%E7%BB%9F/" title="怎样使用ARENA系统"><img class="cover" src="/img/Animation/2.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-14</div><div class="title">怎样使用ARENA系统</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/image.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">萌新QAQ</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">51</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">计算机图形学概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E5%9B%BE%E5%BD%A2%E7%9A%84%E7%BA%A7%E5%88%AB%E5%85%89%E6%A0%85%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">二维图形的级别光栅图形学算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E6%98%BE%E7%A4%BA%E8%AE%BE%E5%A4%87"><span class="toc-number">2.1.</span> <span class="toc-text">图形显示设备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%85%83%E7%9A%84%E6%89%AB%E6%8F%8F%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.2.</span> <span class="toc-text">图元的扫描转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%A2%9E%E9%87%8F%E7%AE%97%E6%B3%95DDA"><span class="toc-number">2.2.1.</span> <span class="toc-text">基本增量算法DDA</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%EF%BC%9A%E5%86%99%E5%87%BADDA%E7%AE%97%E6%B3%95%EF%BC%8C%E4%BD%BF%E4%B9%8B%E8%83%BD%E6%89%AB%E6%8F%8F%E8%BD%AC%E6%8D%A2%E5%90%84%E7%A7%8D%E6%96%9C%E7%8E%87%E7%9A%84%E7%9B%B4%E7%BA%BF%E6%AE%B5%EF%BC%8C%E5%8C%85%E6%8B%AC%E5%9E%82%E7%9B%B4%E5%92%8C%E6%B0%B4%E5%B9%B3%E7%9A%84%E7%BA%BF%E6%AE%B5%E3%80%82"><span class="toc-number">2.2.1.1.</span> <span class="toc-text">习题：写出DDA算法，使之能扫描转换各种斜率的直线段，包括垂直和水平的线段。</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E7%82%B9%E7%BA%BF%E7%AE%97%E6%B3%95%EF%BC%88Midpoint%EF%BC%89"><span class="toc-number">2.2.2.</span> <span class="toc-text">中点线算法（Midpoint）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%EF%BC%9A%E5%88%A9%E7%94%A8%E4%B8%AD%E7%82%B9%E7%BA%BF%E7%AE%97%E6%B3%95%EF%BC%8C%E4%BD%BF%E4%B9%8B%E8%83%BD%E6%89%AB%E6%8F%8F%E8%BD%AC%E6%8D%A2%E6%96%9C%E7%8E%87-1-lt-k-lt-0%E7%9A%84%E7%9B%B4%E7%BA%BF%E6%AE%B5%E3%80%82"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">习题：利用中点线算法，使之能扫描转换斜率-1&lt;k&lt;0的直线段。</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%86%E7%9A%84%E6%89%AB%E6%8F%8F%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.2.3.</span> <span class="toc-text">圆的扫描转换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A9%E5%BD%A2%E3%80%81%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%A1%AB%E5%85%85"><span class="toc-number">2.3.</span> <span class="toc-text">矩形、多边形填充</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%90%E7%82%B9%E5%88%A4%E6%96%AD%E6%B3%95"><span class="toc-number">2.3.1.</span> <span class="toc-text">逐点判断法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E7%82%B9%E5%9C%A8%E5%A4%9A%E8%BE%B9%E5%BD%A2%E7%9A%84%E5%86%85%E5%A4%96%E5%85%B3%E7%B3%BB%EF%BC%9F"><span class="toc-number">2.3.1.1.</span> <span class="toc-text">如何判断点在多边形的内外关系？</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E7%BA%BF%E7%AE%97%E6%B3%95"><span class="toc-number">2.3.2.</span> <span class="toc-text">扫描线算法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">步骤：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5%E5%A4%84%E7%90%86"><span class="toc-number">2.3.2.2.</span> <span class="toc-text">特殊情况处理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95"><span class="toc-number">2.3.2.3.</span> <span class="toc-text">数据结构与算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E7%BA%BF%E6%AE%B5%E5%89%AA%E8%A3%81"><span class="toc-number">2.4.</span> <span class="toc-text">直线段剪裁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E6%B1%82%E4%BA%A4%E7%AE%97%E6%B3%95"><span class="toc-number">2.4.1.</span> <span class="toc-text">直接求交算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cohen-Sutherland%E8%A3%81%E5%89%AA"><span class="toc-number">2.4.2.</span> <span class="toc-text">Cohen-Sutherland裁剪</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%BE%B9%E5%BD%A2%E5%89%AA%E8%A3%81"><span class="toc-number">2.5.</span> <span class="toc-text">多边形剪裁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Sutherland-Hodgman%E7%AE%97%E6%B3%95%EF%BC%88%E9%80%90%E8%BE%B9%E8%A3%81%E5%89%AA%E7%AE%97%E6%B3%95%EF%BC%89"><span class="toc-number">2.5.1.</span> <span class="toc-text">Sutherland-Hodgman算法（逐边裁剪算法）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E8%B5%B0%E6%A0%B7"><span class="toc-number">2.6.</span> <span class="toc-text">反走样</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%90%E9%AB%98%E5%88%86%E8%BE%A8%E7%8E%87"><span class="toc-number">2.6.1.</span> <span class="toc-text">提高分辨率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E5%8A%A0%E6%9D%83%E5%8C%BA%E5%9F%9F%E9%87%87%E6%A0%B7"><span class="toc-number">2.6.2.</span> <span class="toc-text">非加权区域采样</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E6%9D%83%E5%8C%BA%E5%9F%9F%E9%87%87%E6%A0%B7"><span class="toc-number">2.6.3.</span> <span class="toc-text">加权区域采样</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E5%8F%98%E6%8D%A2"><span class="toc-number">3.</span> <span class="toc-text">图形变换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E5%9F%BA%E6%9C%AC%E5%8F%98%E6%8D%A2"><span class="toc-number">3.1.</span> <span class="toc-text">二维基本变换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B3%E7%A7%BB%E5%8F%98%E6%8D%A2"><span class="toc-number">3.1.1.</span> <span class="toc-text">平移变换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%BE%E7%BC%A9%E5%8F%98%E6%8D%A2"><span class="toc-number">3.1.2.</span> <span class="toc-text">放缩变换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2"><span class="toc-number">3.1.3.</span> <span class="toc-text">旋转变换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E5%8F%98%E6%8D%A2"><span class="toc-number">3.1.4.</span> <span class="toc-text">对称变换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%99%E5%88%87%E5%8F%98%E6%8D%A2"><span class="toc-number">3.1.5.</span> <span class="toc-text">错切变换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87%E4%B8%8E%E5%A4%8D%E5%90%88%E5%8F%98%E6%8D%A2"><span class="toc-number">3.1.6.</span> <span class="toc-text">齐次坐标与复合变换</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%B9%E5%8F%82%E8%80%83%E7%82%B9-F-x-f-y-f-%E5%81%9A%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2%EF%BC%9A"><span class="toc-number">3.1.6.1.</span> <span class="toc-text">对参考点$F(x_f,y_f)$做旋转变换：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%BB%E4%B8%80%E5%9B%BE%E5%BD%A2%E5%85%B3%E4%BA%8E%E4%BB%BB%E6%84%8F%E8%BD%B4y-bx-a%E7%9A%84%E5%AF%B9%E7%A7%B0%E5%8F%98%E6%8D%A2"><span class="toc-number">3.1.6.2.</span> <span class="toc-text">任一图形关于任意轴y&#x3D;bx+a的对称变换</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E7%BB%B4%E5%87%A0%E4%BD%95%E5%8F%98%E6%8D%A2"><span class="toc-number">3.1.7.</span> <span class="toc-text">三维几何变换</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%95%E4%BB%BB%E6%84%8F%E8%BD%B4%E7%9A%84%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2"><span class="toc-number">3.1.7.1.</span> <span class="toc-text">绕任意轴的旋转变换</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B2%E7%BA%BF%E5%92%8C%E6%9B%B2%E9%9D%A2"><span class="toc-number">4.</span> <span class="toc-text">曲线和曲面</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E6%9B%B2%E7%BA%BF%E5%9F%BA%E7%A1%80"><span class="toc-number">4.1.</span> <span class="toc-text">参数曲线基础</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E5%8F%82%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="toc-number">4.1.1.</span> <span class="toc-text">非参数表示法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%98%BE%E5%BC%8F%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="toc-number">4.1.1.1.</span> <span class="toc-text">显式表示法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9A%90%E5%BC%8F%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="toc-number">4.1.1.2.</span> <span class="toc-text">隐式表示法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="toc-number">4.1.2.</span> <span class="toc-text">参数表示法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%B3%95%E7%9A%84%E4%BC%98%E8%B6%8A%E6%80%A7%EF%BC%9A"><span class="toc-number">4.1.2.1.</span> <span class="toc-text">参数表示法的优越性：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E5%8F%82%E6%95%B0%E6%9B%B2%E7%BA%BF"><span class="toc-number">4.2.</span> <span class="toc-text">三次参数曲线</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%84%E5%88%99%E6%9B%B2%E7%BA%BF"><span class="toc-number">4.2.1.</span> <span class="toc-text">规则曲线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E8%A7%84%E5%88%99%E6%9B%B2%E7%BA%BF-%E6%8B%9F%E5%90%88%E6%9B%B2%E7%BA%BF"><span class="toc-number">4.2.2.</span> <span class="toc-text">不规则曲线(拟合曲线)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hermite-%E6%9B%B2%E7%BA%BF"><span class="toc-number">4.3.</span> <span class="toc-text">Hermite 曲线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bezier%E6%9B%B2%E7%BA%BF"><span class="toc-number">4.4.</span> <span class="toc-text">Bezier曲线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF"><span class="toc-number">4.5.</span> <span class="toc-text">B样条曲线</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF-1"><span class="toc-number">4.5.1.</span> <span class="toc-text">B样条曲线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9D%87%E5%8C%80B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF"><span class="toc-number">4.5.2.</span> <span class="toc-text">均匀B样条曲线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF%E7%9A%84%E6%80%A7%E8%B4%A8%EF%BC%9A"><span class="toc-number">4.5.3.</span> <span class="toc-text">B样条曲线的性质：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E6%9B%B2%E7%BA%BF%E7%9A%84%E6%AF%94%E8%BE%83%E4%B8%8E%E8%BD%AC%E6%8D%A2"><span class="toc-number">4.6.</span> <span class="toc-text">三种曲线的比较与转换</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E5%9B%9B/" title="操作系统上机实验四"><img src="/img/Animation/4.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="操作系统上机实验四"/></a><div class="content"><a class="title" href="/2022/06/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E5%9B%9B/" title="操作系统上机实验四">操作系统上机实验四</a><time datetime="2023-04-23T09:53:46.388Z" title="更新于 2023-04-23 17:53:46">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/31/%E8%87%AA%E9%80%82%E5%BA%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" title="自适应遗传算法"><img src="/img/Animation/3.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自适应遗传算法"/></a><div class="content"><a class="title" href="/2022/12/31/%E8%87%AA%E9%80%82%E5%BA%94%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" title="自适应遗传算法">自适应遗传算法</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E4%B8%8A%E6%9C%BA%E9%A2%98%E7%9B%AE/" title="计算机图形学上机题目"><img src="/img/Animation/4.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机图形学上机题目"/></a><div class="content"><a class="title" href="/2023/01/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E4%B8%8A%E6%9C%BA%E9%A2%98%E7%9B%AE/" title="计算机图形学上机题目">计算机图形学上机题目</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" title="计算机图形学"><img src="/img/Animation/5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机图形学"/></a><div class="content"><a class="title" href="/2023/01/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" title="计算机图形学">计算机图形学</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/22/%E8%AE%A1%E7%BB%84%E8%AF%BE%E8%AE%BE/" title="计组课设"><img src="/img/Animation/2.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计组课设"/></a><div class="content"><a class="title" href="/2022/12/22/%E8%AE%A1%E7%BB%84%E8%AF%BE%E8%AE%BE/" title="计组课设">计组课设</a><time datetime="2023-04-23T09:52:52.278Z" title="更新于 2023-04-23 17:52:52">2023-04-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 萌新QAQ</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/hideMobileSidebar.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
